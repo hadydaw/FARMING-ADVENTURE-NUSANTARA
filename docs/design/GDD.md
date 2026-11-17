@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.33 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.34 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -518,6 +518,23 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - Terkait: D-007, D-013, D-014, D-016, D-017, D-019 sampai D-026, D-028, D-031, D-033 sampai D-038, D-040 sampai D-042.
 
 **[BELUM DITETAPKAN]:** isi dan urutan tutorial awal, daftar topik dan pemicu, bentuk tampilan, daftar instruksi wajib, isi buku bantuan, cara mendeteksi pemain yang sudah paham, opsi menonaktifkan petunjuk, tutorial ulang/reset, tutorial kontroler/pengaturan tombol, aksesibilitas, konsep "spiritual" (belum didefinisikan). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+### 6.34 Save, Load, dan Cloud Synchronization — D-044, LOCKED (Cloud Save Hybrid Lengkap)
+**Ditetapkan:**
+- **Supabase** sebagai penyimpanan cloud utama; game **online-only** (D-014).
+- Komponen: **Automatic Save, Cloud Save, Local Cache, Cloud Synchronization, Data Recovery, Conflict Resolution.**
+- **Auto-save** pada peristiwa penting: quest selesai, perubahan inventory, perkembangan karakter, perubahan hubungan NPC, aktivitas farming, progres dungeon.
+- Penyimpanan **aman**: data penting tidak hilang saat aplikasi tertutup atau koneksi terputus.
+- **Cache lokal** mempercepat pemuatan dan menahan perubahan sementara saat koneksi terganggu; **bukan mode offline penuh.**
+- Sinkronisasi **konsisten**; resolusi konflik **tidak menimpa progres terbaru sembarangan** dan tidak menggabungkan data tak kompatibel.
+- **Indikator status save dan sinkronisasi** mudah dipahami.
+- **Validasi data, versioning save, retry terbatas, perlindungan duplikasi transaksi.**
+- Data akun **hanya dapat diakses pemiliknya** (kebijakan keamanan Supabase).
+- Mencakup **semua progres:** quest, inventory, karakter, NPC, hubungan sosial, farming, mount, dunia.
+- UI **Android landscape**, **Indonesia dan English.**
+- Terkait: D-007, D-014, D-031, D-036, D-037, D-039, D-040, D-042, D-043, O-003.
+
+**[BELUM DITETAPKAN]:** perilaku saat koneksi putus lama, metode login dan multi-perangkat, jumlah slot dan peran slot di cloud, aturan rinci resolusi konflik, frekuensi auto-save, batas ukuran dan retensi cadangan, validasi server (ekonomi/rank), kebijakan hapus akun/data, bentuk indikator UI, jam perangkat diubah, konsep "spiritual" (belum didefinisikan). **Tidak ada implementasi cloud/save lanjutan sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

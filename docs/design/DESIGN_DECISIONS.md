@@ -579,6 +579,25 @@ Pilihan: **D. Tutorial Hybrid Adaptif.** Ketentuan:
 Hubungan (tidak mengubah isi keputusan lain): bahasa (**D-007**), pertarungan (**D-013**), dungeon (**D-016**), guild (**D-017**), companion/taming (**D-019**), crafting (**D-020**), ekonomi (**D-021**), NPC (**D-022**, **D-040**), pertanian/peternakan/memancing/memasak (**D-023 sampai D-026**), eksplorasi (**D-028**), UI (**D-031**), kamera (**D-033**), kontrol (**D-034**), interaksi (**D-035**), inventory (**D-036**), quest (**D-037**), dialog (**D-038**), online dan cloud save (**D-014**, **O-003**). Mount (**D-042**) dan kustomisasi (**D-041**) juga dapat memiliki panduan.
 **Terbuka:** isi dan urutan tutorial awal (termasuk apakah ada karakter/cerita pembuka); daftar topik panduan dan pemicunya; bentuk tampilan (kotak petunjuk, sorotan UI, gambar/animasi, video pendek); daftar "instruksi penting yang wajib" dan cara menandainya; isi buku bantuan dan cara membukanya; cara mendeteksi pemain yang sudah paham (mis. sudah melakukan aksi); opsi menonaktifkan semua petunjuk di pengaturan; apakah ada tutorial ulang/reset; tutorial untuk kontroler/pengaturan tombol; aksesibilitas; peran konsep "spiritual" bila ada panduan (belum didefinisikan, tidak ditebak). Implementasi tutorial belum dimulai. ID D-043 tersedia saat dicatat (tanpa bentrokan).
 
+### D-044 — Sistem Save, Load, dan Cloud Synchronization *(APPROVED / LOCKED, 2026-11-17, Tahap 34)*
+Pilihan: **D. Cloud Save Hybrid Lengkap.** Ketentuan:
+1. **Supabase** sebagai penyimpanan cloud utama (sesuai O-003 dan D-014).
+2. Sistem menggabungkan: Automatic Save; Cloud Save; Local Cache; Cloud Synchronization; Data Recovery; Conflict Resolution.
+3. Auto-save dipicu peristiwa penting: penyelesaian quest, perubahan inventory, perkembangan karakter, perubahan hubungan NPC, aktivitas farming, progres dungeon.
+4. Mekanisme penyimpanan aman agar data penting tidak hilang saat aplikasi tertutup atau koneksi terputus.
+5. Cache lokal mempercepat pemuatan dan mempertahankan perubahan sementara saat koneksi terganggu. Game tetap **online-only**; cache **bukan** mode offline penuh.
+6. Sinkronisasi menangani perubahan lokal dan cloud secara konsisten.
+7. Conflict resolution tidak sembarangan menimpa progres terbaru atau menggabungkan data yang tidak kompatibel.
+8. Indikator status save dan sinkronisasi yang mudah dipahami pemain.
+9. Validasi data, versioning save, retry dengan batas wajar, perlindungan terhadap duplikasi transaksi.
+10. Data akun hanya dapat diakses pemiliknya lewat kebijakan keamanan Supabase yang benar.
+11. Terintegrasi dengan semua sistem progres: quest, inventory, karakter, NPC, hubungan sosial, farming, mount, dunia.
+12. UI mendukung Android landscape, Indonesia dan English.
+
+Hubungan (tidak mengubah isi keputusan lain): **D-014** (internet wajib, Cloud Save; keputusan ini merinci cara kerjanya dan menjawab sebagian item terbuka D-014 tentang perilaku saat koneksi putus), **O-003** (Supabase), bahasa (**D-007**), UI (**D-031**), inventory (**D-036**), quest (**D-037**), sosial (**D-039**), NPC (**D-040**), mount (**D-042**), tutorial (**D-043**), serta seluruh sistem progres D-013 sampai D-043.
+**Catatan konsistensi:** frasa "offline-first" di `BACKEND_DESIGN.md` §5 berarti *tulis ke penyimpanan lokal dulu sebagai penyangga* dan bukan bermain offline; dokumen itu diperjelas. Implementasi lokal saat ini (`SaveService`, 3 slot) adalah fondasi dan tetap berlaku sebagai cache lokal.
+**Terbuka:** perilaku game bila koneksi putus berkepanjangan (jeda, mode terbatas, atau keluar ke menu) dan batas waktunya; metode login dan kebijakan multi-perangkat (sudah terbuka di D-014); jumlah slot save per akun (saat ini 3 lokal) dan apakah slot ikut cloud; aturan rinci resolusi konflik (pilihan pemain, penggabungan per bagian yang aman, atau pemenang otomatis dengan syarat); frekuensi dan ambang auto-save; batas ukuran payload dan retensi cadangan cloud; apa yang divalidasi server untuk ekonomi/rank (anti-curang); kebijakan hapus akun dan data; bentuk indikator UI; penanganan jam perangkat yang diubah; peran konsep "spiritual" (belum didefinisikan). Implementasi save/cloud belum dimulai (selain fondasi lokal yang sudah ada). ID D-044 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

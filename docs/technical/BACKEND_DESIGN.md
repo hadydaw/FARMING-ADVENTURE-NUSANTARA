@@ -1,6 +1,6 @@
 # Rancangan Backend — Farming Adventure Nusantara
 
-> **Versi:** 0.3 (+ D-014 Single-Player Online) · **Status:** RANCANGAN. Supabase disetujui sebagai pilihan awal (O-003); belum ada kode server dan belum ada akun yang dibuat. Nakama ditunda. Implementasi baru setelah desain sistem online disepakati.
+> **Versi:** 0.4 (+ D-014 Single-Player Online, D-044 Cloud Save) · **Status:** RANCANGAN. Supabase disetujui sebagai pilihan awal (O-003); belum ada kode server dan belum ada akun yang dibuat. Nakama ditunda. Implementasi baru setelah desain sistem online disepakati.
 > Prinsip tetap (D-006): **GitHub bukan server game.** Backend adalah layanan terpisah.
 
 ## 1. Tujuan
@@ -52,9 +52,19 @@ Kunci unik `saves(player_id, slot)`. Akses dibatasi per pemain (Row Level Securi
 
 ## 5. Sinkronisasi dan Konflik
 
-- Klien menyimpan lokal dulu (selalu berhasil, offline-first), lalu `push_save` saat online.
+- Klien menyimpan lokal dulu sebagai penyangga (selalu berhasil), lalu `push_save` saat online. Ini **bukan** mode bermain offline: game tetap online-only (D-014, D-044).
 - `push_save` menyertakan `base_revision`. Server menerima hanya bila `base_revision == revision server`; jika tidak → **konflik**: server mengembalikan snapshot server, klien menampilkan pilihan (pakai lokal / pakai server). Tidak ada penimpaan diam-diam.
 - Data lokal tidak dipercaya untuk fitur kompetitif/ekonomi online; server yang menghitung/memvalidasi (detail menunggu desain).
+
+## 5a. Konsekuensi D-044 (Cloud Save Hybrid Lengkap; rancangan saja)
+
+- **Model data (konseptual):** tabel save per akun dengan kolom `user_id`, `slot`, `revision`, `schema_version`, `game_version`, `device_id`, `updated_at` (waktu server), `checksum`, `payload` (JSONB atau berkas terkompresi), serta tabel/arsip cadangan berversi dan tabel ID transaksi idempoten (jendela waktu). Tidak ada tabel lintas pemain (D-014).
+- **Push:** `push_save(base_revision, payload, transaction_ids)`; server memvalidasi sesi, skema, ukuran, dan laju; menerima hanya bila `base_revision` = revisi server, lalu menaikkan revisi secara atomik (transaksi database). Bila tidak sama → respons konflik berisi ringkasan dan snapshot server. Pengiriman ulang dengan ID transaksi yang sama tidak berefek ganda.
+- **Pull:** `pull_save` mengembalikan snapshot terbaru dan revisinya; klien memvalidasi sebelum menerima.
+- **Cadangan dan pemulihan:** server menyimpan beberapa versi terakhir (jumlah dan retensi menunggu keputusan); pemulihan oleh pemain lewat klien, tidak menimpa tanpa konfirmasi.
+- **Keamanan:** **Row Level Security** aktif pada semua tabel (`user_id = auth.uid()`; pemilik saja yang dapat membaca/menulis/menghapus datanya); klien memakai kunci publik dan token sesi; kunci service-role hanya di sisi server/pengaturan penyedia dan tidak pernah di repo atau aplikasi; rate limit dan batas payload; validasi dan penolakan data malformed; log audit minimal tanpa data pribadi berlebih; uji kebijakan RLS sebelum rilis. Kebijakan hapus akun dan data serta privasi menunggu desain (§6).
+- **Validasi sisi server:** hal yang memengaruhi ekonomi atau rank kompetitif tidak dipercaya dari klien (§5); cakupan validasi menunggu desain.
+- Belum ada kode server, akun, atau proyek Supabase yang dibuat; tidak ada rahasia di repositori.
 
 ## 6. Keamanan dan Privasi
 

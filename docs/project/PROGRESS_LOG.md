@@ -238,3 +238,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - D-043 (Tutorial Hybrid Adaptif, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
 - GDD §6.33 baru (v0.33); Technical Architecture §4ad ditambahkan (v0.33; catatan saja: tutorial sebagai data, pemicu kontekstual berbasis event bus, penyelesaian otomatis dan throttle, sorotan UI berbasis identitas elemen, buku bantuan, penyimpanan status dan cloud save). Hubungan dengan D-007, D-013, D-014, D-016, D-017, D-019 sampai D-026, D-028, D-031, D-033 sampai D-038, D-040 sampai D-042 dicatat tanpa mengubah isinya.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 34.
+
+
+## 2026-11-17 (34) — D-044 Sistem Save, Load, dan Cloud Synchronization dicatat
+
+- D-044 (Cloud Save Hybrid Lengkap, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
+- GDD §6.34 baru (v0.34); Technical Architecture §5a ditambahkan (v0.34; catatan saja: alur cache lokal ke Supabase, auto-save berbasis event, skema modular berversi, validasi, pemulihan berlapis, retry terbatas, resolusi konflik tanpa penimpaan diam-diam, ID transaksi idempoten, keamanan RLS tanpa rahasia di klien/repo); `BACKEND_DESIGN.md` §5a ditambahkan dan frasa "offline-first" diperjelas agar tidak dibaca sebagai mode offline (konsisten dengan D-014 online-only). Hubungan dengan D-007, D-014, D-031, D-036, D-037, D-039, D-040, D-042, D-043, O-003 dicatat tanpa mengubah isinya.
+- Tidak ada perubahan kode/gameplay/CI; fondasi lokal `SaveService` tidak diubah. Menunggu keputusan Tahap 35.
