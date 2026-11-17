@@ -7,7 +7,7 @@ Status: berlaku sejak keputusan "Mulai Pembuatan Game" (2026-11-17). Tidak mengu
 | Milestone | Isi | Status |
 |---|---|---|
 | M1 Project Foundation | Struktur Godot, konfigurasi Android, landscape, input Android, scene utama + pergantian scene, lokalisasi id/en, pengaturan dasar, arsitektur data | Selesai teknis (uji otomatis); menunggu uji perangkat fisik oleh pemilik |
-| M2 Playable Foundation | Pemain, gerak/animasi, kamera, interaksi objek, dunia awal, waktu/kalender (D-055), HUD dasar | **Sebagian**: selesai (uji otomatis) GameClock/GameTime, CameraRig, MovementMath, Interactable/InteractionSensor, tabel data, layar Uji Sistem. **Menunggu aset ChatGPT (B-001..B-007)**: model/animasi pemain, dunia awal, HUD visual |
+| M2 Playable Foundation | Pemain, gerak/animasi, kamera, interaksi objek, dunia awal, waktu/kalender (D-055), HUD dasar | **Sebagian**: dunia uji sementara (60x60 m, 64 props pilot, pemain penanda berlabel, tabrakan, interaksi, HUD teks) bisa dimainkan lewat menu "Mulai (uji dunia awal)"; selesai (uji otomatis) GameClock/GameTime, CameraRig, MovementMath, Interactable/InteractionSensor, tabel data, layar Uji Sistem. **Menunggu aset ChatGPT (B-001..B-007)**: model/animasi pemain, dunia awal, HUD visual |
 | M3 Core Farming | Petak, mencangkul, menanam, menyiram, pertumbuhan, panen, inventaris/item | Menunggu M2 dan aset C-001..C-006 |
 | Lanjut | Sesuai tabel Release Scope O-008 | Belum dimulai |
 

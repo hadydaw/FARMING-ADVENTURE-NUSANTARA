@@ -1,7 +1,7 @@
 keys,id,en
 BOOT_TITLE,Farming Adventure Nusantara,Farming Adventure Nusantara
 BOOT_LOADING,Memuat…,Loading…
-MENU_NOTICE,"Milestone 1: fondasi teknis. Gameplay belum tersedia.","Milestone 1: technical foundation. Gameplay is not available yet."
+MENU_NOTICE,"Build uji teknis. Aset visual masih sementara; gameplay belum tersedia.","Technical test build. Visual assets are temporary; gameplay is not available yet."
 MENU_SETTINGS,Pengaturan,Settings
 MENU_FOUNDATION_TEST,Uji Fondasi (diagnostik),Foundation Test (diagnostics)
 MENU_VERSION,Versi %s,Version %s
@@ -71,3 +71,13 @@ MP_TITLE,"PILOT TEKNIS Opsi A: props B-003 dari mesh kode. Bukan aset final, bel
 MP_CURRENT,Prop: %s | %d segitiga,Prop: %s | %d triangles
 MP_PREV,Sebelumnya,Previous
 MP_NEXT,Berikutnya,Next
+MENU_START_DEV,Mulai (uji dunia awal),Start (test starter world)
+INTERACT_INSPECT,Periksa,Inspect
+PROP_TREE,Pohon,Tree
+PROP_ROCK,Batu,Rock
+PROP_BUSH,Semak,Bush
+PROP_FENCE,Pagar,Fence
+PROP_TUFT,Rumput,Grass
+WORLD_INSPECTED,Memeriksa: %s (belum ada aksi),Inspecting: %s (no action yet)
+HUD_DATE,Hari %d  %s,Day %d  %s
+HUD_PAUSED,(waktu berhenti),(time paused)

@@ -1,6 +1,6 @@
 extends Control
-## Menu utama Milestone 1. Sengaja TIDAK ada tombol "Mulai Game": gameplay belum
-## ada. Hanya Pengaturan dan Uji Fondasi (diagnostik) yang nyata berfungsi.
+## Menu utama (build uji). "Mulai (uji dunia awal)" membuka dunia uji teknis dengan aset
+## SEMENTARA; bukan gameplay final. Pengaturan dan layar diagnostik berfungsi.
 
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -24,6 +24,9 @@ func _ready() -> void:
 	notice.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	column.add_child(notice)
 
+	column.add_child(_button("MENU_START_DEV", func():
+		GameTime.new_game()
+		SceneManager.go("world_start")))
 	column.add_child(_button("MENU_SETTINGS", func(): SceneManager.go("settings")))
 	column.add_child(_button("MENU_FOUNDATION_TEST", func(): SceneManager.go("foundation_test")))
 	column.add_child(_button("MENU_SYSTEMS_TEST", func(): SceneManager.go("systems_test")))

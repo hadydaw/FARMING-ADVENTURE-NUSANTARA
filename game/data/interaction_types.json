@@ -1,3 +1,4 @@
 [
-	{"id": "generic", "prompt_key": "INTERACT_GENERIC", "max_distance": 2.0, "min_facing_dot": 0.2}
+	{"id": "generic", "prompt_key": "INTERACT_GENERIC", "max_distance": 2.0, "min_facing_dot": 0.2},
+	{"id": "inspect", "prompt_key": "INTERACT_INSPECT", "max_distance": 2.6, "min_facing_dot": 0.2}
 ]

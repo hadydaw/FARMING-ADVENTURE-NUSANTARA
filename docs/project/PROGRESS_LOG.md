@@ -482,3 +482,9 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Pilot B-003 dibuat: MeshBuilder, 7 props generik (559 sampai 55 segitiga), bake ke .glb, skrip pasca-impor warna vertex, layar Pilot Mesh. Berlabel PILOT TEKNIS karena acuan ChatGPT belum ada.
 - Bug ditemukan dan diperbaiki lewat screenshot: urutan sisi depan Godot (searah jarum jam) dan arah normal; kini dikunci oleh uji.
 - Uji: 13 berkas, 688 pemeriksaan, 0 gagal. Laporan keterbatasan: `docs/assets/PILOT_MESH_OPSI_A.md`. Menunggu evaluasi visual pemilik sebelum memperluas.
+
+## 2026-11-17 (66) — Dunia awal uji dengan props pilot (O-012)
+
+- Pemilik: "Pengerjaan seperti ini dulu" (mengacu hasil pilot). Dicatat O-012: props pilot dipakai sementara; bukan aset final; acuan ChatGPT tetap diminta (prompt B-003 disusun, acuan pohon A/B sudah dikirim pemilik dan dinilai layak).
+- Dibangun: dunia uji 60x60 m dari data (`world_props.json`, `world_start_layout.json`, bertanda provisional), PlayerController, kamera mengikuti, interaksi "Periksa", BasicHud, tombol menu "Mulai (uji dunia awal)". Pemain = penanda berlabel PLACEHOLDER.
+- Uji: 14 berkas, 765 pemeriksaan, 0 gagal (termasuk tabrakan pohon, batas dunia, interaksi, tata letak HUD).

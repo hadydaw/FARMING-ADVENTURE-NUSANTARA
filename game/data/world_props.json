@@ -1,0 +1,87 @@
+[
+	{
+		"id": "tree_a",
+		"model": "res://game/assets/models/pilot/pilot_tree_a.glb",
+		"collision": {
+			"shape": "cylinder",
+			"radius": 0.5,
+			"height": 3.0
+		},
+		"interaction": "inspect",
+		"label_key": "PROP_TREE",
+		"provisional": true
+	},
+	{
+		"id": "tree_b",
+		"model": "res://game/assets/models/pilot/pilot_tree_b.glb",
+		"collision": {
+			"shape": "cylinder",
+			"radius": 0.45,
+			"height": 3.0
+		},
+		"interaction": "inspect",
+		"label_key": "PROP_TREE",
+		"provisional": true
+	},
+	{
+		"id": "rock_a",
+		"model": "res://game/assets/models/pilot/pilot_rock_a.glb",
+		"collision": {
+			"shape": "cylinder",
+			"radius": 0.8,
+			"height": 1.0
+		},
+		"interaction": "inspect",
+		"label_key": "PROP_ROCK",
+		"provisional": true
+	},
+	{
+		"id": "rock_b",
+		"model": "res://game/assets/models/pilot/pilot_rock_b.glb",
+		"collision": {
+			"shape": "cylinder",
+			"radius": 0.7,
+			"height": 1.2
+		},
+		"interaction": "inspect",
+		"label_key": "PROP_ROCK",
+		"provisional": true
+	},
+	{
+		"id": "fence",
+		"model": "res://game/assets/models/pilot/pilot_fence.glb",
+		"collision": {
+			"shape": "box",
+			"size": [
+				2.0,
+				1.0,
+				0.3
+			]
+		},
+		"interaction": "",
+		"label_key": "PROP_FENCE",
+		"provisional": true
+	},
+	{
+		"id": "bush",
+		"model": "res://game/assets/models/pilot/pilot_bush.glb",
+		"collision": {
+			"shape": "cylinder",
+			"radius": 0.6,
+			"height": 0.8
+		},
+		"interaction": "inspect",
+		"label_key": "PROP_BUSH",
+		"provisional": true
+	},
+	{
+		"id": "tuft",
+		"model": "res://game/assets/models/pilot/pilot_tuft.glb",
+		"collision": {
+			"shape": "none"
+		},
+		"interaction": "",
+		"label_key": "PROP_TUFT",
+		"provisional": true
+	}
+]

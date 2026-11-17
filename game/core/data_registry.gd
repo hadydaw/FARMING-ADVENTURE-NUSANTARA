@@ -15,6 +15,8 @@ const TABLES := {
 	"camera_profiles": "res://game/data/camera_profiles.json",
 	"camera_limits": "res://game/data/camera_limits.json",
 	"interaction_types": "res://game/data/interaction_types.json",
+	"world_props": "res://game/data/world_props.json",
+	"world_start_layout": "res://game/data/world_start_layout.json",
 }
 
 var load_errors: Array[String] = []
