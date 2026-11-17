@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.38 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement, D-047 Monetisasi, D-048 Live Ops) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.39 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement, D-047 Monetisasi, D-048 Live Ops, D-049 QA) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -601,6 +601,22 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 
 #### Post-Launch Roadmap (arah, bukan jadwal)
 Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 menjadi kerangka: pembaruan rutin dan perbaikan → konten baru (tanaman, hewan, ikan, item, NPC, fasilitas) → event live musiman → ekspansi wilayah, dungeon, boss, dan cerita. Tanggal dan prioritas diputuskan nanti.
+
+### 6.39 Quality Assurance dan Strategi Pengujian — D-049, LOCKED (QA Hybrid Lengkap)
+**Ditetapkan:**
+- **Enam jenis pengujian:** Manual; Automated; Performance; Android Device Compatibility; Integration; Regression.
+- **Manual:** pengalaman bermain nyata, kontrol sentuh, UI, NPC, farming, combat, dungeon, aktivitas lain.
+- **Otomatis:** fungsi inti, validasi data, quest, inventory, progression, save/load, dan sistem yang dapat diuji otomatis.
+- **Performa:** FPS, RAM, CPU, suhu, waktu muat, kestabilan.
+- **Kompatibilitas:** ukuran layar, resolusi, hardware, versi Android.
+- **Integrasi** antarfitur dan **regresi wajib** untuk perubahan yang berpotensi memengaruhi fitur stabil.
+- **Catatan uji:** test case, hasil, tingkat keparahan bug, langkah reproduksi, status perbaikan.
+- **Release gate:** APK **tidak siap rilis** bila ada bug kritis atau uji penting yang belum selesai.
+- **Perangkat fisik dibedakan dari emulator/CI**; keberhasilan di perangkat fisik **tidak diklaim tanpa bukti nyata** dari pengguna atau tester.
+- QA terintegrasi dengan **GitHub Actions** dan pembuatan APK.
+- Terkait: O-001, O-004, P-005, D-013 sampai D-048 (sistem yang diuji), terutama D-031, D-034, D-044, D-045, D-047, D-048.
+
+**[BELUM DITETAPKAN]:** daftar perangkat uji dan versi Android minimum, tester dan pengumpulan laporan, target performa per kelas perangkat, definisi keparahan bug dan kriteria gate rinci, alat pelacak, cakupan otomatis wajib, uji emulator/perangkat dari CI, pelaporan crash dan telemetri, beta tertutup, konsep "spiritual" (belum didefinisikan). **Tidak ada implementasi sistem QA lengkap sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

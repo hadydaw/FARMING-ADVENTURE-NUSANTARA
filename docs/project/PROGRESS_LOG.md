@@ -277,3 +277,11 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - **Tahap 35 (Akun dan Login) tetap PENDING** (P-006); tidak diubah.
 - GDD §6.38 baru beserta ringkasan arah Post-Launch (v0.38); Technical Architecture §4ag ditambahkan (v0.38; catatan saja: ID konten stabil dan aturan deprecated, versi berlapis dan pemeriksaan kompatibilitas, migrasi aditif idempoten dan pola expand-contract, event live dengan acuan waktu server dan perlindungan progres permanen, jalur penyampaian konten dan pembatasan kode yang diunduh, anggaran unduhan, uji fixture save tiap versi di CI, jalur dev→staging→prod dengan rollback dan feature flag). Hubungan dengan D-009, D-013, D-014, D-016, D-017, D-019 sampai D-030, D-040, D-043 sampai D-047, O-001, O-002, O-004 dicatat tanpa mengubah isinya.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 40 (Tahap 35 tetap PENDING).
+
+
+## 2026-11-17 (39) — D-049 Sistem Quality Assurance dan Pengujian Game dicatat
+
+- D-049 (QA Hybrid Lengkap, LOCKED) dicatat sebagai **Tahap 40**; ID tersedia, tanpa bentrokan.
+- **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). **P-005 (uji APK dev di HP) tetap menunggu laporan pengguna**; tidak dianggap lulus.
+- GDD §6.39 baru (v0.39); Technical Architecture §10a ditambahkan (v0.39; catatan saja: struktur uji headless, desain agar dapat diuji, uji otomatis dan integrasi per sistem, regresi, profiling CI dan perangkat fisik, pembedaan sumber bukti CI/emulator/perangkat fisik, format test case dan bug dengan tingkat keparahan, rancangan release gate, rencana integrasi GitHub Actions). Hubungan dengan O-001, O-004, P-005, D-013 sampai D-048 dicatat tanpa mengubah isinya.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 41 (Tahap 35 tetap PENDING).
