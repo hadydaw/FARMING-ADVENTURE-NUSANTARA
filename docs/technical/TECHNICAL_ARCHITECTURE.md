@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.29 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.30 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -396,6 +396,24 @@ Memperluas penyimpan hubungan di §4i; dibaca dialog (§4y) dan quest (§4x).
 - **Performa:** hanya NPC aktif/terdekat dievaluasi; nilai disimpan dalam tabel kompak, evaluasi per event (§3).
 - **Pengujian:** uji headless untuk batas harian dan diminishing returns, pemisahan hubungan vs reputasi, penerapan efek konsisten, pemicu event, serialisasi-migrasi.
 - **Cakupan:** hanya pertemanan/kepercayaan/reputasi; model dapat diperluas, tetapi romansa/pernikahan/keluarga/anak tidak dimodelkan sampai diputuskan.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4aa. Implikasi Arsitektur dari D-040 (hanya catatan; belum diimplementasikan)
+
+Memperdalam simulasi NPC di §4i (LOD, jadwal) dan memakai penyimpan hubungan §4z.
+- **Tiga tingkat simulasi (LOD):** (1) **penuh** (dekat pemain): bergerak, animasi, AI perilaku, interaksi; (2) **ringan** (sedang): hanya posisi/aktivitas dari jadwal, tanpa navigasi detail; (3) **berbasis waktu** (jauh/wilayah lain): tidak disimulasikan, posisi dan aktivitas **diturunkan dari jadwal + waktu game** saat dibutuhkan (stateless dari kalender, §4b). Batas jumlah NPC tingkat penuh dan jarak transisi adalah data yang dapat disetel (anggaran §3); perpindahan tingkat mulus (NPC "muncul" di titik yang konsisten dengan jadwal).
+- **Perilaku hybrid:** lapisan atas **jadwal** (data: waktu/hari/musim/cuaca → aktivitas dan lokasi); lapisan bawah **perilaku** berupa FSM/behavior tree/utilitas ringan untuk tiap aktivitas (bekerja, berdagang, bertani, memasak, jalan, istirahat, sosialisasi, event). Keputusan dievaluasi **berkala dan berbasis event** (ganti jam, cuaca berubah, event dunia, pemain mendekat), bukan tiap frame; evaluasi disebar antar-frame (time-slicing) agar tidak lonjakan.
+- **Kebutuhan dan kondisi:** model ringan (mis. energi, lapar, suasana) sebagai nilai terhitung dari selisih waktu, memengaruhi pilihan aktivitas; tingkat kerincian menunggu desain; memakai sistem kondisi/efek bersama (§4x).
+- **Pekerjaan dan ekonomi:** aktivitas kerja NPC terhubung ke stasiun/fasilitas (§4n) dan sistem ekonomi (§4h) lewat pesan/event; efek besar ke harga/pasokan dihitung agregat per hari, bukan per aksi; deterministik dengan seed + tanggal (§4b).
+- **Interaksi antar-NPC:** pasangan/kelompok NPC dekat dengan "slot sosial" pada titik minat (pasar, sumur, kedai); hanya dihitung bila ada di tingkat penuh/ringan; hasilnya dapat tercatat sebagai fakta dunia ringkas (flag), bukan simulasi percakapan penuh.
+- **Navigasi dan terjebak:** navigation mesh per area (§4o) dan agen navigasi terbatas jumlahnya; deteksi terjebak (tak ada progres dalam waktu/jarak tertentu atau jalur gagal berulang) memicu **eskalasi tetap**: hitung ulang jalur → titik alternatif → teleport senyap ke titik jadwal valid saat di luar pandangan; pencegahan perulangan dengan penanda jalur gagal sementara (cooldown).
+- **Fallback:** setiap aktivitas jadwal punya daftar lokasi/aktivitas cadangan (mis. di dalam ruangan saat hujan atau lokasi rusak/terkunci/terblokir); bila semua gagal, NPC ke "titik aman" (rumah/tempat tidur) dan kejadian dicatat untuk uji.
+- **Respons event:** NPC mendengarkan event bus (§4): cuaca ekstrem, event dunia (§4p), serangan, festival; **daftar respons data** (kumpul, berlindung, lari, ikut event) dengan prioritas di atas jadwal normal dan kembali ke jadwal setelah selesai.
+- **Perkembangan desa:** variabel dunia (§4i/§4x) yang berubah oleh quest, event, dan tindakan pemain; NPC/fasilitas/jadwal bereaksi lewat kondisi data, sehingga perubahan tidak butuh kode khusus.
+- **Konsistensi saat pindah wilayah/muat ulang:** keadaan NPC dasar = (jadwal, waktu game, seed, flag) sehingga posisi dapat dihitung ulang tanpa menyimpan jalur; hanya keadaan yang tak dapat diturunkan (kebutuhan, interupsi, hasil keputusan, hubungan, flag) disimpan di payload save (§5) berversi; muat ulang menempatkan NPC pada titik jadwal yang sah.
+- **Online/cloud:** NPC adalah progres pribadi (D-014); tidak ada sinkronisasi real-time; cloud save lewat mekanisme save yang sama.
+- **Lokalisasi:** nama NPC, peran, dan teks aktivitas lewat kunci terjemahan id/en (§6).
+- **Pengujian:** uji headless simulasi jadwal 1 musim untuk semua NPC (tak ada yang terjebak atau tanpa lokasi valid), konsistensi posisi saat transisi LOD dan muat ulang, fallback, serta anggaran waktu CPU per frame di perangkat target nanti.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres

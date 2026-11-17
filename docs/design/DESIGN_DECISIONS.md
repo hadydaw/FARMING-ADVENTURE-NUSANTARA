@@ -515,6 +515,22 @@ Pilihan: **D. Social System Hybrid Lengkap.** Ketentuan:
 Hubungan (tidak mengubah isi keputusan lain): bahasa (**D-007**), kehidupan (**D-015**), guild dan rank/reputasi (**D-017**), ekonomi (**D-021**), NPC dan hubungan (**D-022**; cakupan hubungan yang di sana hanya pertemanan/kepercayaan tetap berlaku), event dunia (**D-029**), UI (**D-031**), interaksi (**D-035**), quest (**D-037**), dialog (**D-038**), online dan cloud save (**D-014**, **O-003**).
 **Terbuka:** skala dan tingkat friendship/trust (angka atau tahap) dan nama tingkatnya; daftar komunitas/tingkat reputasi (desa, kota, Guild, lainnya) dan ambangnya; rumus dan batas kenaikan/penurunan harian; preferensi hadiah dan cara menyampaikannya; aturan peluruhan atau pemulihan hubungan; cara memperbaiki hubungan setelah konsekuensi buruk; daftar friendship event dan pemicunya; bentuk indikator UI; bagaimana tindakan terlihat oleh NPC/komunitas (saksi, gosip); hubungan dengan rank dan reputasi Guild secara rinci; peran konsep "spiritual" (belum didefinisikan). **Romansa, pernikahan, keluarga, dan anak tetap BELUM diputuskan dan tidak dimodelkan;** friendship tidak boleh dianggap mencakupnya. Implementasi sosial belum dimulai. ID D-039 tersedia saat dicatat (tanpa bentrokan).
 
+### D-040 — Sistem NPC dan Kehidupan Desa *(APPROVED / LOCKED, 2026-11-17, Tahap 30)*
+Pilihan: **D. NPC Living World Hybrid.** Ketentuan:
+1. Sistem kehidupan NPC menggabungkan: jadwal harian dan rutinitas; AI perilaku dan pengambilan keputusan; kebutuhan dan kondisi individu; pekerjaan dan aktivitas ekonomi; interaksi sosial antar-NPC; respons terhadap event dan perubahan dunia; perkembangan kehidupan desa.
+2. NPC punya identitas, pekerjaan, lokasi aktivitas, jadwal, kepribadian, dan preferensi yang konsisten.
+3. Aktivitas: bekerja, berdagang, bertani, memasak, berjalan, beristirahat, bersosialisasi, menghadiri event.
+4. Perilaku mempertimbangkan waktu, musim, cuaca, lokasi, kondisi, dan progres dunia.
+5. AI efisien untuk Android: NPC dekat pemain disimulasikan lebih detail; NPC jauh memakai simulasi ringan atau pembaruan berbasis waktu; tanpa kalkulasi AI berat tiap frame.
+6. Navigasi dan penanganan kondisi terjebak agar NPC tidak mengulang jalur yang gagal.
+7. Perubahan jadwal/aktivitas punya fallback bila lokasi atau jalur tidak tersedia.
+8. Terintegrasi dengan sosial (D-039), dialog (D-038), quest (D-037), kalender, cuaca, event dunia, dan cloud save.
+9. Perilaku tetap konsisten saat pemain berpindah wilayah atau memuat ulang permainan.
+10. UI dan konten mendukung Indonesia dan English.
+
+Hubungan (tidak mengubah isi keputusan lain): bahasa (**D-007**), dunia dan wilayah (**D-009**), kehidupan (**D-015**), guild (**D-017**), ekonomi (**D-021**), NPC dan kehidupan sosial (**D-022**; keputusan ini memperdalam simulasi NPC di sana), pertanian/peternakan/memasak (**D-023**, **D-024**, **D-026**), bangunan dan desa (**D-027**), eksplorasi (**D-028**), event dunia (**D-029**), musim/cuaca (**D-030**), audio (**D-032**), interaksi (**D-035**), quest (**D-037**), dialog (**D-038**), sosial (**D-039**), online dan cloud save (**D-014**, **O-003**).
+**Terbuka:** daftar NPC dan perannya; jenis dan jumlah kebutuhan NPC (apakah ada, seberapa rinci); model keputusan AI (mis. jadwal + utilitas ringan); jarak/tingkat LOD simulasi dan jumlah NPC aktif maksimum; aturan interaksi sosial antar-NPC (dampak ke pemain); aktivitas ekonomi NPC (dampak ke harga/pasokan); bentuk "perkembangan desa" dan pemicunya; aturan fallback dan penanganan terjebak secara rinci; perilaku NPC saat pertarungan/bencana; peran konsep "spiritual" (belum didefinisikan). **Romansa, pernikahan, keluarga, dan anak tetap BELUM diputuskan dan tidak dimodelkan.** Implementasi AI NPC belum dimulai. ID D-040 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

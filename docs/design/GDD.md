@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.29 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.30 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -458,6 +458,20 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - Terkait: D-007, D-014, D-015, D-017, D-021, D-022, D-029, D-031, D-035, D-037, D-038.
 
 **[BELUM DITETAPKAN]:** skala dan nama tingkat friendship/trust, daftar komunitas dan ambang reputasi, rumus dan batas perubahan, preferensi hadiah, peluruhan/pemulihan, daftar friendship event, bentuk indikator UI, cara tindakan terlihat oleh komunitas, detail terkait Guild, konsep "spiritual" (belum didefinisikan). **Romansa, pernikahan, keluarga, dan anak BELUM diputuskan; tidak dimodelkan.** **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+### 6.30 NPC dan Kehidupan Desa — D-040, LOCKED (NPC Living World Hybrid)
+**Ditetapkan:**
+- **Komponen kehidupan NPC:** jadwal harian dan rutinitas; AI perilaku dan keputusan; kebutuhan dan kondisi individu; pekerjaan dan aktivitas ekonomi; interaksi sosial antar-NPC; respons terhadap event dan perubahan dunia; perkembangan kehidupan desa.
+- NPC punya **identitas, pekerjaan, lokasi aktivitas, jadwal, kepribadian, preferensi yang konsisten.**
+- **Aktivitas:** bekerja, berdagang, bertani, memasak, berjalan, beristirahat, bersosialisasi, menghadiri event.
+- Perilaku mengikuti **waktu, musim, cuaca, lokasi, kondisi, progres dunia.**
+- **AI efisien di Android:** NPC dekat = simulasi lebih detail; NPC jauh = simulasi ringan/berbasis waktu; **tanpa AI berat tiap frame.**
+- **Navigasi dan penanganan terjebak**; **fallback** bila lokasi/jalur tidak tersedia.
+- Terintegrasi dengan sosial D-039, dialog D-038, quest D-037, kalender, cuaca, event, dan cloud save; **konsisten saat pindah wilayah atau memuat ulang.**
+- UI dan konten **Indonesia dan English.**
+- Terkait: D-007, D-009, D-014, D-015, D-017, D-021 sampai D-024, D-026 sampai D-030, D-032, D-035, D-037 sampai D-039.
+
+**[BELUM DITETAPKAN]:** daftar NPC dan peran, jenis dan kerincian kebutuhan NPC, model keputusan AI, jarak LOD dan batas NPC aktif, dampak interaksi antar-NPC, dampak ekonomi NPC ke harga/pasokan, bentuk dan pemicu perkembangan desa, aturan fallback/terjebak rinci, perilaku saat pertarungan/bencana, konsep "spiritual" (belum didefinisikan). **Romansa, pernikahan, keluarga, dan anak BELUM diputuskan; tidak dimodelkan.** **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 
