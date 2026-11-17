@@ -185,3 +185,9 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - D-035 (Interaksi Hybrid, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
 - GDD §6.25 baru (v0.25); Technical Architecture §4v ditambahkan (v0.25; catatan saja: komponen Interactable, pemilihan target dan skor, prioritas input, validasi aksi, konfirmasi aksi penting). Hubungan dengan D-007, D-013, D-016, D-022 sampai D-024, D-027, D-028, D-031 sampai D-034 dicatat tanpa mengubah isinya.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 26.
+
+## 2026-11-17 (26) — D-036 Sistem Inventory dan Pengelolaan Item dicatat
+
+- D-036 (Inventory Hybrid Lengkap, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
+- GDD §6.26 baru (v0.26); Technical Architecture §4w ditambahkan (v0.26; catatan saja: definisi item dari data, wadah slot yang dipakai ulang, kapasitas sebagai strategi yang dapat diganti, operasi atomik dengan hasil sisa, penyimpanan di payload save). Hubungan dengan D-007, D-013, D-016, D-018, D-020, D-021, D-023 sampai D-027, D-031, D-034, D-035 dicatat tanpa mengubah isinya.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 27.

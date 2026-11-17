@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.25 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.26 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -336,6 +336,20 @@ Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 - **Eksekusi aksi:** perintah aksi → sistem terkait (pertanian, peternakan, crafting, dll.) lewat event bus (§4); interaksi menyetel konteks aktivitas untuk UI (§4r) dan kamera (§4t).
 - **Performa:** deteksi berkala dan jumlah kandidat dibatasi; tanpa alokasi per frame; penanda target ringan (GL Compatibility, §3). Objek jauh tidak diperiksa (LOD, §4m).
 - **Pengujian:** uji headless untuk pemilihan target pada objek berdekatan, prioritas pilihan pemain, validasi aksi, dan tidak adanya aksi ganda.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4w. Implikasi Arsitektur dari D-036 (hanya catatan; belum diimplementasikan)
+
+- **Definisi item dari data** (sistem item terpusat, §4g): ID, kategori, batas stack, flag (unik, tak bisa ditumpuk, item quest, bisa dijual/dibuang), berat, nilai, kunci terjemahan nama/deskripsi (id/en, §6). Kategori D-036 adalah data, sehingga mudah diperluas.
+- **Model inventory:** wadah (`Inventory`) berisi slot; tiap slot menyimpan `{item_id, jumlah, atribut/instans}`. Item stackable hanya menyimpan ID + jumlah; item berinstans (senjata, armor, kualitas) menyimpan data per instans. Wadah yang sama dipakai untuk tas pemain, peti, penyimpanan rumah, dan toko, sehingga logika pindah/gabung satu tempat.
+- **Kapasitas:** parameter wadah (jumlah slot dan/atau batas berat) dihitung dari sumber modifikator (tas, equipment, perkembangan karakter, sistem stat §4g) dan dapat berubah tanpa mengubah data item; model slot/berat belum diputuskan sehingga logika kapasitas dibuat sebagai strategi yang dapat diganti.
+- **Operasi atomik:** tambah, ambil, pindah, gabung/pisah stack, dan tukar dilakukan lewat satu API yang mengembalikan hasil (berhasil, sisa, penyebab gagal); inventory penuh ditangani dengan hasil sisa, sehingga pemanggil (panen, loot, crafting, hadiah, toko) menentukan perilaku (tolak/jatuhkan/kirim ke penyimpanan) sesuai desain nanti. Tidak ada item hilang saat gagal.
+- **Integrasi:** sistem lain memakai API yang sama lewat event bus (§4): pertanian, peternakan, memancing, crafting/alkimia, dungeon, equipment, ekonomi. Hotbar/akses cepat adalah referensi ke slot, bukan salinan.
+- **Penyimpanan:** isi inventory masuk payload save (§5) sebagai daftar kompak (ID, jumlah, atribut); mengacu ke ID item, sehingga item yang dihapus/diubah di versi baru ditangani lewat migrasi skema. Susunan slot dan pilihan sortir/filter terakhir disimpan; pengaturan tampilan dapat dipisah sebagai pengaturan pemain.
+- **Pencarian, sortir, filter:** pada indeks/turunan tampilan (tidak mengubah susunan data kecuali pemain memilih "urutkan"); mendukung kunci terjemahan agar pencarian sesuai bahasa aktif.
+- **UI/kontrol:** panel inventory memakai manajer konteks UI (§4r) dan aksi sentuh (§4u): ketuk untuk pilih, seret untuk pindah, tombol aksi untuk pakai/simpan; daftar panjang memakai virtualisasi.
+- **Performa:** operasi O(jumlah slot) kecil, tanpa alokasi per frame, sinyal perubahan hanya untuk slot yang berubah (§3).
+- **Pengujian:** uji headless untuk stack/gabung/pisah, kapasitas penuh tanpa kehilangan item, pemindahan antarwadah, serialisasi-deserialisasi, dan migrasi.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres

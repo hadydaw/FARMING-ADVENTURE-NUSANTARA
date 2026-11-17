@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.25 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.26 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -402,6 +402,19 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - Terkait: D-007, D-013, D-016, D-022, D-023, D-024, D-027, D-028, D-031 sampai D-034.
 
 **[BELUM DITETAPKAN]:** daftar jenis objek dan aksi, radius interaksi, aturan prioritas rinci, definisi "tindakan penting" (konfirmasi), penanda target dan petunjuk aksi, animasi/durasi interaksi, interaksi saat combat, ambil banyak item sekaligus, aksesibilitas, kontroler. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+### 6.26 Inventory dan Pengelolaan Item — D-036, LOCKED (Inventory Hybrid Lengkap)
+**Ditetapkan:**
+- Tampilan **slot grid**.
+- **Kategori** minimal: farming dan benih; hasil panen dan produk ternak; ikan dan hasil perairan; material dan bahan tambang; material monster dan dungeon; makanan dan ramuan; senjata dan armor; equipment dan aksesori; quest dan item khusus.
+- **Pencarian, penyortiran, filter, dan akses cepat.**
+- **Kapasitas atau berat** dengan aturan jelas dan mudah dipahami; dapat **ditingkatkan** lewat tas, equipment, atau perkembangan karakter; **tidak terlalu ketat** agar alur permainan tidak terganggu.
+- Aturan **stack**, batas per slot, **item unik**, item tak bisa ditumpuk, dan **inventory penuh** akan ditentukan (nilainya belum).
+- Pindah, pakai, simpan, dan ambil item dengan **kontrol sentuh nyaman**; **Android landscape**, **Indonesia dan English**.
+- Terintegrasi dengan farming, fishing, livestock, crafting, alchemy, dungeon, equipment, dan ekonomi.
+- Terkait: D-007, D-013, D-016, D-018, D-020, D-021, D-023 sampai D-027, D-031, D-034, D-035.
+
+**[BELUM DITETAPKAN]:** model kapasitas (slot/berat/gabungan) dan angkanya, batas stack, daftar item unik, perilaku saat penuh, slot akses cepat, penyimpanan rumah/peti, apakah kualitas memisahkan stack, aturan item quest, cara memindahkan banyak item, aksesibilitas. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

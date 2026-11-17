@@ -452,6 +452,22 @@ Pilihan: **D. Interaksi Hybrid.** Ketentuan:
 Hubungan (tidak mengubah isi keputusan lain): bahasa (**D-007**), pertarungan (**D-013**), dungeon (**D-016**), NPC (**D-022**), pertanian/peternakan (**D-023**, **D-024**), bangunan/peti/rumah (**D-027**), eksplorasi (**D-028**), UI (**D-031**), audio (**D-032**), kamera (**D-033**), kontrol (**D-034**).
 **Terbuka:** daftar lengkap jenis objek dan aksinya, jarak/radius interaksi, aturan prioritas rinci saat objek berdekatan, definisi "tindakan penting" yang butuh konfirmasi, tampilan penanda target dan petunjuk aksi, durasi tahan/animasi interaksi, interaksi saat combat, interaksi dengan banyak item di tanah (mis. ambil semua), aksesibilitas (target sentuh lebih besar), dukungan kontroler. Implementasi interaksi belum dimulai. ID D-035 tersedia saat dicatat (tanpa bentrokan).
 
+### D-036 — Sistem Inventory dan Pengelolaan Item *(APPROVED / LOCKED, 2026-11-17, Tahap 26)*
+Pilihan: **D. Inventory Hybrid Lengkap.** Ketentuan:
+1. Tampilan inventory berbasis **slot grid**.
+2. Item dikelompokkan per kategori, minimal: farming dan benih; hasil panen dan produk ternak; ikan dan hasil perairan; material dan bahan tambang; material monster dan dungeon; makanan dan ramuan; senjata dan armor; equipment dan aksesori; quest dan item khusus.
+3. Tersedia pencarian, penyortiran, filter, dan akses cepat.
+4. Kapasitas atau berat barang dengan aturan jelas dan mudah dipahami.
+5. Kapasitas dapat ditingkatkan lewat tas, equipment, atau perkembangan karakter.
+6. Ditentukan: perilaku stack, batas jumlah per slot, item unik, item yang tidak dapat ditumpuk, dan penanganan inventory penuh.
+7. Pemain dapat memindahkan, menggunakan, menyimpan, dan mengambil item dengan kontrol sentuh yang nyaman.
+8. Terintegrasi dengan farming, fishing, livestock, crafting, alchemy, dungeon, equipment, dan ekonomi.
+9. UI mendukung Android landscape, Indonesia dan English.
+10. Kapasitas tidak terlalu ketat sehingga tidak mengganggu alur permainan.
+
+Hubungan (tidak mengubah isi keputusan lain): bahasa (**D-007**), pertarungan/loot (**D-013**, **D-016**), perkembangan karakter (**D-018**), equipment dan crafting (**D-020**), ekonomi (**D-021**), pertanian/peternakan/memancing/memasak (**D-023 sampai D-026**), rumah dan penyimpanan (**D-027**), UI (**D-031**), kontrol (**D-034**), interaksi (**D-035**).
+**Terbuka:** memilih kapasitas berbasis slot, berat, atau gabungan; jumlah slot awal dan tingkat peningkatan; batas stack tiap kategori; daftar item unik/tak bisa ditumpuk; perilaku saat inventory penuh (tolak, jatuh ke tanah, kirim ke penyimpanan); jumlah slot akses cepat; aturan peti/penyimpanan rumah dan hubungannya dengan inventory; apakah kualitas/atribut item memisahkan stack; aturan item quest (tak bisa dijual/dibuang); drag-and-drop vs ketuk, ambil/pindah banyak sekaligus; aksesibilitas. Implementasi inventory belum dimulai. ID D-036 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |
