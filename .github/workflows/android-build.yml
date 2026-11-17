@@ -102,6 +102,8 @@ jobs:
           test -s "build/android/${{ steps.version.outputs.apk_name }}"
 
       - name: Verifikasi APK
+        env:
+          IS_RELEASE: ${{ env.IS_RELEASE }}
         run: tools/ci/verify_apk.sh "build/android/${{ steps.version.outputs.apk_name }}" "${{ steps.version.outputs.package_name }}"
 
       - name: Hapus kunci dari runner
@@ -125,7 +127,7 @@ jobs:
           gh release create dev-latest "build/android/${{ steps.version.outputs.apk_name }}" \
             --prerelease --target "$GITHUB_SHA" \
             --title "Dev build (otomatis, bukan rilis)" \
-            --notes "Build otomatis dari commit ${GITHUB_SHA::7}. Memakai paket .dev dan kunci dev publik; tidak untuk dibagikan sebagai rilis. Versi: ${{ steps.version.outputs.version_name }}"
+            --notes "Build UJI otomatis dari commit ${GITHUB_SHA::7} (versi ${{ steps.version.outputs.version_name }}). Bukan rilis resmi: paket .dev, kunci dev publik. Pasang: unduh file .apk di bawah, izinkan sumber tidak dikenal, ketuk Install (aplikasi bernama FAN Dev). Panduan uji: https://github.com/${{ github.repository }}/blob/main/docs/project/TESTING_APK.md"
 
       - name: Publikasi GitHub Release
         if: env.IS_RELEASE == 'true'

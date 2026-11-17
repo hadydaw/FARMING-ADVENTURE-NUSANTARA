@@ -11,7 +11,7 @@ Bahasa: Indonesia (utama) dan Inggris.
 - **Rilis stabil:** halaman [Releases](../../releases) (tag `vX.Y.Z`) — belum ada rilis pertama.
 - **Build uji terbaru:** pre-release [`dev-latest`](../../releases/tag/dev-latest) (otomatis dari `main`, paket `.dev`, hanya untuk uji).
 
-Pasang APK: izinkan "pasang dari sumber tidak dikenal" untuk aplikasi pengunduh Anda.
+Panduan pasang dan uji: [docs/project/TESTING_APK.md](docs/project/TESTING_APK.md).
 
 ## Teknologi
 
@@ -32,6 +32,10 @@ tools/ci/            skrip pipeline dan uji
 tools/keystore/      kunci DEV publik (bukan kunci rilis)
 project.godot  export_presets.cfg  icon.svg
 ```
+
+## Lisensi
+
+Proprietary / All Rights Reserved (lihat [LICENSE](LICENSE)). Source boleh dilihat, tidak boleh disalin, diubah, atau didistribusikan tanpa izin.
 
 ## Dokumentasi
 

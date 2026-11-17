@@ -10,7 +10,8 @@ Roadmap berbasis **tahap dan hasil yang dapat diperiksa**, bukan tanggal (belum 
 - [x] Konfigurasi ekspor Android + pipeline GitHub Actions + rancangan rilis
 - [x] **Bukti build:** workflow Actions hijau dan APK dev terunduh dari `dev-latest` (2026-11-17)
 - [ ] **Bukti perangkat:** APK dev terpasang dan layar boot tampil di HP (landscape, 3D, sentuh, ganti bahasa)
-- [ ] Pemilik: kunci rilis (P-002), package ID (P-001), keputusan backend (P-003)
+- [x] Keputusan pemilik: package ID, backend Supabase, lisensi
+- [ ] Pemilik: kunci production + GitHub Secrets (P-002)
 
 **Kriteria selesai:** dua "bukti" di atas terpenuhi.
 

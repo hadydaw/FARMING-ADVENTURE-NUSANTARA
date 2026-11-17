@@ -16,3 +16,15 @@ echo "$badging" | grep -q "native-code: 'arm64-v8a'" \
 
 "$BT/apksigner" verify --verbose --print-certs "$APK" | head -8
 ls -lh "$APK"
+
+# Rilis TIDAK boleh bertanda tangan kunci dev publik.
+if [[ "${IS_RELEASE:-false}" == "true" ]]; then
+  dev_sha="$(keytool -list -keystore tools/keystore/dev.keystore -storepass android -alias fan-dev \
+    | grep -i 'fingerprint' | sed 's/.*: //' | tr -d ':' | tr 'A-F' 'a-f' | head -1)"
+  apk_sha="$("$BT/apksigner" verify --print-certs "$APK" | grep 'SHA-256 digest' | head -1 | sed 's/.*: //' | tr -d ':' | tr 'A-F' 'a-f')"
+  [[ -n "$dev_sha" && -n "$apk_sha" ]] || { echo "::error::Tidak bisa membaca sidik jari tanda tangan"; exit 1; }
+  if [[ "$dev_sha" == "$apk_sha" ]]; then
+    echo "::error::APK rilis bertanda tangan kunci DEV. Dibatalkan."; exit 1
+  fi
+  echo "Tanda tangan rilis berbeda dari kunci dev: OK"
+fi

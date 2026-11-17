@@ -28,10 +28,12 @@ Tahapan job `build`: pasang JDK 17 → Android SDK (platform-tools, build-tools 
 ## 3. Versi dan Paket
 
 - Versi game: `config/version` di `project.godot` (SemVer).
-- **Rilis:** tag `vX.Y.Z` **wajib sama** dengan `config/version` (CI menolak bila beda). `versionCode = X*1.000.000 + Y*1.000 + Z`. Paket: `com.hadydaw.farmingadventurenusantara` (**tidak bisa diganti setelah rilis publik**; tinjau P-001 dulu).
+- **Rilis:** tag `vX.Y.Z` **wajib sama** dengan `config/version` (CI menolak bila beda). `versionCode = X*1.000.000 + Y*1.000 + Z`. Paket: `com.hadydaw.farmingadventurenusantara` (**resmi, disetujui D-014; tidak boleh diubah tanpa persetujuan pemilik**).
 - **Dev:** versi `X.Y.Z-dev.<nomor_run>`, `versionCode = nomor_run`, paket `…nusantara.dev`, nama aplikasi "FAN Dev" → bisa terpasang berdampingan dengan rilis.
 
 ## 4. Penandatanganan (Kunci Rilis)
+
+Panduan langkah demi langkah: [`SIGNING_GUIDE.md`](SIGNING_GUIDE.md). CI menolak rilis bila APK bertanda tangan kunci dev.
 
 - **Dev:** `tools/keystore/dev.keystore` (alias `fan-dev`, password `android`) sengaja **publik** di repo. Hanya untuk build dev; jangan bagikan APK dev sebagai rilis.
 - **Rilis:** wajib kunci pribadi yang **tidak pernah masuk repo**. Isi GitHub Secrets (Settings → Secrets and variables → Actions):
@@ -69,14 +71,18 @@ base64 -w0 fan-release.keystore   # hasilnya = isi ANDROID_KEYSTORE_BASE64
 - Disarankan menaruh checksum SHA-256 di catatan rilis (rencana perbaikan).
 - Google Play: belum direncanakan (D-005 hanya APK). Jika nanti dipilih, perlu format AAB, Gradle build, dan kunci unggah terpisah.
 
-## 7. Menjalankan Uji Fondasi Secara Lokal
+## 7. Uji APK di HP
+
+Lihat [`../project/TESTING_APK.md`](../project/TESTING_APK.md).
+
+## 8. Menjalankan Uji Fondasi Secara Lokal
 
 ```bash
 godot --headless --path . --import
 tools/ci/run_smoke_test.sh
 ```
 
-## 8. Pemecahan Masalah Umum
+## 9. Pemecahan Masalah Umum
 
 | Gejala | Penyebab/aksi |
 |---|---|

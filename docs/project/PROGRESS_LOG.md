@@ -26,3 +26,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Build rilis bertanda tangan kunci rilis (butuh GitHub Secrets, P-002).
 
 **Menunggu pemilik:** P-001…P-004 (lihat `DESIGN_DECISIONS.md` bagian C).
+
+## 2026-11-17 (2) — Keputusan pemilik dicatat
+
+- D-013…D-019 dicatat; GDD, Technical Architecture, Backend Design, Build & Release diperbarui.
+- Ditambah: `LICENSE` (All Rights Reserved), `SIGNING_GUIDE.md`, `TESTING_APK.md`.
+- CI: build rilis ditolak bila APK bertanda tangan kunci dev; catatan `dev-latest` memuat petunjuk pasang.
+- Tidak ada perubahan gameplay/fitur. Uji HP: **belum dilaporkan pemilik**.

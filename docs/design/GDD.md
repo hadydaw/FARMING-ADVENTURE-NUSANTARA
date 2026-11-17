@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.1 (fondasi) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.2 (fondasi + keputusan 2026-11-17) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -16,6 +16,8 @@
 | Bahasa | Indonesia (utama), Inggris (kedua) |
 | Gaya visual | 3D Stylized |
 | Distribusi | APK Android via GitHub Releases; source code di GitHub |
+| Bentuk aplikasi | APK Android sungguhan (bukan WebView/browser/PWA) |
+| Lisensi | Proprietary / All Rights Reserved |
 
 Proyek ini **baru dari nol**; tidak memakai kode, aset, atau dokumentasi proyek lama.
 
@@ -109,6 +111,8 @@ Belum: jenis equipment, slot, tier, crafting, stat.
 
 **Ditetapkan:** game **online**; ada backend terpisah untuk kebutuhan online dan sinkronisasi data pemain.
 GitHub **bukan** server game (hanya kode dan distribusi APK).
+
+**Disetujui:** Supabase sebagai backend awal untuk registrasi/login, akun, Cloud Save, sinkron progres, dan database pemain. Nakama **tidak** dikerjakan sampai multiplayer diputuskan. Tidak ada implementasi backend gameplay sebelum desain sistem online disepakati.
 
 **[BELUM DITETAPKAN]:** apakah ada multiplayer, dan bila ada: bentuknya (co-op, sosial, kompetitif), jumlah pemain, sinkron real-time atau asinkron. Akan diputuskan di tahap desain. Arsitektur dibuat agar keputusan ini tidak memaksa penulisan ulang (lihat `docs/technical/BACKEND_DESIGN.md`).
 

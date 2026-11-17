@@ -10,3 +10,5 @@
 | [project/ROADMAP.md](project/ROADMAP.md) | Roadmap per fase dengan kriteria selesai |
 | [project/DEVELOPMENT_RULES.md](project/DEVELOPMENT_RULES.md) | Aturan pengembangan |
 | [project/PROGRESS_LOG.md](project/PROGRESS_LOG.md) | Log perkembangan dan bukti |
+| [technical/SIGNING_GUIDE.md](technical/SIGNING_GUIDE.md) | Kunci rilis production dan cara mengisi GitHub Secrets |
+| [project/TESTING_APK.md](project/TESTING_APK.md) | Cara pasang dan uji APK dev di HP |

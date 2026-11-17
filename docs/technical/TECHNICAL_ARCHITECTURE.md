@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.1 (fondasi) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.2 · Engine dan arsitektur disetujui pemilik (D-013) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -12,7 +12,7 @@
 | Tanpa lisensi berbayar; biaya sekecil mungkin | Konteks proyek |
 | Dunia besar bertahap (banyak wilayah), RPG aksi, banyak sistem data | D-009, GDD |
 
-"Android Native" dipahami sebagai **aplikasi Android asli (APK, kode mesin arm64, bukan WebView/PWA)**. Bila yang dimaksud adalah kode aplikasi Kotlin/Java murni, beri tahu; keputusan T-001 perlu ditinjau.
+"Android Native" (dikonfirmasi pemilik, D-013) = **aplikasi APK sungguhan yang dipasang langsung di HP, kode mesin arm64, bukan WebView, game browser, atau PWA.** Godot memenuhi ini.
 
 ## 2. Pemilihan Engine
 
@@ -85,6 +85,7 @@ Implementasi awal: `game/core/save_service.gd` (autoload `SaveService`).
 
 Ringkasan; rincian di [`BACKEND_DESIGN.md`](BACKEND_DESIGN.md).
 
+- Backend awal: **Supabase** (D-015). Nakama ditunda sampai keputusan multiplayer. Tidak ada kode backend sebelum desain sistem online disepakati.
 - Backend **terpisah** dari GitHub. GitHub hanya menyimpan kode dan APK.
 - Klien memakai antarmuka `BackendClient` (`game/core/backend_client.gd`); default = mode offline (belum ada jaringan).
 - Pola: **offline-first dengan sinkronisasi** — pemain tetap bisa memuat progres lokal, server menjadi sumber kebenaran untuk akun dan data yang butuh validasi.
@@ -107,6 +108,6 @@ Ringkasan; rincian di [`BUILD_AND_RELEASE.md`](BUILD_AND_RELEASE.md).
 |---|---|
 | Performa 3D di HP menengah | Anggaran performa §3; uji perangkat nyata sejak vertical slice |
 | Ukuran APK/memori untuk dunia besar | Region sebagai unit muat; kompresi tekstur; pantau ukuran tiap rilis |
-| Kehilangan kunci rilis → pemain tak bisa update | Cadangkan keystore di tempat aman di luar repo (BUILD_AND_RELEASE §4) |
+| Kehilangan/bocor kunci rilis | Panduan `SIGNING_GUIDE.md`; cadangan di luar repo; CI menolak rilis bertanda kunci dev |
 | Backend terkunci pada satu vendor | Antarmuka `BackendClient`; data inti portabel (Postgres/JSON) |
-| Build pertama di CI belum terbukti | Dicatat jujur di PROGRESS_LOG; diperbaiki iteratif sampai hijau |
+| Layar boot di HP nyata belum teruji | Menunggu laporan pemilik (TESTING_APK.md) |
