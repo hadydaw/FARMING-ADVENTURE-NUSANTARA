@@ -76,5 +76,11 @@
 		"prompt_key": "FARM_ACT_BOARD",
 		"max_distance": 2.4,
 		"min_facing_dot": 0.0
+	},
+	{
+		"id": "dungeon",
+		"prompt_key": "FARM_ACT_DUNGEON",
+		"max_distance": 2.6,
+		"min_facing_dot": 0.0
 	}
 ]

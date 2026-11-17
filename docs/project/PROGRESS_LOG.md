@@ -572,3 +572,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Papan guild uji di desa memakai menu daftar serbaguna di HUD. Data SEMENTARA generik; bukan quest/rank resmi (T-terkait tetap terbuka).
 - Belum: quest harian/berulang, penanda quest di peta, quest cerita, pemberi quest NPC, batas waktu.
 - Uji: 24 berkas, 2300+ pemeriksaan, 0 gagal; smoke test lulus.
+
+## 2026-11-17 (79) — Dungeon dasar + bos (D-016, teknis)
+
+- DungeonState: ruangan deterministik (seed+hari+id) dari kolam monster data, ruang terakhir bos uji, tukar-serang per ketukan memakai rumus CombatState, pingsan/keluar mengakhiri run, hadiah uang/poin guild + cooldown hari, run berjalan tersimpan (opsional, save lama aman) dengan rollback.
+- Gua uji di kawasan kuno (menu Mulai/Serang/Keluar). Data SEMENTARA generik; bukan dungeon/boss resmi.
+- Belum: peta ruangan 3D, jebakan/peti, boss berpola/fase, status efek, dungeon bertingkat.
+- Uji: 25 berkas, 2450 pemeriksaan, 0 gagal; smoke test lulus.

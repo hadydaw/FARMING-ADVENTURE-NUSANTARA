@@ -1,0 +1,21 @@
+[
+	{
+		"id": "dungeon_test",
+		"provisional": true,
+		"name_key": "DUNGEON_TEST",
+		"region": "region_ancient",
+		"x": -8.0,
+		"z": 8.0,
+		"rooms": 3,
+		"pool": [
+			"monster_slime_test",
+			"monster_boar_test"
+		],
+		"boss": "monster_boss_test",
+		"cooldown_days": 3,
+		"reward": {
+			"money": 200,
+			"points": 5
+		}
+	}
+]

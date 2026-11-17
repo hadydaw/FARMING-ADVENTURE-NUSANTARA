@@ -280,3 +280,20 @@ QUEST_NO_NOT_READY,Belum memenuhi syarat,Not done yet
 QUEST_NO_INVENTORY_FULL,Tas penuh,Inventory full
 QUEST_NO_UNKNOWN,Quest tidak dikenal,Unknown quest
 QUEST_NO_TAKEN,Quest sudah diambil,Quest already taken
+MONSTER_BOSS_TEST,Bos Uji,Test Boss
+DUNGEON_TEST,Gua Uji,Test Cave
+FARM_ACT_DUNGEON,Masuk Gua,Enter Cave
+DUNGEON_ROOM,Ruangan %d/%d,Room %d/%d
+DUNGEON_BOSS,Ruang Bos,Boss Room
+DUNGEON_ATTACK,Serang,Attack
+DUNGEON_FLEE,Keluar,Leave
+DUNGEON_START,Mulai,Start
+DUNGEON_CLEARED,Gua selesai! Hadiah diterima,Cave cleared! Reward received
+DUNGEON_COOLDOWN,Gua masih tertutup beberapa hari,Cave closed for a few days
+DUNGEON_ROOM_CLEAR,Ruangan bersih,Room cleared
+DUNGEON_NO_TOO_TIRED,Terlalu lelah,Too tired
+DUNGEON_NO_NO_HEALTH,HP habis,No health
+DUNGEON_NO_NOT_RUNNING,Tidak sedang di gua,Not in cave
+DUNGEON_NO_COOLDOWN,Gua masih tertutup,Cave closed
+DUNGEON_NO_RUNNING,Sudah di dalam gua,Already inside
+DUNGEON_FAINTED,Kamu pingsan di gua dan terbangun di desa,You fainted in the cave and woke up in the village

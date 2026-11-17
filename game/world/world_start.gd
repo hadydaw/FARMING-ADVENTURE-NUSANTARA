@@ -41,6 +41,7 @@ func _ready() -> void:
 	_build_gather_nodes()
 	_build_monsters()
 	_build_board()
+	_build_dungeon_entrance()
 	Events.interaction_performed.connect(_on_interacted)
 
 
@@ -68,6 +69,8 @@ func _prompt_text() -> String:
 		return ""
 	if sensor.current.has_meta("station_id"):
 		return tr("FARM_ACT_CRAFT") + ": " + tr(str(sensor.current.get_meta("label_key", "")))
+	if sensor.current.has_meta("dungeon_id"):
+		return tr("FARM_ACT_DUNGEON")
 	if sensor.current.has_meta("is_board"):
 		return tr("FARM_ACT_BOARD")
 	if sensor.current.has_meta("spawn_id"):
@@ -104,6 +107,9 @@ func _on_interacted(target: Node, _actor: Node) -> void:
 		return
 	if target.has_meta("station_id"):
 		_open_station(str(target.get_meta("station_id")))
+		return
+	if target.has_meta("dungeon_id"):
+		_open_dungeon(str(target.get_meta("dungeon_id")))
 		return
 	if target.has_meta("is_board"):
 		_open_board()
@@ -315,7 +321,7 @@ func _build_farm() -> void:
 		"economy_config": DataRegistry.get_row("economy_config", "default"), "item_prices": DataRegistry.rows("item_prices"), "shops": DataRegistry.rows("shops"),
 		"gather_nodes": DataRegistry.rows("gather_nodes"), "recipes": DataRegistry.rows("recipes"), "stations": DataRegistry.rows("crafting_stations"),
 		"monsters": DataRegistry.rows("monsters"), "monster_spawns": DataRegistry.rows("monster_spawns"), "combat_config": DataRegistry.get_row("combat_config", "default"),
-		"quests": DataRegistry.rows("quests"), "guild_config": DataRegistry.get_row("guild_config", "default")})
+		"dungeons": DataRegistry.rows("dungeons"), "quests": DataRegistry.rows("quests"), "guild_config": DataRegistry.get_row("guild_config", "default")})
 	farming.sleep.finished.connect(_on_woke_up)
 	_build_bed()
 	_build_pond()
@@ -1075,6 +1081,9 @@ func _on_menu_pressed(id: String) -> void:
 	if _open_station_id == "__board__":
 		_on_board_pressed(id)
 		return
+	if _open_station_id == "__dungeon__":
+		_on_dungeon_pressed(id)
+		return
 	if _open_station_id == "":
 		return
 	var r := farming.craft(id)
@@ -1269,3 +1278,88 @@ func _on_board_pressed(id: String) -> void:
 		hud.show_message(tr("QUEST_ACCEPTED") if bool(r["ok"]) else tr("QUEST_NO_" + str(r["reason"]).to_upper()))
 	_refresh_board()
 	refresh_farm_visuals()
+
+
+# --- Gua/dungeon uji (SEMENTARA) ---
+
+var _dungeon_id := ""
+
+
+func _build_dungeon_entrance() -> void:
+	for d in DataRegistry.rows("dungeons"):
+		var node := Node3D.new()
+		node.name = str(d["id"])
+		node.position = _region_origin(str(d["region"])) + Vector3(float(d["x"]), 0.0, float(d["z"]))
+		var mesh := MeshInstance3D.new()
+		var cyl := CylinderMesh.new()
+		cyl.top_radius = 1.2
+		cyl.bottom_radius = 1.6
+		cyl.height = 1.6
+		mesh.mesh = cyl
+		mesh.position.y = 0.8
+		var mat := StandardMaterial3D.new()
+		mat.albedo_color = Color(0.25, 0.2, 0.3)
+		mesh.material_override = mat
+		node.add_child(mesh)
+		var label := Label3D.new()
+		label.text = "UJI: " + tr(str(d["name_key"]))
+		label.pixel_size = 0.005
+		label.position = Vector3(0, 2.2, 0)
+		label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+		node.add_child(label)
+		var it := Interactable.new()
+		it.interaction_type = "dungeon"
+		node.add_child(it)
+		it.set_meta("dungeon_id", str(d["id"]))
+		add_child(node)
+		_markers.append({"node": node, "kind": "portal", "region": str(d["region"])})
+
+
+func _open_dungeon(id: String) -> void:
+	_dungeon_id = id
+	_open_station_id = "__dungeon__"
+	GameTime.clock.pause("menu")
+	player.set_physics_process(false)
+	_refresh_dungeon()
+
+
+func _refresh_dungeon() -> void:
+	var dg := farming.dungeon
+	var rows: Array = []
+	var title := tr(str(dg.rows[_dungeon_id]["name_key"]))
+	if dg.running():
+		var mon := dg.current_monster()
+		title += " - " + tr("DUNGEON_ROOM") % [dg.room + 1, dg.room_count()]
+		if dg.is_boss_room():
+			title += " (" + tr("DUNGEON_BOSS") + ")"
+		rows.append({"id": "attack", "text": "%s: %s %d/%d" % [tr("DUNGEON_ATTACK"), tr(str(mon["name_key"])), dg.enemy_hp, int(mon["hp"])], "enabled": true})
+		rows.append({"id": "leave", "text": tr("DUNGEON_FLEE"), "enabled": true})
+	else:
+		rows.append({"id": "start", "text": tr("DUNGEON_START"), "enabled": dg.available(_dungeon_id, GameTime.clock.day_index())})
+	hud.show_menu(title, rows)
+	refresh_farm_visuals()
+
+
+func _on_dungeon_pressed(id: String) -> void:
+	if id == "start":
+		var r := farming.dungeon_start(_dungeon_id)
+		if not bool(r["ok"]):
+			hud.show_message(tr("DUNGEON_NO_" + str(r["reason"]).to_upper()))
+	elif id == "leave":
+		farming.dungeon.leave()
+	elif id == "attack":
+		var r := farming.dungeon_attack()
+		if not bool(r["ok"]):
+			hud.show_message(tr("DUNGEON_NO_" + str(r["reason"]).to_upper()))
+		elif bool(r["fainted"]):
+			hud.show_message(tr("DUNGEON_FAINTED"))
+			_close_menu()
+			_place_player("region_village", 0.0, 4.0)
+			return
+		elif bool(r["cleared"]):
+			hud.show_message(tr("DUNGEON_CLEARED"))
+		elif bool(r["room_cleared"]):
+			hud.show_message(tr("DUNGEON_ROOM_CLEAR"))
+		else:
+			hud.show_message(tr("COMBAT_HIT") % int(r["dealt"]) + "  " + tr("COMBAT_TAKEN") % int(r["taken"]))
+	_refresh_dungeon()

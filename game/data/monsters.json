@@ -39,5 +39,23 @@
 				"count": 2
 			}
 		]
+	},
+	{
+		"id": "monster_boss_test",
+		"provisional": true,
+		"name_key": "MONSTER_BOSS_TEST",
+		"hp": 60,
+		"attack": 7,
+		"defense": 3,
+		"exp": 50,
+		"respawn_days": 9999,
+		"color": "#7a2a8a",
+		"drops": [
+			{
+				"item": "drop_test_hide",
+				"chance": 1.0,
+				"count": 3
+			}
+		]
 	}
 ]

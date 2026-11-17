@@ -26,6 +26,7 @@ const TABLES := {
 	"combat_config": "res://game/data/combat_config.json",
 	"quests": "res://game/data/quests.json",
 	"guild_config": "res://game/data/guild_config.json",
+	"dungeons": "res://game/data/dungeons.json",
 	"regions": "res://game/data/regions.json",
 	"region_links": "res://game/data/region_links.json",
 	"economy_config": "res://game/data/economy_config.json",
