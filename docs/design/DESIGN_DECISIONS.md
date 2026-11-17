@@ -744,6 +744,28 @@ Ketentuan:
 Hubungan (tidak mengubah isi keputusan lain): engine (**O-001**, **D-004**), gaya visual (**D-008**), dunia dan wilayah (**D-009**, **D-028**), dungeon (**D-016**), pertanian/bangunan dan interior rumah (**D-023**, **D-027**), event dunia (**D-029**), UI (**D-031**), audio (**D-032**), kamera (**D-033**), mount (**D-042**; aturan medan dan akses), NPC (**D-040**), tutorial dan tips (**D-043**), save (**D-044**), pengaturan (**D-045**), update konten (**D-048**), QA (**D-049**), keamanan (**D-050**), performa (**D-052**). Catatan: **D-051** tetap dicadangkan untuk Tahap 42.
 **Terbuka:** daftar jenis transisi (wilayah luar tanpa jeda, pintu masuk interior, dungeon, wilayah khusus, fast travel) mana yang seamless dan mana memakai loading screen; ukuran chunk, jarak muat/bongkar, dan jumlah chunk aktif (belum diukur); ambang waktu "diperlukan" untuk menampilkan loading screen; isi ilustrasi dan gaya loading (art direction), jumlah dan kategori tips, aturan pemilihan tips (kontekstual terhadap wilayah/progres, tidak bocor spoiler); indikator progres (persentase, bar, atau tanpa angka); apakah pemain dapat berinteraksi/melihat peta saat memuat; perilaku bila pemuatan gagal atau lambat (ulang, kembali ke titik aman); posisi dan keselamatan pemain selama transisi (invulnerabilitas sementara, penjagaan NPC/monster); apakah auto-save dipicu saat transisi (selaras D-044); peran konsep "spiritual" untuk wilayah khusus (belum didefinisikan, tidak ditebak). **Tidak ada klaim performa atau hasil pengujian perangkat fisik;** P-005 tetap menunggu laporan pengguna. Implementasi belum dimulai. ID D-053 tersedia saat dicatat (tanpa bentrokan). Tahap 35 (akun dan login, P-006) tetap PENDING.
 
+### D-054 — Sistem Peta Dunia dan Navigasi *(APPROVED / LOCKED, 2026-11-17, Tahap 45)*
+Pilihan: **D. World Map & Navigation Hybrid Lengkap.** Ruang lingkup:
+1. Interactive World Map: zoom, pan, wilayah, lokasi, dan detail peta.
+2. Minimap saat gameplay.
+3. Compass dan directional guidance.
+4. Quest markers dan objective markers.
+5. Player location tracking.
+6. Exploration discovery untuk lokasi dan wilayah tersembunyi.
+7. Fast travel ke lokasi yang sudah terbuka dan memenuhi persyaratan progres.
+8. Integrasi dengan quest, dungeon, guild, mount, world exploration, dan progressive region unlock.
+
+Ketentuan:
+- **Tidak membuka semua wilayah sejak awal.**
+- **Fast travel mengikuti progres dan aturan dunia permainan.**
+- Peta mudah dipakai di Android landscape dengan layar sentuh.
+- UI mendukung Indonesia dan English.
+- Selaras dengan D-028 (eksplorasi dunia), D-033 (kamera), dan D-053 (loading/transisi).
+- Penguncian desain; implementasi belum dimulai.
+
+Hubungan (tidak mengubah isi keputusan lain): Progressive World Unlock (**D-009**), dungeon (**D-016**), guild (**D-017**), companion/monster (**D-019**), event dunia (**D-029**), cuaca dan waktu (**D-030**), UI dan HUD (**D-031**; peta, minimap, dan kompas menjadi bagian HUD), audio (**D-032**), kamera (**D-033**), kontrol dan tap-to-move (**D-034**), interaksi (**D-035**), quest (**D-037**), NPC (**D-040**), mount dan medan (**D-042**), tutorial (**D-043**), save (**D-044**), pengaturan (**D-045**), achievement dan koleksi lokasi (**D-046**), performa (**D-052**), loading dan transisi (**D-053**; fast travel memakai transisi Loading). **D-028** sudah menetapkan "peta dunia, penanda lokasi, dan fast travel" dan fast travel "dibuka dengan aturan progres yang jelas"; keputusan ini merinci dan tidak mengubahnya. **D-051** tetap dicadangkan untuk Tahap 42.
+**Terbuka:** tampilan dan gaya peta (ilustrasi, 3D, atau gabungan) dan art direction; tingkat detail dan kerahasiaan bagian peta yang belum ditemukan (kabut/siluet, apakah wilayah belum terbuka terlihat sebagai terkunci atau tersembunyi); cara penemuan lokasi (mendekat, petunjuk, NPC, peta/dokumen item); daftar jenis penanda dan filter; penanda buatan pemain (jumlah, jenis) dan pelacakan satu quest aktif vs banyak; aturan fast travel rinci (titik yang dapat dipakai, biaya, waktu kalender, cooldown, larangan saat combat/dungeon/event, batas karena cuaca atau cerita) dan hubungannya dengan mount dan transportasi; apakah fast travel dapat dari peta mana saja atau hanya dari titik tertentu; apakah pemain boleh mengatur tujuan lewat peta untuk jalan otomatis (tap-to-move, D-034); minimap (ukuran, bentuk, rotasi atau tetap utara, isi); kompas (jenis petunjuk arah dan jarak); penanganan wilayah dalam interior/dungeon (peta tingkat, tanpa peta); apakah ada peta tersendiri tiap wilayah; privasi lokasi (peta pribadi, tanpa berbagi, D-014); aksesibilitas peta (kontras, ukuran penanda, bantuan buta warna); peran konsep "spiritual" untuk wilayah spiritual (belum didefinisikan, tidak ditebak). **Tidak ada klaim performa atau pengujian perangkat fisik;** P-005 tetap menunggu laporan pengguna. Implementasi belum dimulai. ID D-054 tersedia saat dicatat (tanpa bentrokan). Tahap 35 (akun dan login, P-006) tetap PENDING.
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

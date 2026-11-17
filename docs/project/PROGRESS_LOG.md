@@ -310,3 +310,11 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik; semua angka berstatus usulan belum diukur.
 - GDD §6.42 baru (v0.42); Technical Architecture §4aj ditambahkan (v0.42); catatan saja: dua jenis transisi sebagai data (Streaming dan Loading, dapat diturunkan oleh PerfService), World Streamer dengan cincin aktif/penyangga, pemuatan asinkron time-sliced dengan gerbang kesiapan, loading screen tanpa teks tertanam dengan tips kontekstual dan progres nyata, kesinambungan kamera/audio, ResourceManager dengan pelepasan otomatis dan cache LRU, keadaan dunia terpisah dari node, penanganan dungeon/interior, keselamatan dan pemulihan, penanganan kegagalan dengan batas waktu. Hubungan dengan O-001, D-004, D-008, D-009, D-016, D-023, D-027, D-028, D-031 sampai D-033, D-040, D-042 sampai D-045, D-048 sampai D-050, D-052 dicatat tanpa mengubah isinya.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.
+
+
+## 2026-11-17 (43) — D-054 Sistem Peta Dunia dan Navigasi dicatat
+
+- D-054 (World Map & Navigation Hybrid Lengkap, LOCKED) dicatat sebagai **Tahap 45**; ID tersedia, tanpa bentrokan. **D-051 (Tahap 42) tetap dicadangkan**, belum diterima.
+- **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
+- GDD §6.43 baru (v0.43); Technical Architecture §4ak ditambahkan (v0.43); catatan saja: data dunia tunggal untuk peta/minimap/kompas/quest, status penemuan monoton tanpa kebocoran wilayah terkunci, peta interaktif dengan LOD ikon dan sentuhan tanpa bentrok kontrol, minimap dari tekstur (bukan render ulang adegan), kompas, antarmuka penanda quest/objektif, pelacakan posisi pribadi, penemuan wilayah tersembunyi, fast travel berbasis data sebagai transisi Loading dengan waktu kalender dan validasi, tap-to-move dari peta (bila diputuskan), aksesibilitas, performa GL Compatibility, serta uji. Hubungan dengan D-009, D-016, D-017, D-019, D-028 sampai D-035, D-037, D-040, D-042 sampai D-046, D-052, D-053 dicatat tanpa mengubah isinya.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.

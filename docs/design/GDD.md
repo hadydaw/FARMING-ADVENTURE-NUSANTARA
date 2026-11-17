@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.42 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement, D-047 Monetisasi, D-048 Live Ops, D-049 QA, D-050 Keamanan, D-052 Performa, D-053 Loading) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.43 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement, D-047 Monetisasi, D-048 Live Ops, D-049 QA, D-050 Keamanan, D-052 Performa, D-053 Loading, D-054 Peta) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -651,6 +651,21 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - Terkait: O-001, D-004, D-008, D-009, D-016, D-023, D-027, D-028, D-031 sampai D-033, D-040, D-042 sampai D-045, D-048 sampai D-050, D-052.
 
 **[BELUM DITETAPKAN]:** pembagian transisi seamless vs loading screen, ukuran dan jarak chunk, ambang menampilkan loading screen, isi dan gaya ilustrasi, aturan tips, bentuk indikator progres, interaksi saat memuat, penanganan gagal/lambat, keselamatan pemain saat transisi, auto-save saat transisi, konsep "spiritual" (belum didefinisikan). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+### 6.43 Peta Dunia dan Navigasi — D-054, LOCKED (World Map & Navigation Hybrid Lengkap)
+**Ditetapkan:**
+- **Peta dunia interaktif:** zoom, pan, wilayah, lokasi, detail peta.
+- **Minimap** saat gameplay; **compass dan petunjuk arah**.
+- **Quest markers dan objective markers**; **pelacakan posisi pemain.**
+- **Penemuan eksplorasi** untuk lokasi dan wilayah tersembunyi.
+- **Fast travel** ke lokasi yang sudah terbuka dan memenuhi persyaratan progres.
+- Terintegrasi dengan **quest, dungeon, guild, mount, eksplorasi, dan Progressive World Unlock.**
+- **Tidak semua wilayah terbuka sejak awal**; fast travel **mengikuti progres dan aturan dunia.**
+- **Mudah dipakai di Android landscape** dengan layar sentuh; **Indonesia dan English.**
+- Selaras dengan D-028, D-033 (kamera), dan D-053 (fast travel memakai transisi Loading).
+- Terkait: D-009, D-016, D-017, D-019, D-029 sampai D-035, D-037, D-040, D-042 sampai D-046, D-052, D-053.
+
+**[BELUM DITETAPKAN]:** gaya tampilan peta, aturan kerahasiaan/penemuan, jenis penanda dan filter, penanda buatan pemain, aturan fast travel rinci, peta tujuan untuk jalan otomatis, desain minimap dan kompas, peta interior/dungeon, aksesibilitas peta, konsep "spiritual" (belum didefinisikan). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 
