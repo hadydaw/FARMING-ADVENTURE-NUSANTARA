@@ -1557,4 +1557,6 @@ func _follow_companion(delta: float) -> void:
 	if companion_node == null or player == null or not companion_node.visible:
 		return
 	var target := player.global_position + Vector3(1.2, 0.5, 1.2)
+	if companion_node.global_position.distance_to(target) > 8.0:
+		companion_node.global_position = target   # pindah wilayah: langsung menyusul
 	companion_node.global_position = companion_node.global_position.lerp(target, clampf(delta * 4.0, 0.0, 1.0))
