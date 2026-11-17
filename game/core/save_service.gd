@@ -14,10 +14,27 @@ signal loaded(slot: int)
 const SAVE_DIR := "user://saves"
 const SCHEMA_VERSION := 1
 const MAX_SLOTS := 3
+const MANUAL_SLOT := 0
+const AUTOSAVE_SLOT := 1
+
+## Diisi menu utama ("Lanjutkan"); dunia memuat slot ini saat dibuka lalu mengosongkannya.
+var pending_load_slot := -1
 
 
 func slot_path(slot: int) -> String:
 	return "%s/slot_%d.json" % [SAVE_DIR, slot]
+
+
+## Slot dengan simpanan terbaru (waktu unix terbesar; seri -> slot lebih kecil). -1 bila tidak ada.
+func latest_slot() -> int:
+	var best := -1
+	var best_time := -1
+	for slot in MAX_SLOTS:
+		var info := slot_info(slot)
+		if not info.is_empty() and int(info["updated_at_unix"]) > best_time:
+			best = slot
+			best_time = int(info["updated_at_unix"])
+	return best
 
 
 func has_slot(slot: int) -> bool:

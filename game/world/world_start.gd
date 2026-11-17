@@ -43,6 +43,10 @@ func _ready() -> void:
 	_build_board()
 	_build_dungeon_entrance()
 	Events.interaction_performed.connect(_on_interacted)
+	if SaveService.pending_load_slot >= 0:
+		var slot := SaveService.pending_load_slot
+		SaveService.pending_load_slot = -1
+		load_game.call_deferred(slot)
 
 
 func _process(delta: float) -> void:
@@ -434,15 +438,16 @@ const SAVE_SLOT := 0
 
 
 ## Simpan uji ke slot 0: waktu permainan + status pertanian (bukan jam perangkat).
-func save_game() -> bool:
-	var err := SaveService.save_slot(SAVE_SLOT, {"v": 1, "time": GameTime.clock.to_dict(), "farming": farming.to_dict(), "social": social.to_dict(), "map": map.to_dict(), "player": _player_save()})
-	hud.show_message(tr("SAVE_OK") if err == OK else tr("SAVE_FAIL"))
+func save_game(slot: int = SAVE_SLOT, quiet: bool = false) -> bool:
+	var err := SaveService.save_slot(slot, {"v": 1, "time": GameTime.clock.to_dict(), "farming": farming.to_dict(), "social": social.to_dict(), "map": map.to_dict(), "player": _player_save()})
+	if not quiet or err != OK:
+		hud.show_message(tr("SAVE_OK") if err == OK else tr("SAVE_FAIL"))
 	return err == OK
 
 
 ## Muat dari slot 0; semua-atau-tidak (waktu dan pertanian harus sama-sama valid).
-func load_game() -> bool:
-	var data: Dictionary = SaveService.load_slot(SAVE_SLOT)
+func load_game(slot: int = SAVE_SLOT) -> bool:
+	var data: Dictionary = SaveService.load_slot(slot)
 	if data.is_empty() or typeof(data.get("time")) != TYPE_DICTIONARY or typeof(data.get("farming")) != TYPE_DICTIONARY or typeof(data.get("social")) != TYPE_DICTIONARY or typeof(data.get("map")) != TYPE_DICTIONARY or typeof(data.get("player")) != TYPE_DICTIONARY:
 		hud.show_message(tr("LOAD_NONE"))
 		return false
@@ -522,7 +527,8 @@ func _build_bed() -> void:
 func _on_woke_up() -> void:
 	player.set_physics_process(true)
 	refresh_farm_visuals()
-	hud.show_message(tr("WOKE_UP"))
+	var saved_ok := save_game(SaveService.AUTOSAVE_SLOT, true)   # simpan otomatis setelah tidur
+	hud.show_message(tr("WOKE_UP") + ("\n" + tr("AUTOSAVE_OK") if saved_ok else ""))
 
 
 # --- NPC uji (jadwal + dialog; konten generik SEMENTARA, bukan NPC resmi) ---

@@ -1,7 +1,7 @@
 keys,id,en
 BOOT_TITLE,Farming Adventure Nusantara,Farming Adventure Nusantara
 BOOT_LOADING,Memuat…,Loading…
-MENU_NOTICE,"Build uji teknis. Aset visual masih sementara; gameplay belum tersedia.","Technical test build. Visual assets are temporary; gameplay is not available yet."
+MENU_NOTICE,"Build uji teknis. Aset visual dan data masih sementara (placeholder).","Technical test build. Visual assets and data are temporary (placeholders)."
 MENU_SETTINGS,Pengaturan,Settings
 MENU_FOUNDATION_TEST,Uji Fondasi (diagnostik),Foundation Test (diagnostics)
 MENU_VERSION,Versi %s,Version %s
@@ -314,3 +314,7 @@ FESTIVAL_TEST_4,Festival Uji 4,Test Festival 4
 FESTIVAL_TODAY,Hari ini: %s! Hadiah diterima,Today: %s! Gift received
 FESTIVAL_BAG_FULL,Hari ini: %s (tas penuh - hadiah terlewat),Today: %s (bag full - gift missed)
 FESTIVAL_NEXT,Festival berikutnya: %s (hari ke-%d),Next festival: %s (day %d)
+MENU_CONTINUE,Lanjutkan,Continue
+MENU_SLOT_AUTO,simpan otomatis,autosave
+MENU_SLOT_MANUAL,simpan manual,manual save
+AUTOSAVE_OK,Tersimpan otomatis,Autosaved

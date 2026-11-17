@@ -593,3 +593,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Diumumkan lewat pesan HUD saat pergantian hari. Data SEMENTARA generik; bukan festival/kalender resmi (D-029 detail tetap terbuka).
 - Belum: dekorasi/aktivitas festival, toko khusus, NPC festival, layar kalender, efek khusus (diskon, cuaca).
 - Uji: 27 berkas, 2583 pemeriksaan, 0 gagal; smoke test lulus.
+
+## 2026-11-18 (82) — Menu utama Lanjutkan + autosave (teknis)
+
+- Pemilik memilih "Menu utama & autosave". SaveService.latest_slot() (waktu unix terbesar), pending_load_slot, slot manual=0 dan autosave=1; save_game/load_game menerima slot; autosave senyap setiap bangun tidur (pesan "Tersimpan otomatis").
+- Menu utama: tombol "Lanjutkan (simpan manual/otomatis)" hanya bila ada simpanan; "Mulai" tetap untuk game baru. Teks MENU_NOTICE diperbarui.
+- Belum: layar pilih slot dengan ringkasan (hari/uang), hapus slot, autosave berkala/saat keluar aplikasi, konfirmasi menimpa.
+- Uji: 27 berkas, 2609 pemeriksaan, 0 gagal; smoke test lulus.

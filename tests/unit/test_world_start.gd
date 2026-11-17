@@ -211,6 +211,20 @@ func run() -> void:
 	SaveService.delete_slot(0)
 	check(not world.load_game(), "muat tanpa simpanan ditolak")
 
+	# Simpan otomatis setelah bangun + slot terbaru (menu "Lanjutkan")
+	SaveService.delete_slot(1)
+	SaveService.delete_slot(0)
+	check_eq(SaveService.latest_slot(), -1, "tanpa simpanan: tidak ada slot terbaru")
+	world._on_woke_up()
+	check(SaveService.has_slot(SaveService.AUTOSAVE_SLOT), "autosave tercipta setelah bangun")
+	check_eq(SaveService.latest_slot(), SaveService.AUTOSAVE_SLOT, "slot terbaru = autosave")
+	var pm2 := GameTime.clock.total_minutes
+	GameTime.clock.add_minutes(300)
+	check(world.load_game(SaveService.AUTOSAVE_SLOT), "muat dari autosave")
+	check_eq(GameTime.clock.total_minutes, pm2, "waktu kembali ke autosave")
+	check_eq(SaveService.pending_load_slot, -1, "tidak ada muat tertunda")
+	SaveService.delete_slot(1)
+
 	# Batas dunia
 	player.global_position = Vector3(28, 0, 0)
 	player.input_override = Vector2(1, 0)  # kanan relatif yaw 0 = +X (menuju batas)

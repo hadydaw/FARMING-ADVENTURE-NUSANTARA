@@ -24,6 +24,13 @@ func _ready() -> void:
 	notice.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	column.add_child(notice)
 
+	var latest := SaveService.latest_slot()
+	if latest >= 0:
+		var cont := _button("MENU_CONTINUE", func():
+			SaveService.pending_load_slot = latest
+			SceneManager.go("world_start"))
+		cont.text = "%s (%s)" % [tr("MENU_CONTINUE"), tr("MENU_SLOT_AUTO") if latest == SaveService.AUTOSAVE_SLOT else tr("MENU_SLOT_MANUAL")]
+		column.add_child(cont)
 	column.add_child(_button("MENU_START_DEV", func():
 		GameTime.new_game()
 		SceneManager.go("world_start")))
