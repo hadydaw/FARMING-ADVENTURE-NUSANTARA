@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.45 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.46 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -610,6 +610,26 @@ Bertumpu pada `GameClock` (§4al), event bus, simulasi hari-selisih (§4al), loa
 - **Performa (D-052):** pemrosesan diturunkan skalanya pada perangkat lemah (tahap lebih sedikit per frame, bukan hasil berbeda); angka belum diukur.
 - **Update konten (D-048):** tahap/sistem baru ditambah sebagai data; save lama tetap termigrasi; validator konten memastikan urutan tahap valid.
 - **Pengujian (D-049):** uji headless untuk determinisme, idempotensi (jalankan dua kali tidak menggandakan), interupsi di tiap tahap lalu lanjut, tidak ada waktu mundur, konsistensi antar sumber tidur, anggaran per frame, dan sinkron save setelah pergantian hari.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4an. Implikasi Arsitektur dari D-057 (hanya catatan; belum diimplementasikan; semua angka usulan dan belum diukur)
+
+Memakai model makhluk bersama (§4a, §4f), perkembangan karakter (§4e), mesin kondisi/efek bersama (§4x, §4d), `GameClock` (§4al), pipeline pergantian hari (§4am), inventory (§4w), memasak/alkimia (§4m). Hanya rancangan; tidak ada nilai ditetapkan.
+- **`VitalityComponent`:** komponen terpisah dari UI dan dari aturan dunia; memegang kumpulan *sumber daya* (Health, Stamina, Mana, Hunger, Thirst, Fatigue) sebagai data ber-ID stabil (§4ag): nilai saat ini, batas, jenis (kapasitas atau kebutuhan), dan modifier. Tiap sumber daya dapat ditambah/dihapus lewat data; bagian dari model makhluk bersama sehingga dapat dipakai pemain dan makhluk lain bila diputuskan.
+- **Pemisahan fungsi:** Health dibaca sistem pertarungan/bahaya (§4a), Stamina dibaca aksi fisik (alat farming §4j, memancing §4l, gerak §4u, eksplorasi §4o), Mana dibaca kemampuan/sihir; kebutuhan (Hunger, Thirst, Fatigue) memengaruhi lewat modifier kondisi, bukan lewat kode di tiap sistem.
+- **Biaya aksi sebagai data:** setiap aksi/kemampuan mendeklarasikan biaya sumber daya di datanya (resource), bukan di kode; penghubung `spend(resource, jumlah, konteks)` mengembalikan berhasil/gagal tanpa efek samping; angka tidak ditetapkan di sini.
+- **Pemulihan:** sumber (tidur §4am, istirahat, makanan, minuman, ramuan §4m, item §4w, fasilitas) mendeklarasikan efek lewat bahasa kondisi/efek bersama (§4x); efek dengan durasi memakai penjadwal efek berbasis `GameClock` dan dihitung per hari-selisih saat tidur/perjalanan (§4al, §4am) tanpa polling per frame.
+- **Tick berfrekuensi rendah:** konsumsi/regenerasi berjalan lewat sinyal waktu `GameClock` (granularitas data), bukan per frame; perubahan nilai memancarkan event bus hanya saat melewati ambang agar UI/audio tidak memproses ulang terus-menerus.
+- **Ramah pemain (rendah gesekan):** perilaku kebutuhan dijadikan *profil data* (aktif/ringan/nonaktif, ambang peringatan, efek) agar dapat disetel tanpa kode setelah ada keputusan desain lanjutan dan pengaturan (§6a); peringatan dini dan pemulihan mudah dilakukan; tidak ada keadaan tanpa jalan keluar. Nilai dan opsi belum ditetapkan.
+- **Item dan transaksi:** makan/minum/pakai ramuan lewat inventory (§4w) sebagai transaksi idempoten (ID transaksi), mengurangi item dan menerapkan efek sekali; aman terhadap interupsi dan muat ulang save; validasi server untuk operasi bernilai tinggi mengikuti §5b.
+- **Save/cloud (§5a, D-044):** nilai sumber daya dan efek aktif masuk payload dengan `section_version`; dimigrasikan antarversi; nilai tidak dihitung dari jam perangkat; checksum bukan anti-cheat (D-050).
+- **UI/HUD (D-031, §4r):** bar dan ikon status sebagai komponen yang membaca event, bukan memegang logika; teks lewat kunci terjemahan; aksesibilitas (bentuk ikon selain warna, kontras, pengurangan animasi) (D-045); audio peringatan lewat bus (D-032).
+- **Tutorial (D-043, §4ad) dan achievement (D-046, §4ae):** tutorial memperkenalkan sumber daya bertahap lewat pemicu event; achievement hanya membaca event bus dan tidak memengaruhi nilai maupun mendorong perilaku merugikan; tidak ada nilai ditetapkan.
+- **Dungeon dan pertarungan (§4c, §4a):** aturan khusus (pemulihan terbatas, efek lingkungan) dinyatakan sebagai modifier data pada konteks, bukan percabangan kode.
+- **Performa (D-052):** tanpa pembaruan per frame; modifier di-cache dan dihitung ulang hanya saat berubah; angka belum diukur.
+- **Update konten (D-048):** sumber daya, efek, makanan/potion baru ditambah sebagai data; validator memastikan referensi efek/ID valid dan tidak ada efek tanpa sumber daya terkait.
+- **Pengujian (D-049):** uji headless untuk batas nilai (tidak di bawah nol/di atas kapasitas), `spend` atomik, pemulihan sekali per transaksi (idempoten), efek berdurasi setelah tidur/perjalanan, migrasi save, dan tidak ada ketergantungan jam perangkat.
 - **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 

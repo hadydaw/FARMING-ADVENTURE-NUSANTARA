@@ -824,6 +824,37 @@ Hubungan (tidak mengubah isi keputusan lain): sistem kehidupan (**D-015**), dung
 
 **Terbuka (tidak diputuskan):** efek dan besar pemulihan (HP, stamina, status); batas tidur dan aturan jam tidur (jam paling awal/akhir, tidur paksa saat larut); biaya penginapan dan fasilitas; aturan dan risiko kemah (di mana boleh, gangguan monster); apakah bisa tidur sebentar tanpa ganti hari; apakah event/NPC berjalan saat offline (terbuka di D-029); aturan catch-up setelah lama tidak bermain; arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
 
+### D-057 — Sistem Energi, Stamina, dan Kebutuhan Karakter *(APPROVED / LOCKED, 2026-11-17, Tahap 48)*
+Pilihan: **D. Character Vitality Hybrid Lengkap.** Ruang lingkup:
+1. Health.
+2. Stamina untuk aktivitas fisik.
+3. Mana untuk sihir dan kemampuan tertentu.
+4. Hunger.
+5. Thirst.
+6. Fatigue.
+7. Pemulihan melalui tidur, istirahat, makanan, minuman, dan ramuan.
+8. Efek makanan dan potion terhadap kondisi karakter.
+9. Integrasi dengan farming, eksplorasi, pertarungan, dungeon, memasak, alkimia, dan sistem tidur.
+
+Ketentuan:
+- **Tidak ada angka konsumsi, regenerasi, penalti, atau balance final** tanpa desain lanjutan.
+- **Health, Stamina, dan Mana dibedakan** agar fungsi masing-masing jelas (di bawah).
+- **Kebutuhan karakter tidak boleh membuat farming dan eksplorasi terlalu merepotkan** (prinsip ramah pemain: rendah gesekan).
+- Selaras dengan D-015, D-026, D-043, D-046, dan D-056.
+- Penguncian desain; implementasi belum dimulai.
+
+**Fungsi tiap sumber daya (prinsip, tanpa angka):**
+- **Health:** daya tahan hidup karakter terhadap kerusakan (pertarungan, bahaya lingkungan).
+- **Stamina:** kapasitas aktivitas fisik (mis. alat pertanian, lari, mengumpulkan, memancing, memanjat).
+- **Mana:** sumber daya sihir dan kemampuan tertentu.
+- **Hunger, Thirst, Fatigue:** kebutuhan karakter yang dipulihkan oleh makanan, minuman, tidur/istirahat; dirancang berdampak ringan dan tidak mengganggu alur dasar bermain.
+- Pemulihan lewat **tidur dan istirahat (D-056), makanan dan minuman (D-026), dan ramuan (D-026)**; efek makanan/potion bekerja lewat sistem kondisi/efek bersama.
+- Berlaku bagi pemain; pemakaian pada companion/monster mengikuti model makhluk bersama dan tidak ditetapkan di sini.
+
+Hubungan (tidak mengubah isi keputusan lain): pertarungan (**D-013**), sistem kehidupan (**D-015**), dungeon (**D-016**), perkembangan karakter (**D-018**), companion (**D-019**), equipment (**D-020**), ekonomi (**D-021**), pertanian (**D-023**), peternakan (**D-024**), memancing (**D-025**), memasak dan alkimia (**D-026**), eksplorasi (**D-028**), UI/HUD (**D-031**), audio (**D-032**), inventory (**D-036**), mount (**D-042**; stamina mount tetap terbuka di sana), tutorial (**D-043**), save/cloud (**D-044**), pengaturan dan aksesibilitas (**D-045**), achievement (**D-046**), update konten (**D-048**), QA (**D-049**), keamanan (**D-050**), performa (**D-052**), waktu (**D-055**), tidur (**D-056**). **D-051** isinya belum diterima; tidak ada yang dikarang.
+
+**Terbuka (tidak diputuskan):** semua angka (kapasitas, konsumsi, regenerasi, penalti, batas); efek bila sumber daya habis (termasuk apakah hunger/thirst/fatigue bisa melemahkan atau hanya memberi bonus/malus ringan, dan apakah ada risiko pingsan atau kekalahan); apakah kebutuhan dapat diatur lewat tingkat kesulitan/pengaturan; apakah Mana dipakai semua kelas; kaitan dengan efek tidur (D-056, yang juga masih terbuka); daftar efek makanan/potion; stamina mount (D-042); arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

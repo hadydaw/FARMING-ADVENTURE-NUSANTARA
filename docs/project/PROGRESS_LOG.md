@@ -332,3 +332,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
 - GDD §6.45 baru (v0.45); Technical Architecture §4am ditambahkan (v0.45); catatan saja: satu jalur `advance_day`, pipeline berbasis data berurutan, pemrosesan terpotong antar frame, deterministik (seed+tanggal), komit atomik idempoten aman terhadap interupsi dan koneksi, pemulihan sebagai data. Efek pemulihan, batas dan jam tidur sengaja tidak ditetapkan.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.
+
+## 2026-11-17 (46) — D-057 Sistem Energi, Stamina, dan Kebutuhan Karakter dicatat
+
+- D-057 (Character Vitality Hybrid Lengkap, LOCKED) dicatat sebagai **Tahap 48**; ID tersedia, tanpa bentrokan. **D-051 (Tahap 42) tetap dicadangkan**, isinya belum diterima; tidak ada isi yang dikarang.
+- **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
+- GDD §6.46 baru (v0.46); Technical Architecture §4an ditambahkan (v0.46); catatan saja: `VitalityComponent` berbasis data (Health, Stamina, Mana, Hunger, Thirst, Fatigue), biaya aksi dan efek pemulihan sebagai data, tick berfrekuensi rendah dari `GameClock`, profil kebutuhan yang dapat disetel agar tidak memberatkan, transaksi item idempoten, event bus untuk UI. Semua angka, efek saat habis, dan balance sengaja tidak ditetapkan.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.
