@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.52 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.53 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -736,6 +736,26 @@ Memperluas event dunia (§4p), hubungan faksi (§4as), organisasi (§4ar), NPC h
 - **Performa (D-052):** kondisi konflik dihitung per hari/ per kejadian, bukan per frame; varian visual di-LOD dan dikurangi pada perangkat lemah tanpa mengubah hasil; angka belum diukur.
 - **Update konten (D-048):** konflik baru ditambah sebagai data baru; validator memeriksa referensi, jalur akhir, dan tidak adanya keadaan buntu.
 - **Pengujian (D-049):** uji headless untuk konsistensi dengan relasi, determinisme dan idempotensi tahap, konflik dapat berakhir, progres utama tetap dapat diselesaikan tanpa ikut konflik, save/migrasi aman, tidak ada penulisan ke data inti di luar efek data, serta ketahanan terhadap interupsi dan perubahan jam perangkat.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4au. Implikasi Arsitektur dari D-064 (hanya catatan; belum diimplementasikan; tidak ada angka)
+
+Memperluas organisasi dan wilayah (§4ar, §4o), hubungan faksi (§4as), konflik (§4at), NPC dan sosial (§4i, §4z, §4aa), dialog (§4y), kekalahan (§4ao), status effect (§4ap), ekonomi (§4h), `GameClock` (§4al), cloud save (§5a). Hanya rancangan; tidak ada kategori kejahatan, hukuman, atau formula.
+- **`LawCode` per otoritas sebagai data:** tiap wilayah/organisasi berkuasa (§4ar) mereferensikan satu kode hukum ber-ID stabil (§4ag): daftar jenis pelanggaran (tag), tingkat keparahan (data), respons yang diizinkan, dan prosedur; hukum berlaku per wilayah (§4o) lewat pemetaan data otoritas↔wilayah. Isi tidak ditetapkan; aturan dapat diubah tanpa kode.
+- **Tiga lapisan reputasi terpisah:** reputasi sosial (§4z, per NPC/komunitas), standing faksi (`PlayerStanding`, §4as), dan **`CriminalRecord`** (per otoritas/wilayah, bagian save). Antarmuka berbeda dan tidak saling menulis; hubungan antarlapisan hanya lewat aturan data eksplisit (terdaftar dan dapat diaudit).
+- **Deteksi dan saksi sebagai data:** `CrimeEvent` dipancarkan lewat event bus saat tindakan pemain memenuhi kondisi data (§4x); hanya dihitung bila ada deteksi sah (saksi NPC §4aa, penjaga, bukti) menurut aturan data; tindakan ambigu/tidak disengaja diberi **tahap peringatan/pemulihan** (data) sebelum catatan bertambah; tidak ada hukuman berat langsung dari satu tindakan ambigu.
+- **Mesin keadaan penegakan:** (tidak dicurigai → peringatan → dicari/buronan → pengejaran → ditangkap/diselesaikan) per otoritas sebagai data; respons penjaga memakai perilaku NPC (§4aa), pertarungan (§4a), dan dialog (§4y); penangkapan memakai alur kekalahan/pemulihan yang ada (§4ao) dan transisi Loading (§4aj) bila ada pemindahan; penjara/denda/penyitaan dan dampak waktu tidak ditetapkan.
+- **Bounty dan buronan:** nilai/status sebagai data per otoritas dengan antarmuka `get_wanted(otoritas)`; formula tidak ditetapkan; penurunan/penghapusan lewat jalur data (bayar, selesaikan, waktu permainan `GameClock`, pengampunan) sehingga selalu ada jalan keluar; validator memastikan setiap status buronan punya jalur penyelesaian.
+- **Pengadilan dan prosedur:** prosedur sebagai data (alur dialog/pilihan §4y, quest §4x); hasil memakai efek data eksplisit; tidak ada logika hukum keras di kode; deterministik (seed+tanggal) untuk hasil acak sehingga muat ulang save tidak mengubah hasil (§4al).
+- **Konsistensi dengan struktur politik:** perubahan kepemilikan wilayah, status konflik (§4at), atau hubungan (§4as) dapat mengubah otoritas/hukum hanya lewat efek data; validator menolak wilayah tanpa otoritas hukum valid atau kode hukum yang merujuk organisasi tidak ada.
+- **Perlindungan progres dan save:** penegakan hukum tidak menulis ke inventori, uang, quest utama, rumah, atau ladang kecuali lewat efek data eksplisit; komit atomik idempoten dengan revisi (§5, §5a); interupsi saat penangkapan dilanjutkan tanpa dobel proses; bagian save `CriminalRecord` berversi dan termigrasi; save lama tanpa catatan tetap valid.
+- **Tanpa diskriminasi tersembunyi (§4aq):** perlakuan berbeda berdasarkan ras/suku hanya lewat aturan terdaftar yang dapat diaudit.
+- **Keamanan (D-050, §5b):** catatan pribadi per akun; operasi bernilai tinggi (denda, hadiah, bounty) divalidasi urutan server; checksum bukan anti-cheat; tidak ada hukum antarpemain.
+- **UI/lokalisasi (D-031, D-045):** indikator status hukum (wanted/peringatan) mudah dipahami (tahap/ikon, bukan sekadar angka), teks lewat kunci Indonesia/English, aksesibilitas (ikon selain warna), peringatan sebelum tindakan berisiko bila aturan menetapkan; tidak membocorkan informasi tersembunyi (§4ak).
+- **Performa (D-052):** deteksi berbasis kejadian dan area (bukan polling per frame); penjaga jauh disimulasikan agregat/LOD; pemrosesan berat dibagi per frame (§4am, §4ai); angka belum diukur.
+- **Update konten (D-048):** kode hukum, jenis pelanggaran, dan prosedur baru sebagai data baru; ID di-deprecate tetap dikenali; validator memeriksa referensi dan jalur penyelesaian.
+- **Pengujian (D-049):** uji headless untuk pemisahan tiga reputasi, tindakan tidak disengaja tidak langsung berat, determinisme dan idempotensi, setiap status buronan dapat diselesaikan, hukum per wilayah valid, perlindungan data inti, migrasi save, dan ketahanan terhadap interupsi dan perubahan jam perangkat.
 - **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 

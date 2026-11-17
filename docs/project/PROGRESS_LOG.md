@@ -385,3 +385,11 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
 - GDD §6.52 baru (v0.52); Technical Architecture §4at ditambahkan (v0.52); catatan saja: `Conflict` sebagai data dan mesin keadaan, konsisten dengan relasi diplomasi, keterlibatan pemain opsional, perlindungan progres utama dan save, dampak lewat efek data yang dapat berakhir, deterministik. Daftar perang, faksi, korban, aturan perebutan, dan hasil sengaja tidak ditetapkan.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.
+
+## 2026-11-17 (53) — D-064 Sistem Hukum, Kejahatan, dan Bounty dicatat
+
+- D-064 (Law & Justice Hybrid Lengkap, LOCKED) dicatat sebagai **Tahap 55**; ID tersedia, tanpa bentrokan. **D-051 (Tahap 42) tetap dicadangkan**, isinya belum diterima; tidak ada isi yang dikarang. Arti "spiritual" **tetap tidak didefinisikan**.
+- Tidak ada dokumen worldbuilding terpisah di `docs/`; dunia dicatat di GDD (§6.53 baru). Tidak dibuat dokumen baru.
+- **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
+- GDD §6.53 baru (v0.53); Technical Architecture §4au ditambahkan (v0.53); catatan saja: kode hukum per otoritas/wilayah sebagai data, tiga lapisan reputasi terpisah (sosial, faksi, kriminal), deteksi dan saksi sebagai data, tahap peringatan agar tindakan tidak disengaja tidak langsung berat, mesin keadaan penegakan, bounty selalu punya jalur penyelesaian, perlindungan progres dan save. Kategori kejahatan, hukuman, prosedur, dan formula bounty sengaja tidak ditetapkan.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.

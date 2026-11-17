@@ -1035,6 +1035,38 @@ Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), pertarungan (**
 
 **Terbuka (tidak diputuskan):** daftar konflik/perang, faksi terlibat, korban, aturan perebutan wilayah, hasil; apakah dan bagaimana kota/wilayah berubah kepemilikan; peran pemain (pilihan, hadiah, risiko); bentuk pertahanan kota dan skala serangan monster; dampak mekanik pada NPC/ekonomi/harga/akses; apakah NPC dapat terluka/hilang (dan aturan perlindungan NPC penting); apakah konflik berlangsung saat offline (terbuka di D-029) dan aturan catch-up; lamanya konflik; arti "spiritual"; romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
 
+### D-064 — Sistem Hukum, Kejahatan, dan Bounty *(APPROVED / LOCKED, 2026-11-17, Tahap 55)*
+Pilihan: **D. Law & Justice Hybrid Lengkap.** Ruang lingkup:
+1. Penjaga dan penegak hukum regional.
+2. Hukum kerajaan dan hukum regional.
+3. Sistem kejahatan.
+4. Reputasi kriminal.
+5. Bounty dan sistem buronan (wanted).
+6. Penangkapan dan respons penegakan hukum.
+7. Pengadilan dan prosedur keadilan.
+8. Aturan dan otoritas khusus wilayah.
+
+Ketentuan:
+- **Tidak ada kategori kejahatan final, prosedur hukum, hukuman, formula bounty, atau konsekuensi final** tanpa desain lanjutan.
+- **Reputasi sosial, reputasi faksi, dan reputasi kriminal dibedakan.**
+- **Sistem hukum konsisten dengan struktur kerajaan dan hubungan faksi** (D-061, D-062).
+- **Tindakan pemain yang tidak disengaja tidak boleh langsung menghasilkan hukuman berat.**
+- Selaras dengan D-017, D-022, D-039, D-060, D-061, D-062, dan D-063.
+- Penguncian desain; implementasi belum dimulai.
+
+**Prinsip (dasar, tanpa angka):**
+- Tiga jenis reputasi **tidak disamakan**: (a) **reputasi sosial** (hubungan dengan NPC dan komunitas, D-039/D-022); (b) **reputasi faksi** (pemain terhadap organisasi, D-062); (c) **reputasi kriminal** (catatan pemain di mata hukum suatu wilayah). Mengubah satu tidak otomatis mengubah yang lain, kecuali lewat aturan eksplisit.
+- Hukum **berlaku per wilayah dan otoritas**: tiap wilayah/organisasi berkuasa (D-061) dapat punya aturan, penjaga, dan prosedur berbeda; apa yang dianggap kejahatan di satu tempat belum tentu di tempat lain (isi belum ditetapkan).
+- **Tidak disengaja ≠ kejahatan berat:** tindakan tidak disengaja atau ambigu harus punya peringatan, kesempatan memperbaiki, atau penanganan ringan sebelum konsekuensi berat; sistem tidak menghukum pemain karena salah klik atau kondisi yang tidak jelas.
+- **Adil dan ada jalan keluar:** pemain dapat menebus, membayar, menyelesaikan, atau menghindari konsekuensi lewat jalur yang disediakan; tidak ada keadaan buntu; progres utama dan data save tidak rusak (selaras D-058, D-063); penegakan hukum tidak menghapus item/progres inti di luar aturan eksplisit yang kelak ditetapkan.
+- **Konsisten dengan konflik dan diplomasi:** keadaan hukum dapat dipengaruhi oleh konflik (D-063) dan hubungan antarorganisasi (D-062) hanya lewat aturan eksplisit; tanpa diskriminasi tersembunyi berdasarkan ras/suku (D-060).
+- Penegakan hukum memakai pertarungan, dialog, dan sistem kekalahan yang sudah ada (D-013, D-038, D-058); tidak menambah mode permainan terpisah.
+- Dunia pribadi per pemain (single-player online, D-014); tidak ada hukum antarpemain.
+
+Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), pertarungan (**D-013**), sistem kehidupan (**D-015**), dungeon (**D-016**), guild (**D-017**), ekonomi dan perdagangan (**D-021**), NPC dan sosial (**D-022**), eksplorasi (**D-028**), event dunia (**D-029**), UI/HUD (**D-031**), quest (**D-037**), dialog (**D-038**), hubungan sosial (**D-039**), NPC hidup (**D-040**), save/cloud (**D-044**), pengaturan (**D-045**), update konten (**D-048**), QA (**D-049**), keamanan (**D-050**), loading (**D-053**), waktu (**D-055**), kekalahan (**D-058**), status effect (**D-059**), ras (**D-060**), organisasi (**D-061**), diplomasi (**D-062**), konflik (**D-063**). **D-051** isinya belum diterima.
+
+**Terbuka (tidak diputuskan):** daftar dan kategori kejahatan; hukuman dan prosedur pengadilan; formula dan nilai bounty; skala dan ambang reputasi kriminal; aturan penangkapan dan respons penjaga; cara menebus/menghapus catatan; perilaku saat tertangkap (penjara, denda, penyitaan, dan dampak ke waktu); aturan khusus wilayah; peran Guild (D-017) dalam penegakan; apakah NPC dapat melapor dan bagaimana saksi bekerja; kejahatan terhadap NPC dan properti; apakah ada hukuman kematian/pertarungan mematikan; arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |
