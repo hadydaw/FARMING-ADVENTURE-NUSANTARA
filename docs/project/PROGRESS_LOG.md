@@ -261,3 +261,11 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - **Tahap 35 (Akun dan Login) tetap PENDING** (P-006); tidak diubah.
 - GDD §6.36 baru (v0.36); Technical Architecture §4ae ditambahkan (v0.36; catatan saja: definisi dari data, pelacakan berbasis event bus dengan pencacah unik anti-pengulangan, penyelesaian idempoten dan hadiah tertahan saat inventory penuh, Collection Book sebagai sumber kebenaran penemuan, Journey Record berbatas ukuran, penyimpanan dan cloud save). Hubungan dengan D-007, D-013 sampai D-029, D-031, D-032, D-036, D-037, D-039 sampai D-045, D-014 dicatat tanpa mengubah isinya.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 38 (Tahap 35 tetap PENDING).
+
+
+## 2026-11-17 (37) — D-047 Sistem Monetisasi dan Transaksi Dalam Game dicatat
+
+- D-047 (Cosmetic Only, LOCKED) dicatat sebagai **Tahap 38**; ID tersedia, tanpa bentrokan.
+- **Tahap 35 (Akun dan Login) tetap PENDING** (P-006); tidak diubah dan tidak dipaksakan.
+- GDD §6.37 baru (v0.37) dan butir "Monetisasi" di daftar usulan ditandai terjawab; Technical Architecture §4af ditambahkan (v0.37; catatan saja: pemisahan struktural kosmetik dari atribut gameplay dengan validasi konten, dekorasi murni visual, katalog dari data dengan sumber perolehan ganda, kepemilikan tambah-saja dan idempoten, `StoreService` abstrak nonaktif, rancangan verifikasi tanda terima di sisi server tanpa rahasia di klien/repo, tanpa premium currency/season pass). Hubungan dengan D-008, D-013, D-016, D-018, D-020, D-021, D-027, D-031, D-036, D-037, D-041, D-042, D-044 sampai D-046, D-014 dicatat tanpa mengubah isinya.
+- Tidak ada perubahan kode/gameplay/CI; tidak ada SDK pembayaran atau kredensial ditambahkan. Menunggu keputusan Tahap 39 (Tahap 35 tetap PENDING).

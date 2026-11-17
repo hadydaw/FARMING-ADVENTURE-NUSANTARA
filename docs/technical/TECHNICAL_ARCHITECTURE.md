@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.36 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.37 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -477,6 +477,23 @@ Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 - **Audio:** efek dan musik singkat pencapaian lewat sistem audio (§4s).
 - **Performa:** pencacah ringan dan diperbarui per event; indeks syarat per jenis event; tanpa alokasi per frame (§3).
 - **Pengujian:** uji headless untuk pemicu dan pencacah, penyelesaian idempoten, hadiah tidak ganda saat muat/sinkron ulang, hadiah tertahan saat inventory penuh, kelengkapan terjemahan id/en, validasi konten (semua syarat dapat dicapai, tidak ada achievement yang mustahil), batas ukuran Journey, serta serialisasi-migrasi.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4af. Implikasi Arsitektur dari D-047 (hanya catatan; belum diimplementasikan)
+
+Syarat utama: **kosmetik tidak pernah memengaruhi atribut gameplay**, dan arsitektur tidak bergantung pada akun/pembayaran yang masih ditunda (Tahap 35 PENDING, P-006).
+- **Pemisahan tegas kosmetik vs gameplay (struktural, bukan hanya aturan):** kosmetik adalah jenis resource sendiri (§4ab) yang **tidak memiliki kolom atribut/stat/efek gameplay**; sistem stat, combat, dan crafting (§4e, §4g) tidak membaca data kosmetik sama sekali. Validasi konten (uji headless) menolak kosmetik yang punya atribut, efek, atau rujukan ke sistem gameplay, serta menolak item berkategori "dijual" yang ada dalam daftar terlarang (stat, level, material crafting/quest, keunggulan kompetitif).
+- **Dekorasi murni visual:** dekorasi rumah/lahan (§4n) yang dijual adalah tipe objek tanpa fungsi gameplay (bukan stasiun, penyimpanan, produksi, atau bonus); batas dengan bangunan fungsional ditegakkan oleh tipe data dan validasi yang sama.
+- **Katalog dari data:** setiap entri (ID stabil, kategori, slot §4ab, kunci terjemahan id/en §6, pratinjau, sumber perolehan: dibeli / hadiah gameplay / keduanya, penanda SKU produk bila dibeli, status) dipisah dari data toko pembayaran; **sumber perolehan** adalah daftar data sehingga kosmetik yang sama dapat diperoleh lewat achievement/quest/event (§4ae, §4x, §4p) atau pembelian tanpa duplikasi item. Status kepemilikan dilihat dari satu penyimpan.
+- **Kepemilikan (entitlement):** catatan kosmetik yang dimiliki (ID, sumber, waktu perolehan, ID transaksi) sebagai bagian save modular (§5a) dan **dipulihkan dari akun** saat berpindah perangkat; kepemilikan bersifat tambah-saja (tidak mengurangi kosmetik yang sudah dimiliki tanpa sebab sah); penerapan kosmetik ke karakter tetap lewat sistem tampilan (§4ab), bukan inventory (§4w) kecuali diputuskan lain.
+- **Antarmuka toko berlapis:** `StoreService` abstrak (seperti `BackendClient`) dengan implementasi **tidak-aktif/stub** sekarang; penyedia nyata (mis. Google Play Billing) dipasang saat persiapan publikasi tanpa mengubah sistem lain. Tidak ada SDK pembayaran, kredensial, atau rahasia di repo atau aplikasi sekarang.
+- **Alur transaksi (rancangan, menunggu keputusan platform):** pilih item → konfirmasi jelas (nama, harga yang ditampilkan platform, deskripsi) → pembelian lewat penyedia platform → **verifikasi tanda terima di sisi server** (Supabase Edge Function; token/kunci verifikasi hanya di sisi server, §BACKEND §6) → pencatatan kepemilikan **idempoten** dengan ID transaksi (§5a) sehingga retry, pemulihan, atau sinkron ulang tidak menggandakan atau menghilangkan → pemberian kosmetik. Pembelian yang belum dikonfirmasi/dikonsumsi ditangani ulang saat aplikasi dibuka (pemulihan pembelian tertunda). Klien tidak dipercaya untuk menyatakan kepemilikan.
+- **Ketergantungan pada akun (P-006):** kepemilikan terikat akun; sampai desain akun/login diputuskan, tidak ada pembuatan akun, penautan, atau penyimpanan identitas pembeli yang dibangun; komponen toko tetap nonaktif dan **tidak** memaksa implementasi akun. Hapus akun/data, privasi, dan retensi catatan transaksi menunggu desain.
+- **Tidak ada premium currency/season pass:** model data tidak memiliki mata uang premium atau pass; mata uang dalam game (§4h) tidak dapat dibeli dan tidak terhubung ke toko.
+- **Keadilan dan keamanan:** kosmetik berbayar tidak diberi bonus tersembunyi (uji otomatis, lihat di atas); hadiah gameplay untuk kosmetik tidak boleh mensyaratkan pembelian; pencegahan duplikasi dan pengembalian dana (refund) ditangani dengan mencabut kepemilikan lewat jalur server sesuai kebijakan platform (menunggu keputusan).
+- **UI:** katalog (kategori/filter seperti inventory), pratinjau 3D di wardrobe (§4ab) dengan kamera khusus (§4t), status kepemilikan (dimiliki/terkunci/dapat dibeli/hadiah), keterangan sumber; label lewat kunci terjemahan id/en; konfirmasi pembelian dengan target sentuh nyaman (§4u); teks harga/mata uang dari platform (lokal), bukan tertanam pada aset.
+- **Kepatuhan:** kebijakan platform (pengungkapan, usia, pengembalian dana, tanda terima, pajak) ditinjau pada persiapan publikasi; catatan: perilaku desain "cosmetic only" menjadi dasar ringkas untuk pengungkapan toko.
+- **Pengujian:** uji headless untuk validasi konten terlarang, tidak adanya hubungan kosmetik-atribut, kepemilikan idempoten dan tambah-saja, pemulihan dari save, penerapan sumber perolehan ganda (tidak duplikat), dan toko stub tidak melakukan panggilan jaringan; tes verifikasi tanda terima dengan data uji (tanpa rahasia produksi) saat implementasi.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres

@@ -632,6 +632,23 @@ Pilihan: **D. Achievement Hybrid Lengkap.** Ketentuan:
 Hubungan (tidak mengubah isi keputusan lain): bahasa (**D-007**), pertarungan dan dungeon (**D-013**, **D-016**), guild (**D-017**), perkembangan karakter (**D-018**), companion dan monster (**D-019**), crafting (**D-020**), ekonomi (**D-021**), NPC dan sosial (**D-022**, **D-039**, **D-040**), pertanian/peternakan/memancing/memasak (**D-023 sampai D-026**), eksplorasi (**D-028**), event dunia (**D-029**), UI (**D-031**), audio (**D-032**), inventory (**D-036**), quest (**D-037**), kustomisasi dan kosmetik (**D-041**), mount (**D-042**), tutorial (**D-043**), save dan cloud (**D-044**), pengaturan (**D-045**), online (**D-014**).
 **Terbuka:** daftar achievement, title, dan entri koleksi; kategori, tingkat (mis. perunggu/perak/emas), dan poin bila ada; apakah ada achievement tersembunyi dan cara menampilkannya; aturan pencegahan pengulangan tanpa nilai (ambang bermakna, tanpa "grinding" murni); hadiah rinci dan keseimbangannya (terutama "akses khusus" dan material langka); apakah penemuan di Collection Book memberi bonus (mis. penyelesaian set); bentuk Player Journey Record (linimasa, statistik, album); profil pemain dan tempat title ditampilkan; hubungan dengan platform pihak ketiga (mis. Google Play Games) — tidak diputuskan; achievement yang dapat dilewatkan permanen atau tidak (anti-buntu); tampilan notifikasi; peran konsep "spiritual" (belum didefinisikan). Implementasi belum dimulai. ID D-046 tersedia saat dicatat (tanpa bentrokan). Tahap 35 (akun dan login, P-006) tetap PENDING.
 
+### D-047 — Sistem Monetisasi dan Transaksi Dalam Game *(APPROVED / LOCKED, 2026-11-17, Tahap 38)*
+Pilihan: **A. Cosmetic Only.** Ketentuan:
+1. Monetisasi **hanya** untuk konten kosmetik: kostum dan pakaian karakter; skin dan variasi penampilan; dekorasi rumah dan lahan pertanian; aksesori karakter; tampilan visual mount dan perlengkapan.
+2. **Tidak dijual:** kekuatan/statistik karakter; keunggulan combat atau dungeon; level dan progression; material wajib untuk crafting atau quest; item yang memberi keuntungan gameplay kompetitif.
+3. Semua konten gameplay utama tetap dapat diperoleh lewat permainan tanpa pembelian.
+4. Pemain yang tidak membeli tetap menikmati seluruh progres gameplay secara adil.
+5. Kosmetik berbayar tidak memberi bonus statistik tersembunyi.
+6. Data kosmetik yang dimiliki dipisah dari equipment yang menentukan atribut gameplay.
+7. Katalog kosmetik dengan informasi item dan status kepemilikan yang jelas.
+8. Kosmetik dapat diperoleh lewat pembelian maupun hadiah gameplay bila sesuai kebijakan desain.
+9. **Tidak ada premium currency dan tidak ada season pass** dalam keputusan ini.
+10. Sistem transaksi mengikuti kebijakan platform distribusi yang diputuskan saat persiapan publikasi.
+11. **Tahap 35 (Sistem Akun dan Login) tetap PENDING** sampai persiapan Google Play Store (P-006); implementasinya tidak dipaksakan.
+
+Hubungan (tidak mengubah isi keputusan lain): gaya visual (**D-008**), pertarungan (**D-013**), dungeon (**D-016**), perkembangan karakter (**D-018**), equipment dan crafting (**D-020**), ekonomi (**D-021**; mata uang dalam game tidak diubah), rumah, lahan, dan bangunan (**D-027**), UI (**D-031**), inventory (**D-036**), quest (**D-037**), kustomisasi (**D-041**; pernyataan di sana bahwa cara memperoleh kosmetik "belum diputuskan" kini sebagian dijawab: pembelian dan hadiah gameplay, sesuai ketentuan ini), mount (**D-042**), save dan cloud (**D-044**), pengaturan (**D-045**), achievement dan hadiah (**D-046**), online (**D-014**). Butir "Monetisasi (belum disebut; default: tidak ada)" di daftar usulan GDD kini terjawab oleh keputusan ini.
+**Terbuka:** daftar dan harga kosmetik; metode pembayaran dan platform (diputuskan saat persiapan publikasi; kebijakan Google Play Billing, pajak, wilayah, harga regional, pengembalian dana, batas usia/orang tua); apakah ada pembelian langsung per item atau paket kosmetik (tanpa premium currency dan season pass sesuai ketentuan 9); aturan dekorasi (harus murni visual tanpa fungsi gameplay; garis batas dengan bangunan fungsional D-027); kosmetik hadiah vs berbayar (eksklusivitas waktu, bila ada, tidak boleh mengganggu keadilan); apakah kosmetik berbayar dapat diperoleh lewat gameplay belakangan; kosmetik yang terikat akun, pemulihan pembelian (restore) di perangkat baru; kebijakan iklan (tidak disebut; **tidak ada** hingga diputuskan); privasi dan persetujuan; peran konsep "spiritual" (belum didefinisikan). Implementasi toko/transaksi belum dimulai. ID D-047 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

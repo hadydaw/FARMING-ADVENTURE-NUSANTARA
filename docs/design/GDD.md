@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.36 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.37 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement, D-047 Monetisasi) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -568,6 +568,22 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 
 **[BELUM DITETAPKAN]:** daftar achievement/title/entri koleksi, tingkat dan poin, achievement tersembunyi, aturan anti-grinding, hadiah rinci dan keseimbangan, bonus koleksi, bentuk Player Journey Record, tempat title ditampilkan, hubungan dengan platform pihak ketiga, achievement yang dapat terlewat, notifikasi, konsep "spiritual" (belum didefinisikan). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
+### 6.37 Monetisasi dan Toko Kosmetik — D-047, LOCKED (Cosmetic Only)
+**Ditetapkan:**
+- Monetisasi **hanya untuk kosmetik:** kostum/pakaian, skin dan variasi penampilan, **dekorasi rumah dan lahan**, aksesori, tampilan visual mount dan perlengkapan.
+- **Tidak dijual:** kekuatan/statistik, keunggulan combat/dungeon, level/progression, material wajib crafting atau quest, item berkeuntungan kompetitif.
+- **Semua konten gameplay utama dapat diperoleh lewat permainan**; pemain tanpa pembelian menikmati progres secara adil.
+- **Tidak ada bonus statistik tersembunyi** pada kosmetik berbayar.
+- **Kepemilikan kosmetik dipisah dari equipment** yang menentukan atribut (D-041).
+- **Katalog kosmetik** dengan info item dan status kepemilikan jelas.
+- Kosmetik dapat diperoleh lewat **pembelian maupun hadiah gameplay** sesuai kebijakan desain (D-046).
+- **Tidak ada premium currency dan tidak ada season pass.**
+- Transaksi **mengikuti kebijakan platform distribusi** yang diputuskan saat persiapan publikasi.
+- **Tahap 35 (Akun dan Login) tetap PENDING** sampai persiapan Google Play (P-006).
+- Terkait: D-008, D-013, D-016, D-018, D-020, D-021, D-027, D-031, D-036, D-037, D-041, D-042, D-044 sampai D-046, D-014.
+
+**[BELUM DITETAPKAN]:** daftar dan harga kosmetik, platform dan metode pembayaran, kebijakan toko dan pengembalian dana, batas usia, bentuk penjualan (item/paket), batas dekorasi murni visual vs bangunan fungsional, kosmetik hadiah vs berbayar, pemulihan pembelian di perangkat baru, kebijakan iklan (tidak ada sampai diputuskan), privasi dan persetujuan, konsep "spiritual" (belum didefinisikan). **Tidak ada implementasi toko/transaksi sebelum desain dan persiapan publikasi terkait selesai.**
+
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 
 **Ditetapkan (D-014, Single-Player Online):**
@@ -598,6 +614,6 @@ Urutan usulan pembahasan bersama ChatGPT (dari yang paling memengaruhi arsitektu
 6. ~~Guild, rank, quest~~ (D-017 terkunci); sisanya: progres cerita dan detail quest.
 7. ~~NPC dan hubungan~~ (D-022 terkunci); sisanya: daftar NPC, romansa/keluarga (belum ditetapkan).
 8. Art direction 3D Stylized dan sumber aset.
-9. Monetisasi (belum disebut; default: tidak ada sampai diputuskan).
+9. ~~Monetisasi~~ (D-047 terkunci: Cosmetic Only; detail harga, platform pembayaran, dan kebijakan toko menunggu persiapan publikasi).
 
 Setiap keputusan baru wajib dicatat di `DESIGN_DECISIONS.md` sebelum implementasi.
