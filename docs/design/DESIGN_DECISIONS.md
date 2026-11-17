@@ -148,6 +148,27 @@ Syarat: sistem crafting harus terhubung dengan pertanian, gathering, pertambanga
 Hubungan dengan keputusan lain (tidak mengubah isinya): senjata dan armor melengkapi pertarungan (**D-013**) dan penguasaan senjata (**D-018**); material langka/legendaris berasal dari dungeon dan boss (**D-016**); pertanian dan memasak adalah bagian **D-015** (makanan dibuat lewat sistem memasak/crafting; batas keduanya belum ditetapkan); Blacksmith dan Alchemist adalah profesi, hubungannya dengan Class/Job (**D-018**) dan spesialisasi guild (**D-017**) belum ditetapkan.
 Detail (daftar equipment, slot, tier, resep, stat, jenis enchant, rumus kualitas dan rarity, tingkat profesi, titik mining/gathering) belum ditetapkan. Implementasi belum dimulai. ID D-020 tersedia saat dicatat (tanpa bentrokan).
 
+### D-021 — Sistem Ekonomi dan Perdagangan *(APPROVED / LOCKED, 2026-11-17, Tahap 11)*
+Pilihan: **D. Kombinasi Semua Sistem.** Ruang lingkup:
+1. Jual beli hasil pertanian
+2. Merchant dan toko khusus
+3. Perdagangan material monster
+4. Ekonomi dinamis
+5. Harga barang dipengaruhi musim dan wilayah
+6. Permintaan, penawaran, dan kelangkaan barang
+7. Perdagangan antarwilayah
+8. Perkembangan kekayaan dan usaha pemain
+
+Integrasi ekonomi:
+- Hasil pertanian dapat dijual atau diproses menjadi barang bernilai lebih tinggi.
+- Material tambang dan monster dapat diperdagangkan atau dipakai untuk crafting.
+- Merchant memiliki spesialisasi barang.
+- Perubahan musim, wilayah, ketersediaan, dan permintaan dapat memengaruhi harga.
+
+Hubungan dengan keputusan lain (tidak mengubah isinya): merinci butir "ekonomi dan perdagangan" pada **D-015**; material dan crafting pada **D-020**; musim pada D-015; wilayah pada **D-009**; material monster dan tambang dari **D-013/D-016**; kekayaan dan usaha pemain berkaitan dengan pengembangan ladang/rumah (D-015).
+**Catatan konsistensi dengan D-014 (Single-Player Online):** D-014 menetapkan dunia sebagai progres pribadi dan tanpa multiplayer. D-021 tidak menyebut ekonomi bersama antarpemain, sehingga "ekonomi dinamis" dicatat sebagai **ekonomi pribadi per pemain**. Apakah harga dihitung di klien atau di server, dan apakah ada ekonomi bersama, **belum ditetapkan** dan tidak boleh diasumsikan.
+Detail (daftar barang dan harga dasar, rumus permintaan/penawaran, daftar merchant dan spesialisasinya, rute dan aturan perdagangan antarwilayah, bentuk "usaha" pemain, mata uang) belum ditetapkan. Implementasi belum dimulai. ID D-021 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

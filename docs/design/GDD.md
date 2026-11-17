@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.10 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.11 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -189,6 +189,22 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - Terkait: sumber monster adalah dungeon (D-016), bantuan tempur mengikuti sistem pertarungan (D-013), bantuan aktivitas berkaitan dengan Sistem Kehidupan (D-015). Pemeliharaan hewan ternak (D-015) dan pet/companion adalah hal yang berbeda; batas keduanya belum ditetapkan.
 
 **[BELUM DITETAPKAN]:** daftar pet, monster, dan monster langka; cara dan syarat menjinakkan; batas jumlah companion yang dibawa/disimpan; rumus level dan syarat evolusi; daftar skill monster; mekanik hubungan/loyalitas (naik-turun, efeknya); jenis aktivitas yang dapat dibantu monster (mis. bertani, kerja ladang, penambangan) dan batasnya; tempat tinggal/perawatan companion; kontrol companion saat combat (otomatis atau diperintah); keseimbangan dengan perkembangan karakter (D-018) dan ekonomi. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+### 6.12 Ekonomi dan Perdagangan — D-021, LOCKED (Kombinasi Semua Sistem)
+**Ditetapkan:**
+- **Jual beli hasil pertanian.**
+- **Merchant dan toko khusus.**
+- **Perdagangan material monster.**
+- **Ekonomi dinamis.**
+- **Harga dipengaruhi musim dan wilayah.**
+- **Permintaan, penawaran, dan kelangkaan** barang.
+- **Perdagangan antarwilayah.**
+- **Perkembangan kekayaan dan usaha pemain.**
+- Hasil pertanian dapat **dijual atau diproses** menjadi barang bernilai lebih tinggi; material tambang dan monster dapat **diperdagangkan atau dipakai crafting**; merchant memiliki **spesialisasi barang**; musim, wilayah, ketersediaan, dan permintaan **memengaruhi harga**.
+- Terkait: butir ekonomi D-015, material/crafting D-020, wilayah D-009, monster/dungeon D-013 dan D-016.
+
+**[BELUM DITETAPKAN]:** daftar barang dan harga dasar, mata uang, rumus permintaan/penawaran/kelangkaan, daftar merchant dan spesialisasinya, aturan dan biaya perdagangan antarwilayah (termasuk apakah butuh transportasi/waktu), bentuk "usaha" pemain (toko, bisnis, properti?), batas inflasi dan keseimbangan, penjualan/pembelian oleh companion (D-019).
+**Dan terbuka:** karena D-014 (dunia pribadi, tanpa multiplayer), ekonomi dinamis dicatat sebagai **pribadi per pemain**; lokasi perhitungan harga (klien/server) dan kemungkinan ekonomi bersama belum ditetapkan. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

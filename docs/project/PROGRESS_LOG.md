@@ -83,3 +83,11 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - D-020 (Kombinasi Semua Sistem, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
 - GDD §6.9 diganti menjadi "Equipment dan Crafting" (v0.10); Technical Architecture §4g ditambahkan (catatan saja). Hubungan dengan D-013, D-015, D-016, D-017, D-018 dicatat tanpa mengubah isinya.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 11.
+
+## 2026-11-17 (11) — D-021 Sistem Ekonomi dan Perdagangan dicatat
+
+- D-021 (Kombinasi Semua Sistem, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
+- GDD §6.12 baru (v0.11); Technical Architecture §4h ditambahkan (catatan saja). Hubungan dengan D-009, D-013, D-015, D-016, D-019, D-020 dicatat tanpa mengubah isinya.
+- Catatan konsistensi dengan D-014: ekonomi dinamis dicatat sebagai ekonomi pribadi; lokasi perhitungan harga dan kemungkinan ekonomi bersama ditandai belum ditetapkan.
+- Pemeriksaan otomatis: ID keputusan tanpa duplikat; semua rujukan ID di dokumen menunjuk entri yang ada.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 12.

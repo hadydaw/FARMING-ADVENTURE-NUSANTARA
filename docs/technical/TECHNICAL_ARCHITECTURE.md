@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.10 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.11 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -131,6 +131,17 @@ Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 - **Save:** inventori (instance item bertipe), kemajuan profesi, resep yang sudah dikuasai, dan status stasiun/antrean crafting masuk payload save (skema berversi; migrasi menjaga item pemain bila data item berubah).
 - **Online (D-014):** ekonomi pribadi; tidak ada perdagangan antarpemain. Validasi server atas item langka/legendaris dipertimbangkan hanya bila diputuskan (risiko manipulasi save).
 - **Anggaran performa:** banyak varian visual equipment memerlukan sistem pemasangan model/material modular (menunggu art direction).
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4h. Implikasi Arsitektur dari D-021 (hanya catatan; belum diimplementasikan)
+
+- **Layanan ekonomi tunggal:** semua jual/beli lewat satu layanan harga yang dipanggil UI toko, merchant, dan crafting; tidak ada harga hardcode di fitur lain.
+- **Harga = fungsi dari data:** harga dasar (data item, D-020) × pengali musim (kalender, §4b) × pengali wilayah (D-009) × pengali permintaan/penawaran/kelangkaan (keadaan pasar). Pengali-pengali ini adalah data dan keadaan yang dapat diuji headless secara deterministik.
+- **Keadaan pasar** (persediaan, permintaan per barang per wilayah) diperbarui lewat layanan kalender per hari; saat pemain berada di dungeon atau offline, dihitung ulang dari selisih hari, bukan disimulasikan penuh.
+- **Merchant sebagai data:** spesialisasi barang, stok, wilayah, dan jadwal sebagai data; memakai kerangka NPC umum.
+- **Perdagangan antarwilayah** mengandalkan wilayah sebagai unit data (§4) dan selisih harga antarwilayah; aturan transportasi menunggu desain.
+- **Save:** uang, keadaan pasar (atau seed + riwayat yang cukup untuk merekonstruksinya), stok merchant, dan status usaha pemain masuk payload save (skema berversi). Karena ekonomi dinamis dapat dimanipulasi lewat save lokal, lokasi perhitungan (klien/server) harus diputuskan bersama aturan keadilan sebelum implementasi.
+- **Online (D-014):** dengan akun dan internet wajib, server **dapat** menjadi acuan waktu dan penghitung pasar pribadi; ini dicatat sebagai opsi, **bukan keputusan**. Tidak ada ekonomi bersama atau perdagangan antarpemain.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres
