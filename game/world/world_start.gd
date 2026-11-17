@@ -1,3 +1,4 @@
+class_name WorldStart
 extends Node3D
 ## Dunia awal UJI TEKNIS (Milestone 2). Dibangun dari data (world_props.json dan
 ## world_start_layout.json). Tata letak dan props bersifat SEMENTARA: props memakai
@@ -24,9 +25,14 @@ var _npc_targets: Dictionary = {}
 var plot_nodes: Dictionary = {}  # id petak -> Node3D
 var _inspect_count := 0
 var _models: Dictionary = {}  # prop id -> PackedScene
+var sites: WorldSites
 
 
 func _ready() -> void:
+	sites = WorldSites.new()
+	sites.w = self
+	sites.name = "Sites"
+	add_child(sites)
 	_build_environment()
 	_build_ground()
 	_build_props()
@@ -37,13 +43,7 @@ func _ready() -> void:
 	_build_npcs()
 	_build_regions()
 	_register_village_markers()
-	_build_stations()
-	_build_gather_nodes()
-	_build_monsters()
-	_build_board()
-	_build_upgrade_site()
-	_build_camp()
-	_build_dungeon_entrance()
+	sites.build_all()
 	Events.interaction_performed.connect(_on_interacted)
 	if SaveService.pending_load_slot >= 0:
 		var slot := SaveService.pending_load_slot
@@ -52,7 +52,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	_follow_companion(delta)
+	sites._follow_companion(delta)
 	_move_npcs(delta)
 	_update_map()
 	_update_fishing(delta)
@@ -117,25 +117,25 @@ func _on_interacted(target: Node, _actor: Node) -> void:
 	if hud.shop_visible() or hud.menu_visible():
 		return
 	if target.has_meta("station_id"):
-		_open_station(str(target.get_meta("station_id")))
+		sites._open_station(str(target.get_meta("station_id")))
 		return
 	if target.has_meta("is_camp"):
-		_open_camp()
+		sites._open_camp()
 		return
 	if target.has_meta("is_upgrade"):
-		_open_upgrades()
+		sites._open_upgrades()
 		return
 	if target.has_meta("dungeon_id"):
-		_open_dungeon(str(target.get_meta("dungeon_id")))
+		sites._open_dungeon(str(target.get_meta("dungeon_id")))
 		return
 	if target.has_meta("is_board"):
-		_open_board()
+		sites._open_board()
 		return
 	if target.has_meta("spawn_id"):
-		_attack(str(target.get_meta("spawn_id")))
+		sites._attack(str(target.get_meta("spawn_id")))
 		return
 	if target.has_meta("gather_id"):
-		_gather(str(target.get_meta("gather_id")))
+		sites._gather(str(target.get_meta("gather_id")))
 		return
 	if target.has_meta("link_id"):
 		travel(str(target.get_meta("link_id")))
@@ -392,7 +392,7 @@ func _plot_ids() -> Array:
 
 func refresh_farm_visuals() -> void:
 	_announce_milestones()
-	_update_companion_visual()
+	sites._update_companion_visual()
 	for pid in plot_nodes:
 		var plot: FarmPlot = farming.grid.plot(pid)
 		var node: Node3D = plot_nodes[pid]
@@ -791,7 +791,7 @@ var _open_shop_id := ""
 
 
 func _build_shop() -> void:
-	hud.bag_use.connect(_on_bag_use)
+	hud.bag_use.connect(sites._on_bag_use)
 	for sh in DataRegistry.rows("shops"):
 		var node := Node3D.new()
 		node.name = str(sh["id"])
@@ -1039,360 +1039,6 @@ func travel(link_id: String) -> bool:
 	return true
 
 
-# --- Stasiun crafting, pengumpulan, pakai item (SEMENTARA) ---
-
-var _open_station_id := ""
-var gather_nodes: Dictionary = {}   # id -> Node3D
-
-
-func _build_stations() -> void:
-	for st in DataRegistry.rows("crafting_stations"):
-		var node := Node3D.new()
-		node.name = str(st["id"])
-		node.position = Vector3(float(st["x"]), 0.0, float(st["z"]))
-		var mesh := MeshInstance3D.new()
-		var box := BoxMesh.new()
-		box.size = Vector3(1.4, 1.0, 0.9)
-		mesh.mesh = box
-		mesh.position.y = 0.5
-		var mat := StandardMaterial3D.new()
-		mat.albedo_color = Color(str(st["color"]))
-		mesh.material_override = mat
-		node.add_child(mesh)
-		var label := Label3D.new()
-		label.text = "UJI: " + tr(str(st["name_key"]))
-		label.pixel_size = 0.005
-		label.position = Vector3(0, 1.5, 0)
-		label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-		node.add_child(label)
-		var it := Interactable.new()
-		it.interaction_type = "station"
-		node.add_child(it)
-		it.set_meta("station_id", str(st["id"]))
-		it.set_meta("label_key", str(st["name_key"]))
-		add_child(node)
-	hud.menu_pressed.connect(_on_menu_pressed)
-	hud.menu_closed.connect(_close_menu)
-
-
-func _open_station(station_id: String) -> void:
-	_open_station_id = station_id
-	GameTime.clock.pause("menu")
-	player.set_physics_process(false)
-	_refresh_station_menu()
-
-
-func _recipe_text(r: Dictionary) -> String:
-	var needs: Array[String] = []
-	for i in r["inputs"]:
-		needs.append("%s x%d" % [tr(str(farming.item_defs[i["item"]]["name_key"])), int(i["count"])])
-	return "%s  (%s)" % [tr(str(r["name_key"])), ", ".join(needs)]
-
-
-func _refresh_station_menu() -> void:
-	var rows: Array = []
-	for r in Crafting.recipes_for(_open_station_id, farming.recipes):
-		rows.append({"id": str(r["id"]), "text": _recipe_text(r), "enabled": Crafting.missing(r, farming.inventory).is_empty()})
-	var st := DataRegistry.get_row("crafting_stations", _open_station_id)
-	hud.show_menu(tr(str(st["name_key"])), rows)
-	refresh_farm_visuals()
-
-
-func _on_menu_pressed(id: String) -> void:
-	if _open_station_id == "__board__":
-		_on_board_pressed(id)
-		return
-	if _open_station_id == "__camp__":
-		_on_camp_pressed(id)
-		return
-	if _open_station_id == "__upgrade__":
-		_on_upgrade_pressed(id)
-		return
-	if _open_station_id == "__dungeon__":
-		_on_dungeon_pressed(id)
-		return
-	if _open_station_id == "":
-		return
-	var r := farming.craft(id)
-	hud.show_message(tr("CRAFT_DONE") if bool(r["ok"]) else tr("CRAFT_NO_" + str(r["reason"]).to_upper()))
-	_refresh_station_menu()
-
-
-func _close_menu() -> void:
-	hud.hide_menu()
-	_open_station_id = ""
-	GameTime.clock.resume("menu")
-	player.set_physics_process(true)
-
-
-func _on_bag_use(item: String) -> void:
-	var r := farming.use_item(item)
-	hud.show_message(tr("USE_DONE") if bool(r["ok"]) else tr("USE_NO_" + str(r["reason"]).to_upper()))
-	refresh_farm_visuals()
-
-
-func _build_gather_nodes() -> void:
-	for g in DataRegistry.rows("gather_nodes"):
-		var node := Node3D.new()
-		node.name = str(g["id"])
-		node.position = _region_origin(str(g["region"])) + Vector3(float(g["x"]), 0.0, float(g["z"]))
-		var mesh := MeshInstance3D.new()
-		var cone := CylinderMesh.new()
-		cone.top_radius = 0.05
-		cone.bottom_radius = 0.45
-		cone.height = 0.7
-		mesh.mesh = cone
-		mesh.position.y = 0.35
-		var mat := StandardMaterial3D.new()
-		mat.albedo_color = Color(str(g["color"]))
-		mesh.material_override = mat
-		mesh.name = "Mesh"
-		node.add_child(mesh)
-		var it := Interactable.new()
-		it.interaction_type = "gather"
-		node.add_child(it)
-		it.set_meta("gather_id", str(g["id"]))
-		it.set_meta("label_key", str(g["name_key"]))
-		add_child(node)
-		gather_nodes[str(g["id"])] = node
-		_markers.append({"node": node, "kind": "resource", "region": str(g["region"])})
-	Events.day_changed.connect(func(_d): _refresh_gather_visuals())
-	_refresh_gather_visuals()
-
-
-func _refresh_gather_visuals() -> void:
-	for id in gather_nodes:
-		(gather_nodes[id].get_node("Mesh") as MeshInstance3D).visible = farming.gather.is_ready(id, GameTime.clock.day_index())
-
-
-func _gather(node_id: String) -> void:
-	var r := farming.gather_at(node_id)
-	hud.show_message(tr("GATHER_DONE") + " +%d" % int(r["count"]) if bool(r["ok"]) else tr("GATHER_NO_" + str(r["reason"]).to_upper()))
-	_refresh_gather_visuals()
-	refresh_farm_visuals()
-
-
-# --- Monster uji dan pertarungan dasar (SEMENTARA) ---
-
-var monster_nodes: Dictionary = {}   # id spawn -> Node3D
-
-
-func _build_monsters() -> void:
-	for sp in DataRegistry.rows("monster_spawns"):
-		var mon := DataRegistry.get_row("monsters", str(sp["monster"]))
-		var node := Node3D.new()
-		node.name = str(sp["id"])
-		node.position = _region_origin(str(sp["region"])) + Vector3(float(sp["x"]), 0.0, float(sp["z"]))
-		var mesh := MeshInstance3D.new()
-		var sphere := SphereMesh.new()
-		sphere.radius = 0.6
-		sphere.height = 1.2
-		mesh.mesh = sphere
-		mesh.position.y = 0.6
-		mesh.name = "Mesh"
-		var mat := StandardMaterial3D.new()
-		mat.albedo_color = Color(str(mon["color"]))
-		mesh.material_override = mat
-		node.add_child(mesh)
-		var label := Label3D.new()
-		label.name = "Info"
-		label.pixel_size = 0.005
-		label.position = Vector3(0, 1.7, 0)
-		label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-		node.add_child(label)
-		var it := Interactable.new()
-		it.interaction_type = "monster"
-		node.add_child(it)
-		it.set_meta("spawn_id", str(sp["id"]))
-		it.set_meta("label_key", str(mon["name_key"]))
-		add_child(node)
-		monster_nodes[str(sp["id"])] = node
-		_markers.append({"node": node, "kind": "monster", "region": str(sp["region"])})
-	Events.day_changed.connect(func(_d): _refresh_monsters())
-	Events.day_changed.connect(func(_d): _announce_festival())
-	_refresh_monsters()
-
-
-func _refresh_monsters() -> void:
-	var day := GameTime.clock.day_index()
-	for id in monster_nodes:
-		var node: Node3D = monster_nodes[id]
-		var alive := farming.combat.is_alive(id, day)
-		(node.get_node("Mesh") as MeshInstance3D).visible = alive
-		var mon := farming.combat.spawn_monster(id)
-		(node.get_node("Info") as Label3D).text = ("UJI: %s %d/%d" % [tr(str(mon["name_key"])), farming.combat.hp_of(id, day), int(mon["hp"])]) if alive else ""
-
-
-func _attack(spawn_id: String) -> void:
-	var r := farming.attack_monster(spawn_id)
-	if not bool(r["ok"]):
-		hud.show_message(tr("COMBAT_NO_" + str(r["reason"]).to_upper()))
-		return
-	var msg := tr("COMBAT_HIT") % int(r["dealt"])
-	if bool(r["defeated"]):
-		msg = tr("COMBAT_DEFEATED") % int(r["exp"])
-		for d in r["drops"]:
-			msg += "\n%s: %s x%d" % [tr("COMBAT_DROP"), tr(str(farming.item_defs[d["item"]]["name_key"])), int(d["count"])]
-		if bool(r["leveled"]):
-			msg += "\n" + tr("COMBAT_LEVEL_UP")
-	elif int(r["taken"]) > 0:
-		msg += "  " + tr("COMBAT_TAKEN") % int(r["taken"])
-	if bool(r["fainted"]):
-		msg = tr("COMBAT_FAINTED")
-		_place_player("region_village", 0.0, 4.0)
-	hud.show_message(msg)
-	_refresh_monsters()
-	refresh_farm_visuals()
-
-
-# --- Papan guild + quest (SEMENTARA) ---
-
-func _build_board() -> void:
-	var b: Dictionary = DataRegistry.get_row("guild_config", "default")["board"]
-	var node := Node3D.new()
-	node.name = "GuildBoard"
-	node.position = Vector3(float(b["x"]), 0.0, float(b["z"]))
-	var mesh := MeshInstance3D.new()
-	var box := BoxMesh.new()
-	box.size = Vector3(1.8, 1.6, 0.2)
-	mesh.mesh = box
-	mesh.position.y = 1.0
-	var mat := StandardMaterial3D.new()
-	mat.albedo_color = Color(0.55, 0.4, 0.2)
-	mesh.material_override = mat
-	node.add_child(mesh)
-	var label := Label3D.new()
-	label.text = "UJI: " + tr("BOARD_TITLE")
-	label.pixel_size = 0.005
-	label.position = Vector3(0, 2.2, 0)
-	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	node.add_child(label)
-	var it := Interactable.new()
-	it.interaction_type = "board"
-	node.add_child(it)
-	it.set_meta("is_board", true)
-	add_child(node)
-	_markers.append({"node": node, "kind": "shop", "region": "region_village"})
-
-
-func _open_board() -> void:
-	_open_station_id = "__board__"
-	GameTime.clock.pause("menu")
-	player.set_physics_process(false)
-	_refresh_board()
-
-
-func _refresh_board() -> void:
-	var rows: Array = []
-	var q := farming.quests
-	for id in q.ids():
-		var st := q.status(str(id), farming.inventory)
-		var def := q.quest(str(id))
-		var prog := ""
-		if st == "active" or st == "ready":
-			prog = "  %d/%d" % [q.progress(str(id), farming.inventory), int(def["count"])]
-		rows.append({"id": str(id), "text": "%s  [%s]%s" % [tr(str(def["name_key"])), tr("QUEST_STATE_" + st.to_upper()), prog], "enabled": st == "new" or st == "ready"})
-	hud.show_menu("%s - %s" % [tr("BOARD_TITLE"), tr(str(q.cfg["ranks"][q.rank()]["name_key"]))], rows)
-
-
-func _on_board_pressed(id: String) -> void:
-	var q := farming.quests
-	var r: Dictionary
-	if q.status(id, farming.inventory) == "ready":
-		r = farming.quest_turn_in(id)
-		hud.show_message(tr("QUEST_COMPLETED") if bool(r["ok"]) else tr("QUEST_NO_" + str(r["reason"]).to_upper()))
-	else:
-		r = farming.quest_accept(id)
-		hud.show_message(tr("QUEST_ACCEPTED") if bool(r["ok"]) else tr("QUEST_NO_" + str(r["reason"]).to_upper()))
-	_refresh_board()
-	refresh_farm_visuals()
-
-
-# --- Gua/dungeon uji (SEMENTARA) ---
-
-var _dungeon_id := ""
-
-
-func _build_dungeon_entrance() -> void:
-	for d in DataRegistry.rows("dungeons"):
-		var node := Node3D.new()
-		node.name = str(d["id"])
-		node.position = _region_origin(str(d["region"])) + Vector3(float(d["x"]), 0.0, float(d["z"]))
-		var mesh := MeshInstance3D.new()
-		var cyl := CylinderMesh.new()
-		cyl.top_radius = 1.2
-		cyl.bottom_radius = 1.6
-		cyl.height = 1.6
-		mesh.mesh = cyl
-		mesh.position.y = 0.8
-		var mat := StandardMaterial3D.new()
-		mat.albedo_color = Color(0.25, 0.2, 0.3)
-		mesh.material_override = mat
-		node.add_child(mesh)
-		var label := Label3D.new()
-		label.text = "UJI: " + tr(str(d["name_key"]))
-		label.pixel_size = 0.005
-		label.position = Vector3(0, 2.2, 0)
-		label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-		node.add_child(label)
-		var it := Interactable.new()
-		it.interaction_type = "dungeon"
-		node.add_child(it)
-		it.set_meta("dungeon_id", str(d["id"]))
-		add_child(node)
-		_markers.append({"node": node, "kind": "portal", "region": str(d["region"])})
-
-
-func _open_dungeon(id: String) -> void:
-	_dungeon_id = id
-	_open_station_id = "__dungeon__"
-	GameTime.clock.pause("menu")
-	player.set_physics_process(false)
-	_refresh_dungeon()
-
-
-func _refresh_dungeon() -> void:
-	var dg := farming.dungeon
-	var rows: Array = []
-	var title := tr(str(dg.rows[_dungeon_id]["name_key"]))
-	if dg.running():
-		var mon := dg.current_monster()
-		title += " - " + tr("DUNGEON_ROOM") % [dg.room + 1, dg.room_count()]
-		if dg.is_boss_room():
-			title += " (" + tr("DUNGEON_BOSS") + ")"
-		rows.append({"id": "attack", "text": "%s: %s %d/%d" % [tr("DUNGEON_ATTACK"), tr(str(mon["name_key"])), dg.enemy_hp, int(mon["hp"])], "enabled": true})
-		rows.append({"id": "leave", "text": tr("DUNGEON_FLEE"), "enabled": true})
-	else:
-		rows.append({"id": "start", "text": tr("DUNGEON_START"), "enabled": dg.available(_dungeon_id, GameTime.clock.day_index())})
-	hud.show_menu(title, rows)
-	refresh_farm_visuals()
-
-
-func _on_dungeon_pressed(id: String) -> void:
-	if id == "start":
-		var r := farming.dungeon_start(_dungeon_id)
-		if not bool(r["ok"]):
-			hud.show_message(tr("DUNGEON_NO_" + str(r["reason"]).to_upper()))
-	elif id == "leave":
-		farming.dungeon.leave()
-	elif id == "attack":
-		var r := farming.dungeon_attack()
-		if not bool(r["ok"]):
-			hud.show_message(tr("DUNGEON_NO_" + str(r["reason"]).to_upper()))
-		elif bool(r["fainted"]):
-			hud.show_message(tr("DUNGEON_FAINTED"))
-			_close_menu()
-			_place_player("region_village", 0.0, 4.0)
-			return
-		elif bool(r["cleared"]):
-			hud.show_message(tr("DUNGEON_CLEARED"))
-		elif bool(r["room_cleared"]):
-			hud.show_message(tr("DUNGEON_ROOM_CLEAR"))
-		else:
-			hud.show_message(tr("COMBAT_HIT") % int(r["dealt"]) + "  " + tr("COMBAT_TAKEN") % int(r["taken"]))
-	_refresh_dungeon()
-
-
 func _announce_festival() -> void:
 	var r := farming.claim_festival()
 	if bool(r["ok"]):
@@ -1415,153 +1061,3 @@ func _announce_milestones() -> void:
 	hud.show_message("\n".join(lines))
 
 
-# --- Tukang upgrade tas/meter (SEMENTARA) ---
-
-func _build_upgrade_site() -> void:
-	var cfg: Dictionary = DataRegistry.get_row("upgrade_config", "default")
-	var node := Node3D.new()
-	node.name = "UpgradeSite"
-	node.position = Vector3(float(cfg["x"]), 0.0, float(cfg["z"]))
-	var mesh := MeshInstance3D.new()
-	var box := BoxMesh.new()
-	box.size = Vector3(1.6, 1.2, 1.2)
-	mesh.mesh = box
-	mesh.position.y = 0.6
-	var mat := StandardMaterial3D.new()
-	mat.albedo_color = Color(0.6, 0.6, 0.65)
-	mesh.material_override = mat
-	node.add_child(mesh)
-	var label := Label3D.new()
-	label.text = "UJI: " + tr(str(cfg["name_key"]))
-	label.pixel_size = 0.005
-	label.position = Vector3(0, 1.8, 0)
-	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	node.add_child(label)
-	var it := Interactable.new()
-	it.interaction_type = "upgrade"
-	node.add_child(it)
-	it.set_meta("is_upgrade", true)
-	add_child(node)
-	_markers.append({"node": node, "kind": "shop", "region": "region_village"})
-
-
-func _open_upgrades() -> void:
-	_open_station_id = "__upgrade__"
-	GameTime.clock.pause("menu")
-	player.set_physics_process(false)
-	_refresh_upgrades()
-
-
-func _refresh_upgrades() -> void:
-	var up := farming.upgrades
-	var rows: Array = []
-	for id in up.ids():
-		var st := up.status(str(id))
-		var r := up.row(str(id))
-		var needs: Array[String] = []
-		for m in r["materials"]:
-			needs.append("%s x%d" % [tr(str(farming.item_defs[m["item"]]["name_key"])), int(m["count"])])
-		var tail := tr("UPGRADE_OWNED") if st == "owned" else (tr("UPGRADE_LOCKED") if st == "locked" else "%d + %s" % [int(r["cost"]), ", ".join(needs)])
-		rows.append({"id": str(id), "text": "%s  [%s]" % [tr(str(r["name_key"])), tail], "enabled": st == "available"})
-	hud.show_menu(tr("UPGRADE_SITE"), rows)
-	refresh_farm_visuals()
-
-
-func _on_upgrade_pressed(id: String) -> void:
-	var r := farming.upgrade_buy(id)
-	hud.show_message(tr("UPGRADE_DONE") if bool(r["ok"]) else tr("UPGRADE_NO_" + str(r["reason"]).to_upper()))
-	_refresh_upgrades()
-
-
-# --- Kemah teman + pengikut visual (SEMENTARA) ---
-
-var companion_node: MeshInstance3D
-
-
-func _build_camp() -> void:
-	var cfg: Dictionary = DataRegistry.get_row("companion_config", "default")
-	var node := Node3D.new()
-	node.name = "CompanionCamp"
-	node.position = Vector3(float(cfg["x"]), 0.0, float(cfg["z"]))
-	var mesh := MeshInstance3D.new()
-	var cone := CylinderMesh.new()
-	cone.top_radius = 0.05
-	cone.bottom_radius = 1.1
-	cone.height = 1.6
-	mesh.mesh = cone
-	mesh.position.y = 0.8
-	var mat := StandardMaterial3D.new()
-	mat.albedo_color = Color(0.85, 0.7, 0.4)
-	mesh.material_override = mat
-	node.add_child(mesh)
-	var label := Label3D.new()
-	label.text = "UJI: " + tr(str(cfg["name_key"]))
-	label.pixel_size = 0.005
-	label.position = Vector3(0, 2.2, 0)
-	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	node.add_child(label)
-	var it := Interactable.new()
-	it.interaction_type = "camp"
-	node.add_child(it)
-	it.set_meta("is_camp", true)
-	add_child(node)
-	_markers.append({"node": node, "kind": "npc", "region": "region_village"})
-	companion_node = MeshInstance3D.new()
-	var sph := SphereMesh.new()
-	sph.radius = 0.35
-	sph.height = 0.7
-	companion_node.mesh = sph
-	companion_node.material_override = StandardMaterial3D.new()
-	companion_node.visible = false
-	add_child(companion_node)
-
-
-func _open_camp() -> void:
-	_open_station_id = "__camp__"
-	GameTime.clock.pause("menu")
-	player.set_physics_process(false)
-	_refresh_camp()
-
-
-func _refresh_camp() -> void:
-	var cp := farming.companions
-	var rows: Array = []
-	for id in cp.ids():
-		var r := cp.row(str(id))
-		var tail := ""
-		var enabled := true
-		if not cp.owned(str(id)):
-			tail = "%s %d" % [tr("COMPANION_RECRUIT"), int(r["cost"])]
-		else:
-			tail = tr("COMPANION_ACTIVE") if cp.active_id == str(id) else tr("COMPANION_READY")
-		rows.append({"id": str(id), "text": "%s  [%s]  (ATK +%d, DEF +%d)" % [tr(str(r["name_key"])), tail, int(r["attack"]), int(r["guard"])], "enabled": enabled})
-	hud.show_menu(tr("COMPANION_CAMP"), rows)
-	_update_companion_visual()
-	refresh_farm_visuals()
-
-
-func _on_camp_pressed(id: String) -> void:
-	var cp := farming.companions
-	var r: Dictionary = cp.recruit(id, farming.economy) if not cp.owned(id) else farming.companion_toggle(id)
-	hud.show_message(tr("COMPANION_DONE") if bool(r["ok"]) else tr("COMPANION_NO_" + str(r["reason"]).to_upper()))
-	_refresh_camp()
-
-
-func _update_companion_visual() -> void:
-	if companion_node == null:
-		return
-	var id := farming.companions.active_id
-	companion_node.visible = id != ""
-	if id != "":
-		(companion_node.material_override as StandardMaterial3D).albedo_color = Color(str(farming.companions.row(id)["color"]))
-		if companion_node.position.distance_to(player.global_position) > 6.0:
-			companion_node.global_position = player.global_position + Vector3(1.2, 0.4, 1.2)
-
-
-func _follow_companion(delta: float) -> void:
-	if companion_node == null or player == null or not companion_node.visible:
-		return
-	var target := player.global_position + Vector3(1.2, 0.5, 1.2)
-	if companion_node.global_position.distance_to(target) > 8.0:
-		companion_node.global_position = target   # pindah wilayah: langsung menyusul
-	companion_node.global_position = companion_node.global_position.lerp(target, clampf(delta * 4.0, 0.0, 1.0))

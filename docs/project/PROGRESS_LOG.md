@@ -620,3 +620,9 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Pengaturan baru kategori Aksesibilitas: high_contrast (UiTheme.build(scale, kontras)), message_duration (pengali durasi pesan HUD; pesan sangat singkat tidak diubah), show_hints (petunjuk tutorial dibisukan tapi tetap tercatat dilihat). text_scale sudah ada sebelumnya. GameDisplay membangun ulang tema saat skala atau kontras berubah.
 - Belum: mode buta warna (palet/bentuk penanda peta), target sentuh lebih besar, kurangi gerak kamera, getar, teks-ke-suara, remap kontrol (D-045 detail terbuka).
 - Uji: 29 berkas, 2834 pemeriksaan, 0 gagal; smoke test lulus.
+
+## 2026-11-18 (86) — Refactor world_start.gd -> WorldSites
+
+- Pemilik meminta lanjut; dipilih merapikan utang teknis. Semua titik interaksi buatan baru (stasiun crafting, titik kumpul, monster, papan guild, gua, tukang upgrade, kemah teman + pengikut) dipindah ke WorldSites (node anak "Sites"); world_start.gd tetap memegang HUD, sesi, pemain, NPC, wilayah, simpan/muat, dan pengumuman. class_name WorldStart ditambahkan agar akses bertipe.
+- Perilaku sama: 29 berkas, 2834 pemeriksaan, 0 gagal; smoke lulus; screenshot papan guild/kemah/tukang diperiksa.
+- Masih besar: world_start.gd ~1060 baris (pertanian, NPC, wilayah, memancing/ternak, toko masih di dalamnya) — bisa dipecah lagi bertahap.
