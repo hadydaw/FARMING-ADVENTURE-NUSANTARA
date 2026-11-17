@@ -27,7 +27,7 @@ Di luar cakupan (D-014): multiplayer real-time, kunjungan ladang pemain lain, co
 ```
 Game (Godot)  ──►  BackendClient (antarmuka)  ──►  Adapter penyedia  ──►  HTTPS API
      │                                                                   (Supabase/Nakama/…)
-     └── SaveService (lokal, offline-first)
+     └── SaveService (cache lokal, bukan mode offline)
 ```
 
 - Gameplay **tidak** memanggil jaringan langsung; hanya lewat `BackendClient` (`game/core/backend_client.gd`).

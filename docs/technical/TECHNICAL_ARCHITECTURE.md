@@ -512,7 +512,7 @@ Ringkasan; rincian di [`BACKEND_DESIGN.md`](BACKEND_DESIGN.md).
 - Backend **terpisah** dari GitHub. GitHub hanya menyimpan kode dan APK.
 - Klien memakai antarmuka `BackendClient` (`game/core/backend_client.gd`); default = mode offline (belum ada jaringan).
 - Konsekuensi D-014: akun dan koneksi internet **wajib**; dunia dan NPC disimpan sebagai progres pribadi di save; tidak ada jaringan real-time antarpemain.
-- Pola: **offline-first dengan sinkronisasi** — pemain tetap bisa memuat progres lokal, server menjadi sumber kebenaran untuk akun dan data yang butuh validasi.
+- Pola: **cache lokal + sinkronisasi** (D-044) — progres ditulis dulu ke cache lokal sebagai penyangga dan dimuat cepat darinya; game tetap online-only (D-014), bukan mode offline penuh; server menjadi sumber kebenaran untuk akun dan data yang butuh validasi (lihat §5a).
 
 ## 9. Pipeline Build dan Rilis
 
