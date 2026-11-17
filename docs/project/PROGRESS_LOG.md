@@ -325,3 +325,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
 - GDD §6.44 baru (v0.44); Technical Architecture §4al ditambahkan (v0.44); catatan saja: waktu internal (`GameClock`) di save sebagai sumber kebenaran, bukan jam perangkat; kalender sebagai data; simulasi hari-selisih deterministik (seed+tanggal); sinyal waktu hemat; jadwal NPC, event, dan aktivitas monster berbasis data; aturan konsistensi untuk perpindahan wilayah, loading, dan fast travel; gangguan koneksi tidak memajukan/memundurkan waktu (lanjutan menunggu D-051).
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.
+
+## 2026-11-17 (45) — D-056 Sistem Tidur, Istirahat, dan Pergantian Hari dicatat
+
+- D-056 (Rest & Sleep Hybrid Lengkap, LOCKED) dicatat sebagai **Tahap 47**; ID tersedia, tanpa bentrokan. **D-051 (Tahap 42) tetap dicadangkan**, isinya belum diterima; keselarasan penuh ditunda dan tidak ada isi yang dikarang.
+- **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
+- GDD §6.45 baru (v0.45); Technical Architecture §4am ditambahkan (v0.45); catatan saja: satu jalur `advance_day`, pipeline berbasis data berurutan, pemrosesan terpotong antar frame, deterministik (seed+tanggal), komit atomik idempoten aman terhadap interupsi dan koneksi, pemulihan sebagai data. Efek pemulihan, batas dan jam tidur sengaja tidak ditetapkan.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.

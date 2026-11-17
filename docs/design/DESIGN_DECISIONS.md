@@ -794,6 +794,36 @@ Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), sistem kehidupa
 
 **Terbuka:** panjang hari/bulan/tahun dan nama bulan; panjang tiap fase hari dan kecepatan jam; apakah waktu berjalan di menu, dialog, pertarungan, atau saat aplikasi di latar belakang; apakah waktu berjalan saat offline atau terputus (menunggu D-051); kebijakan event berbasis waktu nyata vs kalender permainan (terbuka di D-029); aturan susul-kejar (catch-up) setelah lama tidak bermain; panjang musim (terbuka di D-030); arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
 
+### D-056 — Sistem Tidur, Istirahat, dan Pergantian Hari *(APPROVED / LOCKED, 2026-11-17, Tahap 47)*
+Pilihan: **D. Rest & Sleep Hybrid Lengkap.** Ruang lingkup:
+1. Tidur di rumah.
+2. Tidur di penginapan.
+3. Istirahat di kemah (campsite) saat menjelajah.
+4. Pemulihan melalui istirahat.
+5. Advance day dan pemrosesan pergantian hari.
+6. Pemrosesan aktivitas dunia saat pergantian hari: pertanian, peternakan, NPC, toko, ekonomi, dan event.
+7. Integrasi dengan kalender, jam, musim, cuaca, dan sistem save.
+
+Ketentuan:
+- Aturan konsistensi waktu dan pergantian hari ditetapkan sebagai **prinsip** (di bawah).
+- **Pemrosesan dunia yang berat tidak boleh dalam satu frame.**
+- **Pergantian hari aman terhadap gangguan koneksi dan penyimpanan.**
+- **Efek pemulihan, batasan tidur, dan aturan waktu tidur BELUM ditentukan**; tidak dikarang dan tidak dikunci tanpa keputusan desain terpisah.
+- Tetap **single-player online** (D-014).
+- Penguncian desain; implementasi belum dimulai.
+
+**Prinsip pergantian hari (dasar, tanpa angka):**
+- Pergantian hari adalah **satu transaksi logis berurutan** yang memajukan `GameClock` (D-055) lewat satu jalur resmi; tidak ada jam perangkat yang dipakai dan tidak ada waktu mundur.
+- Hasil diproses dengan simulasi hari-selisih deterministik (seed + tanggal, D-055) sehingga memuat ulang save tidak mengubah hasil (anti save-scumming).
+- Pemrosesan dibagi per sistem (pertanian, peternakan, NPC, toko, ekonomi, event, cuaca/musim) dan **dibagi ke beberapa frame** dengan anggaran waktu; layar transisi/loading (D-053) menutupinya.
+- **Save aman:** hasil pergantian hari ditulis atomik dengan ID transaksi idempoten dan revisi (D-044); bila terputus di tengah, tidak ada dobel proses atau hari setengah jadi; kembali ke titik save terakhir yang valid.
+- **Koneksi terganggu:** pergantian hari tidak boleh merusak data; perilaku saat koneksi putus mengikuti D-051 (**isi D-051 belum diterima**, tidak dikarang). Dasar D-055 tetap: koneksi tidak memajukan/memundurkan waktu.
+- Satu jalur untuk semua sumber (tidur rumah, penginapan, kemah, advance day) agar hasilnya konsisten.
+
+Hubungan (tidak mengubah isi keputusan lain): sistem kehidupan (**D-015**), dungeon (**D-016**), ekonomi (**D-021**), NPC (**D-022**), pertanian (**D-023**), peternakan (**D-024**), rumah/penginapan (**D-027**), eksplorasi/kemah (**D-028**), event dunia (**D-029**), musim dan cuaca (**D-030**), UI/HUD (**D-031**), audio (**D-032**), NPC hidup (**D-040**), save dan cloud (**D-044**), pengaturan (**D-045**), update konten (**D-048**), QA (**D-049**), keamanan (**D-050**), performa (**D-052**), loading (**D-053**), waktu dan kalender (**D-055**). **D-051 tidak ada isinya**; keselarasan penuh ditunda.
+
+**Terbuka (tidak diputuskan):** efek dan besar pemulihan (HP, stamina, status); batas tidur dan aturan jam tidur (jam paling awal/akhir, tidur paksa saat larut); biaya penginapan dan fasilitas; aturan dan risiko kemah (di mana boleh, gangguan monster); apakah bisa tidur sebentar tanpa ganti hari; apakah event/NPC berjalan saat offline (terbuka di D-029); aturan catch-up setelah lama tidak bermain; arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.44 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.45 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -591,6 +591,25 @@ Memperluas layanan waktu/kalender di §4b (acuan jam yang dulu terbuka kini dite
 - **UI/HUD dan audio:** jam/kalender di HUD (D-031) dan musik/ambient per fase hari (D-032) hanya tampilan atas `GameClock`; teks lewat kunci terjemahan; opsi format jam di pengaturan (D-045).
 - **Performa (D-052):** tanpa polling per frame; pembaruan visual siklus hari (cahaya, langit) diturunkan skalanya pada perangkat lemah; semua angka usulan belum diukur.
 - **Pengujian (D-049):** uji headless untuk determinisme (seed+tanggal), tidak ada waktu mundur, ketahanan terhadap perubahan jam perangkat, hasil catch-up sama dengan simulasi harian, pergantian fase/hari/bulan/tahun/musim, jadwal NPC, pemicu event, serta konsistensi setelah loading/fast travel.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4am. Implikasi Arsitektur dari D-056 (hanya catatan; belum diimplementasikan; semua angka usulan dan belum diukur)
+
+Bertumpu pada `GameClock` (§4al), event bus, simulasi hari-selisih (§4al), loading (§4aj), cloud save (§5a), keamanan (§5b), performa (§4ai). Hanya rancangan; nilai pemulihan dan aturan tidur tidak ditetapkan.
+- **Satu jalur `advance_day`:** tidur rumah, penginapan, kemah, dan advance day lain memanggil satu layanan (`DayTransition`) dengan parameter sumber (data); hasil konsisten, mudah diuji, dan satu-satunya tempat yang memajukan hari.
+- **Pipeline berurutan berbasis data:** tahap-tahap terdaftar dengan ID stabil (§4ag) dan urutan jelas: cuaca/musim (§4q) → pertanian/ternak → NPC dan jadwal (§4aa) → toko/ekonomi → event/festival (§4p) → pemulihan → pembaruan HUD. Tiap sistem menyediakan antarmuka pemrosesan hari-selisih; sistem baru ditambah sebagai data tanpa mengubah inti.
+- **Tanpa pemrosesan berat dalam satu frame:** tahap dijalankan terpotong (time-sliced) dengan anggaran per frame, pekerjaan berat di thread terpisah bila aman, dan progres nyata di layar transisi (§4aj); input dikunci hanya sebatas perlu; tidak ada simulasi penuh seluruh dunia (NPC jauh memakai LOD §4aa, hanya agregat).
+- **Determinisme:** benih dari (seed + tanggal) per sistem; hasil sama setelah muat ulang (§4al); tidak memakai jam perangkat.
+- **Keamanan penyimpanan dan idempotensi:** setiap pergantian hari punya ID transaksi dan revisi; hasil dikomit sekali secara atomik (.tmp → .bak, §5) setelah semua tahap selesai (atau tahap tercatat dengan penanda resume yang aman); bila aplikasi tertutup di tengah, mulai ulang dari save sah terakhir, tidak ada dobel hadiah/panen/biaya.
+- **Cloud dan koneksi (§5a, D-044):** hasil hari disinkronkan sebagai bagian save berrevisi; operasi bernilai tinggi (ekonomi, hadiah) divalidasi urutan server sesuai §5b; konflik memakai revisi, bukan jam perangkat. Perilaku saat koneksi putus di tengah transisi menunggu **D-051** (isi belum diterima, tidak dikarang); dasar: tidak merusak data dan tidak memajukan/memundurkan waktu karena koneksi.
+- **Pemulihan sebagai data:** efek istirahat (HP, stamina, status) lewat mesin kondisi/efek bersama (D-018, D-019); nilai dan batas tidak ditetapkan di sini.
+- **Konteks dan larangan sebagai data:** syarat tidur (lokasi, waktu, status, keadaan dungeon/pertarungan) dan fasilitas tempat (rumah dan penginapan §4n, kemah §4o) berupa resource; tidak dikodekan keras.
+- **Kemah:** titik/objek kemah dari data dunia (§4o) dan interaksi (§4v); kemah saat menjelajah memakai jalur `advance_day` yang sama bila ditetapkan.
+- **UI/audio (D-031, D-032, D-045):** layar tidur/ringkasan hari sebagai UI ringan dengan kunci terjemahan, aksesibilitas, opsi pengurangan animasi; audio transisi lewat bus musik/ambient.
+- **Performa (D-052):** pemrosesan diturunkan skalanya pada perangkat lemah (tahap lebih sedikit per frame, bukan hasil berbeda); angka belum diukur.
+- **Update konten (D-048):** tahap/sistem baru ditambah sebagai data; save lama tetap termigrasi; validator konten memastikan urutan tahap valid.
+- **Pengujian (D-049):** uji headless untuk determinisme, idempotensi (jalankan dua kali tidak menggandakan), interupsi di tiap tahap lalu lanjut, tidak ada waktu mundur, konsistensi antar sumber tidur, anggaran per frame, dan sinkron save setelah pergantian hari.
 - **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
