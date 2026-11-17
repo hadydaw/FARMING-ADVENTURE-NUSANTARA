@@ -112,3 +112,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - GDD §6.14 baru (v0.14) dan tautan dari §6.2; Technical Architecture §4k ditambahkan (catatan saja). Hubungan dengan D-015, D-016, D-019, D-020, D-021, D-023 dicatat tanpa mengubah isinya.
 - Ditandai terbuka: arti "hewan spiritual"; batas hewan ternak vs pet/companion (D-019). "Perkembangbiakan" dicatat berlaku untuk hewan saja; keluarga/anak pemain tetap belum ditetapkan.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 15.
+
+## 2026-11-17 (15) — D-025 Sistem Memancing dan Kehidupan Perairan dicatat
+
+- D-025 (Kombinasi Semua Sistem, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
+- GDD §6.3 diarahkan ke §6.15 baru (v0.15); Technical Architecture §4l ditambahkan (catatan saja). Hubungan dengan D-009, D-013, D-015, D-017, D-019, D-020, D-021, D-023 dicatat tanpa mengubah isinya.
+- Ditandai terbuka: arti "ikan spiritual" dan "makhluk air fantasi"; apakah makhluk air dapat menjadi companion/monster atau musuh.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 16.

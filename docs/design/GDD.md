@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.14 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.15 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -94,7 +94,8 @@ Belum: daftar wilayah, peta dunia, syarat buka tiap wilayah, ukuran wilayah, car
 Perincian pertanian dan pertumbuhan tanaman: lihat 6.13 (D-023); peternakan dan hewan: lihat 6.14 (D-024). Untuk bagian 6.3 dan 6.4 di bawah, rujuk 6.2.
 
 ### 6.3 Memancing dan Memasak
-Ditetapkan lewat D-015 (lihat 6.2). Rincian belum ditetapkan.
+- **Memancing:** ditetapkan lewat D-015 dan dirinci di 6.15 (D-025).
+- **Memasak:** ditetapkan lewat D-015; rincian belum ditetapkan.
 
 ### 6.4 Rumah
 Ditetapkan lewat D-015 (pengembangan rumah dan ladang; lihat 6.2). Rincian belum ditetapkan.
@@ -246,6 +247,20 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 
 **[BELUM DITETAPKAN]:** daftar spesies, hewan langka, dan hewan spiritual; produk tiap spesies; kebutuhan pakan; aturan kesehatan dan penyakit; aturan kawin, kelahiran, dan pertumbuhan; jenis kandang dan fasilitas serta upgrade-nya; **arti dan kemampuan "hewan spiritual"**; **batas antara hewan ternak (D-024) dan pet/companion (D-019)**; apakah hewan ternak dapat dibawa ke petualangan.
 **Catatan:** "perkembangbiakan" berlaku untuk hewan, bukan keluarga/anak pemain (tetap belum ditetapkan, D-015). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+### 6.15 Memancing dan Kehidupan Perairan — D-025, LOCKED (Kombinasi Semua Sistem)
+**Ditetapkan:**
+- **Memancing** di sungai, danau, laut, dan lokasi khusus.
+- **Beragam spesies ikan** dengan tingkat kelangkaan.
+- **Pengaruh lokasi, musim, cuaca, dan waktu** terhadap ketersediaan.
+- **Umpan, alat pancing,** dan **kualitas hasil tangkapan.**
+- **Ikan spiritual dan makhluk air fantasi.**
+- **Koleksi, perdagangan, memasak, dan crafting.**
+- **Tantangan menangkap ikan legendaris.**
+- Ketentuan: tiap spesies punya habitat dan karakteristik; ketersediaan dipengaruhi lokasi, musim, cuaca, waktu; peralatan dan umpan memengaruhi peluang dan kualitas; makhluk spiritual/legendaris punya karakter khusus; hasil dimanfaatkan untuk koleksi, ekonomi, memasak, crafting.
+- Terkait: memancing (D-015), musim/cuaca (D-015, D-023), perdagangan (D-021), crafting dan item (D-020), wilayah (D-009), guild/prestasi (D-017).
+
+**[BELUM DITETAPKAN]:** daftar spesies, habitat, dan lokasi memancing; mekanik memancing (kontrol sentuh, minigame); jenis alat pancing dan umpan; tingkat kelangkaan dan rumus kualitas; **arti "ikan spiritual" dan "makhluk air fantasi"**; daftar ikan legendaris dan caranya ditangkap; format koleksi (buku koleksi/prestasi); apakah makhluk air dapat menjadi companion/monster (D-019) atau menjadi musuh (D-013); hubungan dengan quest/prestasi guild (D-017). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

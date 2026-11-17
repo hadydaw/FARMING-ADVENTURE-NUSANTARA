@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.14 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.15 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -185,6 +185,21 @@ Syarat utama: **spesies dan fasilitas baru dapat ditambah.**
 - **Integrasi:** produk ternak adalah item (§4g) yang masuk resep crafting dan layanan harga (§4h); pakan dapat berupa hasil panen (§4j).
 - **Save:** daftar hewan (spesies, umur/tahap, kesehatan, perawatan, status produksi, sifat), fasilitas, dan stok pakan masuk payload save (skema berversi); simpan ringkas untuk kawanan besar.
 - **Online (D-014):** peternakan adalah progres pribadi.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4l. Implikasi Arsitektur dari D-025 (hanya catatan; belum diimplementasikan)
+
+- **Ikan dan lokasi sebagai data:** spesies (habitat, kelangkaan, kebutuhan musim/cuaca/waktu, perilaku, hasil item), titik/zona memancing per wilayah, alat pancing, dan umpan sebagai data. Spesies atau lokasi baru = data baru.
+- **Tabel tangkapan terkondisi:** hasil memancing = pemilihan acak berbobot dari tabel yang disaring oleh *kondisi* (lokasi, musim, cuaca, jam, umpan, alat) memakai sistem kondisi yang sama dengan quest dan NPC (§4d, §4i); bobot dipengaruhi umpan/alat/kemampuan.
+- **Acak ber-seed dan dapat diuji:** hasil tangkapan memakai generator ber-seed yang dapat diuji headless; hasil penting (ikan langka/legendaris) tidak boleh dapat diulang dengan memuat ulang (dikunci di save, §4g).
+- **Layanan waktu dan cuaca bersama** (§4b, §4j): ketersediaan ikan dihitung dari kalender dan cuaca yang sama dengan pertanian, bukan sumber terpisah.
+- **Mekanik memancing sebagai modul input:** minigame sentuh dipisah dari logika tangkapan (logika deterministik, tampilan terpisah) agar dapat diganti setelah desain kontrol selesai; mengikuti pemetaan Input Action (§7).
+- **Ikan sebagai item:** hasil tangkapan adalah item bertipe di sistem item (§4g) dengan kualitas/rarity; masuk resep memasak/crafting dan layanan harga (§4h).
+- **Koleksi dan prestasi:** pencatatan spesies yang pernah ditangkap lewat event bus ke sistem prestasi (§4d).
+- **Makhluk air fantasi/spiritual:** dapat memakai model makhluk bersama (§4f) bila nanti ditetapkan sebagai companion/monster; sampai diputuskan, tidak dimodelkan secara khusus.
+- **Save:** koleksi ikan (spesies, rekor/kualitas terbaik), alat dan umpan, serta progres tantangan legendaris masuk payload save (skema berversi).
+- **Anggaran performa:** air dan efek perairan menggunakan shader sederhana sesuai §3 (renderer Compatibility).
+- **Online (D-014):** progres pribadi; tidak ada peringkat antarpemain.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres

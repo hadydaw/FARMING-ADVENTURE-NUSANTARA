@@ -232,6 +232,27 @@ Hubungan dengan keputusan lain (tidak mengubah isinya): merinci butir peternakan
 **Batas yang masih terbuka:** perbedaan hewan ternak (D-024) dengan pet/companion (D-019), serta hubungan "hewan spiritual" dengan companion dan monster, belum ditetapkan. "Hewan spiritual" (seperti "tanaman spiritual" di D-023) belum didefinisikan. "Perkembangbiakan" dibaca sebagai berlaku untuk **hewan**; tidak berkaitan dengan keluarga/anak pemain, yang tetap belum ditetapkan (D-015).
 Detail (daftar spesies dan produk, jenis fasilitas, aturan kesehatan, kebutuhan pakan, aturan kawin/lahir, daftar hewan langka dan spiritual) belum ditetapkan. Implementasi belum dimulai. ID D-024 tersedia saat dicatat (tanpa bentrokan).
 
+### D-025 — Sistem Memancing dan Kehidupan Perairan *(APPROVED / LOCKED, 2026-11-17, Tahap 15)*
+Pilihan: **D. Kombinasi Semua Sistem.** Ruang lingkup:
+1. Memancing di sungai, danau, laut, dan lokasi khusus
+2. Beragam spesies ikan dengan tingkat kelangkaan
+3. Pengaruh lokasi, musim, cuaca, dan waktu
+4. Umpan, alat pancing, dan kualitas hasil tangkapan
+5. Ikan spiritual dan makhluk air fantasi
+6. Koleksi, perdagangan, memasak, dan crafting
+7. Tantangan menangkap ikan legendaris
+
+Ketentuan desain:
+- Setiap spesies punya habitat dan karakteristik tersendiri.
+- Ketersediaan ikan dipengaruhi lokasi, musim, cuaca, dan waktu.
+- Peralatan dan umpan memengaruhi peluang dan kualitas tangkapan.
+- Makhluk air spiritual dan legendaris punya karakteristik khusus.
+- Hasil tangkapan dimanfaatkan untuk koleksi, ekonomi, memasak, dan crafting.
+
+Hubungan dengan keputusan lain (tidak mengubah isinya): merinci butir memancing pada **D-015**; musim dan cuaca (D-015, D-023); perdagangan (**D-021**); memasak dan crafting (**D-015, D-020**; alat pancing dan umpan termasuk equipment/item, D-020); wilayah dan lokasi air per wilayah (**D-009**); tantangan ikan legendaris dapat berkaitan dengan guild/quest (D-017) dan prestasi (D-017), keterkaitannya belum ditetapkan.
+**Terbuka:** "ikan spiritual" dan "makhluk air fantasi" belum didefinisikan (sama seperti tanaman dan hewan spiritual di D-023, D-024); apakah makhluk air dapat menjadi companion/monster (D-019) belum ditetapkan; apakah ada pertarungan dengan makhluk air (D-013) belum ditetapkan.
+Detail (daftar spesies dan lokasi, mekanik memancing, jenis alat/umpan, aturan kelangkaan, daftar ikan legendaris) belum ditetapkan. Implementasi belum dimulai. ID D-025 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |
