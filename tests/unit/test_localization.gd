@@ -53,4 +53,4 @@ func run() -> void:
 	check_eq(id_text, "Pengaturan", "id termuat")
 	check_eq(en_text, "Foundation Test (diagnostics)", "en termuat")
 	TranslationServer.set_locale("id")
-	check_eq(str(ProjectSettings.get_setting("internationalization/locale/fallback")), "id", "fallback id")
+	check_eq(str(ProjectSettings.get_setting("internationalization/locale/fallback")), "en", "fallback en")

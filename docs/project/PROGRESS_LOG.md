@@ -463,3 +463,7 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - M1 dibangun: DataRegistry, Events, GameSettings, GameDisplay, InputService, SceneManager, UiTheme, kontrol sentuh, boot/menu/pengaturan/diagnostik, lokalisasi id/en. Bug layout ditemukan lewat screenshot dan diperbaiki (`set_anchors_and_offsets_preset`), dikunci dengan uji tata letak.
 - Uji: 8 berkas, 383 pemeriksaan, 0 gagal; smoke test lulus.
 - Risiko terbuka: D-008 (3D) vs sprite; sumber model 3D; identitas T1/T2 belum diimplementasi; uji perangkat fisik oleh pemilik.
+
+## 2026-11-17 (63) — Bahasa bawaan Inggris
+
+- Arahan pemilik: game dua bahasa (Indonesia dan Inggris), **Inggris sebagai bahasa bawaan**. Bahasa awal tidak lagi mengikuti bahasa perangkat; pemain dapat ganti ke Indonesia di Pengaturan. Fallback terjemahan: Inggris. Catatan: D-007 di GDD menyebut "Indonesia utama"; teks D-007 tidak diubah, pemilik perlu mengonfirmasi bila ingin dicatat resmi.

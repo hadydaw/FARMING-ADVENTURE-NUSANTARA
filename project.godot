@@ -37,7 +37,7 @@ pointing/emulate_mouse_from_touch=true
 
 [internationalization]
 
-locale/fallback="id"
+locale/fallback="en"
 locale/translations=PackedStringArray("res://game/i18n/translations.id.translation", "res://game/i18n/translations.en.translation")
 
 [rendering]

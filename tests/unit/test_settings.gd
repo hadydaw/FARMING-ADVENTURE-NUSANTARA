@@ -23,7 +23,7 @@ func run() -> void:
 	var s := _fresh()
 
 	check(s.categories().has("audio") and s.categories().has("controls"), "kategori ada")
-	check(["id", "en"].has(s.get_value("language")), "bahasa awal id/en")
+	check_eq(s.get_value("language"), "en", "bahasa bawaan Inggris, tidak mengikuti bahasa perangkat")
 	check_near(float(s.get_value("music_volume")), 0.8, "default volume musik")
 
 	# Validasi dan pembatasan.

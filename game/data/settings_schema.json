@@ -1,5 +1,5 @@
 [
-	{"id": "language", "category": "general", "type": "enum", "options": ["id", "en"], "default": "id", "default_from_device": true, "scope": "account", "label_key": "SET_LANGUAGE", "option_keys": {"id": "SET_LANG_ID", "en": "SET_LANG_EN"}},
+	{"id": "language", "category": "general", "type": "enum", "options": ["id", "en"], "default": "en", "scope": "account", "label_key": "SET_LANGUAGE", "option_keys": {"id": "SET_LANG_ID", "en": "SET_LANG_EN"}},
 	{"id": "music_volume", "category": "audio", "type": "float", "min": 0.0, "max": 1.0, "step": 0.05, "default": 0.8, "scope": "account", "label_key": "SET_MUSIC_VOLUME", "format": "percent"},
 	{"id": "sfx_volume", "category": "audio", "type": "float", "min": 0.0, "max": 1.0, "step": 0.05, "default": 0.8, "scope": "account", "label_key": "SET_SFX_VOLUME", "format": "percent"},
 	{"id": "ambience_volume", "category": "audio", "type": "float", "min": 0.0, "max": 1.0, "step": 0.05, "default": 0.8, "scope": "account", "label_key": "SET_AMBIENCE_VOLUME", "format": "percent"},
