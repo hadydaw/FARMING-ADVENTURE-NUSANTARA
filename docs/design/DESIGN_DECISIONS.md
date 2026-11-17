@@ -468,6 +468,23 @@ Pilihan: **D. Inventory Hybrid Lengkap.** Ketentuan:
 Hubungan (tidak mengubah isi keputusan lain): bahasa (**D-007**), pertarungan/loot (**D-013**, **D-016**), perkembangan karakter (**D-018**), equipment dan crafting (**D-020**), ekonomi (**D-021**), pertanian/peternakan/memancing/memasak (**D-023 sampai D-026**), rumah dan penyimpanan (**D-027**), UI (**D-031**), kontrol (**D-034**), interaksi (**D-035**).
 **Terbuka:** memilih kapasitas berbasis slot, berat, atau gabungan; jumlah slot awal dan tingkat peningkatan; batas stack tiap kategori; daftar item unik/tak bisa ditumpuk; perilaku saat inventory penuh (tolak, jatuh ke tanah, kirim ke penyimpanan); jumlah slot akses cepat; aturan peti/penyimpanan rumah dan hubungannya dengan inventory; apakah kualitas/atribut item memisahkan stack; aturan item quest (tak bisa dijual/dibuang); drag-and-drop vs ketuk, ambil/pindah banyak sekaligus; aksesibilitas. Implementasi inventory belum dimulai. ID D-036 tersedia saat dicatat (tanpa bentrokan).
 
+### D-037 — Sistem Quest dan Misi *(APPROVED / LOCKED, 2026-11-17, Tahap 27)*
+Pilihan: **D. Quest Hybrid Lengkap.** Ketentuan:
+1. Mendukung jenis quest: Main Story; Side; Branching; Daily dan Repeatable; Adventurer Guild; Farming dan Village Life; Trading dan Economy; Dungeon dan Monster Hunt; Hidden dan Special.
+2. Quest bercabang punya beberapa pilihan, kondisi, konsekuensi, dan hasil penyelesaian.
+3. Tindakan dan keputusan pemain dapat memengaruhi hasil quest, hubungan NPC, akses wilayah, hadiah, atau perkembangan cerita sesuai kebutuhan naratif.
+4. Tiap quest punya identitas unik, pemberi quest, persyaratan, objektif, status, hadiah, dan aturan penyelesaian.
+5. Objektif bertahap dan beberapa objektif sekaligus.
+6. Quest journal, pelacakan objektif aktif, indikator lokasi, notifikasi, dan riwayat quest.
+7. Quest harian/berulang mengikuti kalender dan waktu dunia game secara konsisten.
+8. Quest Guild terintegrasi dengan rank dan reputasi Guild.
+9. Quest dapat disimpan dan disinkronkan lewat cloud save Supabase.
+10. UI nyaman di Android landscape; Indonesia dan English.
+11. Hindari quest yang saling bertentangan atau tak dapat diselesaikan akibat urutan progres yang keliru.
+
+Hubungan (tidak mengubah isi keputusan lain): bahasa (**D-007**), cerita dan dunia (**D-009**), pertarungan dan dungeon (**D-013**, **D-016**), guild (**D-017**), perkembangan karakter (**D-018**), ekonomi (**D-021**), NPC dan hubungan (**D-022**), pertanian dan kehidupan desa (**D-023**, **D-015**), eksplorasi dan akses wilayah (**D-009**, **D-028**), event dunia (**D-029**), kalender (**D-030**), UI (**D-031**), inventory/item quest (**D-036**), online dan cloud save (**D-014**, **O-003**).
+**Terbuka:** isi cerita utama dan daftar quest; format data quest dan bahasa kondisi/objektif; daftar tipe objektif dan pemicu; aturan pembukaan, prasyarat, dan pembatalan/gagal; aturan quest harian/berulang (reset, jumlah, penolakan); sistem pilihan dan konsekuensi (cabang permanen atau tidak); cara memberi hadiah dan batas; hubungan dengan rank/reputasi Guild secara rinci; cara menjamin quest tak buntu (mis. perbaikan otomatis); quest antarmusim/event; dukungan melewatkan/melanjutkan quest ketika waktu perangkat diubah; konsep "spiritual" bila dipakai di quest (belum didefinisikan, tidak ditebak). Implementasi quest belum dimulai. ID D-037 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

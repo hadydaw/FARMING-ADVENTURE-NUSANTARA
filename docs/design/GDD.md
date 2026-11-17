@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.26 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.27 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -415,6 +415,21 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - Terkait: D-007, D-013, D-016, D-018, D-020, D-021, D-023 sampai D-027, D-031, D-034, D-035.
 
 **[BELUM DITETAPKAN]:** model kapasitas (slot/berat/gabungan) dan angkanya, batas stack, daftar item unik, perilaku saat penuh, slot akses cepat, penyimpanan rumah/peti, apakah kualitas memisahkan stack, aturan item quest, cara memindahkan banyak item, aksesibilitas. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+### 6.27 Quest dan Misi — D-037, LOCKED (Quest Hybrid Lengkap)
+**Ditetapkan:**
+- **Jenis quest:** Main Story; Side; Branching; Daily dan Repeatable; Adventurer Guild; Farming dan Village Life; Trading dan Economy; Dungeon dan Monster Hunt; Hidden dan Special.
+- **Quest bercabang:** beberapa pilihan, kondisi, konsekuensi, dan hasil; keputusan pemain dapat memengaruhi hasil quest, hubungan NPC, akses wilayah, hadiah, atau cerita sesuai kebutuhan naratif.
+- Tiap quest: **identitas unik, pemberi, persyaratan, objektif, status, hadiah, aturan penyelesaian**; objektif **bertahap** dan **beberapa sekaligus**.
+- **Quest journal**, pelacakan objektif aktif, indikator lokasi, notifikasi, dan riwayat.
+- Quest harian/berulang **mengikuti kalender dan waktu dunia** secara konsisten.
+- Quest Guild **terintegrasi dengan rank dan reputasi Guild** (D-017).
+- Quest dapat **disimpan dan disinkronkan** lewat cloud save Supabase.
+- UI **Android landscape**, **Indonesia dan English**.
+- **Tidak boleh ada quest yang bertentangan atau buntu** akibat urutan progres.
+- Terkait: D-007, D-009, D-013 sampai D-018, D-021, D-022, D-023, D-028 sampai D-031, D-036, D-014.
+
+**[BELUM DITETAPKAN]:** isi cerita dan daftar quest, format data quest, tipe objektif dan pemicu, prasyarat dan aturan gagal/batal, aturan quest harian/berulang, sistem pilihan dan konsekuensi, hadiah, detail rank/reputasi Guild, mekanisme pencegah quest buntu, quest musim/event, perilaku saat waktu perangkat diubah, peran konsep "spiritual" (belum didefinisikan). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

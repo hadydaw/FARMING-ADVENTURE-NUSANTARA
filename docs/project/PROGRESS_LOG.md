@@ -191,3 +191,9 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - D-036 (Inventory Hybrid Lengkap, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
 - GDD §6.26 baru (v0.26); Technical Architecture §4w ditambahkan (v0.26; catatan saja: definisi item dari data, wadah slot yang dipakai ulang, kapasitas sebagai strategi yang dapat diganti, operasi atomik dengan hasil sisa, penyimpanan di payload save). Hubungan dengan D-007, D-013, D-016, D-018, D-020, D-021, D-023 sampai D-027, D-031, D-034, D-035 dicatat tanpa mengubah isinya.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 27.
+
+## 2026-11-17 (27) — D-037 Sistem Quest dan Misi dicatat
+
+- D-037 (Quest Hybrid Lengkap, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
+- GDD §6.27 baru (v0.27); Technical Architecture §4x ditambahkan (v0.27; catatan saja: quest dari data, mesin status, objektif berbasis event bus, kondisi/cabang bersama sistem lain, quest harian deterministik, validasi anti-buntu, penyimpanan dan sinkronisasi cloud). Hubungan dengan D-007, D-009, D-013 sampai D-018, D-021 sampai D-023, D-028 sampai D-031, D-036 dicatat tanpa mengubah isinya.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 28.

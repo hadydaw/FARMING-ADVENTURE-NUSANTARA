@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.26 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.27 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -297,7 +297,7 @@ Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 - **Musik adaptif berbasis konteks:** pemilih musik membaca wilayah (§4o), aktivitas/konteks UI (§4r), dan situasi (combat, boss, event) lewat event bus; transisi memakai crossfade/layer (stem) agar halus, dengan prioritas (boss/event > combat > wilayah).
 - **Ambience dari data:** lapisan ambience dipilih dari wilayah + musim + cuaca + waktu (§4q) secara data-driven; berganti halus saat cuaca/musim berubah.
 - **SFX data-driven:** efek dipetakan lewat ID (aksi, item, skill, makhluk, §4g) ke aset/varian; variasi pitch/pilihan acak agar tidak monoton; batas suara bersamaan (polyphony) dan prioritas.
-- **Audio 3D/posisional** untuk suara dunia (NPC, hewan, monster) dengan jarak dan LOD, selaras simulasi LOD NPC (§4m).
+- **Audio 3D/posisional** untuk suara dunia (NPC, hewan, monster) dengan jarak dan LOD, selaras simulasi LOD NPC (§4i).
 - **Aset:** streaming untuk musik panjang, pemuatan per wilayah, format terkompresi (mis. Ogg Vorbis) agar ukuran APK terkendali (§3); sumber/lisensi aset dicatat.
 - **Bahasa:** kunci audio terpisah dari terjemahan bila nanti ada suara pengisi (§6).
 - **Pengujian:** uji headless untuk kelengkapan pemetaan ID ke aset dan keberadaan bus; fokus waktu loading, bukan kualitas dengar.
@@ -309,7 +309,7 @@ Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 - **Pemilih profil** membaca konteks aktivitas dari event bus dan konteks UI (§4r); peralihan dengan interpolasi/peredaman (ease) dan prioritas konteks agar tidak bolak-balik (histeresis/penundaan kecil), sehingga orientasi tidak hilang. Arah hadap dipertahankan saat transisi.
 - **Zoom dan rotasi pemain** sebagai offset terbatas (clamp) di atas profil; nilai disimpan sebagai pengaturan pemain (seperti D-031/D-032), bukan save game; dapat di-reset ke bawaan. Dipetakan ke Input Action (§7).
 - **Tabrakan kamera:** pemeriksaan sederhana (satu raycast/spring-arm ringan) agar tidak menembus dinding; dirancang murah untuk perangkat Android.
-- **Performa (GL Compatibility):** FOV/jarak far dan jarak lihat disetel per profil agar mengurangi objek yang dirender; tidak ada efek pascapemrosesan berat yang bergantung kamera; kamera diperbarui di proses fisika/akhir frame tanpa alokasi per frame; selaras anggaran §3 dan LOD (§4m).
+- **Performa (GL Compatibility):** FOV/jarak far dan jarak lihat disetel per profil agar mengurangi objek yang dirender; tidak ada efek pascapemrosesan berat yang bergantung kamera; kamera diperbarui di proses fisika/akhir frame tanpa alokasi per frame; selaras anggaran §3 dan LOD (§4i).
 - **Hook efek:** guncangan dan sinematik cerita/boss disediakan sebagai lapisan terpisah di atas rig, dengan opsi mengurangi guncangan (aksesibilitas).
 - **Hubungan:** audio posisional mengikuti posisi pendengar/kamera (D-032); penargetan combat (D-013) dan lock-on menunggu desain.
 - **Pengujian:** uji headless untuk batas clamp zoom/rotasi dan kelengkapan profil per konteks; uji perangkat nyata untuk kenyamanan dan FPS dilakukan nanti.
@@ -334,7 +334,7 @@ Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 - **Aksi valid saja:** daftar aksi dibangun dari validasi; tombol aksi kontekstual (§4u) menampilkan aksi utama target aktif, aksi tambahan lewat menu kecil. Alasan penolakan memakai kunci terjemahan (id/en, §6).
 - **Aksi penting:** tindakan yang ditandai di data (mis. menjual, membuang, tindakan tak dapat dibatalkan) memerlukan konfirmasi/tahan; aksi rutin tidak otomatis tanpa niat pemain. Definisi menunggu desain.
 - **Eksekusi aksi:** perintah aksi → sistem terkait (pertanian, peternakan, crafting, dll.) lewat event bus (§4); interaksi menyetel konteks aktivitas untuk UI (§4r) dan kamera (§4t).
-- **Performa:** deteksi berkala dan jumlah kandidat dibatasi; tanpa alokasi per frame; penanda target ringan (GL Compatibility, §3). Objek jauh tidak diperiksa (LOD, §4m).
+- **Performa:** deteksi berkala dan jumlah kandidat dibatasi; tanpa alokasi per frame; penanda target ringan (GL Compatibility, §3). Objek jauh tidak diperiksa (LOD, §4i).
 - **Pengujian:** uji headless untuk pemilihan target pada objek berdekatan, prioritas pilihan pemain, validasi aksi, dan tidak adanya aksi ganda.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
@@ -350,6 +350,21 @@ Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 - **UI/kontrol:** panel inventory memakai manajer konteks UI (§4r) dan aksi sentuh (§4u): ketuk untuk pilih, seret untuk pindah, tombol aksi untuk pakai/simpan; daftar panjang memakai virtualisasi.
 - **Performa:** operasi O(jumlah slot) kecil, tanpa alokasi per frame, sinyal perubahan hanya untuk slot yang berubah (§3).
 - **Pengujian:** uji headless untuk stack/gabung/pisah, kapasitas penuh tanpa kehilangan item, pemindahan antarwadah, serialisasi-deserialisasi, dan migrasi.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4x. Implikasi Arsitektur dari D-037 (hanya catatan; belum diimplementasikan)
+
+- **Definisi quest dari data** (resource/JSON terjadwal, bukan kode): ID unik stabil, jenis, pemberi, prasyarat, daftar objektif, cabang, hadiah, aturan ulang. Teks memakai kunci terjemahan (id/en, §6); teks naratif panjang boleh dipisah per berkas.
+- **Mesin keadaan quest:** status (terkunci, tersedia, aktif, selesai, gagal, dibatalkan, kedaluwarsa) dan transisi yang jelas; objektif adalah komponen data dengan tipe (kumpulkan, bunuh, antar, bicara, capai lokasi, bangun, dll.), progres, dan syarat; mendukung objektif berurutan dan paralel, serta objektif opsional.
+- **Pelacakan berbasis event:** objektif berlangganan **event bus** (§4) yang sudah ada (panen, loot, bunuh, interaksi §4v, inventory §4w, transaksi, masuk wilayah), bukan polling per frame; hanya quest aktif yang mendengarkan.
+- **Kondisi dan cabang:** syarat dan konsekuensi dinyatakan lewat bahasa kondisi/efek sederhana berbasis data (membaca flag cerita, hubungan NPC §4i, reputasi/rank Guild, wilayah, item, waktu) dan sistem kondisi/efek yang sama dengan sistem lain, sehingga satu mesin dipakai bersama; pilihan dan hasil tercatat sebagai flag cerita.
+- **Quest harian/berulang:** dihasilkan dari kalender game dan penyemaian deterministik (seed + tanggal, §4b) sehingga konsisten dan tak dapat dimanipulasi dengan save-scumming; reset mengikuti waktu dunia, bukan jam perangkat.
+- **Cegah quest buntu:** validasi saat pembuatan konten (alat/uji headless memeriksa semua quest dapat diselesaikan: prasyarat tidak saling mengunci, item quest tak dapat hilang atau dapat diperoleh ulang, urutan tak bergantung satu jalur); saat runtime, quest dengan syarat tak lagi terpenuhi ditandai dan dipulihkan/diganti sesuai aturan desain nanti.
+- **Penyimpanan dan cloud:** status dan progres tiap quest, flag cerita, dan riwayat masuk payload save (§5) sebagai data kompak dengan versi skema dan migrasi saat definisi quest berubah (ID tetap, quest yang dihapus ditangani). Sinkronisasi cloud Supabase memakai mekanisme save yang sama (D-014); resolusi konflik mengikuti desain online, dan progres cerita dan hadiah tidak boleh terduplikasi atau hilang.
+- **Hadiah:** diberikan lewat API inventory (§4w) dan sistem ekonomi/pengalaman; inventory penuh tidak boleh menghilangkan hadiah quest (ditunda atau dikirim ke penyimpanan sesuai desain nanti).
+- **UI:** journal, pelacak objektif aktif di HUD, penanda lokasi di peta/dunia, notifikasi, riwayat; memakai manajer konteks UI (§4r) dan daftar tervirtualisasi.
+- **Performa:** hanya quest aktif dan terdekat diproses; indeks prasyarat untuk pembukaan quest; tanpa alokasi per frame (§3).
+- **Pengujian:** uji headless untuk transisi status, objektif paralel/berurutan, cabang, reset harian, serialisasi-migrasi, dan validasi keterselesaian semua quest.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres
