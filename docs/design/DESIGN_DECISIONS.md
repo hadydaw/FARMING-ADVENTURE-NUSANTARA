@@ -365,6 +365,30 @@ Hubungan dengan keputusan lain (tidak mengubah isinya): merinci butir **perganti
 **Terbuka:** arti "fenomena spiritual" belum didefinisikan (dan kini dinyatakan harus punya aturan kemunculan serta dampak jelas, tetapi isinya belum ada); panjang tiap musim, nama musim, dan daftar cuaca per iklim; daftar iklim/wilayah; hubungan fenomena spiritual dengan event (D-029) dan bangunan spiritual (D-027); acuan waktu (perangkat vs server) dan aturan bila waktu perangkat diubah (lihat D-029).
 Detail (panjang musim, daftar cuaca, peluang, dampak numerik, iklim tiap wilayah) belum ditetapkan. Implementasi belum dimulai. ID D-030 tersedia saat dicatat (tanpa bentrokan).
 
+### D-031 — Sistem UI, HUD, dan Antarmuka Pemain *(APPROVED / LOCKED, 2026-11-17, Tahap 21)*
+Pilihan: **D. Kombinasi Semua Sistem.** Ruang lingkup:
+1. HUD RPG dan informasi karakter
+2. HUD farming dan hotbar alat
+3. Inventory, equipment, skill, dan quest
+4. Peta, kalender, cuaca, dan waktu
+5. Menu peternakan, crafting, dan alkimia
+6. Antarmuka dungeon dan combat
+7. UI adaptif sesuai aktivitas pemain
+8. Pengaturan ukuran dan posisi tombol
+
+Standar desain:
+- Android landscape sebagai orientasi utama.
+- Kontrol nyaman untuk layar sentuh.
+- HUD tidak menutupi area permainan secara berlebihan.
+- Bahasa Indonesia utama, English kedua.
+- Visual UI konsisten dengan gaya 3D Stylized.
+- UI menampilkan kontrol dan informasi sesuai aktivitas pemain.
+- Ukuran dan posisi tombol dapat disesuaikan.
+
+Hubungan dengan keputusan lain (tidak mengubah isinya): orientasi dan platform (**D-004**), bahasa (**D-007**), gaya visual (**D-008**); skema kontrol sentuh yang masih terbuka di GDD §4 kini harus memenuhi standar ini; UI menampilkan sistem pertarungan (**D-013**), perkembangan karakter dan skill (**D-018**), guild/quest (**D-017**), companion (**D-019**), equipment/crafting (**D-020**), ekonomi/toko (**D-021**), pertanian/peternakan/memancing/memasak (**D-023 sampai D-026**), bangunan (**D-027**), peta dan perjalanan (**D-028**), event (**D-029**), musim/cuaca/waktu (**D-030**), dan koneksi/akun (**D-014**).
+**Terbuka:** gaya visual UI rinci (art direction, tema), tata letak tiap HUD, jenis dan jumlah tombol aksi, skema kontrol sentuh konkret (joystick atau tap-to-move), dukungan kontroler, ukuran target sentuh minimum, apakah ada mode UI untuk layar kecil/besar/tablet, aksesibilitas (ukuran teks, kontras, buta warna), tampilan status koneksi/sinkronisasi cloud.
+Detail tata letak dan daftar layar belum ditetapkan. Implementasi UI/HUD belum dimulai (layar boot saat ini hanya uji fondasi, bukan UI game). ID D-031 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

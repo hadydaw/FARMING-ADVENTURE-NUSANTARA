@@ -154,3 +154,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - GDD §6.20 baru (v0.20); daftar belum ditetapkan di §6.2 diperbarui (jumlah musim = empat). Technical Architecture §4q ditambahkan (catatan saja; fokus satu sumber kebenaran lingkungan, cuaca deterministik dari seed + tanggal, sinkron dengan cloud save). Hubungan dengan D-009, D-013, D-014, D-015, D-021 sampai D-025, D-027 sampai D-029 dicatat tanpa mengubah isinya.
 - Ditandai terbuka: arti "fenomena spiritual"; panjang musim; daftar cuaca dan iklim; aturan waktu perangkat.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 21.
+
+## 2026-11-17 (21) — D-031 Sistem UI, HUD, dan Antarmuka Pemain dicatat
+
+- D-031 (Kombinasi Semua Sistem, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
+- GDD §6.21 baru dan catatan kontrol di §4 diperbarui (v0.21); Technical Architecture §4r ditambahkan (catatan saja; fokus pemisahan UI-logika, konteks UI adaptif, kontrol sebagai Input Action, tata letak tombol yang dapat disesuaikan). Hubungan dengan D-004, D-007, D-008, D-013 sampai D-030 dicatat tanpa mengubah isinya.
+- Layar boot uji fondasi tidak diubah dan bukan UI game.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 22.

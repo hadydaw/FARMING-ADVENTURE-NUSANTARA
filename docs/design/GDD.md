@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.20 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.21 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -49,7 +49,7 @@ Rincian mekanik tiap aktivitas ada di bagian 6 dan **belum ditetapkan**.
 **Ditetapkan:** Android, landscape, layar sentuh (touchscreen).
 
 **[BELUM DITETAPKAN]:**
-- Skema kontrol (joystick virtual, tap-to-move, tombol aksi, gestur) — harus mampu menampung seluruh aksi pertarungan D-013 (serang/combo, skill, dodge, block, parry).
+- Skema kontrol (joystick virtual, tap-to-move, tombol aksi, gestur) — harus mampu menampung seluruh aksi pertarungan D-013 (serang/combo, skill, dodge, block, parry) dan memenuhi standar UI D-031 (nyaman untuk sentuhan; ukuran dan posisi tombol dapat disesuaikan pemain; lihat 6.21).
 - Sudut dan perilaku kamera (follow, orbit, tetap).
 - Dukungan kontroler eksternal.
 
@@ -337,6 +337,21 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - Menegaskan: **jumlah musim = empat** (sebelumnya terbuka di 6.2); keberadaan **cuaca** (sudah dicatat di 6.13).
 
 **[BELUM DITETAPKAN]:** nama dan panjang tiap musim, panjang hari dan siklus siang-malam, daftar cuaca dan peluangnya per iklim, daftar iklim dan pemetaannya ke wilayah, bentuk "fenomena ekstrem", **arti "fenomena spiritual"** dan aturan kemunculan/dampaknya, "kondisi alam langka", bentuk perubahan lingkungan berkelanjutan (apakah permanen), tampilan (visual/audio) tiap musim/cuaca, aturan bila waktu perangkat diubah (lihat D-029). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+### 6.21 UI, HUD, dan Antarmuka Pemain — D-031, LOCKED (Kombinasi Semua Sistem)
+**Ditetapkan:**
+- **HUD RPG** dan informasi karakter.
+- **HUD farming** dan **hotbar alat.**
+- **Inventory, equipment, skill, dan quest.**
+- **Peta, kalender, cuaca, dan waktu.**
+- **Menu peternakan, crafting, dan alkimia.**
+- **Antarmuka dungeon dan combat.**
+- **UI adaptif** sesuai aktivitas pemain.
+- **Pengaturan ukuran dan posisi tombol.**
+- Standar: **Android landscape** utama; kontrol **nyaman untuk layar sentuh**; HUD **tidak menutupi area permainan berlebihan**; **Indonesia utama, English kedua**; visual UI **konsisten dengan 3D Stylized**; UI menampilkan kontrol/informasi **sesuai aktivitas**; **ukuran dan posisi tombol dapat disesuaikan**.
+- Terkait: orientasi (D-004), bahasa (D-007), gaya visual (D-008), semua sistem game yang ditampilkan UI (D-013 sampai D-030), akun/koneksi (D-014).
+
+**[BELUM DITETAPKAN]:** gaya visual UI rinci dan tema; tata letak tiap HUD dan daftar layar/menu; jenis dan jumlah tombol aksi; skema kontrol sentuh konkret; dukungan kontroler; ukuran target sentuh minimum; dukungan ukuran layar berbeda (HP kecil/besar, tablet); aksesibilitas (ukuran teks, kontras, buta warna); cara menampilkan status koneksi dan sinkronisasi cloud; aturan konteks "adaptif" (aktivitas apa yang mengubah UI). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

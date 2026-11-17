@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.20 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.21 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -272,6 +272,23 @@ Syarat utama: musim/cuaca **konsisten dengan kalender dunia** dan **tersinkron d
 - **Audio:** ambience per musim/cuaca/waktu sebagai data (menunggu desain audio).
 - **Save:** seed dunia, tanggal/jam permainan, override cuaca aktif, dan keadaan perubahan lingkungan berkelanjutan (bila ada) masuk payload save (skema berversi).
 - **Pengujian:** simulasi headless deterministik (seed + tanggal → cuaca) dan validator profil iklim.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4r. Implikasi Arsitektur dari D-031 (hanya catatan; belum diimplementasikan)
+
+Syarat utama: **nyaman di layar sentuh landscape**, **adaptif terhadap aktivitas**, dan **tombol dapat disesuaikan**.
+- **Lapisan UI terpisah dari logika:** UI hanya membaca *state* dari sistem game (lewat sinyal/event bus, §4) dan mengirim *perintah/Input Action*; tidak berisi aturan game. Sistem baru menambah panel baru tanpa mengubah logika.
+- **Konteks UI (UI mode):** satu *manajer konteks* menentukan HUD aktif berdasarkan aktivitas (jelajah, farming, combat, dungeon, memancing, crafting, dialog, menu); tiap konteks = set widget + peta kontrol sebagai data/scene. Transisi antarkonteks dianimasikan ringan.
+- **Kontrol sentuh sebagai Input Action** (§7): tombol virtual, joystick, dan gestur memicu Input Action yang sama dengan kontroler/keyboard; ini mendasari uji, dukungan kontroler nanti, dan penyesuaian tombol.
+- **Tata letak dapat disesuaikan:** posisi, ukuran, dan transparansi tiap kontrol disimpan sebagai **pengaturan pemain** (data tata letak per konteks), dengan *tata letak bawaan* yang dapat dipulihkan; pengaturan ini disimpan lokal dan ikut cloud (akun) agar konsisten antarperangkat — bukan bagian progres game, jadi dipisah dari payload save game.
+- **Layar aman dan ukuran:** memakai Control/anchor dan safe area (notch/gesture bar), `canvas_items` + aspect `expand` (project.godot) untuk beragam rasio; target sentuh minimum dan skala UI dapat diatur; diuji pada beberapa rasio.
+- **Tema terpusat:** satu *Theme* resource (warna, font, 9-slice, ikon) agar UI konsisten dengan 3D Stylized dan mudah diganti; ikon/teks memakai kunci terjemahan (id/en, §6); layout menoleransi teks panjang.
+- **Performa UI:** HUD ringan (sedikit draw call, tanpa pembaruan per-frame yang tidak perlu), daftar panjang (inventory, quest) memakai virtualisasi/pooling; mematuhi anggaran §3.
+- **Daftar dan item:** tampilan inventory/equipment/crafting membaca sistem item terpusat (§4g); peta membaca data lokasi (§4o); kalender/cuaca membaca layanan waktu dan cuaca (§4b, §4q).
+- **Status online:** indikator koneksi/sinkron cloud sebagai komponen global (D-014); perilaku saat koneksi putus menunggu desain.
+- **Aksesibilitas:** skala teks, kontras, opsi bantu warna sebagai pengaturan (menunggu desain).
+- **Pengujian:** uji headless untuk tata letak default pada beberapa ukuran layar (tidak ada kontrol keluar layar/tumpang tindih) dan kelengkapan kunci terjemahan UI.
+- **Layar boot** saat ini (`game/boot`) hanya uji fondasi dan bukan bagian UI game.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres
