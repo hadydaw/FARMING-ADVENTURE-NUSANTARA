@@ -346,3 +346,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
 - GDD §6.47 baru (v0.47); Technical Architecture §4ao ditambahkan (v0.47); catatan saja: `DefeatService` tunggal dengan mesin keadaan, profil kekalahan per konteks sebagai data, penyelamatan NPC dengan jalur cadangan, klinik/checkpoint/titik kebangkitan berbasis data dan divalidasi, transaksi atomik idempoten, tanpa penggandaan hadiah. Semua penalti, durasi, dan aturan checkpoint final sengaja tidak ditetapkan.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.
+
+## 2026-11-17 (48) — D-059 Sistem Status Effect, Buff, dan Debuff dicatat
+
+- D-059 (Status Effect Hybrid Lengkap, LOCKED) dicatat sebagai **Tahap 50**; ID tersedia, tanpa bentrokan. **D-051 (Tahap 42) tetap dicadangkan**, isinya belum diterima; tidak ada isi yang dikarang. Kategori "spiritual" dicatat sebagai disebut pemilik tetapi **tetap tidak didefinisikan**.
+- **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
+- GDD §6.48 baru (v0.48); Technical Architecture §4ap ditambahkan (v0.48); catatan saja: satu sistem efek bersama (`StatusEffectDef` berdata dengan lima bagian wajib: definisi, sumber, target, durasi, aturan penghapusan), komponen per entitas, penerapan lewat satu pintu, kategori sebagai tag, durasi dari `GameClock`, probabilitas deterministik, validator kelengkapan, tampilan atas event bus. Katalog, durasi, stacking, probabilitas, dan angka sengaja tidak ditetapkan.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.

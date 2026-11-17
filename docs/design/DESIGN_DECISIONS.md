@@ -883,6 +883,37 @@ Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), pertarungan (**
 
 **Terbuka (tidak diputuskan):** semua penalti (item, uang, EXP, progres) dan apakah ada; durasi pemulihan; aturan dan jenis checkpoint final; kondisi tepat pingsan vs kalah; aturan penyelamatan NPC (siapa, kapan, biaya, tidak selalu tersedia); biaya dan layanan klinik; apakah waktu permainan maju saat pingsan (jalur waktu D-055/D-056); nasib companion/monster saat pemain pingsan; perlakuan khusus di dungeon, boss, dan event; opsi kesulitan/pengaturan terkait; arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
 
+### D-059 — Sistem Status Effect, Buff, dan Debuff *(APPROVED / LOCKED, 2026-11-17, Tahap 50)*
+Pilihan: **D. Status Effect Hybrid Lengkap.** Ruang lingkup:
+1. Buff positif.
+2. Debuff negatif.
+3. Status effect elemental.
+4. Status effect spiritual (**arti "spiritual" belum didefinisikan**; hanya dicatat sebagai kategori yang disebut pemilik).
+5. Penyakit dan kondisi fisik.
+6. Racun dan efek berbahaya lainnya.
+7. Perlindungan, resistensi, dan efek defensif.
+8. Efek makanan, minuman, dan potion.
+9. Integrasi dengan pertarungan, dungeon, pertanian, memasak, alkimia, monster, dan perkembangan karakter.
+
+Ketentuan:
+- **Tidak ada katalog final, durasi, aturan stacking, probabilitas, atau angka balance** tanpa desain lanjutan.
+- **Setiap efek nantinya harus punya definisi, sumber, target, durasi, dan aturan penghapusan yang jelas** (kewajiban kelengkapan definisi, bukan isi).
+- Selaras dengan D-018, D-026, D-046, D-057, dan D-058.
+- Tidak mengubah keputusan terdahulu. Penguncian desain; implementasi belum dimulai.
+
+**Prinsip (dasar, tanpa angka):**
+- Semua status effect berada dalam **satu sistem bersama** (satu definisi, satu cara menerapkan dan menghapus) yang dipakai pemain, companion, monster, dan sumber lain; efek makanan/minuman/potion (D-026, D-057) memakai sistem yang sama.
+- Tiap efek dapat dijelaskan dengan lima bagian: **definisi, sumber, target, durasi, aturan penghapusan** (nilainya ditetapkan kemudian per efek).
+- Efek **tidak boleh membuat pemain kehilangan progres secara tidak wajar** dan tidak ada keadaan tanpa jalan keluar (selaras D-058); penyembuhan/penghapusan efek harus selalu mungkin menurut aturan yang kelak ditetapkan.
+- Efek **ditampilkan jelas** (HUD, aksesibilitas) dan tidak mengandalkan warna saja.
+- Efek berdurasi mengikuti **waktu permainan internal** (D-055), bukan jam perangkat; dihitung konsisten saat tidur, perjalanan, dan loading (D-053, D-056).
+- Hasil acak terkait efek deterministik dari seed (anti save-scumming, selaras D-044/D-055).
+- Tetap **single-player online**; tidak ada efek antarpemain.
+
+Hubungan (tidak mengubah isi keputusan lain): pertarungan (**D-013**), sistem kehidupan (**D-015**), dungeon (**D-016**), perkembangan karakter (**D-018**), companion dan monster (**D-019**), equipment (**D-020**), pertanian (**D-023**), peternakan (**D-024**), memasak dan alkimia (**D-026**), event dunia (**D-029**), musim dan cuaca (**D-030**), UI/HUD (**D-031**), audio (**D-032**), inventory (**D-036**), tutorial (**D-043**), save/cloud (**D-044**), pengaturan dan aksesibilitas (**D-045**), achievement (**D-046**), update konten (**D-048**), QA (**D-049**), keamanan (**D-050**), performa (**D-052**), waktu (**D-055**), tidur (**D-056**), vitalitas (**D-057**), kekalahan (**D-058**). **D-051** isinya belum diterima.
+
+**Terbuka (tidak diputuskan):** katalog efek; durasi; aturan stacking/penggantian/prioritas; probabilitas dan resistensi; semua angka; arti "spiritual" (belum didefinisikan, tidak ditebak); daftar elemen dan penyakit; cara menyembuhkan/menghapus tiap efek; apakah efek bertahan setelah kekalahan/tidur/perpindahan wilayah (aturan lanjutan, selaras D-056/D-058); efek lingkungan/cuaca (D-030); romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

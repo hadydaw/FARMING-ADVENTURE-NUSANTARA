@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.47 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.48 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -649,6 +649,25 @@ Bertumpu pada vitalitas (§4an), pertarungan (§4a), `GameClock` (§4al), pipeli
 - **Tutorial (D-043, §4ad) dan achievement (D-046, §4ae):** tutorial menjelaskan pemulihan secara bertahap; achievement hanya membaca event bus dan tidak mendorong perilaku merugikan.
 - **Performa (D-052):** tanpa pemrosesan berat dalam satu frame; pemilihan tempat dan transisi memakai anggaran per frame; angka belum diukur.
 - **Pengujian (D-049):** uji headless untuk mesin keadaan (semua konteks), idempotensi dan interupsi di tiap langkah, titik kebangkitan selalu valid dan terjangkau di tiap wilayah, tidak ada kehilangan data di luar aturan data, determinisme, konsistensi dengan waktu dan save, serta uji migrasi save lama.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4ap. Implikasi Arsitektur dari D-059 (hanya catatan; belum diimplementasikan; semua angka usulan dan belum diukur)
+
+Mengonsolidasikan mesin kondisi/efek bersama (§4x, §4d) dan `VitalityComponent` (§4an) menjadi satu sistem efek status. Terkait §4a, §4c, §4e, §4f, §4j, §4m, `GameClock` (§4al), pipeline hari (§4am), kekalahan (§4ao). Hanya rancangan; tidak ada katalog, durasi, stacking, atau angka.
+- **`StatusEffectDef` sebagai data:** setiap efek berupa resource ber-ID stabil (§4ag) dengan lima bagian wajib: **definisi** (jenis/kategori, ikon, kunci terjemahan), **sumber** (jenis sumber yang sah), **target** (pemain, companion, monster, objek bila ada), **durasi** (model waktu), dan **aturan penghapusan** (kedaluwarsa, penyembuhan, kondisi, tidur/kekalahan/perpindahan). Validator konten menolak efek yang kehilangan salah satu bagian (kelengkapan, bukan nilai).
+- **`StatusEffectComponent` per entitas:** daftar efek aktif sebagai instance (ID definisi, sumber, penerap, waktu mulai, sisa durasi, tingkat/tumpukan bila diizinkan); bagian dari model makhluk bersama (§4a, §4f) sehingga pemain, companion, dan monster memakai kode yang sama. Aturan stacking/penggantian/prioritas adalah *kebijakan data* per efek (nilai belum ditetapkan), bukan percabangan kode.
+- **Penerapan lewat satu pintu:** `apply(efek, sumber, target, konteks)` dan `remove(...)` mengembalikan hasil eksplisit; sumber (senjata/skill §4a, jebakan dungeon §4c, makanan/ramuan §4m, item §4w, lingkungan/cuaca §4q, event §4p) hanya mendeklarasikan efek lewat data. Kondisi dan resistensi lewat bahasa kondisi/efek bersama (§4x); sumber resistensi (equipment §4g, perkembangan §4e) sebagai modifier data.
+- **Kategori sebagai tag:** elemental, penyakit/fisik, racun, pelindung/defensif, makanan/minuman/ramuan, dan kategori **spiritual** hanya berupa tag data; **arti "spiritual" belum didefinisikan sehingga tidak ada logika atau isi yang dibuat untuknya**.
+- **Waktu dan durasi:** efek berdurasi dihitung dari `GameClock` (§4al), bukan jam perangkat, dengan penjadwal berbasis sinyal waktu berfrekuensi rendah (tanpa polling per frame); saat tidur/perjalanan/loading dihitung per hari-selisih (§4am, §4aj) secara deterministik; aturan apakah efek bertahan setelah tidur/kekalahan/perpindahan adalah data (§4am, §4ao), nilainya belum ditetapkan.
+- **Efek berkala dan hasil acak:** denyut efek (mis. kerusakan/pemulihan berkala) berjalan dari tick jam permainan, bukan per frame; probabilitas memakai benih deterministik (seed+tanggal+ID) agar tidak bisa diulang lewat muat ulang save.
+- **Integrasi vitalitas (§4an):** efek mengubah sumber daya lewat modifier/biaya data pada `VitalityComponent`; efek makanan/minuman/potion adalah efek biasa dari definisi yang sama.
+- **Save/cloud (§5a, D-044):** efek aktif (ID definisi, sumber, sisa durasi, tumpukan) disimpan dengan `section_version`, dimigrasikan; efek yang di-deprecate tetap dikenali pada save lama; sinkronisasi memakai revisi, bukan jam perangkat; checksum bukan anti-cheat (D-050); operasi bernilai tinggi divalidasi urutan server (§5b).
+- **UI/HUD dan aksesibilitas (D-031, D-045):** ikon dan daftar efek sebagai tampilan atas event bus (bukan pemegang logika); label/deskripsi lewat kunci terjemahan; bentuk ikon berbeda selain warna, kontras, pengurangan animasi; penjelasan ringkas sumber dan sisa durasi; audio isyarat lewat bus (D-032).
+- **Tutorial (D-043, §4ad) dan achievement (D-046, §4ae):** tutorial memperkenalkan efek bertahap; achievement hanya membaca event bus.
+- **Performa (D-052):** modifier agregat di-cache dan dihitung ulang hanya saat efek berubah; batas efek aktif per entitas dan pembaruan LOD untuk monster jauh sebagai parameter data (belum diukur); efek visual dikurangi pada perangkat lemah tanpa mengubah hasil.
+- **Update konten (D-048):** efek baru ditambah sebagai data; validator memastikan referensi valid, aturan penghapusan ada, dan tidak ada efek yang tidak dapat dihapus tanpa jalan keluar; kompatibel dengan save lama.
+- **Pengujian (D-049):** uji headless untuk kelengkapan definisi, apply/remove idempoten, perilaku durasi terhadap `GameClock`, tidak bergantung jam perangkat, determinisme probabilitas, hasil sama setelah tidur/perjalanan dibanding simulasi per hari, migrasi save, dan tidak ada efek yang menyisakan keadaan buntu.
 - **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
