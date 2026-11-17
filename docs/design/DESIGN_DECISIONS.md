@@ -547,6 +547,22 @@ Pilihan: **D. Character Customization Hybrid Lengkap.** Ketentuan:
 Hubungan (tidak mengubah isi keputusan lain): bahasa (**D-007**), gaya visual (**D-008**), pertarungan dan senjata (**D-013**), perkembangan karakter (**D-018**), companion (**D-019**), equipment dan crafting (**D-020**), ekonomi/toko (**D-021**), event dunia (**D-029**), UI (**D-031**), kamera (**D-033**), inventory (**D-036**), quest (**D-037**), online dan cloud save (**D-014**, **O-003**).
 **Terbuka:** apakah ada pilihan jenis kelamin/tubuh dan bagaimana dinyatakan; daftar opsi wajah, rambut, warna, dan elemen lain; slot kosmetik (kepala, badan, kaki, punggung, dll.) dan aksesori; daftar set pakaian dan sumber pembukaan tiap item; apakah penampilan dapat dibeli, dibuat, atau hanya dibuka; aturan override kosmetik (per aktivitas, otomatis ganti baju); perlakuan senjata di punggung/pinggang saat tidak dipakai; mengganti penampilan setelah pembuatan karakter (kapan, biaya); batas variasi mesh/material/tekstur dan anggaran performa; apakah NPC/companion memakai sistem yang sama; foto/mode tampil; aksesibilitas; peran konsep "spiritual" (belum didefinisikan). Implementasi creator dan wardrobe belum dimulai. ID D-041 tersedia saat dicatat (tanpa bentrokan).
 
+### D-042 — Sistem Mount dan Kendaraan *(APPROVED / LOCKED, 2026-11-17, Tahap 32)*
+Pilihan: **D. Mount System Hybrid Lengkap.** Ketentuan:
+1. Transportasi mencakup: hewan tunggangan biasa (mis. kuda); monster mount hasil taming; kendaraan darat (kereta, alat transportasi khusus); transportasi air (perahu); mount langka dan spiritual dengan kemampuan khusus.
+2. Tiap mount/kendaraan punya karakteristik: kecepatan, stamina atau energi bila relevan, kemampuan, kapasitas, batas medan.
+3. Mount dapat punya atribut, level, ikatan dengan pemain, dan kemampuan yang berkembang sesuai jenisnya.
+4. Monster mount terintegrasi dengan monster taming dan companion.
+5. Kendaraan dan mount mengikuti aturan akses wilayah, medan, dungeon, dan progres permainan.
+6. Pemain dapat memanggil, menaiki, menurunkan, dan mengganti mount dengan kontrol sentuh nyaman.
+7. Memperhatikan navigasi, animasi, collision, dan kamera adaptif (D-033) saat memakai mount.
+8. Terintegrasi dengan inventory (D-036), eksplorasi dunia, progression karakter, quest, dan cloud save Supabase.
+9. Tidak semua kendaraan dapat dipakai di semua medan; tiap transportasi punya fungsi yang masuk akal.
+10. UI mendukung Android landscape, Indonesia dan English.
+
+Hubungan (tidak mengubah isi keputusan lain): bahasa (**D-007**), dunia dan wilayah (**D-009**), pertarungan (**D-013**), dungeon (**D-016**), perkembangan karakter (**D-018**), companion dan monster taming (**D-019**), peternakan (**D-024**), memancing dan air (**D-025**), bangunan (**D-027**), eksplorasi dan perjalanan (**D-028**), UI (**D-031**), audio (**D-032**), kamera (**D-033**), kontrol (**D-034**), interaksi (**D-035**), inventory (**D-036**), quest (**D-037**), kustomisasi (**D-041**), online dan cloud save (**D-014**, **O-003**).
+**Terbuka:** daftar jenis mount/kendaraan dan angkanya; cara memperoleh (beli, taming, quest, crafting); aturan stamina/energi dan perawatan; aturan medan (mis. darat, air, hutan, gunung, dungeon) dan larangannya; aturan pemanggilan (tempat, cooldown, biaya); kapasitas muatan dan hubungan dengan inventory; apakah mount dapat bertarung atau dipakai saat combat; penyimpanan mount (kandang/istal) dan hubungan dengan peternakan; kemampuan mount spiritual dan arti "spiritual" (belum didefinisikan, tidak ditebak); apakah ada mount kustomisasi tampilan; aturan saat mount terluka/mati; perjalanan cepat dan hubungannya. Implementasi mount belum dimulai. ID D-042 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

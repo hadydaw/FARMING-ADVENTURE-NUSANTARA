@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.31 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.32 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -427,6 +427,24 @@ Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 - **Persistence:** keadaan tampilan (pilihan wajah/rambut/warna, kosmetik terpilih per slot, aturan per aktivitas) dan koleksi yang terbuka masuk payload save (§5) berversi dengan ID stabil; bagian yang dihapus/diubah di versi baru ditangani migrasi (jatuh ke bawaan); cloud save Supabase lewat mekanisme save yang sama (D-014). Pengaturan tampilan murni UI (mis. urutan filter) dapat berupa pengaturan pemain.
 - **Konsumen lain:** NPC dan companion dapat memakai sistem karakter modular yang sama (belum diputuskan); event dan cerita dapat memaksa kosmetik sementara lewat efek data.
 - **Pengujian:** uji headless untuk keterpenuhan slot dan titik pasang, aturan penutup, perhitungan tampilan akhir (kosmetik vs equipment), serialisasi-migrasi, tidak adanya teks pada aset, dan anggaran draw call/material per karakter; uji visual dan FPS di perangkat nyata nanti.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4ac. Implikasi Arsitektur dari D-042 (hanya catatan; belum diimplementasikan)
+
+- **Satu model "kendaraan/tunggangan" berbasis data:** jenis (hewan, monster, darat, air, spiritual) hanyalah profil data: kecepatan, percepatan, stamina/energi, kapasitas, **tag medan yang diizinkan**, kemampuan, titik duduk/kendali, dan kebutuhan (perawatan/pakan). Mount hewan dan monster memakai **model makhluk bersama** (§4f, §4k) sehingga atribut, level, ikatan, dan kebutuhan berasal dari sistem yang sama dengan companion/ternak; kendaraan non-hidup (kereta, perahu) memakai profil yang sama tanpa komponen makhluk.
+- **Mesin keadaan mount:** tidak dipanggil → dipanggil/tiba → dinaiki → diturunkan → disimpan/diistirahatkan (+ terluka/tidak tersedia). Transisi (naik/turun/ganti) memakai kondisi valid (tempat, medan, status, combat) dengan interaksi §4v dan tombol kontekstual §4u; satu aksi diproses sekali.
+- **Integrasi gerak:** saat dinaiki, kendali karakter berpindah ke kontroler mount (joystick/tap-to-move tetap, §4u); perhitungan gerak memakai profil mount (kecepatan, belok, percepatan), stamina berkurang sesuai aksi dan pulih saat istirahat. Pemain dan mount dipasang sebagai satu rig (pemain sebagai anak dari titik duduk) untuk menghindari selisih posisi; tabrakan memakai satu kapsul/bentuk gabungan.
+- **Medan dan akses:** setiap area/permukaan memiliki **tag medan** (§4o: darat, air dangkal/dalam, hutan lebat, pegunungan, dungeon sempit, dll.); kendaraan hanya sah jika tag medan masuk daftar izin, dan wilayah/dungeon dapat melarang atau membatasi mount lewat data (§4c, §4o). Perpindahan medan (mis. darat ke air) memicu pengecekan: berhenti, berganti kendaraan, atau ditolak dengan pesan terjemahan (§6). Akses mengikuti progres lewat kondisi bersama (§4x).
+- **Pemanggilan:** aturan data per jenis (lokasi yang boleh, cooldown, biaya, jarak, apakah mount "datang" atau muncul). Mount yang dipanggil muncul pada titik valid dekat pemain (NavMesh) dan tidak tersangkut; mount yang tidak sedang dipakai tidak disimulasikan penuh (LOD makhluk, §4i/§4aa): posisi dihitung dari keadaan tersimpan atau berada di istal/kandang.
+- **Navigasi:** mount dan pengikut memakai navigation mesh dan tag medan yang sama dengan NPC (§4aa), termasuk penanganan terjebak (kembali ke pemain/titik aman), serta jalur khusus air untuk perahu; tap-to-move dihitung terhadap kemampuan mount.
+- **Animasi dan collision:** animasi gabungan (pemain duduk/berkendara + mount) melalui titik pasang dan layer animasi terpisah; transisi naik/turun diselaraskan dengan rig dan collider; senjata dan kosmetik karakter (§4ab) tetap konsisten saat berkendara; penyesuaian tinggi/orientasi di lereng sederhana (tanpa IK berat).
+- **Kamera:** profil kamera khusus untuk berkendara (jarak lebih jauh, FOV/lead sesuai kecepatan) dengan transisi halus dari/ke profil jelajah (§4t); batas zoom/rotasi pemain tetap berlaku.
+- **Inventory dan muatan:** kapasitas muatan kendaraan sebagai wadah inventory (§4w) bila diputuskan, atau pengubah kapasitas pemain; item kendaraan/mount yang dapat dibeli, dibuat, atau didapat memakai sistem item/ekonomi (§4g, §4h).
+- **Perkembangan:** level, ikatan, dan kemampuan memakai sistem stat dan perkembangan yang sama (§4e, §4f); kemampuan spiritual/langka sebagai data efek (konsep "spiritual" belum didefinisikan, tidak diasumsikan).
+- **Persistence:** keadaan mount (ID, atribut, level, ikatan, stamina, lokasi/penyimpanan, status, kosmetik) masuk payload save (§5) berversi dengan ID stabil; saat muat ulang mount ditempatkan pada titik valid (tidak menyimpan jalur) dan pemain yang sedang berkendara dipulihkan dalam keadaan konsisten (naik atau diturunkan di titik aman bila medan berubah); cloud save Supabase lewat mekanisme save yang sama (D-014).
+- **Audio:** langkah/mesin/air dan suara makhluk lewat sistem audio (§4s) menurut medan.
+- **Performa:** satu mount aktif penuh dalam satu waktu; mount lain LOD/tidak disimulasikan; hindari alokasi per frame; selaras anggaran §3.
+- **Pengujian:** uji headless untuk transisi keadaan, aturan medan dan akses, pemanggilan pada titik valid, stamina, serialisasi-migrasi, dan tidak adanya mount tersangkut (simulasi jalur uji); uji perangkat nyata nanti.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres

@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.31 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.32 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -488,6 +488,22 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - Terkait: D-007, D-008, D-013, D-014, D-018 sampai D-021, D-029, D-031, D-033, D-036, D-037.
 
 **[BELUM DITETAPKAN]:** pilihan jenis kelamin/tubuh, daftar opsi penampilan, slot kosmetik, daftar set pakaian dan sumber pembukaan, cara memperoleh (beli/buat/dibuka), aturan ganti otomatis per aktivitas, perlakuan senjata saat tidak dipakai, aturan mengganti penampilan, anggaran variasi dan performa, penerapan ke NPC/companion, mode foto, aksesibilitas, konsep "spiritual" (belum didefinisikan). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+### 6.32 Mount dan Kendaraan — D-042, LOCKED (Mount System Hybrid Lengkap)
+**Ditetapkan:**
+- **Jenis transportasi:** hewan tunggangan biasa (mis. kuda); **monster mount** hasil taming; **kendaraan darat** (kereta, alat khusus); **transportasi air** (perahu); **mount langka dan spiritual** dengan kemampuan khusus.
+- Tiap mount/kendaraan: **kecepatan, stamina/energi** (bila relevan), **kemampuan, kapasitas, batas medan.**
+- Mount punya **atribut, level, ikatan dengan pemain**, dan kemampuan yang dapat berkembang sesuai jenisnya.
+- **Monster mount terintegrasi** dengan taming dan companion (D-019).
+- Mengikuti **aturan akses wilayah, medan, dungeon, dan progres.**
+- Pemain dapat **memanggil, menaiki, menurunkan, mengganti** mount dengan kontrol sentuh nyaman.
+- Memperhatikan **navigasi, animasi, collision, dan Kamera Adaptif** (D-033).
+- Terintegrasi dengan **inventory D-036, eksplorasi, progression, quest, cloud save Supabase.**
+- **Tidak semua kendaraan dapat dipakai di semua medan**; tiap transportasi punya fungsi masuk akal.
+- UI **Android landscape**, **Indonesia dan English.**
+- Terkait: D-007, D-009, D-013, D-014, D-016, D-018, D-019, D-024, D-025, D-027, D-028, D-031 sampai D-037, D-041.
+
+**[BELUM DITETAPKAN]:** daftar jenis dan angka, cara memperoleh, aturan stamina/perawatan, aturan medan, aturan pemanggilan (tempat, cooldown, biaya), kapasitas muatan, mount dalam combat, penyimpanan mount, kemampuan mount spiritual (arti "spiritual" belum didefinisikan), kustomisasi tampilan mount, aturan saat mount terluka/mati, hubungan dengan perjalanan cepat. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 
