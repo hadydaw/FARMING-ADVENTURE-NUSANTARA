@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.9 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.10 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -119,6 +119,18 @@ Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 - **Aktivitas bantuan** (mis. pekerjaan ladang) dijalankan lewat antarmuka tugas dari sistem kehidupan (D-015) dan dihitung ulang lewat layanan kalender saat pemain offline/di dungeon, tanpa simulasi penuh.
 - **Save:** koleksi companion (instance: spesies, level, evolusi, loyalitas, skill terpelajar, tugas aktif) dan daftar monster langka yang sudah dikoleksi masuk payload save (skema berversi). Simpan sumber/progres, bukan nilai turunan.
 - **Online (D-014):** koleksi bersifat pribadi; tidak ada perdagangan atau pertarungan antarpemain. Validasi server atas hasil taming/evolusi dipertimbangkan hanya bila diputuskan.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4g. Implikasi Arsitektur dari D-020 (hanya catatan; belum diimplementasikan)
+
+- **Sistem item terpusat** (definisi item, instance item, inventori) yang dipakai farming, memasak, gathering, mining, loot dungeon/boss, dan crafting. Beda tegas antara **definisi** (data tetap: nama, tipe, rarity dasar) dan **instance** (kualitas, level upgrade, enchant, atribut tambahan).
+- **Crafting sebagai resep data:** bahan, hasil, profesi/level yang dibutuhkan, dan stasiun kerja sebagai data; satu mesin resep melayani senjata, armor, potion, dan makanan sehingga memasak (D-015) dan Alchemist/Blacksmith berbagi kerangka.
+- **Kualitas, rarity, enchant, upgrade** sebagai modifier yang masuk *stat pipeline* yang sama dengan perkembangan karakter (§4e); simpan sumber modifier, hitung stat turunan saat dibutuhkan.
+- **Tabel loot dan sumber material:** gathering, mining, drop monster, dungeon (D-016), dan boss memakai tabel data yang sama; material langka/legendaris ditandai lewat data (bukan kode).
+- **Pengacakan** (kualitas, atribut tambahan, hasil enchant) memakai generator acak ber-seed yang dapat diuji headless; hasil acak yang penting dapat dikunci di save agar tidak dapat dimanipulasi dengan memuat ulang.
+- **Save:** inventori (instance item bertipe), kemajuan profesi, resep yang sudah dikuasai, dan status stasiun/antrean crafting masuk payload save (skema berversi; migrasi menjaga item pemain bila data item berubah).
+- **Online (D-014):** ekonomi pribadi; tidak ada perdagangan antarpemain. Validasi server atas item langka/legendaris dipertimbangkan hanya bila diputuskan (risiko manipulasi save).
+- **Anggaran performa:** banyak varian visual equipment memerlukan sistem pemasangan model/material modular (menunggu art direction).
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres

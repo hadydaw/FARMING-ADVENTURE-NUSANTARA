@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.9 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.10 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -144,9 +144,21 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 
 **[BELUM DITETAPKAN]:** jumlah lantai/ruangan, aturan dan seed pembuatan acak, tabel loot dan drop, tingkat kesulitan dan penskalaan, batas masuk (rank/level/stamina), cara membuka dungeon rahasia, daftar boss dan boss spesial, jenis hadiah unik, hubungan dungeon dengan Progressive World Unlock dan rank petualang, keseimbangan dengan sistem kehidupan (D-015). **Tidak ada implementasi dungeon sebelum seluruh tahap desain selesai.**
 
-### 6.9 Material dan Equipment
-Ditetapkan: mengumpulkan material dan membuat equipment.
-Belum: jenis equipment, slot, tier, crafting, stat.
+### 6.9 Equipment dan Crafting — D-020, LOCKED (Kombinasi Semua Sistem)
+**Ditetapkan:**
+- **Crafting senjata dan armor.**
+- **Equipment Upgrade.**
+- **Enchant dan atribut tambahan.**
+- **Mining dan Gathering.**
+- **Profesi Blacksmith dan Alchemist.**
+- **Pembuatan potion dan makanan.**
+- **Material langka dari dungeon.**
+- **Material legendaris dari Boss.**
+- **Sistem kualitas dan rarity item.**
+- Crafting harus **terhubung** dengan pertanian, gathering, pertambangan, perburuan monster, dan eksplorasi dungeon.
+- Terkait: pertarungan (D-013), penguasaan senjata (D-018), dungeon dan boss (D-016), Sistem Kehidupan/memasak (D-015). Berlaku sejak sebelumnya: mengumpulkan material dan membuat equipment (D-010).
+
+**[BELUM DITETAPKAN]:** daftar jenis equipment, slot, dan tier; resep dan bahan; stat; jenis enchant dan atribut tambahan; rumus kualitas dan daftar tingkat rarity; cara kerja profesi (apakah Blacksmith/Alchemist berupa NPC, keterampilan pemain, atau keduanya) dan hubungannya dengan Class/Job (D-018) dan spesialisasi guild (D-017); batas antara memasak (D-015) dan pembuatan makanan di sini; titik dan alat mining/gathering; sumber material per wilayah; upgrade (biaya, batas, risiko gagal); ekonomi bahan dan harga. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ### 6.10 Perkembangan Karakter — D-018, LOCKED (Kombinasi Semua Sistem)
 **Ditetapkan:**

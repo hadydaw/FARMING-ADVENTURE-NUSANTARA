@@ -131,6 +131,23 @@ Companion memiliki fungsi berbeda sesuai jenis, kemampuan, dan karakteristiknya.
 Hubungan dengan keputusan lain (tidak mengubah isinya): monster berasal dari dungeon (**D-016**) dan sistem pertarungan (**D-013**); pemeliharaan hewan ternak adalah bagian **D-015** dan dibedakan dari pet/companion (batas keduanya belum ditetapkan); "membantu aktivitas tertentu" berkaitan dengan Sistem Kehidupan (D-015) dan dungeon, jenis aktivitasnya belum ditetapkan.
 Detail (daftar monster dan pet, cara menjinakkan, batas jumlah companion, rumus level/evolusi, mekanik loyalitas, aktivitas yang dibantu) belum ditetapkan. Implementasi belum dimulai. ID D-019 tersedia saat dicatat (tanpa bentrokan dengan ID yang berlaku).
 
+### D-020 — Sistem Equipment dan Crafting *(APPROVED / LOCKED, 2026-11-17, Tahap 10)*
+Pilihan: **D. Kombinasi Semua Sistem.** Fitur yang ditetapkan:
+1. Crafting senjata dan armor
+2. Equipment Upgrade
+3. Enchant dan atribut tambahan
+4. Mining dan Gathering
+5. Profesi Blacksmith dan Alchemist
+6. Pembuatan potion dan makanan
+7. Material langka dari dungeon
+8. Material legendaris dari Boss
+9. Sistem kualitas dan rarity item
+
+Syarat: sistem crafting harus terhubung dengan pertanian, gathering, pertambangan, perburuan monster, dan eksplorasi dungeon.
+
+Hubungan dengan keputusan lain (tidak mengubah isinya): senjata dan armor melengkapi pertarungan (**D-013**) dan penguasaan senjata (**D-018**); material langka/legendaris berasal dari dungeon dan boss (**D-016**); pertanian dan memasak adalah bagian **D-015** (makanan dibuat lewat sistem memasak/crafting; batas keduanya belum ditetapkan); Blacksmith dan Alchemist adalah profesi, hubungannya dengan Class/Job (**D-018**) dan spesialisasi guild (**D-017**) belum ditetapkan.
+Detail (daftar equipment, slot, tier, resep, stat, jenis enchant, rumus kualitas dan rarity, tingkat profesi, titik mining/gathering) belum ditetapkan. Implementasi belum dimulai. ID D-020 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |
