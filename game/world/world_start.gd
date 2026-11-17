@@ -55,6 +55,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	sites._follow_companion(delta)
+	sites.update_monsters(delta)
 	_move_npcs(delta)
 	_update_map()
 	_update_fishing(delta)

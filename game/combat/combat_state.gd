@@ -68,7 +68,7 @@ func player_attack(inventory: Inventory, item_defs: Dictionary) -> int:
 
 
 ## Satu putaran serang. Mengembalikan {ok, reason, dealt, taken, defeated, drops:[{item,count}], exp, fainted, leveled}.
-func attack(spawn_id: String, day: int, world_seed: int, inventory: Inventory, item_defs: Dictionary, vitality: Vitality, economy: Economy) -> Dictionary:
+func attack(spawn_id: String, day: int, world_seed: int, inventory: Inventory, item_defs: Dictionary, vitality: Vitality, economy: Economy, counter: bool = true) -> Dictionary:
 	var res := {"ok": false, "reason": "", "dealt": 0, "taken": 0, "defeated": false, "drops": [], "exp": 0, "fainted": false, "leveled": false}
 	if not _spawns.has(spawn_id):
 		res["reason"] = "unknown"
@@ -100,15 +100,34 @@ func attack(spawn_id: String, day: int, world_seed: int, inventory: Inventory, i
 		res["drops"] = _roll_drops(mon, spawn_id, day, world_seed, inventory)
 		return res
 	_hp[spawn_id] = hp
+	if counter:
+		var back := retaliate(spawn_id, vitality, economy)
+		res["taken"] = back["taken"]
+		res["fainted"] = back["fainted"]
+	return res
+
+
+## Serangan balik monster ke pemain (tukar-pukul langsung atau waktu-nyata). Pingsan: uang berkurang,
+## HP pulih sebagian, monster pulih penuh. {taken, fainted}
+func retaliate(spawn_id: String, vitality: Vitality, economy: Economy) -> Dictionary:
+	var out := {"taken": 0, "fainted": false}
+	if not _spawns.has(spawn_id) or vitality.value("health") <= 0:
+		return out
+	var mon := spawn_monster(spawn_id)
 	var taken := maxi(0, int(mon["attack"]) - player_defense())
-	res["taken"] = absi(vitality.change("health", -taken))
+	out["taken"] = absi(vitality.change("health", -taken))
 	if vitality.value("health") <= 0:
-		res["fainted"] = true
-		_hp.erase(spawn_id)   # monster pulih penuh
+		out["fainted"] = true
+		_hp.erase(spawn_id)
 		var loss := int(floor(float(economy.money) * float(config["faint_money_loss"])))
 		economy.money -= loss
 		vitality.change("health", int(ceil(float(vitality.max_value("health")) * float(config["faint_health_fraction"]))))
-	return res
+	return out
+
+
+## Monster pulih penuh (mis. pemain kabur melewati batas kejar).
+func heal_spawn(spawn_id: String) -> void:
+	_hp.erase(spawn_id)
 
 
 func _roll_drops(mon: Dictionary, spawn_id: String, day: int, world_seed: int, inventory: Inventory) -> Array:

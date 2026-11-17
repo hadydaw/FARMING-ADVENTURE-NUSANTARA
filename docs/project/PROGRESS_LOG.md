@@ -633,3 +633,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Perapian: dapur uji digeser (z 0.5 -> 3.0) dan papan guild (z -8 -> -6) agar tidak menumpuk dengan semak/pagar.
 - Belum: nama karakter (butuh input teks), rambut/wajah/aksesori, pakaian terbuka lewat progres, pratinjau berputar; semua menunggu model B-001 dan keputusan D-041 yang terbuka.
 - Uji: 30 berkas, 2888 pemeriksaan, 0 gagal; smoke test lulus.
+
+## 2026-11-18 (88) — Pertarungan waktu-nyata dasar (D-013, teknis)
+
+- Pemilik memilih "Pertarungan waktu-nyata". RealtimeCombat (jeda serang pemain + keputusan monster idle/chase/wait/attack dari delta waktu), CombatState.retaliate/heal_spawn dan attack(counter=false), FarmingSession.strike_monster/monster_retaliate. WorldSites.update_monsters: monster bergerak mengejar, menyerang berkala, kembali ke "home" dan pulih bila pemain jauh/lewat batas kejar; berhenti saat waktu dijeda atau menu terbuka. Gua tetap tukar-pukul per ketukan.
+- Nilai waktu-nyata (jeda 0.5/1.2 dtk, jarak kejar 7, serang 1.9, kecepatan 2.6, batas 16) SEMENTARA di combat_config.json.
+- Belum: tombol serang khusus, animasi/efek kena, dodge/blok, knockback, tabrakan monster dengan dunia, pola serangan berbeda, AI selain mengejar (D-013/D-019/D-058 detail terbuka).
+- Uji: 31 berkas, 2919 pemeriksaan, 0 gagal; smoke test lulus.

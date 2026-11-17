@@ -26,6 +26,7 @@ var fishing_casts_today := 0
 var economy: Economy
 var gather: GatherState
 var combat: CombatState
+var realtime: RealtimeCombat
 var quests: QuestState
 var dungeon: DungeonState
 var achievements: AchievementState
@@ -59,6 +60,7 @@ func _init(clock: GameClock, items: Array, crops: Array, plot_ids: Array, config
 	upgrades = UpgradeState.new(extras.get("upgrades", []))
 	companions = CompanionState.new(extras.get("companions", []))
 	character = CharacterState.new(extras.get("character_options", []))
+	realtime = RealtimeCombat.new(extras.get("combat_config", {"player_cooldown": 0.0, "monster_interval": 1.0, "aggro_range": 0.0, "attack_range": 0.0, "monster_speed": 0.0, "leash": 0.0}))
 	recipes = extras.get("recipes", [])
 	stations = extras.get("stations", [])
 	for sh in extras.get("shops", []):
@@ -395,6 +397,23 @@ func dungeon_start(id: String) -> Dictionary:
 
 func dungeon_attack() -> Dictionary:
 	return dungeon.attack(_clock.day_index(), combat, inventory, item_defs, vitality, economy, quests)
+
+
+## Serang waktu-nyata: tanpa balasan instan (monster membalas sendiri lewat monster_retaliate).
+## Gagal "cooldown" bila terlalu cepat.
+func strike_monster(spawn_id: String) -> Dictionary:
+	if not realtime.can_strike():
+		return {"ok": false, "reason": "cooldown", "dealt": 0, "taken": 0, "defeated": false, "drops": [], "exp": 0, "fainted": false, "leveled": false}
+	var r := combat.attack(spawn_id, _clock.day_index(), world_seed, inventory, item_defs, vitality, economy, false)
+	if bool(r["ok"]):
+		realtime.mark_strike()
+	if bool(r["defeated"]):
+		quests.on_defeat(str(combat.spawn_monster(spawn_id)["id"]))
+	return r
+
+
+func monster_retaliate(spawn_id: String) -> Dictionary:
+	return combat.retaliate(spawn_id, vitality, economy)
 
 
 func quest_accept(id: String) -> Dictionary:

@@ -15,6 +15,12 @@
 			100,
 			180,
 			300
-		]
+		],
+		"player_cooldown": 0.5,
+		"monster_interval": 1.2,
+		"aggro_range": 7.0,
+		"attack_range": 1.9,
+		"monster_speed": 2.6,
+		"leash": 16.0
 	}
 ]

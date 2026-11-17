@@ -189,6 +189,7 @@ func _build_monsters() -> void:
 		it.set_meta("spawn_id", str(sp["id"]))
 		it.set_meta("label_key", str(mon["name_key"]))
 		w.add_child(node)
+		node.set_meta("home", node.global_position)
 		monster_nodes[str(sp["id"])] = node
 		w._markers.append({"node": node, "kind": "monster", "region": str(sp["region"])})
 	Events.day_changed.connect(func(_d): _refresh_monsters())
@@ -207,9 +208,10 @@ func _refresh_monsters() -> void:
 
 
 func _attack(spawn_id: String) -> void:
-	var r := w.farming.attack_monster(spawn_id)
+	var r := w.farming.strike_monster(spawn_id)
 	if not bool(r["ok"]):
-		w.hud.show_message(tr("COMBAT_NO_" + str(r["reason"]).to_upper()))
+		if str(r["reason"]) != "cooldown":
+			w.hud.show_message(tr("COMBAT_NO_" + str(r["reason"]).to_upper()))
 		return
 	var msg := tr("COMBAT_HIT") % int(r["dealt"])
 	if bool(r["defeated"]):
@@ -218,14 +220,51 @@ func _attack(spawn_id: String) -> void:
 			msg += "\n%s: %s x%d" % [tr("COMBAT_DROP"), tr(str(w.farming.item_defs[d["item"]]["name_key"])), int(d["count"])]
 		if bool(r["leveled"]):
 			msg += "\n" + tr("COMBAT_LEVEL_UP")
-	elif int(r["taken"]) > 0:
-		msg += "  " + tr("COMBAT_TAKEN") % int(r["taken"])
-	if bool(r["fainted"]):
-		msg = tr("COMBAT_FAINTED")
-		w._place_player("region_village", 0.0, 4.0)
-	w.hud.show_message(msg)
+	w.hud.show_message(msg, 1.2)
 	_refresh_monsters()
 	w.refresh_farm_visuals()
+
+
+## Monster waktu-nyata: mengejar pemain dalam jarak kejar, menyerang berkala, kembali ke asal
+## bila pemain jauh atau lewat batas kejar (lalu pulih). Berhenti saat menu/dialog/tidur (waktu dijeda).
+func update_monsters(delta: float) -> void:
+	if w.farming == null or w.player == null or monster_nodes.is_empty():
+		return
+	if GameTime.clock.is_paused() or w.hud.menu_visible() or w.hud.shop_visible():
+		return
+	var fc := w.farming
+	fc.realtime.tick(delta)
+	var day := GameTime.clock.day_index()
+	var cfg: Dictionary = fc.realtime.cfg
+	for id in monster_nodes:
+		var node: Node3D = monster_nodes[id]
+		if not fc.combat.is_alive(str(id), day):
+			continue
+		var home: Vector3 = node.get_meta("home")
+		var to: Vector3 = w.player.global_position - node.global_position
+		to.y = 0.0
+		var dist := to.length()
+		var away_from_home := node.global_position.distance_to(home)
+		var decision := "idle" if away_from_home > float(cfg["leash"]) else fc.realtime.monster_decision(str(id), dist, delta)
+		if decision == "chase":
+			node.global_position += to.normalized() * float(cfg["monster_speed"]) * delta
+		elif decision == "attack":
+			var r := fc.monster_retaliate(str(id))
+			if int(r["taken"]) > 0 or bool(r["fainted"]):
+				if bool(r["fainted"]):
+					w.hud.show_message(tr("COMBAT_FAINTED"))
+					w._place_player("region_village", 0.0, 4.0)
+				else:
+					w.hud.show_message(tr("COMBAT_TAKEN") % int(r["taken"]), 1.0)
+				_refresh_monsters()
+				w.refresh_farm_visuals()
+		elif decision == "idle" and away_from_home > 0.3:
+			var back := home - node.global_position
+			back.y = 0.0
+			node.global_position += back.normalized() * minf(float(cfg["monster_speed"]) * delta, back.length())
+			if node.global_position.distance_to(home) <= 0.3:
+				fc.combat.heal_spawn(str(id))
+				_refresh_monsters()
 
 
 # --- Papan guild + quest (SEMENTARA) ---
