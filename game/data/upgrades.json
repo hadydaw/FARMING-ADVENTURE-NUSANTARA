@@ -1,0 +1,72 @@
+[
+	{
+		"id": "up_bag_1",
+		"provisional": true,
+		"name_key": "UP_BAG_1",
+		"cost": 100,
+		"materials": [
+			{
+				"item": "material_stone_test",
+				"count": 2
+			}
+		],
+		"requires": "",
+		"effect": {
+			"kind": "bag_slots",
+			"amount": 6
+		}
+	},
+	{
+		"id": "up_bag_2",
+		"provisional": true,
+		"name_key": "UP_BAG_2",
+		"cost": 250,
+		"materials": [
+			{
+				"item": "material_stone_test",
+				"count": 5
+			}
+		],
+		"requires": "up_bag_1",
+		"effect": {
+			"kind": "bag_slots",
+			"amount": 6
+		}
+	},
+	{
+		"id": "up_stamina_1",
+		"provisional": true,
+		"name_key": "UP_STAMINA_1",
+		"cost": 150,
+		"materials": [
+			{
+				"item": "herb_test",
+				"count": 3
+			}
+		],
+		"requires": "",
+		"effect": {
+			"kind": "max_meter",
+			"meter": "stamina",
+			"amount": 10
+		}
+	},
+	{
+		"id": "up_health_1",
+		"provisional": true,
+		"name_key": "UP_HEALTH_1",
+		"cost": 150,
+		"materials": [
+			{
+				"item": "drop_test_hide",
+				"count": 2
+			}
+		],
+		"requires": "",
+		"effect": {
+			"kind": "max_meter",
+			"meter": "health",
+			"amount": 20
+		}
+	}
+]

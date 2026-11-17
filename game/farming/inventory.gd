@@ -20,6 +20,17 @@ func _init(slots: int, stack_max_lookup: Callable) -> void:
 		_slots.append({})
 
 
+## Ubah jumlah slot (upgrade tas). Menambah slot kosong atau memotong dari belakang;
+## pemanggil memastikan tidak ada item di slot terpotong (atau memulihkannya sendiri).
+func set_slot_count(n: int) -> void:
+	n = maxi(n, 0)
+	while _slots.size() < n:
+		_slots.append({})
+	while _slots.size() > n:
+		_slots.pop_back()
+	slot_count = n
+
+
 func slots() -> Array:
 	return _slots
 

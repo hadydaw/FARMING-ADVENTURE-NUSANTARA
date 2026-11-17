@@ -82,5 +82,11 @@
 		"prompt_key": "FARM_ACT_DUNGEON",
 		"max_distance": 2.6,
 		"min_facing_dot": 0.0
+	},
+	{
+		"id": "upgrade",
+		"prompt_key": "FARM_ACT_UPGRADE",
+		"max_distance": 2.4,
+		"min_facing_dot": 0.0
 	}
 ]

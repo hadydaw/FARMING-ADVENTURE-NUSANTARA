@@ -41,6 +41,7 @@ func _ready() -> void:
 	_build_gather_nodes()
 	_build_monsters()
 	_build_board()
+	_build_upgrade_site()
 	_build_dungeon_entrance()
 	Events.interaction_performed.connect(_on_interacted)
 	if SaveService.pending_load_slot >= 0:
@@ -73,6 +74,8 @@ func _prompt_text() -> String:
 		return ""
 	if sensor.current.has_meta("station_id"):
 		return tr("FARM_ACT_CRAFT") + ": " + tr(str(sensor.current.get_meta("label_key", "")))
+	if sensor.current.has_meta("is_upgrade"):
+		return tr("FARM_ACT_UPGRADE")
 	if sensor.current.has_meta("dungeon_id"):
 		return tr("FARM_ACT_DUNGEON")
 	if sensor.current.has_meta("is_board"):
@@ -111,6 +114,9 @@ func _on_interacted(target: Node, _actor: Node) -> void:
 		return
 	if target.has_meta("station_id"):
 		_open_station(str(target.get_meta("station_id")))
+		return
+	if target.has_meta("is_upgrade"):
+		_open_upgrades()
 		return
 	if target.has_meta("dungeon_id"):
 		_open_dungeon(str(target.get_meta("dungeon_id")))
@@ -325,7 +331,7 @@ func _build_farm() -> void:
 		"economy_config": DataRegistry.get_row("economy_config", "default"), "item_prices": DataRegistry.rows("item_prices"), "shops": DataRegistry.rows("shops"),
 		"gather_nodes": DataRegistry.rows("gather_nodes"), "recipes": DataRegistry.rows("recipes"), "stations": DataRegistry.rows("crafting_stations"),
 		"monsters": DataRegistry.rows("monsters"), "monster_spawns": DataRegistry.rows("monster_spawns"), "combat_config": DataRegistry.get_row("combat_config", "default"),
-		"festivals": DataRegistry.rows("festivals"), "achievements": DataRegistry.rows("achievements"), "dungeons": DataRegistry.rows("dungeons"), "quests": DataRegistry.rows("quests"), "guild_config": DataRegistry.get_row("guild_config", "default")})
+		"upgrades": DataRegistry.rows("upgrades"), "festivals": DataRegistry.rows("festivals"), "achievements": DataRegistry.rows("achievements"), "dungeons": DataRegistry.rows("dungeons"), "quests": DataRegistry.rows("quests"), "guild_config": DataRegistry.get_row("guild_config", "default")})
 	farming.sleep.finished.connect(_on_woke_up)
 	_build_bed()
 	_build_pond()
@@ -1088,6 +1094,9 @@ func _on_menu_pressed(id: String) -> void:
 	if _open_station_id == "__board__":
 		_on_board_pressed(id)
 		return
+	if _open_station_id == "__upgrade__":
+		_on_upgrade_pressed(id)
+		return
 	if _open_station_id == "__dungeon__":
 		_on_dungeon_pressed(id)
 		return
@@ -1388,3 +1397,61 @@ func _announce_milestones() -> void:
 	for r in fresh:
 		lines.append(tr(str(r["name_key"])))
 	hud.show_message("\n".join(lines))
+
+
+# --- Tukang upgrade tas/meter (SEMENTARA) ---
+
+func _build_upgrade_site() -> void:
+	var cfg: Dictionary = DataRegistry.get_row("upgrade_config", "default")
+	var node := Node3D.new()
+	node.name = "UpgradeSite"
+	node.position = Vector3(float(cfg["x"]), 0.0, float(cfg["z"]))
+	var mesh := MeshInstance3D.new()
+	var box := BoxMesh.new()
+	box.size = Vector3(1.6, 1.2, 1.2)
+	mesh.mesh = box
+	mesh.position.y = 0.6
+	var mat := StandardMaterial3D.new()
+	mat.albedo_color = Color(0.6, 0.6, 0.65)
+	mesh.material_override = mat
+	node.add_child(mesh)
+	var label := Label3D.new()
+	label.text = "UJI: " + tr(str(cfg["name_key"]))
+	label.pixel_size = 0.005
+	label.position = Vector3(0, 1.8, 0)
+	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	node.add_child(label)
+	var it := Interactable.new()
+	it.interaction_type = "upgrade"
+	node.add_child(it)
+	it.set_meta("is_upgrade", true)
+	add_child(node)
+	_markers.append({"node": node, "kind": "shop", "region": "region_village"})
+
+
+func _open_upgrades() -> void:
+	_open_station_id = "__upgrade__"
+	GameTime.clock.pause("menu")
+	player.set_physics_process(false)
+	_refresh_upgrades()
+
+
+func _refresh_upgrades() -> void:
+	var up := farming.upgrades
+	var rows: Array = []
+	for id in up.ids():
+		var st := up.status(str(id))
+		var r := up.row(str(id))
+		var needs: Array[String] = []
+		for m in r["materials"]:
+			needs.append("%s x%d" % [tr(str(farming.item_defs[m["item"]]["name_key"])), int(m["count"])])
+		var tail := tr("UPGRADE_OWNED") if st == "owned" else (tr("UPGRADE_LOCKED") if st == "locked" else "%d + %s" % [int(r["cost"]), ", ".join(needs)])
+		rows.append({"id": str(id), "text": "%s  [%s]" % [tr(str(r["name_key"])), tail], "enabled": st == "available"})
+	hud.show_menu(tr("UPGRADE_SITE"), rows)
+	refresh_farm_visuals()
+
+
+func _on_upgrade_pressed(id: String) -> void:
+	var r := farming.upgrade_buy(id)
+	hud.show_message(tr("UPGRADE_DONE") if bool(r["ok"]) else tr("UPGRADE_NO_" + str(r["reason"]).to_upper()))
+	_refresh_upgrades()

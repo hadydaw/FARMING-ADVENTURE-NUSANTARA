@@ -29,6 +29,8 @@ const TABLES := {
 	"dungeons": "res://game/data/dungeons.json",
 	"achievements": "res://game/data/achievements.json",
 	"festivals": "res://game/data/festivals.json",
+	"upgrades": "res://game/data/upgrades.json",
+	"upgrade_config": "res://game/data/upgrade_config.json",
 	"regions": "res://game/data/regions.json",
 	"region_links": "res://game/data/region_links.json",
 	"economy_config": "res://game/data/economy_config.json",

@@ -9,6 +9,7 @@ signal changed(id: String)
 const SAVE_VERSION := 1
 
 var _max: Dictionary = {}
+var _base_max: Dictionary = {}
 var _value: Dictionary = {}
 
 
@@ -16,7 +17,16 @@ func _init(meter_rows: Array) -> void:
 	for r in meter_rows:
 		var id := str(r["id"])
 		_max[id] = int(r["max"])
+		_base_max[id] = int(r["max"])
 		_value[id] = clampi(int(r["start"]), 0, int(r["max"]))
+
+
+## Maksimum = dasar + bonus (upgrade); nilai sekarang dipangkas bila melebihi maksimum baru.
+func set_max_bonus(id: String, bonus: int) -> void:
+	if not _base_max.has(id):
+		return
+	_max[id] = int(_base_max[id]) + maxi(bonus, 0)
+	_value[id] = mini(int(_value[id]), int(_max[id]))
 
 
 func has_meter(id: String) -> bool:

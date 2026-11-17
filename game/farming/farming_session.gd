@@ -30,6 +30,8 @@ var quests: QuestState
 var dungeon: DungeonState
 var achievements: AchievementState
 var festivals: FestivalCalendar
+var upgrades: UpgradeState
+var _base_slots := 0
 var recipes: Array = []
 var stations: Array = []
 var shops: Dictionary = {}
@@ -52,6 +54,7 @@ func _init(clock: GameClock, items: Array, crops: Array, plot_ids: Array, config
 	dungeon = DungeonState.new(extras.get("dungeons", []), extras.get("monsters", []))
 	achievements = AchievementState.new(extras.get("achievements", []))
 	festivals = FestivalCalendar.new(extras.get("festivals", []))
+	upgrades = UpgradeState.new(extras.get("upgrades", []))
 	recipes = extras.get("recipes", [])
 	stations = extras.get("stations", [])
 	for sh in extras.get("shops", []):
@@ -69,7 +72,8 @@ func _init(clock: GameClock, items: Array, crops: Array, plot_ids: Array, config
 		item_defs[str(it["id"])] = it
 	for c in crops:
 		crop_defs[str(c["id"])] = c
-	inventory = Inventory.new(int(config["inventory_slots"]), Callable(self, "_stack_max"))
+	_base_slots = int(config["inventory_slots"])
+	inventory = Inventory.new(_base_slots, Callable(self, "_stack_max"))
 	grid = FarmGrid.new(plot_ids, crop_defs)
 	_config = config
 	clock.day_changed.connect(_on_day_changed)
@@ -93,6 +97,8 @@ func reset() -> void:
 	dungeon.reset()
 	achievements.reset()
 	festivals.reset()
+	upgrades.reset()
+	_apply_upgrades()
 	for id in vitality.ids():
 		vitality.restore_full(id)
 	inventory.clear()
@@ -151,11 +157,37 @@ func preview(plot_id: String) -> Dictionary:
 
 
 func to_dict() -> Dictionary:
-	return {"v": SAVE_VERSION, "world_seed": world_seed, "vitality": vitality.to_dict(), "livestock": livestock.to_dict(), "fishing_casts": fishing_casts_today, "economy": economy.to_dict(), "gather": gather.to_dict(), "combat": combat.to_dict(), "quests": quests.to_dict(), "dungeon": dungeon.to_dict(), "achievements": achievements.to_dict(), "festivals": festivals.to_dict(), "inventory": inventory.to_dict(), "grid": grid.to_dict()}
+	return {"v": SAVE_VERSION, "world_seed": world_seed, "vitality": vitality.to_dict(), "livestock": livestock.to_dict(), "fishing_casts": fishing_casts_today, "economy": economy.to_dict(), "gather": gather.to_dict(), "combat": combat.to_dict(), "quests": quests.to_dict(), "dungeon": dungeon.to_dict(), "achievements": achievements.to_dict(), "festivals": festivals.to_dict(), "upgrades": upgrades.to_dict(), "inventory": inventory.to_dict(), "grid": grid.to_dict()}
 
 
-## Semua-atau-tidak: bila salah satu bagian tidak valid, status tidak berubah.
+## Terapkan efek upgrade (slot tas, meter maksimum) dari himpunan upgrade yang dimiliki.
+func _apply_upgrades() -> void:
+	inventory.set_slot_count(_base_slots + upgrades.bonus_slots())
+	for id in vitality.ids():
+		vitality.set_max_bonus(str(id), upgrades.meter_bonus(str(id)))
+
+
+## Semua-atau-tidak, termasuk upgrade (ukuran tas/meter bergantung padanya, jadi diterapkan dulu).
 func from_dict(data: Dictionary) -> bool:
+	if typeof(data.get("upgrades", {})) != TYPE_DICTIONARY:
+		return false
+	var backup := to_dict()
+	if data.has("upgrades"):
+		if not upgrades.from_dict(data["upgrades"]):
+			return false
+	else:
+		upgrades.reset()
+	_apply_upgrades()
+	if _from_dict_core(data):
+		return true
+	upgrades.from_dict(backup["upgrades"])
+	_apply_upgrades()
+	inventory.from_dict(backup["inventory"])
+	vitality.from_dict(backup["vitality"])
+	return false
+
+
+func _from_dict_core(data: Dictionary) -> bool:
 	if int(data.get("v", -1)) != SAVE_VERSION:
 		return false
 	if typeof(data.get("inventory", null)) != TYPE_DICTIONARY or typeof(data.get("grid", null)) != TYPE_DICTIONARY:
@@ -315,6 +347,13 @@ func stats() -> Dictionary:
 ## Periksa pencapaian/petunjuk baru; mengembalikan baris yang baru terbuka.
 func check_milestones() -> Array:
 	return achievements.evaluate(stats())
+
+
+func upgrade_buy(id: String) -> Dictionary:
+	var r := upgrades.buy(id, inventory, economy)
+	if bool(r["ok"]):
+		_apply_upgrades()
+	return r
 
 
 func dungeon_start(id: String) -> Dictionary:

@@ -318,3 +318,18 @@ MENU_CONTINUE,Lanjutkan,Continue
 MENU_SLOT_AUTO,simpan otomatis,autosave
 MENU_SLOT_MANUAL,simpan manual,manual save
 AUTOSAVE_OK,Tersimpan otomatis,Autosaved
+FARM_ACT_UPGRADE,Pembangunan,Build
+UPGRADE_SITE,Tukang Uji,Test Builder
+UP_BAG_1,Tas Lebih Besar I (+6 slot),Bigger Bag I (+6 slots)
+UP_BAG_2,Tas Lebih Besar II (+6 slot),Bigger Bag II (+6 slots)
+UP_STAMINA_1,Stamina Maks +10,Max Stamina +10
+UP_HEALTH_1,HP Maks +20,Max HP +20
+UPGRADE_OWNED,Dimiliki,Owned
+UPGRADE_BUY,Beli,Buy
+UPGRADE_LOCKED,Butuh upgrade sebelumnya,Needs earlier upgrade
+UPGRADE_DONE,Upgrade selesai,Upgrade complete
+UPGRADE_NO_NO_MONEY,Uang kurang,Not enough money
+UPGRADE_NO_NO_MATERIAL,Bahan kurang,Missing materials
+UPGRADE_NO_OWNED,Sudah dimiliki,Already owned
+UPGRADE_NO_LOCKED,Butuh upgrade sebelumnya,Needs earlier upgrade
+UPGRADE_NO_UNKNOWN,Upgrade tidak dikenal,Unknown upgrade

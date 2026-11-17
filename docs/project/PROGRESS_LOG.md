@@ -600,3 +600,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Menu utama: tombol "Lanjutkan (simpan manual/otomatis)" hanya bila ada simpanan; "Mulai" tetap untuk game baru. Teks MENU_NOTICE diperbarui.
 - Belum: layar pilih slot dengan ringkasan (hari/uang), hapus slot, autosave berkala/saat keluar aplikasi, konfirmasi menimpa.
 - Uji: 27 berkas, 2609 pemeriksaan, 0 gagal; smoke test lulus.
+
+## 2026-11-18 (83) — Upgrade tas dan meter (D-027, teknis)
+
+- UpgradeState (id dimiliki + efek dihitung dari himpunan), beli semua-atau-tidak, syarat urutan. Inventory.set_slot_count dan Vitality.set_max_bonus. FarmingSession.from_dict kini menerapkan upgrade DULU (ukuran tas/maks meter bergantung padanya) dengan pemulihan penuh bila gagal; save tanpa kunci upgrade = kembali ke dasar.
+- Tukang uji di desa memakai menu daftar serbaguna. Data SEMENTARA generik.
+- Belum: upgrade rumah/petak lahan baru (butuh node dunia dan desain D-027), tampilan rumah, tingkat alat.
+- Uji: 28 berkas, 2720 pemeriksaan, 0 gagal; smoke test lulus.
