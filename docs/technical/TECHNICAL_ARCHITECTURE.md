@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.3 · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.4 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -66,7 +66,7 @@ Sistem pertarungan yang terkunci (real-time, combo, skill+cooldown, magic/elemen
 - **State machine** karakter/musuh (serang, combo, skill, dodge, block, parry, stagger).
 - **Save:** progres skill tree dan perlengkapan masuk payload save (skema berversi).
 - **Anggaran performa:** efek skill/magic mengikuti anggaran §3 (batas partikel dan draw call).
-- **Online:** validasi hasil combat di server hanya bila fitur online yang rawan curang diputuskan; belum ada keputusan multiplayer.
+- **Online:** validasi hasil combat di server hanya bila fitur online yang rawan curang diputuskan; D-014 menetapkan single-player online, sehingga tidak ada sinkronisasi real-time antarpemain.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres
@@ -97,9 +97,10 @@ Implementasi awal: `game/core/save_service.gd` (autoload `SaveService`).
 
 Ringkasan; rincian di [`BACKEND_DESIGN.md`](BACKEND_DESIGN.md).
 
-- Backend awal: **Supabase** (O-003). Nakama ditunda sampai keputusan multiplayer. Tidak ada kode backend sebelum desain sistem online disepakati.
+- Backend awal: **Supabase** (O-003). Nakama tidak diperlukan (D-014: Single-Player Online, tanpa real-time). Tidak ada kode backend sebelum desain sistem online disepakati.
 - Backend **terpisah** dari GitHub. GitHub hanya menyimpan kode dan APK.
 - Klien memakai antarmuka `BackendClient` (`game/core/backend_client.gd`); default = mode offline (belum ada jaringan).
+- Konsekuensi D-014: akun dan koneksi internet **wajib**; dunia dan NPC disimpan sebagai progres pribadi di save; tidak ada jaringan real-time antarpemain.
 - Pola: **offline-first dengan sinkronisasi** — pemain tetap bisa memuat progres lokal, server menjadi sumber kebenaran untuk akun dan data yang butuh validasi.
 
 ## 9. Pipeline Build dan Rilis

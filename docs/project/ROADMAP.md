@@ -18,7 +18,7 @@ Roadmap berbasis **tahap dan hasil yang dapat diperiksa**, bukan tanggal (belum 
 ## Fase 1 — Desain Bersama (belum ada kode gameplay)
 
 Sesi desain bersama ChatGPT; hasil dituangkan ke GDD v1.0 dan `DESIGN_DECISIONS.md`.
-Urutan usulan: multiplayer ya/tidak → pertarungan + kontrol/kamera sentuh → struktur dunia dan wilayah → siklus farming → dungeon → rank/quest/cerita → NPC → art direction.
+Selesai/terkunci: visual (D-008), dunia (D-009), pertarungan (D-013), single-player online (D-014). Sedang berjalan: Tahap 5 Sistem Kehidupan. Urutan usulan sisanya: kontrol/kamera sentuh → struktur dunia dan wilayah → siklus farming → dungeon → rank/quest/cerita → NPC → art direction.
 
 **Kriteria selesai:** GDD v1.0 tanpa bagian kritis bertanda [BELUM DITETAPKAN] untuk lingkup vertical slice.
 
@@ -34,7 +34,7 @@ Satu desa awal yang dapat dimainkan: loop inti (ladang → hasil → jual/masak)
 
 ## Fase 4 — Online
 
-Backend sesuai `BACKEND_DESIGN.md`: akun, sinkronisasi save, penanganan konflik. Fitur multiplayer hanya bila diputuskan di Fase 1.
+Backend sesuai `BACKEND_DESIGN.md`: akun, sinkronisasi save, penanganan konflik. Akun, login, Cloud Save, sinkron progres (D-014 Single-Player Online); tanpa multiplayer.
 **Selesai:** progres dapat dipulihkan di perangkat lain; uji offline→online dan konflik lulus.
 
 ## Fase 5 — Ekspansi Konten (Progressive World Unlock)

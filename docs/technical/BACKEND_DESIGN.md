@@ -1,6 +1,6 @@
 # Rancangan Backend — Farming Adventure Nusantara
 
-> **Versi:** 0.2 · **Status:** RANCANGAN. Supabase disetujui sebagai pilihan awal (O-003); belum ada kode server dan belum ada akun yang dibuat. Nakama ditunda. Implementasi baru setelah desain sistem online disepakati.
+> **Versi:** 0.3 (+ D-014 Single-Player Online) · **Status:** RANCANGAN. Supabase disetujui sebagai pilihan awal (O-003); belum ada kode server dan belum ada akun yang dibuat. Nakama ditunda. Implementasi baru setelah desain sistem online disepakati.
 > Prinsip tetap (D-006): **GitHub bukan server game.** Backend adalah layanan terpisah.
 
 ## 1. Tujuan
@@ -8,9 +8,9 @@
 1. Akun pemain (identitas).
 2. **Sinkronisasi data pemain** (progres tersimpan di server, bisa dipulihkan/pindah HP).
 3. Validasi hal yang rawan curang (ekonomi, rank) saat fitur online mulai ada.
-4. Fondasi untuk fitur online lanjutan (sosial/multiplayer) **bila diputuskan** di tahap desain.
+4. Dunia dan NPC pemain disimpan sebagai bagian progres pribadi (satu pemain = satu dunia; tidak ada dunia bersama).
 
-Di luar cakupan sekarang: multiplayer real-time (belum diputuskan), pembayaran, moderasi chat.
+Di luar cakupan (D-014): multiplayer real-time, kunjungan ladang pemain lain, co-op dungeon. Juga di luar cakupan: pembayaran, moderasi chat.
 
 ## 2. Opsi Penyedia
 
@@ -20,7 +20,7 @@ Di luar cakupan sekarang: multiplayer real-time (belum diputuskan), pembayaran, 
 | **Nakama** (server game open source, self-host) | Multiplayer, matchmaking, leaderboard, obrolan | Fitur game lengkap, SDK Godot | Perlu VPS (biaya) dan perawatan |
 | Server sendiri (Go/Node + Postgres) | Kontrol penuh | Fleksibel | Biaya + perawatan terbesar; dibangun dari nol |
 
-**Usulan (T-007):** mulai dengan **Supabase** untuk fase online pertama (akun + sinkronisasi save). Bila tahap desain memutuskan multiplayer real-time, tambahkan/migrasi ke Nakama; data inti tetap di Postgres sehingga portabel. **Disetujui pemilik (O-003).** Pembuatan akun dilakukan saat fase online dimulai.
+**Usulan (T-007):** mulai dengan **Supabase** untuk fase online pertama (akun + sinkronisasi save). D-014 memutuskan Single-Player Online tanpa real-time, jadi **Nakama tidak diperlukan**; dievaluasi ulang hanya jika keputusan D-014 diubah pemilik. Data inti tetap di Postgres sehingga portabel. **Disetujui pemilik (O-003).** Pembuatan akun dilakukan saat fase online dimulai.
 
 ## 3. Batas Klien–Server
 
@@ -43,6 +43,12 @@ Game (Godot)  ──►  BackendClient (antarmuka)  ──►  Adapter penyedia 
 | `devices` (opsional) | `id`, `player_id`, `last_seen_at` |
 
 Kunci unik `saves(player_id, slot)`. Akses dibatasi per pemain (Row Level Security: pemain hanya melihat/ubah barisnya sendiri).
+
+## 4a. Konsekuensi D-014
+
+- Internet **wajib**: game memerlukan sesi akun aktif. Perilaku saat koneksi terputus saat bermain belum ditetapkan (pertanyaan desain terbuka); penyimpanan lokal tetap dipakai sebagai penyangga.
+- Tiap pemain hanya mengakses datanya sendiri (Row Level Security): tidak ada kueri lintas pemain, sehingga model data lebih sederhana (tanpa tabel sosial/sesi multiplayer).
+- Payload save mencakup keadaan dunia dan NPC pemain; ukuran payload dipantau (batas server ditentukan saat implementasi).
 
 ## 5. Sinkronisasi dan Konflik
 

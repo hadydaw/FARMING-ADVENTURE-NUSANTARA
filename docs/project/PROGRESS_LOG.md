@@ -39,3 +39,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - D-013 (Kombinasi Semua Sistem, LOCKED) dicatat di Decision Log dan GDD 6.7; catatan implikasi di Technical Architecture §4a.
 - Penomoran: entri lama D-013…D-019 diubah menjadi O-001…O-007 (isi tetap) agar ID D-013 sesuai instruksi pemilik.
 - Tidak ada perubahan kode/gameplay/CI. Implementasi combat belum dimulai.
+
+## 2026-11-17 (4) — D-014 dan konfirmasi keputusan Tahap 1, 2
+
+- D-014 Single-Player Online (LOCKED) dicatat; GDD §7, Backend Design, Technical Architecture, Roadmap diperbarui.
+- Visual 3D Stylized dan Progressive World Unlock sudah ada sebagai D-008 dan D-009 (nomor bebas diperiksa: D-001…D-014 terpakai); ditandai dikonfirmasi pemilik sebagai Tahap 1 dan 2. Tidak dibuat ID baru agar tidak ada duplikat.
+- Penomoran O-001…O-007 disetujui pemilik; rujukan silang diperiksa otomatis.
+- Tidak ada perubahan kode/gameplay. Menunggu keputusan Tahap 5 (Sistem Kehidupan).

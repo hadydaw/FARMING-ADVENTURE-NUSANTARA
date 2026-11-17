@@ -17,8 +17,8 @@ Keputusan **Teknis (rutin)** dibuat Claude secara mandiri dan boleh ditinjau/dig
 | D-005 | Distribusi: APK Android; source di repository GitHub; APK publik lewat **GitHub Releases**; build lewat **GitHub Actions**. | 2026-11-17 |
 | D-006 | Koneksi: **online**. Backend **terpisah** dari GitHub (GitHub bukan server game). | 2026-11-17 |
 | D-007 | Bahasa: **Indonesia** utama, **Inggris** kedua. | 2026-11-17 |
-| D-008 | Gaya visual: **3D Stylized** untuk seluruh dunia, lingkungan, karakter, monster, bangunan, tanaman, dan objek. | 2026-11-17 |
-| D-009 | Sistem dunia **Progressive World Unlock**: mulai di satu desa awal; banyak wilayah terbuka bertahap; syarat bisa berupa level karakter, rank petualang, quest, progres cerita; tiap wilayah dapat punya desa, kota, sumber daya, monster, dan dungeon. | 2026-11-17 |
+| D-008 | Gaya visual: **3D Stylized** untuk seluruh dunia, lingkungan, karakter, monster, bangunan, tanaman, dan objek. **Dikonfirmasi pemilik sebagai keputusan Tahap 1 (Visual Game), 2026-11-17.** | 2026-11-17 |
+| D-009 | Sistem dunia **Progressive World Unlock**: mulai di satu desa awal; banyak wilayah terbuka bertahap; syarat bisa berupa level karakter, rank petualang, quest, progres cerita; tiap wilayah dapat punya desa, kota, sumber daya, monster, dan dungeon. **Dikonfirmasi pemilik sebagai keputusan Tahap 2 (Sistem Dunia): pemain mulai dari satu desa; wilayah baru terbuka bertahap berdasarkan perkembangan permainan.** | 2026-11-17 |
 | D-010 | Konsep: kehidupan bertani ala Story of Seasons + petualangan RPG (cakupan aktivitas pemain lengkap di GDD bagian 3). | 2026-11-17 |
 | D-011 | Rank petualang direncanakan: F, E, D, C, B, A, S, SS, SSS. | 2026-11-17 |
 | D-012 | Tahap pertama hanya fondasi (repo, struktur, dokumen, Android, pipeline). **Belum ada implementasi gameplay.** Sistem pertarungan, multiplayer, dungeon, farming, NPC, dll. ditentukan dulu lewat tahap desain bersama ChatGPT. | 2026-11-17 |
@@ -33,7 +33,7 @@ Keputusan **Teknis (rutin)** dibuat Claude secara mandiri dan boleh ditinjau/dig
 
 ## A2. Keputusan desain resmi dari tahap desain (LOCKED)
 
-Hanya keputusan yang sudah diberikan pemilik kepada Claude yang tercatat di sini. Keputusan Tahap 1–2 dan nomor D-0xx lain belum diberikan; bila ada, kirim agar dicatat dengan ID aslinya.
+Hanya keputusan yang sudah diberikan pemilik kepada Claude yang tercatat di sini. Keputusan Tahap 1 (Visual) dan Tahap 2 (Dunia) sudah tercatat sebagai D-008 dan D-009 (bagian A); D-010 s.d. D-012 adalah konsep, rank, dan batas tahap awal. Bila ada keputusan Tahap 3 dan seterusnya selain D-013/D-014, kirim agar dicatat.
 
 ### D-013 — Sistem Pertarungan *(APPROVED / LOCKED, 2026-11-17)*
 Pilihan: **D. Kombinasi Semua Sistem**. Sistem pertarungan resmi mencakup:
@@ -48,6 +48,18 @@ Pilihan: **D. Kombinasi Semua Sistem**. Sistem pertarungan resmi mencakup:
 9. Skill Tree dan perkembangan kemampuan karakter
 
 Status implementasi: **belum dimulai** (menunggu seluruh tahap desain selesai). Detail angka/aturan tiap komponen (damage, elemen, daftar senjata, jendela parry, struktur skill tree, kontrol sentuh) **belum ditetapkan**.
+
+### D-014 — Sistem Multiplayer *(APPROVED / LOCKED, 2026-11-17, Tahap 4)*
+Pilihan: **A. Single-Player Online.**
+- Game dimainkan sendiri; koneksi internet **wajib**.
+- Setiap pemain punya akun; registrasi dan login.
+- Cloud Save dan sinkronisasi progres pemain.
+- Dunia dan NPC adalah bagian dari **progres pribadi** pemain.
+- **Tidak ada** multiplayer real-time.
+- **Tidak ada** kunjungan ladang pemain lain.
+- **Tidak ada** co-op dungeon.
+
+Dampak: syarat "evaluasi Nakama bila multiplayer real-time" pada O-003 tidak terpicu; Nakama tidak diperlukan. Isi O-003 tidak diubah. Implementasi backend dan gameplay belum dimulai.
 
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
@@ -69,6 +81,6 @@ Status implementasi: **belum dimulai** (menunggu seluruh tahap desain selesai). 
 |---|---|---|---|
 | P-001 | Package ID | Rilis publik | **Selesai** (O-002) |
 | P-002 | Buat keystore production dan isi 3 GitHub Secrets (`docs/technical/SIGNING_GUIDE.md`); beri izin sebelum rilis production pertama | Rilis bertanda tangan | Menunggu |
-| P-003 | Penyedia backend | Fase online | **Selesai** (O-003); akun Supabase dibuat saat fase online dimulai |
+| P-003 | Penyedia backend | Fase online | **Selesai** (O-003, diperkuat D-014); akun Supabase dibuat saat fase online dimulai |
 | P-004 | Lisensi | Publikasi source | **Selesai** (O-005) |
 | P-005 | Hasil uji APK dev di HP (`docs/project/TESTING_APK.md`) | Menutup Fase 0 | Menunggu |

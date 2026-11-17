@@ -3,7 +3,7 @@
 Game **Farming Simulation + Life Simulation + Adventure/Action RPG + Dungeon Exploration** bertema Nusantara, bergaya visual **3D Stylized**, untuk **Android (landscape, online)**.
 Bahasa: Indonesia (utama) dan Inggris.
 
-> **Status: Fase 0 — Fondasi proyek.** Belum ada gameplay. Sistem pertarungan, farming, dungeon, NPC, dan multiplayer akan ditetapkan lewat tahap desain sebelum diimplementasikan.
+> **Status: Fase 0 — Fondasi proyek.** Belum ada gameplay. Sistem pertarungan, farming, dungeon, dan NPC akan ditetapkan lewat tahap desain sebelum diimplementasikan.
 > Ini proyek baru dari nol dan tidak berhubungan dengan proyek game lain.
 
 ## Unduh APK

@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.3 (+ D-013 Sistem Pertarungan) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.4 (+ D-013 Pertarungan, D-014 Single-Player Online) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -119,14 +119,18 @@ Belum: struktur dungeon (fixed/prosedural), lantai, loot, kesulitan.
 Ditetapkan: mengumpulkan material dan membuat equipment.
 Belum: jenis equipment, slot, tier, crafting, stat.
 
-## 7. Online dan Multiplayer
+## 7. Online (Single-Player Online) — D-014, LOCKED
 
-**Ditetapkan:** game **online**; ada backend terpisah untuk kebutuhan online dan sinkronisasi data pemain.
-GitHub **bukan** server game (hanya kode dan distribusi APK).
+**Ditetapkan (D-014, Single-Player Online):**
+- Game dimainkan **sendiri**; koneksi internet **wajib**.
+- Setiap pemain memiliki **akun** (registrasi dan login).
+- **Cloud Save** dan **sinkronisasi progres** pemain.
+- **Dunia dan NPC adalah bagian dari progres pribadi** pemain (bukan dunia bersama).
+- **Tidak ada** multiplayer real-time, **tidak ada** kunjungan ladang pemain lain, **tidak ada** co-op dungeon.
+- Backend terpisah dari GitHub (GitHub hanya kode dan distribusi APK). Penyedia awal: **Supabase** (O-003) untuk registrasi/login, akun, Cloud Save, sinkron progres, dan database pemain. Nakama tidak diperlukan.
+- Tidak ada implementasi backend atau gameplay sebelum seluruh tahap desain selesai.
 
-**Disetujui:** Supabase sebagai backend awal untuk registrasi/login, akun, Cloud Save, sinkron progres, dan database pemain. Nakama **tidak** dikerjakan sampai multiplayer diputuskan. Tidak ada implementasi backend gameplay sebelum desain sistem online disepakati.
-
-**[BELUM DITETAPKAN]:** apakah ada multiplayer, dan bila ada: bentuknya (co-op, sosial, kompetitif), jumlah pemain, sinkron real-time atau asinkron. Akan diputuskan di tahap desain. Arsitektur dibuat agar keputusan ini tidak memaksa penulisan ulang (lihat `docs/technical/BACKEND_DESIGN.md`).
+**[BELUM DITETAPKAN]:** metode login (email, Google, dll.), perilaku saat koneksi putus di tengah permainan, kebijakan multi-perangkat, fitur sosial non-real-time (mis. leaderboard) — tidak termasuk dalam D-014 dan tidak dikerjakan kecuali diputuskan.
 
 ## 8. Lokalisasi
 
@@ -137,7 +141,7 @@ GitHub **bukan** server game (hanya kode dan distribusi APK).
 
 Urutan usulan pembahasan bersama ChatGPT (dari yang paling memengaruhi arsitektur):
 
-1. Multiplayer: ada/tidak, bentuknya.
+1. ~~Multiplayer~~ (D-014 terkunci: Single-Player Online).
 2. ~~Pertarungan~~ (D-013 terkunci); sisanya: detail aturan combat, kamera dan kontrol sentuh.
 3. Struktur dunia dan wilayah (ukuran, loading, peta).
 4. Siklus farming (musim, waktu, stamina, ekonomi).
