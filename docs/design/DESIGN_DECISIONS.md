@@ -766,6 +766,34 @@ Ketentuan:
 Hubungan (tidak mengubah isi keputusan lain): Progressive World Unlock (**D-009**), dungeon (**D-016**), guild (**D-017**), companion/monster (**D-019**), event dunia (**D-029**), cuaca dan waktu (**D-030**), UI dan HUD (**D-031**; peta, minimap, dan kompas menjadi bagian HUD), audio (**D-032**), kamera (**D-033**), kontrol dan tap-to-move (**D-034**), interaksi (**D-035**), quest (**D-037**), NPC (**D-040**), mount dan medan (**D-042**), tutorial (**D-043**), save (**D-044**), pengaturan (**D-045**), achievement dan koleksi lokasi (**D-046**), performa (**D-052**), loading dan transisi (**D-053**; fast travel memakai transisi Loading). **D-028** sudah menetapkan "peta dunia, penanda lokasi, dan fast travel" dan fast travel "dibuka dengan aturan progres yang jelas"; keputusan ini merinci dan tidak mengubahnya. **D-051** tetap dicadangkan untuk Tahap 42.
 **Terbuka:** tampilan dan gaya peta (ilustrasi, 3D, atau gabungan) dan art direction; tingkat detail dan kerahasiaan bagian peta yang belum ditemukan (kabut/siluet, apakah wilayah belum terbuka terlihat sebagai terkunci atau tersembunyi); cara penemuan lokasi (mendekat, petunjuk, NPC, peta/dokumen item); daftar jenis penanda dan filter; penanda buatan pemain (jumlah, jenis) dan pelacakan satu quest aktif vs banyak; aturan fast travel rinci (titik yang dapat dipakai, biaya, waktu kalender, cooldown, larangan saat combat/dungeon/event, batas karena cuaca atau cerita) dan hubungannya dengan mount dan transportasi; apakah fast travel dapat dari peta mana saja atau hanya dari titik tertentu; apakah pemain boleh mengatur tujuan lewat peta untuk jalan otomatis (tap-to-move, D-034); minimap (ukuran, bentuk, rotasi atau tetap utara, isi); kompas (jenis petunjuk arah dan jarak); penanganan wilayah dalam interior/dungeon (peta tingkat, tanpa peta); apakah ada peta tersendiri tiap wilayah; privasi lokasi (peta pribadi, tanpa berbagi, D-014); aksesibilitas peta (kontras, ukuran penanda, bantuan buta warna); peran konsep "spiritual" untuk wilayah spiritual (belum didefinisikan, tidak ditebak). **Tidak ada klaim performa atau pengujian perangkat fisik;** P-005 tetap menunggu laporan pengguna. Implementasi belum dimulai. ID D-054 tersedia saat dicatat (tanpa bentrokan). Tahap 35 (akun dan login, P-006) tetap PENDING.
 
+### D-055 — Sistem Waktu, Kalender, dan Jam Permainan *(APPROVED / LOCKED, 2026-11-17, Tahap 46)*
+Pilihan: **D. Dynamic Time & Calendar Hybrid Lengkap.** Ruang lingkup:
+1. Jam dalam permainan.
+2. Kalender: hari, tanggal, bulan, tahun.
+3. Siklus pagi, siang, sore, malam.
+4. Jadwal harian NPC berdasarkan waktu.
+5. Festival dan aktivitas kalender.
+6. Aktivitas monster dan lokasi yang dipengaruhi waktu.
+7. Event dunia dengan jadwal atau syarat waktu.
+8. Integrasi waktu dengan musim, cuaca, pertanian, peternakan, memancing, dungeon, dan ekonomi.
+
+Ketentuan:
+- **Waktu permainan memakai simulasi waktu internal game**, bukan semata-mata jam perangkat pemain.
+- **Aturan konsistensi waktu** ditetapkan untuk perpindahan wilayah, loading, dan gangguan koneksi.
+- Selaras dengan D-029 (event dunia), D-030 (musim dan cuaca), D-040 (NPC hidup), D-044 (save/load), dan D-051 (Connection Resilience).
+- Tidak mengubah keputusan sebelumnya. Penguncian desain; implementasi belum dimulai.
+
+**Prinsip konsistensi waktu (dasar, tidak menambah angka):**
+- Waktu permainan adalah **keadaan internal yang disimpan di save** dan menjadi satu-satunya sumber kebenaran untuk kalender, jadwal, pertumbuhan, dan event; **tidak diturunkan dari jam perangkat**.
+- Jam server hanya acuan **urutan** sinkronisasi dan event bersama dasar; mengubah jam perangkat **tidak boleh** mengubah waktu permainan, revisi, atau penyelesaian konflik (selaras D-044 dan D-050).
+- Perpindahan wilayah dan loading **tidak boleh** membuat waktu melompat atau mundur (selaras D-053); perjalanan dan fast travel memakai perhitungan hari-selisih yang konsisten (D-054).
+- Dasar saat koneksi terganggu: gangguan koneksi **tidak memajukan dan tidak memundurkan** waktu permainan; perilaku lanjutan (jeda, mode terbatas, masa tenggang) diserahkan ke D-051.
+- Hasil acak yang terkait waktu bersifat deterministik dari benih dan tanggal agar tidak bisa diulang lewat muat-ulang save (save-scumming).
+
+Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), sistem kehidupan (**D-015**), dungeon (**D-016**), ekonomi (**D-021**), NPC dan sosial (**D-022**), pertanian (**D-023**), peternakan (**D-024**), memancing (**D-025**), memasak/alkimia (**D-026**), event dunia (**D-029**), musim dan cuaca (**D-030**), UI/HUD (**D-031**), audio (**D-032**), NPC hidup (**D-040**), save dan cloud (**D-044**), pengaturan (**D-045**), update konten (**D-048**), keamanan (**D-050**), performa (**D-052**), loading (**D-053**), peta (**D-054**). **D-051 tidak ada isinya di dokumen ini** (hanya judul yang disebut pemilik); keselarasan penuh ditunda sampai isinya diterima.
+
+**Terbuka:** panjang hari/bulan/tahun dan nama bulan; panjang tiap fase hari dan kecepatan jam; apakah waktu berjalan di menu, dialog, pertarungan, atau saat aplikasi di latar belakang; apakah waktu berjalan saat offline atau terputus (menunggu D-051); kebijakan event berbasis waktu nyata vs kalender permainan (terbuka di D-029); aturan susul-kejar (catch-up) setelah lama tidak bermain; panjang musim (terbuka di D-030); arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |
@@ -790,4 +818,4 @@ Hubungan (tidak mengubah isi keputusan lain): Progressive World Unlock (**D-009*
 | P-004 | Lisensi | Publikasi source | **Selesai** (O-005) |
 | P-005 | Hasil uji APK dev di HP (`docs/project/TESTING_APK.md`) | Menutup Fase 0 | Menunggu |
 | P-006 | Tahap 35: Sistem Akun dan Login Pemain (metode login, multi-perangkat, hapus akun, privasi) | Persiapan publikasi Google Play Store | **PENDING** (atas instruksi pemilik; dibahas saat persiapan publikasi; status tidak diubah) |
-| D-051 | **ID dicadangkan** untuk keputusan Tahap 42 (belum diterima dari pemilik). Tidak diisi dan tidak dipakai ulang. | Penomoran berurutan | **Dicadangkan** (menunggu keputusan Tahap 42) |
+| D-051 | **ID dicadangkan** untuk keputusan Tahap 42 (belum diterima dari pemilik; pada Tahap 46 pemilik menyebutnya "Connection Resilience", hanya judul, isi tidak diterima dan tidak dikarang). Tidak diisi dan tidak dipakai ulang. | Penomoran berurutan | **Dicadangkan** (menunggu keputusan Tahap 42) |

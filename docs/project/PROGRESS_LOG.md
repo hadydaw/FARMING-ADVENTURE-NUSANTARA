@@ -318,3 +318,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
 - GDD §6.43 baru (v0.43); Technical Architecture §4ak ditambahkan (v0.43); catatan saja: data dunia tunggal untuk peta/minimap/kompas/quest, status penemuan monoton tanpa kebocoran wilayah terkunci, peta interaktif dengan LOD ikon dan sentuhan tanpa bentrok kontrol, minimap dari tekstur (bukan render ulang adegan), kompas, antarmuka penanda quest/objektif, pelacakan posisi pribadi, penemuan wilayah tersembunyi, fast travel berbasis data sebagai transisi Loading dengan waktu kalender dan validasi, tap-to-move dari peta (bila diputuskan), aksesibilitas, performa GL Compatibility, serta uji. Hubungan dengan D-009, D-016, D-017, D-019, D-028 sampai D-035, D-037, D-040, D-042 sampai D-046, D-052, D-053 dicatat tanpa mengubah isinya.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.
+
+## 2026-11-17 (44) — D-055 Sistem Waktu, Kalender, dan Jam Permainan dicatat
+
+- D-055 (Dynamic Time & Calendar Hybrid Lengkap, LOCKED) dicatat sebagai **Tahap 46**; ID tersedia, tanpa bentrokan. **D-051 (Tahap 42) tetap dicadangkan**; pemilik menyebutnya "Connection Resilience" tetapi isinya belum diterima, jadi keselarasan penuh ditunda dan tidak ada isi yang dikarang.
+- **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
+- GDD §6.44 baru (v0.44); Technical Architecture §4al ditambahkan (v0.44); catatan saja: waktu internal (`GameClock`) di save sebagai sumber kebenaran, bukan jam perangkat; kalender sebagai data; simulasi hari-selisih deterministik (seed+tanggal); sinyal waktu hemat; jadwal NPC, event, dan aktivitas monster berbasis data; aturan konsistensi untuk perpindahan wilayah, loading, dan fast travel; gangguan koneksi tidak memajukan/memundurkan waktu (lanjutan menunggu D-051).
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.

@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.43 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.44 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -572,6 +572,26 @@ Memperluas data lokasi/peta di §4o dan pembukaan wilayah (§4d, §4o). Prinsip:
 - **Update konten (D-048):** wilayah/lokasi/titik fast travel baru ditambah sebagai data baru dengan ID stabil; lokasi yang di-deprecate tetap terpetakan pada save lama; validator konten memastikan setiap lokasi memiliki wilayah/koordinat valid, setiap titik fast travel dapat dicapai dan memiliki titik muncul aman, setiap penanda quest merujuk lokasi valid, dan tidak ada wilayah yang tidak dapat dicapai (§4o).
 - **Pengujian (D-049):** uji headless untuk transformasi koordinat dunia↔peta (setiap wilayah), status penemuan monoton dan idempoten, tidak ada kebocoran data lokasi terkunci ke tampilan, aturan syarat fast travel (terbuka/terkunci/larangan konteks, waktu kalender, titik muncul aman), daftar penanda quest yang bersih setelah quest selesai/migrasi, validasi data peta dan serialisasi-migrasi; uji layout peta/minimap pada beberapa rasio layar; uji sentuhan nyata (pinch/pan) dan performa menunggu perangkat fisik oleh pengguna/tester; **angka performa dari CI/emulator tidak dipakai sebagai klaim perangkat fisik.**
 - **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun; peta adalah progres pribadi dalam save (D-014, D-044).
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4al. Implikasi Arsitektur dari D-055 (hanya catatan; belum diimplementasikan; semua angka usulan dan belum diukur)
+
+Memperluas layanan waktu/kalender di §4b (acuan jam yang dulu terbuka kini ditetapkan: **waktu internal game**). Terkait §4p (event), §4q (musim/cuaca), §4aa (NPC hidup), §4ag (ID stabil, versi konten), §4ai (performa), §4aj (loading), §5a (cloud save), §5b (keamanan).
+- **`GameClock` tunggal:** satu layanan yang memegang waktu permainan (hari, jam-menit, fase hari) sebagai *keadaan simulasi*, bukan pembacaan jam perangkat. Bagian dari payload save (§5a) dengan `section_version`; semua sistem (tanam, ternak, ikan, NPC, event, harga) membaca dari sini lewat event bus, bukan lewat `Time` OS.
+- **Kalender sebagai data:** panjang hari/bulan/tahun, nama, musim, fase hari, dan hari khusus berupa resource ber-ID stabil (§4ag) sehingga dapat diubah tanpa kode dan diterjemahkan (Indonesia/English). Nilai konkret masih terbuka.
+- **Simulasi hari-selisih (delta-days):** perubahan besar (pertumbuhan, ternak, ekonomi, cuaca) dihitung per hari dengan benih deterministik dari (seed + tanggal) sehingga hasil sama setelah muat ulang; menutup celah save-scumming dan klaim waktu palsu.
+- **Sinyal waktu:** `GameClock` memancarkan sinyal ringan (`menit_berganti` berfrekuensi rendah, `fase_hari_berganti`, `hari_berganti`, `musim_berganti`) lewat event bus; pelanggan mendaftar hanya pada granularitas yang dibutuhkan agar tidak ada kerja per frame.
+- **Jadwal NPC (§4aa):** jadwal sebagai data berbasis fase/jam, dipengaruhi cuaca dan event; NPC jauh disimulasikan dengan LOD dan "ditempatkan" menurut jadwal saat pemain mendekat (bukan dijalankan penuh), konsisten dengan waktu saat ini.
+- **Event dan festival (§4p):** pemicu berupa kondisi data (tanggal, fase, musim, cuaca); event kalender permainan dibedakan dari event waktu nyata live-ops (§4ag, D-048); kebijakan event saat offline masih terbuka (D-029).
+- **Aktivitas monster/lokasi/dungeon:** tabel spawn dan perilaku menerima fase hari/musim sebagai parameter data; dungeon memakai aturan waktunya sendiri bila ditetapkan, tanpa memecah kalender dunia.
+- **Aturan konsistensi:** (1) perpindahan wilayah/loading (§4aj) tidak mengubah `GameClock` selain waktu perjalanan yang dinyatakan data; (2) fast travel dan perjalanan menambah waktu lewat satu jalur (`advance_time`) dengan validasi; (3) tidak ada waktu mundur kecuali muat save yang sah; (4) perubahan jam perangkat tidak berpengaruh; (5) server hanya memberi acuan urutan/revisi untuk sinkron dan event bersama, bukan menulis ulang waktu permainan.
+- **Gangguan koneksi:** dasar = waktu tidak maju/mundur karena koneksi; perilaku lanjutan (jeda, mode terbatas, masa tenggang) menunggu **D-051** (isi belum diterima; tidak dikarang).
+- **Background, menu, dan offline:** apakah waktu berjalan di menu/dialog/latar belakang/offline masih terbuka; implementasi menyiapkan flag pause per konteks (UI §4r, dialog §4z) sebagai data, tanpa menetapkan nilainya.
+- **Save/cloud (§5a, D-044):** simpan waktu permainan, benih, dan penanda terakhir tersinkron; konflik memakai revisi, bukan jam perangkat; checksum bukan anti-cheat (D-050). Validasi server untuk operasi bernilai tinggi (§5b) memakai urutan server.
+- **UI/HUD dan audio:** jam/kalender di HUD (D-031) dan musik/ambient per fase hari (D-032) hanya tampilan atas `GameClock`; teks lewat kunci terjemahan; opsi format jam di pengaturan (D-045).
+- **Performa (D-052):** tanpa polling per frame; pembaruan visual siklus hari (cahaya, langit) diturunkan skalanya pada perangkat lemah; semua angka usulan belum diukur.
+- **Pengujian (D-049):** uji headless untuk determinisme (seed+tanggal), tidak ada waktu mundur, ketahanan terhadap perubahan jam perangkat, hasil catch-up sama dengan simulasi harian, pergantian fase/hari/bulan/tahun/musim, jadwal NPC, pemicu event, serta konsistensi setelah loading/fast travel.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres
