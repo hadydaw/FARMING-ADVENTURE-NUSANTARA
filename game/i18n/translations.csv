@@ -1,0 +1,7 @@
+keys,id,en
+BOOT_TITLE,Farming Adventure Nusantara,Farming Adventure Nusantara
+BOOT_SUBTITLE,Fondasi proyek siap. Gameplay belum dimulai.,Project foundation ready. Gameplay has not started.
+BOOT_VERSION,Versi %s,Version %s
+BOOT_RENDERER,Renderer: %s,Renderer: %s
+BOOT_FPS,FPS: %d,FPS: %d
+BOOT_LANGUAGE,Bahasa: Indonesia,Language: English

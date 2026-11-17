@@ -1,0 +1,137 @@
+name: Android Build
+
+# Alur:
+#  - push ke main / pull request : uji fondasi + build APK "dev" (paket .dev, kunci dev publik).
+#      * push ke main juga memperbarui pre-release "dev-latest" di GitHub Releases.
+#  - tag v*.*.*                  : build APK RILIS bertanda tangan kunci rilis (GitHub Secrets)
+#      lalu dipublikasikan di GitHub Releases.
+#  - workflow_dispatch           : jalankan manual (build dev).
+# Rincian: docs/technical/BUILD_AND_RELEASE.md
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*.*.*"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: android-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref_type != 'tag' }}
+
+permissions:
+  contents: read
+
+env:
+  GODOT_VERSION: "4.7.2"
+  GODOT_CHANNEL: "stable"
+  ANDROID_BUILD_TOOLS: "35.0.1"
+  ANDROID_PLATFORM: "android-35"
+  ANDROID_NDK: "28.1.13356709"
+  ANDROID_CMAKE: "3.10.2.4988404"
+
+jobs:
+  test:
+    name: Uji fondasi (headless)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pasang Godot
+        run: tools/ci/install_godot.sh
+
+      - name: Import proyek
+        run: godot --headless --path . --import
+
+      - name: Smoke test
+        run: tools/ci/run_smoke_test.sh
+
+  build:
+    name: Build APK
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: write # perlu untuk membuat/memperbarui GitHub Release
+    env:
+      IS_RELEASE: ${{ startsWith(github.ref, 'refs/tags/v') }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Pasang Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          packages: >-
+            platform-tools
+            build-tools;${{ env.ANDROID_BUILD_TOOLS }}
+            platforms;${{ env.ANDROID_PLATFORM }}
+            cmake;${{ env.ANDROID_CMAKE }}
+            ndk;${{ env.ANDROID_NDK }}
+
+      - name: Pasang Godot + export templates
+        run: tools/ci/install_godot.sh --with-templates
+
+      - name: Atur editor settings Android
+        run: tools/ci/configure_godot_android.sh
+
+      - name: Tentukan versi
+        id: version
+        run: tools/ci/prepare_version.sh "${{ github.ref_name }}" "${{ github.run_number }}" "$IS_RELEASE"
+
+      - name: Siapkan kunci penandatanganan
+        env:
+          RELEASE_KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          RELEASE_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          RELEASE_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: tools/ci/prepare_signing.sh "$IS_RELEASE"
+
+      - name: Import proyek
+        run: godot --headless --path . --import
+
+      - name: Export APK
+        run: |
+          mkdir -p build/android
+          godot --headless --path . --export-release "Android" "build/android/${{ steps.version.outputs.apk_name }}" 2>&1 | tee build/export.log
+          test -s "build/android/${{ steps.version.outputs.apk_name }}"
+
+      - name: Verifikasi APK
+        run: tools/ci/verify_apk.sh "build/android/${{ steps.version.outputs.apk_name }}" "${{ steps.version.outputs.package_name }}"
+
+      - name: Hapus kunci dari runner
+        if: always()
+        run: rm -f "$RUNNER_TEMP/release.keystore"
+
+      - name: Unggah artefak
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.version.outputs.apk_name }}
+          path: build/android/${{ steps.version.outputs.apk_name }}
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Publikasi pre-release dev-latest
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete dev-latest --cleanup-tag --yes || true
+          gh release create dev-latest "build/android/${{ steps.version.outputs.apk_name }}" \
+            --prerelease --target "$GITHUB_SHA" \
+            --title "Dev build (otomatis, bukan rilis)" \
+            --notes "Build otomatis dari commit ${GITHUB_SHA::7}. Memakai paket .dev dan kunci dev publik; tidak untuk dibagikan sebagai rilis. Versi: ${{ steps.version.outputs.version_name }}"
+
+      - name: Publikasi GitHub Release
+        if: env.IS_RELEASE == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" "build/android/${{ steps.version.outputs.apk_name }}" \
+            --title "Farming Adventure Nusantara $GITHUB_REF_NAME" \
+            --generate-notes

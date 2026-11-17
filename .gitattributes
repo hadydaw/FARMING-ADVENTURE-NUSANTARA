@@ -1,0 +1,11 @@
+* text=auto eol=lf
+*.keystore binary
+*.png binary
+*.jpg binary
+*.glb binary
+*.gltf text
+*.ogg binary
+*.wav binary
+*.translation binary
+*.ttf binary
+*.otf binary

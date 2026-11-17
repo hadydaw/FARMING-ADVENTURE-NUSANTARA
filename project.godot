@@ -1,0 +1,41 @@
+; Farming Adventure Nusantara - konfigurasi proyek Godot 4.7
+; Keputusan teknis: lihat docs/technical/TECHNICAL_ARCHITECTURE.md
+config_version=5
+
+[application]
+
+config/name="Farming Adventure Nusantara"
+config/description="Farming Simulation, Life Simulation, dan Adventure RPG 3D Stylized bertema Nusantara."
+config/version="0.1.0"
+run/main_scene="res://game/boot/boot.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[autoload]
+
+AppInfo="*res://game/core/app_info.gd"
+SaveService="*res://game/core/save_service.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation=4
+
+[input_devices]
+
+pointing/emulate_mouse_from_touch=true
+
+[internationalization]
+
+locale/fallback="id"
+locale/translations=PackedStringArray("res://game/i18n/translations.id.translation", "res://game/i18n/translations.en.translation")
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.53, 0.78, 0.92, 1)

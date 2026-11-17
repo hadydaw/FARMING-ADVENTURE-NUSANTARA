@@ -1,0 +1,55 @@
+# Project Roadmap — Farming Adventure Nusantara
+
+Roadmap berbasis **tahap dan hasil yang dapat diperiksa**, bukan tanggal (belum ada keputusan jadwal). Setiap tahap selesai hanya bila kriteria selesainya terpenuhi dan dicatat di `PROGRESS_LOG.md`.
+
+## Fase 0 — Fondasi Proyek *(tahap sekarang)*
+
+- [x] Repository GitHub, struktur direktori, dokumentasi (GDD, Technical Architecture, Roadmap, Development Rules, catatan keputusan)
+- [x] Proyek Godot 4.7.2 (Compatibility, landscape, i18n id/en, layar boot 3D)
+- [x] Fondasi inti: `SaveService` (teruji), `BackendClient` (antarmuka), `AppInfo`
+- [x] Konfigurasi ekspor Android + pipeline GitHub Actions + rancangan rilis
+- [ ] **Bukti build:** workflow Actions hijau dan APK dev terunduh dari `dev-latest`
+- [ ] **Bukti perangkat:** APK dev terpasang dan layar boot tampil di HP (landscape, 3D, sentuh, ganti bahasa)
+- [ ] Pemilik: kunci rilis (P-002), package ID (P-001), keputusan backend (P-003)
+
+**Kriteria selesai:** dua "bukti" di atas terpenuhi.
+
+## Fase 1 — Desain Bersama (belum ada kode gameplay)
+
+Sesi desain bersama ChatGPT; hasil dituangkan ke GDD v1.0 dan `DESIGN_DECISIONS.md`.
+Urutan usulan: multiplayer ya/tidak → pertarungan + kontrol/kamera sentuh → struktur dunia dan wilayah → siklus farming → dungeon → rank/quest/cerita → NPC → art direction.
+
+**Kriteria selesai:** GDD v1.0 tanpa bagian kritis bertanda [BELUM DITETAPKAN] untuk lingkup vertical slice.
+
+## Fase 2 — Fondasi Gameplay dan Pipeline Aset
+
+Kontrol sentuh + kamera, karakter dasar, pipeline aset 3D stylized (impor, konvensi nama, anggaran performa), UI dasar, audio manager, pengukuran performa di HP.
+**Selesai:** karakter dapat bergerak di area uji dengan 60/≥30 FPS sesuai anggaran.
+
+## Fase 3 — Vertical Slice
+
+Satu desa awal yang dapat dimainkan: loop inti (ladang → hasil → jual/masak) + guild + satu quest + satu area monster/dungeon kecil + satu boss. Simpan/muat progres.
+**Selesai:** alur desa→guild→dungeon→kembali dapat dimainkan tuntas di HP.
+
+## Fase 4 — Online
+
+Backend sesuai `BACKEND_DESIGN.md`: akun, sinkronisasi save, penanganan konflik. Fitur multiplayer hanya bila diputuskan di Fase 1.
+**Selesai:** progres dapat dipulihkan di perangkat lain; uji offline→online dan konflik lulus.
+
+## Fase 5 — Ekspansi Konten (Progressive World Unlock)
+
+Wilayah demi wilayah: desa/kota, sumber daya, monster, dungeon, rank F → SSS, cerita.
+Rilis berkala dengan CHANGELOG.
+
+## Fase 6 — Beta dan Rilis 1.0
+
+Optimasi performa/ukuran APK, uji perangkat beragam, QA regresi, keseimbangan, kebijakan privasi, rilis publik v1.0 di GitHub Releases.
+
+## Risiko dan Ketergantungan
+
+| Ketergantungan | Memblokir |
+|---|---|
+| Keputusan desain (Fase 1) | Semua implementasi gameplay |
+| Kunci rilis (P-002) | Rilis publik bertanda tangan |
+| Keputusan backend (P-003) | Fase 4 |
+| Sumber/pipeline aset 3D | Fase 2–3 |

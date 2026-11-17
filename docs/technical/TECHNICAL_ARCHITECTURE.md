@@ -1,0 +1,112 @@
+# Technical Architecture — Farming Adventure Nusantara
+
+> **Versi:** 0.1 (fondasi) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+
+## 1. Kebutuhan yang Menentukan Pilihan
+
+| Kebutuhan | Sumber |
+|---|---|
+| Game 3D stylized di Android, landscape, layar sentuh | D-004, D-008 |
+| APK publik via GitHub Releases, build otomatis GitHub Actions | D-005 |
+| Online dengan backend terpisah, sinkronisasi data pemain | D-006 |
+| Tanpa lisensi berbayar; biaya sekecil mungkin | Konteks proyek |
+| Dunia besar bertahap (banyak wilayah), RPG aksi, banyak sistem data | D-009, GDD |
+
+"Android Native" dipahami sebagai **aplikasi Android asli (APK, kode mesin arm64, bukan WebView/PWA)**. Bila yang dimaksud adalah kode aplikasi Kotlin/Java murni, beri tahu; keputusan T-001 perlu ditinjau.
+
+## 2. Pemilihan Engine
+
+| Opsi | Kelebihan | Kekurangan untuk proyek ini | Keputusan |
+|---|---|---|---|
+| **Godot 4.7** (GDScript) | Gratis, MIT, tanpa royalti; ekspor APK arm64 langsung; build CLI headless mudah di GitHub Actions; editor ringan; 3D stylized/toon cukup; mendukung plugin Android native (Kotlin) bila perlu | 3D lebih sederhana dibanding Unity/Unreal; ekosistem aset lebih kecil | **Dipilih** |
+| Unity | Ekosistem besar, banyak aset | Build CI butuh lisensi/aktivasi; ukuran proyek dan waktu build besar; kebijakan harga berubah-ubah | Tidak |
+| Unreal Engine | Grafis terbaik | Terlalu berat untuk HP menengah dan CI gratis; ukuran APK besar | Tidak |
+| Native Android (Kotlin + Filament/libGDX) | Kontrol penuh | Harus membangun sendiri editor level, UI, animasi, tooling — terlalu mahal untuk game seluas ini | Tidak |
+
+Alasan utama: **biaya nol, build CI sederhana dan dapat direproduksi, cukup untuk 3D stylized di HP, dan semua alat berjalan tanpa GUI** sehingga seluruh proyek bisa dikerjakan dan diuji lewat repo + CI.
+
+Versi dipatok (`4.7.2`) di `.github/workflows/android-build.yml` dan `project.godot` agar build dapat direproduksi. Pembaruan versi engine = entri keputusan baru.
+
+## 3. Rendering
+
+- Renderer **GL Compatibility** (OpenGL ES 3.0) untuk desktop dan mobile.
+- Gaya 3D stylized: material tanpa specular, warna datar/toon, bayangan sederhana; hindari efek berat (SDFGI, SSR, volumetrik tidak tersedia di Compatibility dan tidak dibutuhkan).
+- Model: glTF 2.0 `.glb`; tekstur dikompres ETC2/ASTC (diaktifkan di project settings).
+- **Anggaran performa awal (usulan, diukur ulang di perangkat nyata):** target 60 FPS, batas bawah 30 FPS di HP kelas menengah; karakter ≤ 5 ribu segitiga, monster umum ≤ 4 ribu, pohon/objek dunia ≤ 1 ribu; draw call ≤ 150 per frame; tekstur ≤ 1024 px untuk objek dunia.
+- Ditinjau ulang bila art direction memerlukan Mobile renderer (Vulkan).
+
+## 4. Struktur Kode dan Proyek
+
+```
+res://game/
+  boot/      layar boot dan uji fondasi (BUKAN gameplay)
+  core/      autoload & layanan lintas fitur: AppInfo, SaveService, BackendClient
+  i18n/      translations.csv (id, en)
+  data/      data game (item, tanaman, monster, ...) - kosong sampai desain selesai
+  world/     wilayah, desa, dungeon - kosong
+  ui/        antarmuka bersama - kosong
+  assets/    models, textures, audio, ui, fonts
+```
+
+Prinsip arsitektur (berlaku saat gameplay mulai dibangun):
+
+1. **Data-driven:** item, tanaman, monster, quest, rank, wilayah didefinisikan sebagai data (Resource/JSON), bukan hardcode, agar mudah diseimbangkan dan disinkronkan.
+2. **Pemisahan:** logika game (aturan) terpisah dari tampilan; logika dapat diuji headless.
+3. **Event bus** untuk komunikasi antarsistem (signal) agar sistem tidak saling mengunci.
+4. **Region sebagai unit muat:** tiap wilayah adalah scene/paket sendiri yang dimuat-bongkar, mendukung Progressive World Unlock dan batas memori HP.
+5. **Semua akses jaringan lewat `BackendClient`**; gameplay tidak memanggil HTTP langsung.
+6. **Semua teks lewat kunci terjemahan.**
+
+## 5. Penyimpanan Progres
+
+Implementasi awal: `game/core/save_service.gd` (autoload `SaveService`).
+
+- Lokasi: `user://saves/slot_N.json` (penyimpanan privat aplikasi di Android), 3 slot.
+- Format: amplop JSON `{schema_version, game_version, revision, updated_at_unix, checksum(SHA-256), payload_json}`.
+- Tulis atomik: tulis `.tmp` → pindahkan file lama ke `.bak` → ganti. Bila file utama rusak, `load_slot` memulihkan dari `.bak`.
+- `revision` naik tiap simpan → dasar deteksi konflik saat sinkronisasi.
+- `schema_version` disiapkan untuk migrasi data antarversi game.
+- Checksum hanya mendeteksi kerusakan, **bukan anti-curang**. Fitur online yang butuh kejujuran (ekonomi, rank) harus divalidasi server.
+- Teruji otomatis di `tools/ci/smoke_test.gd` (simpan, muat, revision, pemulihan dari kerusakan).
+
+## 6. Lokalisasi
+
+- `game/i18n/translations.csv` kolom `keys,id,en` → diimpor Godot menjadi `translations.id.translation` dan `translations.en.translation`.
+- Bahasa bawaan `id`; fallback `id`. Layar boot memuat tombol ganti bahasa sebagai uji.
+- Aturan: tidak ada string UI di kode; teks dialog/quest panjang nanti dapat dipisah per berkas, tetap kunci → teks.
+
+## 7. Input Sentuh
+
+- `emulate_mouse_from_touch` aktif agar kontrol UI standar berfungsi dengan sentuhan.
+- Orientasi: `sensor_landscape` (landscape normal dan terbalik mengikuti sensor).
+- Skema kontrol gameplay (joystick virtual, aksi, kamera) **menunggu keputusan desain**; akan dibangun sebagai scene UI terpisah dan dipetakan ke Input Action, sehingga mendukung kontroler/keyboard untuk uji.
+
+## 8. Backend dan Online
+
+Ringkasan; rincian di [`BACKEND_DESIGN.md`](BACKEND_DESIGN.md).
+
+- Backend **terpisah** dari GitHub. GitHub hanya menyimpan kode dan APK.
+- Klien memakai antarmuka `BackendClient` (`game/core/backend_client.gd`); default = mode offline (belum ada jaringan).
+- Pola: **offline-first dengan sinkronisasi** — pemain tetap bisa memuat progres lokal, server menjadi sumber kebenaran untuk akun dan data yang butuh validasi.
+
+## 9. Pipeline Build dan Rilis
+
+Ringkasan; rincian di [`BUILD_AND_RELEASE.md`](BUILD_AND_RELEASE.md).
+
+`push/PR` → uji fondasi headless → build APK dev → artefak; `main` → pre-release `dev-latest`; tag `vX.Y.Z` → build rilis bertanda tangan kunci rahasia → GitHub Release.
+
+## 10. Pengujian
+
+- Smoke test headless (`tools/ci/smoke_test.gd`) dan pemuatan scene utama dijalankan di CI sebelum build; CI gagal bila ada `SCRIPT ERROR`/`Parse Error`.
+- Verifikasi APK di CI: nama paket, arsitektur arm64, tanda tangan (`apksigner`).
+- Pengujian di perangkat nyata dilakukan manual lewat APK dev; hasil dicatat di `PROGRESS_LOG.md`.
+
+## 11. Risiko Teknis
+
+| Risiko | Mitigasi |
+|---|---|
+| Performa 3D di HP menengah | Anggaran performa §3; uji perangkat nyata sejak vertical slice |
+| Ukuran APK/memori untuk dunia besar | Region sebagai unit muat; kompresi tekstur; pantau ukuran tiap rilis |
+| Kehilangan kunci rilis → pemain tak bisa update | Cadangkan keystore di tempat aman di luar repo (BUILD_AND_RELEASE §4) |
+| Backend terkunci pada satu vendor | Antarmuka `BackendClient`; data inti portabel (Postgres/JSON) |
+| Build pertama di CI belum terbukti | Dicatat jujur di PROGRESS_LOG; diperbaiki iteratif sampai hijau |
