@@ -748,3 +748,4 @@ Hubungan (tidak mengubah isi keputusan lain): engine dan renderer (**O-001**, **
 | P-004 | Lisensi | Publikasi source | **Selesai** (O-005) |
 | P-005 | Hasil uji APK dev di HP (`docs/project/TESTING_APK.md`) | Menutup Fase 0 | Menunggu |
 | P-006 | Tahap 35: Sistem Akun dan Login Pemain (metode login, multi-perangkat, hapus akun, privasi) | Persiapan publikasi Google Play Store | **PENDING** (atas instruksi pemilik; dibahas saat persiapan publikasi; status tidak diubah) |
+| D-051 | **ID dicadangkan** untuk keputusan Tahap 42 (belum diterima dari pemilik). Tidak diisi dan tidak dipakai ulang. | Penomoran berurutan | **Dicadangkan** (menunggu keputusan Tahap 42) |
