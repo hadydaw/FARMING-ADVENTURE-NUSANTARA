@@ -724,6 +724,26 @@ Hubungan (tidak mengubah isi keputusan lain): engine dan renderer (**O-001**, **
 **Catatan penomoran:** pemilik menetapkan D-052 untuk Tahap 43. **D-051 (Tahap 42) belum diterima**; ID itu **dicadangkan dan dibiarkan kosong** (tidak diisi dan tidak dipakai ulang) sampai keputusan Tahap 42 dikirim. Bila Tahap 42 kelak mendapat ID lain, hal itu dicatat saat diterima.
 **Terbuka (semua angka dan ambang belum diukur):** target FPS (mis. 30/60) dan batas bawah per kelas perangkat; definisi kelas perangkat (rendah/menengah/tinggi) dan cara klasifikasi; daftar opsi grafis adaptif dan urutan penurunan kualitas; ambang suhu, baterai, dan pemicu penurunan kualitas; anggaran memori, draw call, poligon, dan ukuran tekstur nyata; ukuran unduhan dan APK maksimum; versi Android dan perangkat minimum yang didukung; mode hemat baterai; peran Vulkan/Mobile renderer bila GL Compatibility tidak cukup (ditinjau ulang, saat ini tidak diubah); kebijakan aset (kompresi, atlas, LOD) per kelas; peran konsep "spiritual" (belum didefinisikan). **Tidak ada hasil pengukuran atau pengujian perangkat fisik yang diklaim;** P-005 tetap menunggu laporan pengguna. Implementasi belum dimulai. ID D-052 tersedia saat dicatat (tanpa bentrokan). Tahap 35 (akun dan login, P-006) tetap PENDING.
 
+### D-053 — Sistem Loading dan Transisi Antarwilayah *(APPROVED / LOCKED, 2026-11-17, Tahap 44)*
+Pilihan: **D. Hybrid Loading & World Streaming.** Ruang lingkup:
+1. Loading screen dengan ilustrasi, tips, dan indikator progres bila diperlukan.
+2. Transisi mulus (seamless) antararea jika kondisi teknis memungkinkan.
+3. Pemuatan asinkron untuk mengurangi jeda permainan.
+4. Streaming dunia dinamis berdasarkan posisi dan kebutuhan pemain.
+5. Manajemen aset/resource otomatis.
+6. Pengelolaan memori dan pelepasan resource yang tidak lagi dipakai.
+7. Integrasi dengan optimasi performa Android dan sistem eksplorasi dunia.
+
+Ketentuan:
+- Target tetap Godot 4.7.2, GDScript, GL Compatibility, Android native arm64, landscape-first.
+- **Seamless tidak dipaksakan** bila menyebabkan stutter atau RAM berlebihan.
+- Perpindahan **dungeon, interior, dan wilayah khusus** dapat memakai loading screen bila perlu.
+- Selaras dengan D-028 (eksplorasi dunia), D-052 (performa adaptif), dan keputusan kamera (D-033).
+- Penguncian desain; implementasi belum dimulai.
+
+Hubungan (tidak mengubah isi keputusan lain): engine (**O-001**, **D-004**), gaya visual (**D-008**), dunia dan wilayah (**D-009**, **D-028**), dungeon (**D-016**), pertanian/bangunan dan interior rumah (**D-023**, **D-027**), event dunia (**D-029**), UI (**D-031**), audio (**D-032**), kamera (**D-033**), mount (**D-042**; aturan medan dan akses), NPC (**D-040**), tutorial dan tips (**D-043**), save (**D-044**), pengaturan (**D-045**), update konten (**D-048**), QA (**D-049**), keamanan (**D-050**), performa (**D-052**). Catatan: **D-051** tetap dicadangkan untuk Tahap 42.
+**Terbuka:** daftar jenis transisi (wilayah luar tanpa jeda, pintu masuk interior, dungeon, wilayah khusus, fast travel) mana yang seamless dan mana memakai loading screen; ukuran chunk, jarak muat/bongkar, dan jumlah chunk aktif (belum diukur); ambang waktu "diperlukan" untuk menampilkan loading screen; isi ilustrasi dan gaya loading (art direction), jumlah dan kategori tips, aturan pemilihan tips (kontekstual terhadap wilayah/progres, tidak bocor spoiler); indikator progres (persentase, bar, atau tanpa angka); apakah pemain dapat berinteraksi/melihat peta saat memuat; perilaku bila pemuatan gagal atau lambat (ulang, kembali ke titik aman); posisi dan keselamatan pemain selama transisi (invulnerabilitas sementara, penjagaan NPC/monster); apakah auto-save dipicu saat transisi (selaras D-044); peran konsep "spiritual" untuk wilayah khusus (belum didefinisikan, tidak ditebak). **Tidak ada klaim performa atau hasil pengujian perangkat fisik;** P-005 tetap menunggu laporan pengguna. Implementasi belum dimulai. ID D-053 tersedia saat dicatat (tanpa bentrokan). Tahap 35 (akun dan login, P-006) tetap PENDING.
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

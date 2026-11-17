@@ -302,3 +302,11 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. **Tidak ada hasil performa atau uji perangkat fisik yang diklaim**; semua angka berstatus usulan belum diukur.
 - GDD §6.41 baru (v0.41); Technical Architecture §4ai ditambahkan dan §3 diberi rujukan (v0.41); catatan saja: PerfService dengan kelas perangkat dan preset grafis, penyesuaian dinamis dengan histeresis dan UI tetap resolusi asli, frame pacing dan anggaran milidetik per sistem, optimasi CPU/GPU/RAM untuk GL Compatibility, pemuatan aset per wilayah, LOD NPC/animasi, kesadaran baterai dan termal, degradasi bertahap lintas perangkat, instrumentasi, serta aturan bukti performa (D-049). Hubungan dengan O-001, D-004, D-008, D-009, D-022, D-028, D-031 sampai D-034, D-040 sampai D-042, D-044, D-045, D-048 sampai D-050 dicatat tanpa mengubah isinya.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.
+
+
+## 2026-11-17 (42) — D-053 Sistem Loading dan Transisi Antarwilayah dicatat
+
+- D-053 (Hybrid Loading & World Streaming, LOCKED) dicatat sebagai **Tahap 44**; ID tersedia, tanpa bentrokan. **D-051 (Tahap 42) tetap dicadangkan**, belum diterima.
+- **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik; semua angka berstatus usulan belum diukur.
+- GDD §6.42 baru (v0.42); Technical Architecture §4aj ditambahkan (v0.42); catatan saja: dua jenis transisi sebagai data (Streaming dan Loading, dapat diturunkan oleh PerfService), World Streamer dengan cincin aktif/penyangga, pemuatan asinkron time-sliced dengan gerbang kesiapan, loading screen tanpa teks tertanam dengan tips kontekstual dan progres nyata, kesinambungan kamera/audio, ResourceManager dengan pelepasan otomatis dan cache LRU, keadaan dunia terpisah dari node, penanganan dungeon/interior, keselamatan dan pemulihan, penanganan kegagalan dengan batas waktu. Hubungan dengan O-001, D-004, D-008, D-009, D-016, D-023, D-027, D-028, D-031 sampai D-033, D-040, D-042 sampai D-045, D-048 sampai D-050, D-052 dicatat tanpa mengubah isinya.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.
