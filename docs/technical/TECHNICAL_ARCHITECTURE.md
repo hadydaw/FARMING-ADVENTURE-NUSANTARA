@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.54 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.55 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -78,7 +78,7 @@ Sistem Kehidupan (farming, ternak, memancing, memasak, musim, festival, ekonomi,
 - **Event kalender** (festival, acara desa) sebagai data terjadwal yang memicu scene/quest.
 - **Save:** keadaan ladang, hewan, inventori, uang, rumah, dan tanggal masuk payload save (skema berversi, migrasi antarversi); ukuran payload dipantau karena dunia pribadi ikut tersimpan.
 - **Ekonomi:** karena single-player online, ekonomi bersifat pribadi; validasi server untuk mencegah manipulasi save baru diputuskan bila diperlukan.
-- **Hanya yang ditetapkan:** hubungan romantis/pernikahan/keluarga/anak tidak ada dalam arsitektur sampai diputuskan.
+- **Diperbarui oleh D-066:** hubungan romantis/pernikahan/keluarga/anak kini ditetapkan sebagai cakupan resmi; implikasi arsitektur ada di §4aw (hanya catatan; detail belum final).
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ### 4c. Implikasi Arsitektur dari D-016 (hanya catatan; belum diimplementasikan)
@@ -157,7 +157,7 @@ Syarat utama: **jumlah NPC besar tetap terkelola** (kinerja di HP dan beban penu
 - **Pencarian jalan dan pengaturan beban:** jumlah NPC aktif dibatasi oleh anggaran performa §3; navigasi memakai navigation mesh per area.
 - **Save:** hubungan, flag cerita, kemajuan quest NPC, dan keadaan khusus NPC masuk payload save (skema berversi); jadwal tidak disimpan (diturunkan dari data + waktu).
 - **Online (D-014):** NPC adalah progres pribadi; tidak ada sinkronisasi real-time.
-- **Cakupan:** hanya pertemanan/kepercayaan; model hubungan dibuat dapat diperluas, tetapi romansa/keluarga tidak dimodelkan sampai diputuskan.
+- **Cakupan (diperbarui oleh D-066):** isi bagian ini (pertemanan/kepercayaan/reputasi) tidak diubah; model dapat diperluas dan romansa/pernikahan/keluarga/anak kini ditetapkan terpisah di D-066 (§4aw, hanya catatan).
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ### 4j. Implikasi Arsitektur dari D-023 (hanya catatan; belum diimplementasikan)
@@ -380,7 +380,7 @@ Memperluas catatan dialog di §4i dan memakai mesin kondisi/efek yang sama denga
 - **UI dialog:** panel di manajer konteks UI (§4r): kotak teks, nama dan potret, daftar pilihan berukuran target sentuh nyaman, lewati/percepat, riwayat; kontrol lewat Input Action (§4u); transisi kamera lewat profil percakapan (§4t); audio dialog lewat bus Efek/Musik (§4s).
 - **Performa:** hanya graf NPC yang sedang dibicarakan dimuat; evaluasi kondisi per interaksi, bukan per frame (§3).
 - **Validasi konten:** alat/uji headless memeriksa graf tanpa node mati, semua pilihan dapat dicapai atau punya jalan keluar, rujukan ke quest/flag/NPC valid, dan tidak ada dialog yang tak mungkin dipicu.
-- **Cakupan hubungan:** hanya pertemanan/kepercayaan; romansa/keluarga tidak dimodelkan sampai diputuskan.
+- **Cakupan (diperbarui oleh D-066):** isi bagian ini (pertemanan/kepercayaan/reputasi) tidak diubah; model dapat diperluas dan romansa/pernikahan/keluarga/anak kini ditetapkan terpisah di D-066 (§4aw, hanya catatan).
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ### 4z. Implikasi Arsitektur dari D-039 (hanya catatan; belum diimplementasikan)
@@ -396,7 +396,7 @@ Memperluas penyimpan hubungan di §4i; dibaca dialog (§4y) dan quest (§4x).
 - **Persistence:** hubungan, reputasi per scope, flag dan event yang telah terjadi masuk payload save (§5) berversi; ID NPC dan scope stabil, dengan migrasi saat NPC/komunitas diubah; cloud save Supabase lewat mekanisme save yang sama (D-014), sebagai progres pribadi tanpa sinkronisasi real-time; konflik ditangani sesuai desain online.
 - **Performa:** hanya NPC aktif/terdekat dievaluasi; nilai disimpan dalam tabel kompak, evaluasi per event (§3).
 - **Pengujian:** uji headless untuk batas harian dan diminishing returns, pemisahan hubungan vs reputasi, penerapan efek konsisten, pemicu event, serialisasi-migrasi.
-- **Cakupan:** hanya pertemanan/kepercayaan/reputasi; model dapat diperluas, tetapi romansa/pernikahan/keluarga/anak tidak dimodelkan sampai diputuskan.
+- **Cakupan (diperbarui oleh D-066):** isi bagian ini (pertemanan/kepercayaan/reputasi) tidak diubah; model dapat diperluas dan romansa/pernikahan/keluarga/anak kini ditetapkan terpisah di D-066 (§4aw, hanya catatan).
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ### 4aa. Implikasi Arsitektur dari D-040 (hanya catatan; belum diimplementasikan)
@@ -591,7 +591,7 @@ Memperluas layanan waktu/kalender di §4b (acuan jam yang dulu terbuka kini dite
 - **UI/HUD dan audio:** jam/kalender di HUD (D-031) dan musik/ambient per fase hari (D-032) hanya tampilan atas `GameClock`; teks lewat kunci terjemahan; opsi format jam di pengaturan (D-045).
 - **Performa (D-052):** tanpa polling per frame; pembaruan visual siklus hari (cahaya, langit) diturunkan skalanya pada perangkat lemah; semua angka usulan belum diukur.
 - **Pengujian (D-049):** uji headless untuk determinisme (seed+tanggal), tidak ada waktu mundur, ketahanan terhadap perubahan jam perangkat, hasil catch-up sama dengan simulasi harian, pergantian fase/hari/bulan/tahun/musim, jadwal NPC, pemicu event, serta konsistensi setelah loading/fast travel.
-- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§4aw; detail belum final).
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ### 4am. Implikasi Arsitektur dari D-056 (hanya catatan; belum diimplementasikan; semua angka usulan dan belum diukur)
@@ -610,7 +610,7 @@ Bertumpu pada `GameClock` (§4al), event bus, simulasi hari-selisih (§4al), loa
 - **Performa (D-052):** pemrosesan diturunkan skalanya pada perangkat lemah (tahap lebih sedikit per frame, bukan hasil berbeda); angka belum diukur.
 - **Update konten (D-048):** tahap/sistem baru ditambah sebagai data; save lama tetap termigrasi; validator konten memastikan urutan tahap valid.
 - **Pengujian (D-049):** uji headless untuk determinisme, idempotensi (jalankan dua kali tidak menggandakan), interupsi di tiap tahap lalu lanjut, tidak ada waktu mundur, konsistensi antar sumber tidur, anggaran per frame, dan sinkron save setelah pergantian hari.
-- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§4aw; detail belum final).
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ### 4an. Implikasi Arsitektur dari D-057 (hanya catatan; belum diimplementasikan; semua angka usulan dan belum diukur)
@@ -630,7 +630,7 @@ Memakai model makhluk bersama (§4a, §4f), perkembangan karakter (§4e), mesin 
 - **Performa (D-052):** tanpa pembaruan per frame; modifier di-cache dan dihitung ulang hanya saat berubah; angka belum diukur.
 - **Update konten (D-048):** sumber daya, efek, makanan/potion baru ditambah sebagai data; validator memastikan referensi efek/ID valid dan tidak ada efek tanpa sumber daya terkait.
 - **Pengujian (D-049):** uji headless untuk batas nilai (tidak di bawah nol/di atas kapasitas), `spend` atomik, pemulihan sekali per transaksi (idempoten), efek berdurasi setelah tidur/perjalanan, migrasi save, dan tidak ada ketergantungan jam perangkat.
-- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§4aw; detail belum final).
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ### 4ao. Implikasi Arsitektur dari D-058 (hanya catatan; belum diimplementasikan; semua angka usulan dan belum diukur)
@@ -649,7 +649,7 @@ Bertumpu pada vitalitas (§4an), pertarungan (§4a), `GameClock` (§4al), pipeli
 - **Tutorial (D-043, §4ad) dan achievement (D-046, §4ae):** tutorial menjelaskan pemulihan secara bertahap; achievement hanya membaca event bus dan tidak mendorong perilaku merugikan.
 - **Performa (D-052):** tanpa pemrosesan berat dalam satu frame; pemilihan tempat dan transisi memakai anggaran per frame; angka belum diukur.
 - **Pengujian (D-049):** uji headless untuk mesin keadaan (semua konteks), idempotensi dan interupsi di tiap langkah, titik kebangkitan selalu valid dan terjangkau di tiap wilayah, tidak ada kehilangan data di luar aturan data, determinisme, konsistensi dengan waktu dan save, serta uji migrasi save lama.
-- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§4aw; detail belum final).
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ### 4ap. Implikasi Arsitektur dari D-059 (hanya catatan; belum diimplementasikan; semua angka usulan dan belum diukur)
@@ -668,7 +668,7 @@ Mengonsolidasikan mesin kondisi/efek bersama (§4x, §4d) dan `VitalityComponent
 - **Performa (D-052):** modifier agregat di-cache dan dihitung ulang hanya saat efek berubah; batas efek aktif per entitas dan pembaruan LOD untuk monster jauh sebagai parameter data (belum diukur); efek visual dikurangi pada perangkat lemah tanpa mengubah hasil.
 - **Update konten (D-048):** efek baru ditambah sebagai data; validator memastikan referensi valid, aturan penghapusan ada, dan tidak ada efek yang tidak dapat dihapus tanpa jalan keluar; kompatibel dengan save lama.
 - **Pengujian (D-049):** uji headless untuk kelengkapan definisi, apply/remove idempoten, perilaku durasi terhadap `GameClock`, tidak bergantung jam perangkat, determinisme probabilitas, hasil sama setelah tidur/perjalanan dibanding simulasi per hari, migrasi save, dan tidak ada efek yang menyisakan keadaan buntu.
-- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§4aw; detail belum final).
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ### 4aq. Implikasi Arsitektur dari D-060 (hanya catatan; belum diimplementasikan; tidak ada angka)
@@ -683,7 +683,7 @@ Terkait data dunia (§4o, §4ak), NPC (§4i, §4aa), guild (§4d), ekonomi (§4h
 - **Save/cloud (D-044, §5a):** hanya ID kelompok yang relevan masuk save (mis. reputasi per kelompok bila ada), dengan `section_version` dan migrasi; ID yang di-deprecate tetap dikenali.
 - **Update konten (D-048):** kelompok, budaya, dan peradaban baru ditambah sebagai data baru; validator memastikan semua referensi valid dan kunci terjemahan lengkap di kedua bahasa.
 - **Pengujian (D-049):** uji headless untuk referensi ID valid, kelengkapan terjemahan, tidak ada aturan perlakuan berbeda di luar data yang terdaftar, konsistensi atribut antar NPC/wilayah, dan migrasi save.
-- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§4aw; detail belum final).
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ### 4ar. Implikasi Arsitektur dari D-061 (hanya catatan; belum diimplementasikan; tidak ada angka)
@@ -699,7 +699,7 @@ Memperluas guild (§4d), kelompok/identitas (§4aq), data dunia dan wilayah (§4
 - **Lokalisasi dan aset:** teks lewat kunci Indonesia/English (D-045); lambang/ikon sebagai aset data (atlas ikon bersama) tanpa teks tertanam; pemuatan sesuai kebutuhan (§4aj, §4ai).
 - **Keamanan (D-050, §5b):** keadaan organisasi bersifat pribadi per akun; operasi bernilai tinggi (ekonomi/hadiah) divalidasi urutan server; checksum bukan anti-cheat.
 - **Pengujian (D-049):** uji headless untuk validitas referensi (wilayah, kelompok, hubungan), tidak ada kebocoran data tersembunyi, aturan perubahan deterministik dan idempoten, migrasi save, kelengkapan terjemahan, dan guild D-017 tidak berubah perilakunya.
-- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§4aw; detail belum final).
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ### 4as. Implikasi Arsitektur dari D-062 (hanya catatan; belum diimplementasikan; tidak ada angka)
@@ -717,7 +717,7 @@ Memperluas organisasi (§4ar), hubungan sosial dan reputasi komunitas (§4z, §4
 - **UI/lokalisasi (D-031, D-045):** indikator hubungan mudah dipahami (tahap/ikon, bukan sekadar angka) sebagai tampilan atas event bus; teks lewat kunci Indonesia/English; aksesibilitas (bentuk ikon selain warna); tidak membocorkan organisasi rahasia atau relasi yang belum diketahui (§4ak).
 - **Update konten (D-048):** organisasi, relasi, tingkat, dan aturan efek baru ditambah sebagai data; validator memastikan referensi valid, terjemahan lengkap, dan tidak ada aturan yang menimbulkan keadaan buntu.
 - **Pengujian (D-049):** uji headless untuk pemisahan standing vs relasi, determinisme dan idempotensi efek, jejak sebab, tidak ada kebocoran data tersembunyi, tidak ada keadaan buntu, konsistensi dengan D-039/D-017 (tidak berubah), dan migrasi save.
-- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§4aw; detail belum final).
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ### 4at. Implikasi Arsitektur dari D-063 (hanya catatan; belum diimplementasikan; tidak ada angka)
@@ -736,7 +736,7 @@ Memperluas event dunia (§4p), hubungan faksi (§4as), organisasi (§4ar), NPC h
 - **Performa (D-052):** kondisi konflik dihitung per hari/ per kejadian, bukan per frame; varian visual di-LOD dan dikurangi pada perangkat lemah tanpa mengubah hasil; angka belum diukur.
 - **Update konten (D-048):** konflik baru ditambah sebagai data baru; validator memeriksa referensi, jalur akhir, dan tidak adanya keadaan buntu.
 - **Pengujian (D-049):** uji headless untuk konsistensi dengan relasi, determinisme dan idempotensi tahap, konflik dapat berakhir, progres utama tetap dapat diselesaikan tanpa ikut konflik, save/migrasi aman, tidak ada penulisan ke data inti di luar efek data, serta ketahanan terhadap interupsi dan perubahan jam perangkat.
-- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§4aw; detail belum final).
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ### 4au. Implikasi Arsitektur dari D-064 (hanya catatan; belum diimplementasikan; tidak ada angka)
@@ -756,7 +756,7 @@ Memperluas organisasi dan wilayah (§4ar, §4o), hubungan faksi (§4as), konflik
 - **Performa (D-052):** deteksi berbasis kejadian dan area (bukan polling per frame); penjaga jauh disimulasikan agregat/LOD; pemrosesan berat dibagi per frame (§4am, §4ai); angka belum diukur.
 - **Update konten (D-048):** kode hukum, jenis pelanggaran, dan prosedur baru sebagai data baru; ID di-deprecate tetap dikenali; validator memeriksa referensi dan jalur penyelesaian.
 - **Pengujian (D-049):** uji headless untuk pemisahan tiga reputasi, tindakan tidak disengaja tidak langsung berat, determinisme dan idempotensi, setiap status buronan dapat diselesaikan, hukum per wilayah valid, perlindungan data inti, migrasi save, dan ketahanan terhadap interupsi dan perubahan jam perangkat.
-- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§4aw; detail belum final).
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ### 4av. Implikasi Arsitektur dari D-065 (hanya catatan; belum diimplementasikan; tidak ada angka)
@@ -773,7 +773,25 @@ Memperluas event dunia (§4p) dan musim/cuaca (§4q), dengan `GameClock` (§4al)
 - **Keamanan (D-050, §5b):** keadaan pribadi per akun; hasil bernilai tinggi divalidasi urutan server; checksum bukan anti-cheat; tidak ada fenomena antarpemain.
 - **Update konten (D-048):** fenomena baru ditambah sebagai data baru; validator memeriksa referensi, jalur akhir, dan terjemahan Indonesia/English; kompatibel dengan save lama.
 - **Pengujian (D-049):** uji headless untuk determinisme (seed+tanggal), konsistensi dengan musim/cuaca/kalender, idempotensi tahap, setiap fenomena dapat berakhir, perlindungan data inti, migrasi save, tidak ada keadaan buntu, ketahanan terhadap interupsi dan perubahan jam perangkat, serta kesetaraan hasil antara simulasi per hari dan susul-kejar.
-- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§4aw; detail belum final).
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4aw. Implikasi Arsitektur dari D-066 (hanya catatan; belum diimplementasikan; tidak ada angka)
+
+Memperluas model hubungan sosial (§4z), NPC dan kehidupan harian (§4i, §4aa), dialog (§4y), rumah (§4n), event/kalender (§4p, §4al), quest (§4x), cloud save (§5a), versi konten (§4ag). Hanya rancangan; tidak ada kandidat, aturan kelayakan, kecepatan, mekanisme, atau sistem anak.
+- **`Relationship` berdata dan bertahap:** satu model hubungan per pasangan pemain–NPC yang memperluas model friendship/trust (§4z): tahap sebagai data ber-ID stabil (§4ag) (persahabatan, kedekatan, romantis, pertunangan, pernikahan, dan seterusnya, nama dan syarat belum ditetapkan), dengan syarat transisi sebagai kondisi data (§4x). Tahap tidak dikodekan keras sehingga dapat berubah tanpa kode; kategori "spiritual" tidak dibuat logikanya (belum didefinisikan).
+- **`FamilyState` per-save:** keadaan keluarga (pasangan, anggota keluarga, peristiwa penting) berupa bagian save berversi (`section_version`) yang terpisah dari hubungan individu; struktur (mis. anak) berupa entitas data yang belum dirinci; dirancang sebagai tambahan (additive) sehingga detail kelak tidak merusak save lama; ID di-deprecate tetap dikenali (§5a, D-044).
+- **Integrasi kehidupan harian (D-040, §4aa):** pasangan/anggota keluarga memakai kerangka NPC yang ada (jadwal, perilaku, LOD) dengan modifier jadwal berdata saat tahap berubah; lokasi bersama mengikuti rumah (§4n) lewat tautan data; tanpa percabangan kode per hubungan.
+- **Kalender dan event (D-055, D-029, §4al, §4p):** peristiwa penting (pertunangan, pernikahan, perayaan, kejadian keluarga) berupa event terjadwal data bertahap berbasis `GameClock`, bukan jam perangkat; deterministik (seed+tanggal) dan idempoten; dijalankan lewat pipeline hari bila perlu (§4am), dan aman terhadap interupsi.
+- **Dialog dan cerita (D-038, §4y, §4x):** cabang dialog, adegan, dan quest hubungan memakai bahasa kondisi/efek bersama; tidak ada teks tertanam; kunci terjemahan Indonesia/English (D-045).
+- **Keamanan save dan progres:** perubahan tahap penting (mis. peristiwa yang tidak bisa dibatalkan) ditulis atomik dengan ID transaksi dan revisi (§5, §5a), dengan konfirmasi UI untuk transisi tak dapat dibalik bila aturan menetapkan (belum ditetapkan); tidak ada kehilangan akibat gangguan koneksi; perilaku koneksi putus menunggu **D-051** (isi belum diterima, tidak dikarang).
+- **Pemisahan dari sistem lain:** hubungan individu tidak otomatis memengaruhi reputasi komunitas/faksi/kriminal (§4z, §4as, §4au) kecuali lewat aturan data terdaftar; ras/suku (§4aq) hanya berpengaruh lewat aturan eksplisit.
+- **Pengaturan dan aksesibilitas (D-045):** disiapkan titik data bagi opsi terkait (belum ditetapkan); teks, ikon, dan UI mengikuti kontras/skala/lokalisasi.
+- **Keamanan (D-050, §5b):** data hubungan bersifat pribadi per akun; checksum bukan anti-cheat; operasi bernilai tinggi divalidasi urutan server; tidak ada pasangan/keluarga antarpemain (D-014).
+- **Performa (D-052):** NPC pasangan/keluarga di luar jarak memakai LOD; pembaruan berbasis kejadian dan sinyal hari, bukan per frame; angka belum diukur.
+- **Update konten (D-048):** tahap, adegan, dan peristiwa baru sebagai data baru; validator memeriksa referensi, jalur transisi valid (tidak ada keadaan buntu), dan terjemahan lengkap.
+- **Pengujian (D-049):** uji headless untuk transisi tahap valid, perkembangan tersimpan dan terpulihkan, idempotensi peristiwa, konsistensi dengan jadwal/kalender, migrasi save lama (tanpa data hubungan romantis), dan ketahanan terhadap interupsi dan perubahan jam perangkat.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres

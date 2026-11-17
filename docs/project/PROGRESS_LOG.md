@@ -401,3 +401,12 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
 - GDD §6.54 baru (v0.54); Technical Architecture §4av ditambahkan (v0.54); catatan saja: `Phenomenon` sebagai data memperluas event dan cuaca yang ada, jadwal deterministik dari seed+tanggal dan `GameClock`, tahap peringatan–berlangsung–pemulihan, dampak lewat efek data, perlindungan progres dan save, setiap fenomena wajib dapat berakhir. Katalog, frekuensi, probabilitas, kerusakan, dan durasi sengaja tidak ditetapkan.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.
+
+## 2026-11-17 (55) — D-066 Sistem Romansa, Pernikahan, dan Keluarga dicatat (memperbarui batasan D-015)
+
+- D-066 (Romance & Family Hybrid Lengkap, LOCKED) dicatat sebagai **Tahap 57**; ID tersedia, tanpa bentrokan. **D-051 (Tahap 42) tetap dicadangkan**, isinya belum diterima; tidak ada isi yang dikarang. Arti "spiritual" **tetap tidak didefinisikan**.
+- **Konflik dengan D-015 diselesaikan eksplisit:** batasan "romansa, pernikahan, keluarga, anak belum ditetapkan" (D-015, Tahap 5) kini **diperbarui oleh D-066**; D-066 adalah keputusan terbaru untuk aspek ini. **Fitur kehidupan lain di D-015 tidak berubah.** Catatan batasan lama di DESIGN_DECISIONS (D-015, D-022, D-027), GDD (§6.x terkait dan daftar sisa), dan Technical Architecture (§4b, §4i, §4z, §4aa) ditandai "diperbarui oleh D-066"; penanda "tidak ada model romansa/keluarga" pada catatan D-055 sampai D-065 diganti rujukan ke D-066. Entri log lama (sebelum ini) tidak diubah karena merupakan riwayat.
+- Hanya **cakupan** yang ditetapkan; kandidat pasangan, aturan kelayakan, kecepatan, mekanisme pernikahan, sistem anak, dan detail keluarga sengaja tidak ditetapkan.
+- **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
+- GDD §6.55 baru (v0.55); Technical Architecture §4aw ditambahkan (v0.55); catatan saja: model hubungan bertahap berdata, `FamilyState` per-save yang additive, integrasi jadwal NPC/rumah/kalender/event, penulisan atomik idempoten, pemisahan dari reputasi komunitas/faksi/kriminal.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.

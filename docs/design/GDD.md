@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.54 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement, D-047 Monetisasi, D-048 Live Ops, D-049 QA, D-050 Keamanan, D-052 Performa, D-053 Loading, D-054 Peta, D-055 Waktu, D-056 Tidur, D-057 Vitalitas, D-058 Kekalahan, D-059 Status Effect, D-060 Ras & Suku, D-061 Organisasi Dunia, D-062 Hubungan Faksi, D-063 Konflik Dunia, D-064 Hukum, D-065 Fenomena Dunia) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.55 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement, D-047 Monetisasi, D-048 Live Ops, D-049 QA, D-050 Keamanan, D-052 Performa, D-053 Loading, D-054 Peta, D-055 Waktu, D-056 Tidur, D-057 Vitalitas, D-058 Kekalahan, D-059 Status Effect, D-060 Ras & Suku, D-061 Organisasi Dunia, D-062 Hubungan Faksi, D-063 Konflik Dunia, D-064 Hukum, D-065 Fenomena Dunia, D-066 Romansa & Keluarga) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -90,7 +90,7 @@ Belum: daftar wilayah, peta dunia, syarat buka tiap wilayah, ukuran wilayah, car
 
 **[BELUM DITETAPKAN]:** daftar tanaman dan hewan, panjang musim (jumlah musim: empat, D-030), kalender dan sistem waktu (termasuk acuan jam: perangkat atau server), cuaca, stamina, mekanik memancing, resep dan efek makanan (termasuk hubungannya dengan RPG/buff), harga dan keseimbangan ekonomi, jadwal dan jenis festival, tahap upgrade rumah dan ladang, dekorasi, penyimpanan, keseimbangan dengan pertarungan dan dungeon.
 
-**Di luar D-015 dan BELUM ditetapkan (jangan dianggap disetujui):** hubungan romantis, pernikahan, membangun keluarga, memiliki anak.
+**Diperbarui oleh D-066 (§6.55):** hubungan romantis, pernikahan, membangun keluarga, dan memiliki anak, yang belum dipilih saat D-015 dicatat, kini ditetapkan sebagai bagian resmi permainan (cakupan saja; detail belum final). Fitur kehidupan lain di D-015 tidak berubah.
 
 Perincian pertanian dan pertumbuhan tanaman: lihat 6.13 (D-023); peternakan dan hewan: lihat 6.14 (D-024). Untuk bagian 6.3 dan 6.4 di bawah, rujuk 6.2.
 
@@ -114,7 +114,7 @@ Ditetapkan lewat D-015 (pengembangan rumah dan ladang; lihat 6.2) dan dirinci di
 - Terkait: kalender/musim/festival (D-015), NPC guild (D-017), merchant (D-021), wilayah (D-009), NPC sebagai progres pribadi (D-014).
 
 **[BELUM DITETAPKAN]:** daftar NPC dan karakter, jumlah NPC target, tingkat/tahap hubungan dan cara mengukurnya, bentuk reaksi terhadap tindakan pemain, struktur quest bercabang dan cerita pribadi, bentuk dialog, jenis event sosial, bagaimana NPC "bekerja" saat pemain jauh.
-**Tetap BELUM ditetapkan (D-015):** hubungan romantis, pernikahan, membangun keluarga, dan memiliki anak. D-022 hanya mencakup pertemanan dan kepercayaan. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+**Diperbarui oleh D-066 (§6.55):** hubungan romantis, pernikahan, membangun keluarga, dan memiliki anak kini ditetapkan sebagai keputusan terpisah. D-022 sendiri hanya mencakup pertemanan dan kepercayaan dan tidak diubah. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ### 6.6 Adventurer Guild — D-017, LOCKED (Guild Petualang Lengkap)
 **Ditetapkan:**
@@ -247,7 +247,7 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - Terkait: peternakan dan pengembangan ladang (D-015), crafting (D-020), ekonomi (D-021), pakan dari pertanian (D-023), companion/monster (D-019), loot/material (D-016).
 
 **[BELUM DITETAPKAN]:** daftar spesies, hewan langka, dan hewan spiritual; produk tiap spesies; kebutuhan pakan; aturan kesehatan dan penyakit; aturan kawin, kelahiran, dan pertumbuhan; jenis kandang dan fasilitas serta upgrade-nya; **arti dan kemampuan "hewan spiritual"**; **batas antara hewan ternak (D-024) dan pet/companion (D-019)**; apakah hewan ternak dapat dibawa ke petualangan.
-**Catatan:** "perkembangbiakan" berlaku untuk hewan, bukan keluarga/anak pemain (tetap belum ditetapkan, D-015). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+**Catatan:** "perkembangbiakan" berlaku untuk hewan, bukan keluarga/anak pemain (keluarga dan anak pemain ditetapkan terpisah oleh D-066, §6.55; detail belum final). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ### 6.15 Memancing dan Kehidupan Perairan — D-025, LOCKED (Kombinasi Semua Sistem)
 **Ditetapkan:**
@@ -291,7 +291,7 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - Terkait: rumah dan ladang (D-015), pertanian (D-023), peternakan (D-024), memasak/alkimia (D-026), crafting (D-020), ekonomi (D-021), progres/wilayah (D-009, D-017).
 
 **[BELUM DITETAPKAN]:** daftar bangunan dan fungsinya; tahap upgrade rumah; ukuran dan tahap ekspansi lahan; metode penataan (grid atau penempatan bebas, rotasi, batas); daftar dekorasi dan apakah dekorasi punya efek gameplay; **arti "bangunan spiritual" dan fungsi "paviliun"**; syarat membuka bangunan spiritual; biaya dan material; kapasitas penyimpanan; apakah bangunan dapat rusak/perlu perawatan.
-**Tetap BELUM ditetapkan (D-015):** hubungan romantis, pernikahan, keluarga, dan anak. D-027 tidak mencakupnya. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+**Diperbarui oleh D-066 (§6.55):** hubungan romantis, pernikahan, keluarga, dan anak kini ditetapkan sebagai keputusan terpisah; D-027 sendiri tidak mencakupnya dan tidak diubah; rumah bersama pasangan/keluarga belum diputuskan. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ### 6.18 Eksplorasi Dunia dan Perjalanan — D-028, LOCKED (Kombinasi Semua Sistem)
 **Ditetapkan:**
@@ -443,7 +443,7 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - **Tidak ada dialog berulang** yang tidak sesuai keadaan/progres NPC.
 - Terkait: D-007, D-014, D-015, D-017, D-021, D-022, D-023, D-029 sampai D-033, D-035, D-037.
 
-**[BELUM DITETAPKAN]:** daftar NPC dan isi dialog, format data dan kondisi, tampilan UI dialog, suara pengisi, kamera saat bicara, prioritas bila banyak dialog memenuhi syarat, batas pilihan, aturan pilihan terkunci, cara mencegah pengulangan, cakupan reputasi, kata ganti/nama di dua bahasa, aksesibilitas, konsep "spiritual" (belum didefinisikan), romansa/pernikahan/keluarga (belum diputuskan). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+**[BELUM DITETAPKAN]:** daftar NPC dan isi dialog, format data dan kondisi, tampilan UI dialog, suara pengisi, kamera saat bicara, prioritas bila banyak dialog memenuhi syarat, batas pilihan, aturan pilihan terkunci, cara mencegah pengulangan, cakupan reputasi, kata ganti/nama di dua bahasa, aksesibilitas, konsep "spiritual" (belum didefinisikan), romansa/pernikahan/keluarga (ditetapkan terpisah oleh D-066, §6.55; detail belum final). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ### 6.29 Hubungan Sosial dan Persahabatan — D-039, LOCKED (Social System Hybrid Lengkap)
 **Ditetapkan:**
@@ -457,7 +457,7 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - **Tidak boleh ada kenaikan yang tidak masuk akal** atau konsekuensi yang tidak konsisten.
 - Terkait: D-007, D-014, D-015, D-017, D-021, D-022, D-029, D-031, D-035, D-037, D-038.
 
-**[BELUM DITETAPKAN]:** skala dan nama tingkat friendship/trust, daftar komunitas dan ambang reputasi, rumus dan batas perubahan, preferensi hadiah, peluruhan/pemulihan, daftar friendship event, bentuk indikator UI, cara tindakan terlihat oleh komunitas, detail terkait Guild, konsep "spiritual" (belum didefinisikan). **Romansa, pernikahan, keluarga, dan anak BELUM diputuskan; tidak dimodelkan.** **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+**[BELUM DITETAPKAN]:** skala dan nama tingkat friendship/trust, daftar komunitas dan ambang reputasi, rumus dan batas perubahan, preferensi hadiah, peluruhan/pemulihan, daftar friendship event, bentuk indikator UI, cara tindakan terlihat oleh komunitas, detail terkait Guild, konsep "spiritual" (belum didefinisikan). **Romansa, pernikahan, keluarga, dan anak: diperbarui oleh D-066 (§6.55); ditetapkan terpisah, detail belum final.** **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ### 6.30 NPC dan Kehidupan Desa — D-040, LOCKED (NPC Living World Hybrid)
 **Ditetapkan:**
@@ -471,7 +471,7 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - UI dan konten **Indonesia dan English.**
 - Terkait: D-007, D-009, D-014, D-015, D-017, D-021 sampai D-024, D-026 sampai D-030, D-032, D-035, D-037 sampai D-039.
 
-**[BELUM DITETAPKAN]:** daftar NPC dan peran, jenis dan kerincian kebutuhan NPC, model keputusan AI, jarak LOD dan batas NPC aktif, dampak interaksi antar-NPC, dampak ekonomi NPC ke harga/pasokan, bentuk dan pemicu perkembangan desa, aturan fallback/terjebak rinci, perilaku saat pertarungan/bencana, konsep "spiritual" (belum didefinisikan). **Romansa, pernikahan, keluarga, dan anak BELUM diputuskan; tidak dimodelkan.** **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+**[BELUM DITETAPKAN]:** daftar NPC dan peran, jenis dan kerincian kebutuhan NPC, model keputusan AI, jarak LOD dan batas NPC aktif, dampak interaksi antar-NPC, dampak ekonomi NPC ke harga/pasokan, bentuk dan pemicu perkembangan desa, aturan fallback/terjebak rinci, perilaku saat pertarungan/bencana, konsep "spiritual" (belum didefinisikan). **Romansa, pernikahan, keluarga, dan anak: diperbarui oleh D-066 (§6.55); ditetapkan terpisah, detail belum final.** **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ### 6.31 Kustomisasi Karakter Pemain — D-041, LOCKED (Character Customization Hybrid Lengkap)
 **Ditetapkan:**
@@ -679,7 +679,7 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - Selaras dengan D-029, D-030, D-040, D-044, dan D-051 (isi D-051 belum diterima).
 - Terkait: D-009, D-015, D-016, D-021 sampai D-026, D-031, D-032, D-045, D-048, D-050, D-052 sampai D-054.
 
-**[BELUM DITETAPKAN]:** panjang hari/bulan/tahun dan fase hari, kecepatan jam, apakah waktu berjalan di menu/dialog/pertarungan/latar belakang/offline, kebijakan event waktu nyata vs kalender, aturan catch-up, panjang musim, konsep "spiritual" (belum didefinisikan). **Tidak ada** model romansa/pernikahan/keluarga/anak (belum diputuskan).
+**[BELUM DITETAPKAN]:** panjang hari/bulan/tahun dan fase hari, kecepatan jam, apakah waktu berjalan di menu/dialog/pertarungan/latar belakang/offline, kebijakan event waktu nyata vs kalender, aturan catch-up, panjang musim, konsep "spiritual" (belum didefinisikan). Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§6.55, cakupan saja; detail belum final).
 
 ### 6.45 Tidur, Istirahat, dan Pergantian Hari — D-056, LOCKED (Rest & Sleep Hybrid Lengkap)
 **Ditetapkan:**
@@ -693,7 +693,7 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - Tetap **single-player online** (D-014). Selaras dengan D-044, D-055, dan D-051 (isi D-051 belum diterima).
 - Terkait: D-015, D-021 sampai D-024, D-027 sampai D-032, D-040, D-045, D-048 sampai D-050, D-052, D-053.
 
-**[BELUM DITETAPKAN]:** efek pemulihan, batas tidur dan aturan jam tidur, biaya/fasilitas penginapan, aturan dan risiko kemah, tidur singkat tanpa ganti hari, perilaku offline/catch-up, konsep "spiritual" (belum didefinisikan). **Tidak ada** model romansa/pernikahan/keluarga/anak (belum diputuskan).
+**[BELUM DITETAPKAN]:** efek pemulihan, batas tidur dan aturan jam tidur, biaya/fasilitas penginapan, aturan dan risiko kemah, tidur singkat tanpa ganti hari, perilaku offline/catch-up, konsep "spiritual" (belum didefinisikan). Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§6.55, cakupan saja; detail belum final).
 
 ### 6.46 Energi, Stamina, dan Kebutuhan Karakter — D-057, LOCKED (Character Vitality Hybrid Lengkap)
 **Ditetapkan:**
@@ -706,7 +706,7 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - Selaras dengan D-015, D-026, D-043, D-046, D-056; D-051 belum diterima isinya.
 - Terkait: D-013, D-016, D-018 sampai D-020, D-023 sampai D-025, D-028, D-031, D-036, D-042, D-044, D-045, D-048 sampai D-050, D-052, D-055.
 
-**[BELUM DITETAPKAN]:** semua angka, efek saat habis (termasuk risiko pingsan/kekalahan), apakah kebutuhan dapat diatur lewat kesulitan/pengaturan, cakupan Mana, daftar efek makanan/potion, stamina mount, konsep "spiritual" (belum didefinisikan). **Tidak ada** model romansa/pernikahan/keluarga/anak (belum diputuskan).
+**[BELUM DITETAPKAN]:** semua angka, efek saat habis (termasuk risiko pingsan/kekalahan), apakah kebutuhan dapat diatur lewat kesulitan/pengaturan, cakupan Mana, daftar efek makanan/potion, stamina mount, konsep "spiritual" (belum didefinisikan). Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§6.55, cakupan saja; detail belum final).
 
 ### 6.47 Kematian, Pingsan, dan Kebangkitan — D-058, LOCKED (Defeat & Recovery Hybrid Lengkap)
 **Ditetapkan:**
@@ -721,7 +721,7 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - Tetap **single-player online.** Selaras dengan D-015, D-029, D-040, D-044, D-048, D-056, D-057; D-051 belum diterima isinya.
 - Terkait: D-009, D-013, D-016, D-019, D-021, D-022, D-027, D-028, D-031, D-032, D-037, D-038, D-043, D-045, D-046, D-049, D-050, D-052 sampai D-055.
 
-**[BELUM DITETAPKAN]:** semua penalti (item, uang, EXP, progres), durasi pemulihan, aturan checkpoint final, aturan penyelamatan NPC, biaya/layanan klinik, efek pada waktu, nasib companion, perlakuan dungeon/boss/event, konsep "spiritual" (belum didefinisikan). **Tidak ada** model romansa/pernikahan/keluarga/anak (belum diputuskan).
+**[BELUM DITETAPKAN]:** semua penalti (item, uang, EXP, progres), durasi pemulihan, aturan checkpoint final, aturan penyelamatan NPC, biaya/layanan klinik, efek pada waktu, nasib companion, perlakuan dungeon/boss/event, konsep "spiritual" (belum didefinisikan). Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§6.55, cakupan saja; detail belum final).
 
 ### 6.48 Status Effect, Buff, dan Debuff — D-059, LOCKED (Status Effect Hybrid Lengkap)
 **Ditetapkan:**
@@ -736,7 +736,7 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - Selaras dengan D-018, D-026, D-046, D-057, D-058; D-051 belum diterima isinya.
 - Terkait: D-013, D-016, D-019, D-020, D-023, D-024, D-029 sampai D-032, D-036, D-043 sampai D-045, D-048 sampai D-050, D-052, D-053, D-055, D-056.
 
-**[BELUM DITETAPKAN]:** katalog efek, durasi, stacking, probabilitas, angka balance, arti "spiritual", daftar elemen/penyakit, cara menyembuhkan, persistensi setelah kekalahan/tidur/perpindahan wilayah. **Tidak ada** model romansa/pernikahan/keluarga/anak (belum diputuskan).
+**[BELUM DITETAPKAN]:** katalog efek, durasi, stacking, probabilitas, angka balance, arti "spiritual", daftar elemen/penyakit, cara menyembuhkan, persistensi setelah kekalahan/tidur/perpindahan wilayah. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§6.55, cakupan saja; detail belum final).
 
 ### 6.49 Ras, Suku, dan Asal-Usul Karakter — D-060, LOCKED (Racial World Hybrid Lengkap)
 **Ditetapkan:**
@@ -749,7 +749,7 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - Tidak mengubah keputusan gameplay atau eksplorasi sebelumnya (D-009, D-028). Tetap **single-player online.**
 - Terkait: D-009, D-015, D-017 sampai D-019, D-021, D-022, D-028, D-029, D-037 sampai D-041, D-045, D-048, D-059.
 
-**[BELUM DITETAPKAN]:** daftar ras/suku/bangsa, lore, kemampuan ras, populasi, hubungan antarbangsa, apakah pemain memilih ras/asal-usul dan dampaknya, arti "spiritual", daftar peradaban kuno, kaitan dengan budaya nyata. **Tidak ada** model romansa/pernikahan/keluarga/anak (belum diputuskan).
+**[BELUM DITETAPKAN]:** daftar ras/suku/bangsa, lore, kemampuan ras, populasi, hubungan antarbangsa, apakah pemain memilih ras/asal-usul dan dampaknya, arti "spiritual", daftar peradaban kuno, kaitan dengan budaya nyata. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§6.55, cakupan saja; detail belum final).
 
 ### 6.50 Kerajaan, Wilayah Kekuasaan, dan Organisasi Dunia — D-061, LOCKED (World Civilization Hybrid Lengkap)
 **Ditetapkan:**
@@ -761,7 +761,7 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - Identitas konsisten dan tanpa diskriminasi tersembunyi (D-060). Dunia tetap **pribadi per pemain** (single-player online).
 - Selaras dengan D-028, D-060, D-017, D-029. Terkait: D-009, D-021, D-022, D-037 sampai D-040, D-044, D-048, D-050, D-054, D-055.
 
-**[BELUM DITETAPKAN]:** nama, jumlah, pemimpin, peta politik, sejarah, hubungan antarorganisasi, arti "spiritual" (belum didefinisikan), aturan perubahan kondisi, efek mekanik, organisasi rahasia dan penemuannya, konflik. **Tidak ada** model romansa/pernikahan/keluarga/anak (belum diputuskan).
+**[BELUM DITETAPKAN]:** nama, jumlah, pemimpin, peta politik, sejarah, hubungan antarorganisasi, arti "spiritual" (belum didefinisikan), aturan perubahan kondisi, efek mekanik, organisasi rahasia dan penemuannya, konflik. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§6.55, cakupan saja; detail belum final).
 
 ### 6.51 Reputasi, Hubungan Faksi, dan Diplomasi — D-062, LOCKED (Faction Relations Hybrid Lengkap)
 **Ditetapkan:**
@@ -772,7 +772,7 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - **Tanpa angka:** tidak ada skala, ambang, daftar faksi, atau hasil politik final.
 - Selaras dengan D-017, D-022, D-029, D-039, D-060, D-061. Terkait: D-009, D-028, D-031, D-037, D-038, D-040, D-044, D-045, D-048, D-050, D-054, D-055, D-059.
 
-**[BELUM DITETAPKAN]:** skala dan ambang reputasi, daftar faksi, hasil politik, kaitan dengan D-039/D-017, aturan peluruhan dan perbaikan, bentuk konflik, besar pengaruh pemain, tampilan UI, arti "spiritual" (belum didefinisikan). **Tidak ada** model romansa/pernikahan/keluarga/anak (belum diputuskan).
+**[BELUM DITETAPKAN]:** skala dan ambang reputasi, daftar faksi, hasil politik, kaitan dengan D-039/D-017, aturan peluruhan dan perbaikan, bentuk konflik, besar pengaruh pemain, tampilan UI, arti "spiritual" (belum didefinisikan). Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§6.55, cakupan saja; detail belum final).
 
 ### 6.52 Perang dan Konflik Antarfaksi — D-063, LOCKED (World Conflict Hybrid Lengkap)
 **Ditetapkan:**
@@ -784,7 +784,7 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - Tidak mengubah Progressive World Unlock (D-009), eksplorasi (D-028); transisi memakai Loading/streaming (D-053). Dunia pribadi per pemain (single-player online).
 - Selaras dengan D-029, D-028, D-053, D-060, D-061, D-062. Terkait: D-013, D-016, D-017, D-019, D-021, D-022, D-040, D-044, D-048 sampai D-050, D-052, D-054, D-055, D-058, D-059.
 
-**[BELUM DITETAPKAN]:** daftar perang, faksi terlibat, korban, aturan perebutan wilayah, hasil konflik, peran dan hadiah pemain, bentuk pertahanan, dampak mekanik, nasib NPC, perilaku offline, arti "spiritual" (belum didefinisikan). **Tidak ada** model romansa/pernikahan/keluarga/anak (belum diputuskan).
+**[BELUM DITETAPKAN]:** daftar perang, faksi terlibat, korban, aturan perebutan wilayah, hasil konflik, peran dan hadiah pemain, bentuk pertahanan, dampak mekanik, nasib NPC, perilaku offline, arti "spiritual" (belum didefinisikan). Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§6.55, cakupan saja; detail belum final).
 
 ### 6.53 Hukum, Kejahatan, dan Bounty — D-064, LOCKED (Law & Justice Hybrid Lengkap)
 **Ditetapkan:**
@@ -795,7 +795,7 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - **Adil dan ada jalan keluar**; progres utama dan save tidak rusak. Tanpa diskriminasi tersembunyi (D-060). Dunia pribadi per pemain (single-player online).
 - Selaras dengan D-017, D-022, D-039, D-060, D-061, D-062, D-063. Terkait: D-009, D-013, D-021, D-028, D-029, D-037, D-038, D-040, D-044, D-045, D-048 sampai D-050, D-053, D-055, D-058, D-059.
 
-**[BELUM DITETAPKAN]:** kategori kejahatan, hukuman, prosedur pengadilan, formula bounty, skala reputasi kriminal, aturan penangkapan, cara menebus, aturan khusus wilayah, peran Guild, arti "spiritual" (belum didefinisikan). **Tidak ada** model romansa/pernikahan/keluarga/anak (belum diputuskan).
+**[BELUM DITETAPKAN]:** kategori kejahatan, hukuman, prosedur pengadilan, formula bounty, skala reputasi kriminal, aturan penangkapan, cara menebus, aturan khusus wilayah, peran Guild, arti "spiritual" (belum didefinisikan). Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§6.55, cakupan saja; detail belum final).
 
 ### 6.54 Cuaca Ekstrem, Bencana Alam, dan Fenomena Spiritual — D-065, LOCKED (World Phenomena Hybrid Lengkap)
 **Ditetapkan:**
@@ -807,7 +807,18 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - **Tanpa angka:** tidak ada katalog, frekuensi, probabilitas, kerusakan, atau durasi final.
 - Selaras dengan D-029, D-030, D-048, D-051 (isi belum diterima), D-055. Terkait: D-009, D-019, D-021, D-023 sampai D-025, D-028, D-031, D-032, D-040, D-044, D-045, D-049 sampai D-054, D-056 sampai D-059, D-063.
 
-**[BELUM DITETAPKAN]:** katalog fenomena, frekuensi/probabilitas, tingkat kerusakan, durasi, konsekuensi numerik, arti "spiritual", aturan peringatan/perlindungan/pemulihan, perilaku offline, dampak ke peta/fast travel. **Tidak ada** model romansa/pernikahan/keluarga/anak (belum diputuskan).
+**[BELUM DITETAPKAN]:** katalog fenomena, frekuensi/probabilitas, tingkat kerusakan, durasi, konsekuensi numerik, arti "spiritual", aturan peringatan/perlindungan/pemulihan, perilaku offline, dampak ke peta/fast travel. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§6.55, cakupan saja; detail belum final).
+
+### 6.55 Romansa, Pernikahan, dan Keluarga — D-066, LOCKED (Romance & Family Hybrid Lengkap)
+**Ditetapkan:**
+- **Persahabatan dan kedekatan dengan NPC**, **hubungan romantis**, **pertunangan**, **pernikahan**, **kehidupan bersama pasangan**, **memiliki anak**, serta **perkembangan keluarga dan kehidupan keluarga.**
+- **Pembaruan D-015:** romansa, pernikahan, keluarga, dan anak yang sebelumnya "belum dipilih" (D-015, Tahap 5) kini **resmi bagian permainan**; D-066 adalah keputusan terbaru untuk aspek ini. **Fitur kehidupan lain di D-015 tidak berubah**; isi D-022, D-027, dan D-039 tidak diubah.
+- Terintegrasi dengan **kehidupan harian NPC (D-040), dialog (D-038), hubungan sosial (D-039), kalender (D-055), rumah (D-027), dan event (D-029).**
+- **Perkembangan hubungan konsisten dan tersimpan** (D-044); aman bagi save dan progres.
+- Tetap **single-player online**: hubungan dengan NPC di dunia pribadi pemain.
+- Selaras dengan D-015, D-022, D-038, D-039, D-040, D-045, D-055. Terkait: D-014, D-031, D-032, D-041, D-046, D-048 sampai D-050, D-056, D-058 sampai D-062, D-064.
+
+**[BELUM DITETAPKAN]:** kandidat pasangan, aturan kelayakan, kecepatan/tahapan hubungan, mekanisme pertunangan dan pernikahan, kehidupan/rumah bersama, sistem anak dan detail keluarga, apakah wajib atau opsional, peringkat usia dan batas konten, pengaturan terkait, arti "spiritual" (belum didefinisikan).
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 
@@ -837,7 +848,7 @@ Urutan usulan pembahasan bersama ChatGPT (dari yang paling memengaruhi arsitektu
 4. ~~Sistem kehidupan~~ (D-015 terkunci); sisanya: detail aturan (musim, waktu, stamina, ekonomi, resep, festival).
 5. ~~Dungeon~~ (D-016 terkunci: tetap + acak); sisanya: detail loot, boss, kesulitan.
 6. ~~Guild, rank, quest~~ (D-017 terkunci); sisanya: progres cerita dan detail quest.
-7. ~~NPC dan hubungan~~ (D-022 terkunci); sisanya: daftar NPC, romansa/keluarga (belum ditetapkan).
+7. ~~NPC dan hubungan~~ (D-022 terkunci); sisanya: daftar NPC; romansa/keluarga ditetapkan di D-066 (§6.55, cakupan saja).
 8. Art direction 3D Stylized dan sumber aset.
 9. ~~Monetisasi~~ (D-047 terkunci: Cosmetic Only; detail harga, platform pembayaran, dan kebijakan toko menunggu persiapan publikasi).
 

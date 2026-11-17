@@ -73,7 +73,7 @@ Pilihan: **B. Kehidupan Lengkap ala Story of Seasons.** Fitur yang ditetapkan:
 8. Pengembangan rumah
 9. Pengembangan dan perluasan ladang
 
-**Batasan — BELUM ditetapkan (jangan dianggap disetujui):** hubungan romantis, pernikahan, membangun keluarga, memiliki anak.
+**Batasan (DIPERBARUI oleh D-066, Tahap 57):** pada saat D-015 dicatat, hubungan romantis, pernikahan, membangun keluarga, dan memiliki anak belum dipilih. **D-066 kini menetapkan seluruh aspek itu sebagai bagian resmi permainan (cakupan saja; detail belum final).** Fitur kehidupan lain di D-015 tidak berubah.
 
 Catatan: ID D-015 tersedia saat dicatat (tidak ada bentrokan). Detail aturan tiap fitur (daftar tanaman/hewan, panjang musim, resep, harga, jadwal festival, tahap upgrade) belum ditetapkan. Implementasi belum dimulai.
 
@@ -186,7 +186,7 @@ Ketentuan desain:
 - Dialog, quest, dan event dapat berubah sesuai hubungan dan perkembangan cerita.
 - Sistem dirancang agar **jumlah NPC yang besar tetap dapat dikelola dengan baik**.
 
-**Batasan (tetap berlaku dari D-015):** hubungan **romantis, pernikahan, membangun keluarga, dan memiliki anak BELUM ditetapkan**. D-022 hanya menyebut hubungan **pertemanan dan kepercayaan**; jangan diartikan mencakup romansa.
+**Batasan (DIPERBARUI oleh D-066):** D-022 sendiri hanya menyebut hubungan **pertemanan dan kepercayaan** dan isinya **tidak diubah**; romansa, pernikahan, keluarga, dan anak kini ditetapkan oleh **D-066** sebagai keputusan terpisah yang menambah (bukan mengganti) cakupan hubungan D-022.
 
 Hubungan dengan keputusan lain (tidak mengubah isinya): jadwal dan kondisi dunia memakai kalender/musim/festival (**D-015**); NPC pengurus guild dan quest (**D-017**); merchant dengan spesialisasi (**D-021**); perkembangan dunia dan wilayah (**D-009**); dunia dan NPC adalah progres pribadi pemain (**D-014**).
 Detail (daftar NPC, kepribadian, tingkat hubungan, bentuk reaksi, struktur quest bercabang, jumlah NPC target) belum ditetapkan. Implementasi belum dimulai. ID D-022 tersedia saat dicatat (tanpa bentrokan).
@@ -295,7 +295,7 @@ Ketentuan desain:
 
 Hubungan dengan keputusan lain (tidak mengubah isinya): merinci butir **pengembangan rumah** dan **pengembangan/perluasan ladang** pada **D-015**; pertanian (**D-023**, greenhouse), peternakan (**D-024**, kandang dan fasilitas), memasak dan alkimia (**D-026**, dapur dan laboratorium sebagai fasilitas), crafting (**D-020**, workshop/penyimpanan); biaya dan material berkaitan dengan ekonomi (**D-021**); pembukaan bangunan spiritual lewat progres (**D-009**, **D-017**) bergantung pada keputusan yang belum ada.
 **Terbuka:** arti "bangunan spiritual" dan "paviliun" (fungsi gameplay) belum didefinisikan, sama seperti elemen "spiritual" lain (D-023, D-024, D-025); apakah penataan lahan bebas berbasis grid atau penempatan bebas belum ditetapkan; batas dengan sistem pengembangan di D-015 (rumah/ladang) tidak bertentangan, hanya dirinci.
-**Penegasan:** tidak ada keputusan tentang kamar keluarga, pasangan, atau anak; romansa, pernikahan, keluarga, dan anak tetap belum ditetapkan (D-015).
+**Penegasan (DIPERBARUI oleh D-066):** D-027 sendiri tidak memutuskan kamar keluarga, pasangan, atau anak dan isinya tidak diubah; romansa, pernikahan, keluarga, dan anak kini ditetapkan oleh **D-066** (cakupan saja); rumah bersama pasangan/keluarga adalah detail yang belum diputuskan.
 Detail (daftar bangunan, tahap upgrade, ukuran lahan, biaya, syarat buka bangunan spiritual) belum ditetapkan. Implementasi belum dimulai. ID D-027 tersedia saat dicatat (tanpa bentrokan).
 
 ### D-028 — Sistem Eksplorasi Dunia dan Perjalanan *(APPROVED / LOCKED, 2026-11-17, Tahap 18)*
@@ -497,7 +497,7 @@ Pilihan: **D. Dialog Hybrid Lengkap.** Ketentuan:
 8. Hindari dialog berulang yang tidak sesuai keadaan atau progres NPC.
 
 Hubungan (tidak mengubah isi keputusan lain): bahasa (**D-007**), guild (**D-017**), ekonomi/perdagangan (**D-021**), NPC dan hubungan sosial (**D-022**), pertanian/kehidupan desa (**D-015**, **D-023**), event dunia (**D-029**), musim/cuaca/kalender (**D-030**), UI (**D-031**), audio (**D-032**), kamera (**D-033**), interaksi (**D-035**), quest (**D-037**), online dan cloud save (**D-014**, **O-003**).
-**Terbuka:** daftar NPC dan penulisan dialog; format data dialog dan bahasa kondisi; tampilan UI (kotak teks, potret, kecepatan teks, lewati, riwayat percakapan); suara pengisi dan efek suara dialog; kamera saat percakapan; aturan prioritas bila beberapa dialog memenuhi syarat; batas jumlah pilihan; aturan pilihan terkunci (apakah alasan ditampilkan); cara menghindari pengulangan (penanda sudah dibicarakan, variasi); cakupan "reputasi" yang memengaruhi dialog; penanganan kata ganti/nama pemain di dua bahasa; aksesibilitas (ukuran teks); peran konsep "spiritual" (belum didefinisikan, tidak ditebak); romansa, pernikahan, keluarga (belum diputuskan, tidak dimodelkan). Implementasi dialog belum dimulai. ID D-038 tersedia saat dicatat (tanpa bentrokan).
+**Terbuka:** daftar NPC dan penulisan dialog; format data dialog dan bahasa kondisi; tampilan UI (kotak teks, potret, kecepatan teks, lewati, riwayat percakapan); suara pengisi dan efek suara dialog; kamera saat percakapan; aturan prioritas bila beberapa dialog memenuhi syarat; batas jumlah pilihan; aturan pilihan terkunci (apakah alasan ditampilkan); cara menghindari pengulangan (penanda sudah dibicarakan, variasi); cakupan "reputasi" yang memengaruhi dialog; penanganan kata ganti/nama pemain di dua bahasa; aksesibilitas (ukuran teks); peran konsep "spiritual" (belum didefinisikan, tidak ditebak); romansa, pernikahan, keluarga (diperbarui oleh D-066: ditetapkan terpisah, detail belum final). Implementasi dialog belum dimulai. ID D-038 tersedia saat dicatat (tanpa bentrokan).
 
 ### D-039 — Sistem Hubungan Sosial dan Persahabatan *(APPROVED / LOCKED, 2026-11-17, Tahap 29)*
 Pilihan: **D. Social System Hybrid Lengkap.** Ketentuan:
@@ -529,7 +529,7 @@ Pilihan: **D. NPC Living World Hybrid.** Ketentuan:
 10. UI dan konten mendukung Indonesia dan English.
 
 Hubungan (tidak mengubah isi keputusan lain): bahasa (**D-007**), dunia dan wilayah (**D-009**), kehidupan (**D-015**), guild (**D-017**), ekonomi (**D-021**), NPC dan kehidupan sosial (**D-022**; keputusan ini memperdalam simulasi NPC di sana), pertanian/peternakan/memasak (**D-023**, **D-024**, **D-026**), bangunan dan desa (**D-027**), eksplorasi (**D-028**), event dunia (**D-029**), musim/cuaca (**D-030**), audio (**D-032**), interaksi (**D-035**), quest (**D-037**), dialog (**D-038**), sosial (**D-039**), online dan cloud save (**D-014**, **O-003**).
-**Terbuka:** daftar NPC dan perannya; jenis dan jumlah kebutuhan NPC (apakah ada, seberapa rinci); model keputusan AI (mis. jadwal + utilitas ringan); jarak/tingkat LOD simulasi dan jumlah NPC aktif maksimum; aturan interaksi sosial antar-NPC (dampak ke pemain); aktivitas ekonomi NPC (dampak ke harga/pasokan); bentuk "perkembangan desa" dan pemicunya; aturan fallback dan penanganan terjebak secara rinci; perilaku NPC saat pertarungan/bencana; peran konsep "spiritual" (belum didefinisikan). **Romansa, pernikahan, keluarga, dan anak tetap BELUM diputuskan dan tidak dimodelkan.** Implementasi AI NPC belum dimulai. ID D-040 tersedia saat dicatat (tanpa bentrokan).
+**Terbuka:** daftar NPC dan perannya; jenis dan jumlah kebutuhan NPC (apakah ada, seberapa rinci); model keputusan AI (mis. jadwal + utilitas ringan); jarak/tingkat LOD simulasi dan jumlah NPC aktif maksimum; aturan interaksi sosial antar-NPC (dampak ke pemain); aktivitas ekonomi NPC (dampak ke harga/pasokan); bentuk "perkembangan desa" dan pemicunya; aturan fallback dan penanganan terjebak secara rinci; perilaku NPC saat pertarungan/bencana; peran konsep "spiritual" (belum didefinisikan). **Romansa, pernikahan, keluarga, dan anak: diperbarui oleh D-066; ditetapkan terpisah, detail belum final.** Implementasi AI NPC belum dimulai. ID D-040 tersedia saat dicatat (tanpa bentrokan).
 
 ### D-041 — Sistem Kustomisasi Karakter Pemain *(APPROVED / LOCKED, 2026-11-17, Tahap 31)*
 Pilihan: **D. Character Customization Hybrid Lengkap.** Ketentuan:
@@ -792,7 +792,7 @@ Ketentuan:
 
 Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), sistem kehidupan (**D-015**), dungeon (**D-016**), ekonomi (**D-021**), NPC dan sosial (**D-022**), pertanian (**D-023**), peternakan (**D-024**), memancing (**D-025**), memasak/alkimia (**D-026**), event dunia (**D-029**), musim dan cuaca (**D-030**), UI/HUD (**D-031**), audio (**D-032**), NPC hidup (**D-040**), save dan cloud (**D-044**), pengaturan (**D-045**), update konten (**D-048**), keamanan (**D-050**), performa (**D-052**), loading (**D-053**), peta (**D-054**). **D-051 tidak ada isinya di dokumen ini** (hanya judul yang disebut pemilik); keselarasan penuh ditunda sampai isinya diterima.
 
-**Terbuka:** panjang hari/bulan/tahun dan nama bulan; panjang tiap fase hari dan kecepatan jam; apakah waktu berjalan di menu, dialog, pertarungan, atau saat aplikasi di latar belakang; apakah waktu berjalan saat offline atau terputus (menunggu D-051); kebijakan event berbasis waktu nyata vs kalender permainan (terbuka di D-029); aturan susul-kejar (catch-up) setelah lama tidak bermain; panjang musim (terbuka di D-030); arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
+**Terbuka:** panjang hari/bulan/tahun dan nama bulan; panjang tiap fase hari dan kecepatan jam; apakah waktu berjalan di menu, dialog, pertarungan, atau saat aplikasi di latar belakang; apakah waktu berjalan saat offline atau terputus (menunggu D-051); kebijakan event berbasis waktu nyata vs kalender permainan (terbuka di D-029); aturan susul-kejar (catch-up) setelah lama tidak bermain; panjang musim (terbuka di D-030); arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (cakupan saja; detail belum final). Tahap 35 (akun/login) tetap PENDING (P-006).
 
 ### D-056 — Sistem Tidur, Istirahat, dan Pergantian Hari *(APPROVED / LOCKED, 2026-11-17, Tahap 47)*
 Pilihan: **D. Rest & Sleep Hybrid Lengkap.** Ruang lingkup:
@@ -822,7 +822,7 @@ Ketentuan:
 
 Hubungan (tidak mengubah isi keputusan lain): sistem kehidupan (**D-015**), dungeon (**D-016**), ekonomi (**D-021**), NPC (**D-022**), pertanian (**D-023**), peternakan (**D-024**), rumah/penginapan (**D-027**), eksplorasi/kemah (**D-028**), event dunia (**D-029**), musim dan cuaca (**D-030**), UI/HUD (**D-031**), audio (**D-032**), NPC hidup (**D-040**), save dan cloud (**D-044**), pengaturan (**D-045**), update konten (**D-048**), QA (**D-049**), keamanan (**D-050**), performa (**D-052**), loading (**D-053**), waktu dan kalender (**D-055**). **D-051 tidak ada isinya**; keselarasan penuh ditunda.
 
-**Terbuka (tidak diputuskan):** efek dan besar pemulihan (HP, stamina, status); batas tidur dan aturan jam tidur (jam paling awal/akhir, tidur paksa saat larut); biaya penginapan dan fasilitas; aturan dan risiko kemah (di mana boleh, gangguan monster); apakah bisa tidur sebentar tanpa ganti hari; apakah event/NPC berjalan saat offline (terbuka di D-029); aturan catch-up setelah lama tidak bermain; arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
+**Terbuka (tidak diputuskan):** efek dan besar pemulihan (HP, stamina, status); batas tidur dan aturan jam tidur (jam paling awal/akhir, tidur paksa saat larut); biaya penginapan dan fasilitas; aturan dan risiko kemah (di mana boleh, gangguan monster); apakah bisa tidur sebentar tanpa ganti hari; apakah event/NPC berjalan saat offline (terbuka di D-029); aturan catch-up setelah lama tidak bermain; arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (cakupan saja; detail belum final). Tahap 35 (akun/login) tetap PENDING (P-006).
 
 ### D-057 — Sistem Energi, Stamina, dan Kebutuhan Karakter *(APPROVED / LOCKED, 2026-11-17, Tahap 48)*
 Pilihan: **D. Character Vitality Hybrid Lengkap.** Ruang lingkup:
@@ -853,7 +853,7 @@ Ketentuan:
 
 Hubungan (tidak mengubah isi keputusan lain): pertarungan (**D-013**), sistem kehidupan (**D-015**), dungeon (**D-016**), perkembangan karakter (**D-018**), companion (**D-019**), equipment (**D-020**), ekonomi (**D-021**), pertanian (**D-023**), peternakan (**D-024**), memancing (**D-025**), memasak dan alkimia (**D-026**), eksplorasi (**D-028**), UI/HUD (**D-031**), audio (**D-032**), inventory (**D-036**), mount (**D-042**; stamina mount tetap terbuka di sana), tutorial (**D-043**), save/cloud (**D-044**), pengaturan dan aksesibilitas (**D-045**), achievement (**D-046**), update konten (**D-048**), QA (**D-049**), keamanan (**D-050**), performa (**D-052**), waktu (**D-055**), tidur (**D-056**). **D-051** isinya belum diterima; tidak ada yang dikarang.
 
-**Terbuka (tidak diputuskan):** semua angka (kapasitas, konsumsi, regenerasi, penalti, batas); efek bila sumber daya habis (termasuk apakah hunger/thirst/fatigue bisa melemahkan atau hanya memberi bonus/malus ringan, dan apakah ada risiko pingsan atau kekalahan); apakah kebutuhan dapat diatur lewat tingkat kesulitan/pengaturan; apakah Mana dipakai semua kelas; kaitan dengan efek tidur (D-056, yang juga masih terbuka); daftar efek makanan/potion; stamina mount (D-042); arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
+**Terbuka (tidak diputuskan):** semua angka (kapasitas, konsumsi, regenerasi, penalti, batas); efek bila sumber daya habis (termasuk apakah hunger/thirst/fatigue bisa melemahkan atau hanya memberi bonus/malus ringan, dan apakah ada risiko pingsan atau kekalahan); apakah kebutuhan dapat diatur lewat tingkat kesulitan/pengaturan; apakah Mana dipakai semua kelas; kaitan dengan efek tidur (D-056, yang juga masih terbuka); daftar efek makanan/potion; stamina mount (D-042); arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (cakupan saja; detail belum final). Tahap 35 (akun/login) tetap PENDING (P-006).
 
 ### D-058 — Sistem Kematian, Pingsan, dan Kebangkitan Karakter *(APPROVED / LOCKED, 2026-11-17, Tahap 49)*
 Pilihan: **D. Defeat & Recovery Hybrid Lengkap.** Ruang lingkup:
@@ -881,7 +881,7 @@ Ketentuan:
 
 Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), pertarungan (**D-013**), sistem kehidupan (**D-015**), dungeon (**D-016**), guild (**D-017**), companion (**D-019**), ekonomi (**D-021**), NPC (**D-022**), rumah/fasilitas (**D-027**), eksplorasi (**D-028**), event dunia (**D-029**), UI/HUD (**D-031**), audio (**D-032**), quest (**D-037**), dialog (**D-038**), NPC hidup (**D-040**), tutorial (**D-043**), save/cloud (**D-044**), pengaturan dan aksesibilitas (**D-045**), achievement (**D-046**), update konten (**D-048**), QA (**D-049**), keamanan (**D-050**), performa (**D-052**), loading (**D-053**), peta (**D-054**), waktu (**D-055**), tidur (**D-056**), vitalitas (**D-057**). **D-051** isinya belum diterima.
 
-**Terbuka (tidak diputuskan):** semua penalti (item, uang, EXP, progres) dan apakah ada; durasi pemulihan; aturan dan jenis checkpoint final; kondisi tepat pingsan vs kalah; aturan penyelamatan NPC (siapa, kapan, biaya, tidak selalu tersedia); biaya dan layanan klinik; apakah waktu permainan maju saat pingsan (jalur waktu D-055/D-056); nasib companion/monster saat pemain pingsan; perlakuan khusus di dungeon, boss, dan event; opsi kesulitan/pengaturan terkait; arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
+**Terbuka (tidak diputuskan):** semua penalti (item, uang, EXP, progres) dan apakah ada; durasi pemulihan; aturan dan jenis checkpoint final; kondisi tepat pingsan vs kalah; aturan penyelamatan NPC (siapa, kapan, biaya, tidak selalu tersedia); biaya dan layanan klinik; apakah waktu permainan maju saat pingsan (jalur waktu D-055/D-056); nasib companion/monster saat pemain pingsan; perlakuan khusus di dungeon, boss, dan event; opsi kesulitan/pengaturan terkait; arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (cakupan saja; detail belum final). Tahap 35 (akun/login) tetap PENDING (P-006).
 
 ### D-059 — Sistem Status Effect, Buff, dan Debuff *(APPROVED / LOCKED, 2026-11-17, Tahap 50)*
 Pilihan: **D. Status Effect Hybrid Lengkap.** Ruang lingkup:
@@ -912,7 +912,7 @@ Ketentuan:
 
 Hubungan (tidak mengubah isi keputusan lain): pertarungan (**D-013**), sistem kehidupan (**D-015**), dungeon (**D-016**), perkembangan karakter (**D-018**), companion dan monster (**D-019**), equipment (**D-020**), pertanian (**D-023**), peternakan (**D-024**), memasak dan alkimia (**D-026**), event dunia (**D-029**), musim dan cuaca (**D-030**), UI/HUD (**D-031**), audio (**D-032**), inventory (**D-036**), tutorial (**D-043**), save/cloud (**D-044**), pengaturan dan aksesibilitas (**D-045**), achievement (**D-046**), update konten (**D-048**), QA (**D-049**), keamanan (**D-050**), performa (**D-052**), waktu (**D-055**), tidur (**D-056**), vitalitas (**D-057**), kekalahan (**D-058**). **D-051** isinya belum diterima.
 
-**Terbuka (tidak diputuskan):** katalog efek; durasi; aturan stacking/penggantian/prioritas; probabilitas dan resistensi; semua angka; arti "spiritual" (belum didefinisikan, tidak ditebak); daftar elemen dan penyakit; cara menyembuhkan/menghapus tiap efek; apakah efek bertahan setelah kekalahan/tidur/perpindahan wilayah (aturan lanjutan, selaras D-056/D-058); efek lingkungan/cuaca (D-030); romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
+**Terbuka (tidak diputuskan):** katalog efek; durasi; aturan stacking/penggantian/prioritas; probabilitas dan resistensi; semua angka; arti "spiritual" (belum didefinisikan, tidak ditebak); daftar elemen dan penyakit; cara menyembuhkan/menghapus tiap efek; apakah efek bertahan setelah kekalahan/tidur/perpindahan wilayah (aturan lanjutan, selaras D-056/D-058); efek lingkungan/cuaca (D-030); romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (cakupan saja; detail belum final). Tahap 35 (akun/login) tetap PENDING (P-006).
 
 ### D-060 — Sistem Ras, Suku, dan Asal-Usul Karakter *(APPROVED / LOCKED, 2026-11-17, Tahap 51)*
 Pilihan: **D. Racial World Hybrid Lengkap.** Ruang lingkup:
@@ -940,7 +940,7 @@ Ketentuan:
 
 Hubungan (tidak mengubah isi keputusan lain): dunia dan Progressive World Unlock (**D-009**), sistem kehidupan (**D-015**), guild (**D-017**), perkembangan karakter (**D-018**), companion dan monster (**D-019**), ekonomi dan perdagangan (**D-021**), NPC dan sosial (**D-022**), eksplorasi (**D-028**), event dunia (**D-029**), quest dan cerita (**D-037**), dialog (**D-038**), hubungan sosial (**D-039**), NPC hidup (**D-040**), kustomisasi karakter (**D-041**), status effect (**D-059**), update konten (**D-048**), pengaturan/lokalisasi (**D-045**). **D-051** isinya belum diterima.
 
-**Terbuka (tidak diputuskan):** daftar ras/suku/bangsa; lore dan sejarah; kemampuan/bonus ras (bila ada); populasi dan persebaran; hubungan antarbangsa; apakah pemain memilih ras/suku/asal-usul dan apa dampaknya (D-041, D-018); arti "spiritual" dan "garis keturunan spiritual" (belum didefinisikan, tidak ditebak); daftar peradaban kuno; hubungan dengan budaya nyata; bahasa dan sistem penamaan; romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
+**Terbuka (tidak diputuskan):** daftar ras/suku/bangsa; lore dan sejarah; kemampuan/bonus ras (bila ada); populasi dan persebaran; hubungan antarbangsa; apakah pemain memilih ras/suku/asal-usul dan apa dampaknya (D-041, D-018); arti "spiritual" dan "garis keturunan spiritual" (belum didefinisikan, tidak ditebak); daftar peradaban kuno; hubungan dengan budaya nyata; bahasa dan sistem penamaan; romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (cakupan saja; detail belum final). Tahap 35 (akun/login) tetap PENDING (P-006).
 
 ### D-061 — Sistem Kerajaan, Wilayah Kekuasaan, dan Organisasi Dunia *(APPROVED / LOCKED, 2026-11-17, Tahap 52)*
 Pilihan: **D. World Civilization Hybrid Lengkap.** Ruang lingkup:
@@ -969,7 +969,7 @@ Ketentuan:
 
 Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), sistem kehidupan (**D-015**), dungeon (**D-016**), guild (**D-017**), perkembangan karakter (**D-018**), ekonomi dan perdagangan (**D-021**), NPC dan sosial (**D-022**), eksplorasi (**D-028**), event dunia (**D-029**), quest dan cerita (**D-037**), dialog (**D-038**), hubungan sosial (**D-039**), NPC hidup (**D-040**), save/cloud (**D-044**), update konten (**D-048**), keamanan (**D-050**), peta (**D-054**), waktu (**D-055**), ras dan suku (**D-060**). **D-051** isinya belum diterima.
 
-**Terbuka (tidak diputuskan):** nama, jumlah, pemimpin, peta politik, sejarah, dan hubungan antarorganisasi; arti "spiritual" dan isi sekte (tidak ditebak); aturan dan cara perubahan kondisi organisasi seiring progres; efek mekanik (reputasi per organisasi, akses, dagang, quest); hubungan dengan guild petualang selain D-017; jenis dan cara menemukan organisasi rahasia; apakah ada konflik/perang dan bagaimana ditampilkan; romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan (termasuk dalam konteks klan). Tahap 35 (akun/login) tetap PENDING (P-006).
+**Terbuka (tidak diputuskan):** nama, jumlah, pemimpin, peta politik, sejarah, dan hubungan antarorganisasi; arti "spiritual" dan isi sekte (tidak ditebak); aturan dan cara perubahan kondisi organisasi seiring progres; efek mekanik (reputasi per organisasi, akses, dagang, quest); hubungan dengan guild petualang selain D-017; jenis dan cara menemukan organisasi rahasia; apakah ada konflik/perang dan bagaimana ditampilkan; romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (cakupan saja; detail belum final), termasuk dalam konteks klan yang belum dirinci. Tahap 35 (akun/login) tetap PENDING (P-006).
 
 ### D-062 — Sistem Reputasi, Hubungan Faksi, dan Diplomasi *(APPROVED / LOCKED, 2026-11-17, Tahap 53)*
 Pilihan: **D. Faction Relations Hybrid Lengkap.** Ruang lingkup:
@@ -1000,7 +1000,7 @@ Ketentuan:
 
 Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), sistem kehidupan (**D-015**), guild (**D-017**), perkembangan karakter (**D-018**), ekonomi (**D-021**), NPC dan sosial (**D-022**), eksplorasi (**D-028**), event dunia (**D-029**), UI/HUD (**D-031**), quest dan cerita (**D-037**), dialog (**D-038**), hubungan sosial (**D-039**), NPC hidup (**D-040**), save/cloud (**D-044**), pengaturan (**D-045**), update konten (**D-048**), keamanan (**D-050**), peta (**D-054**), waktu (**D-055**), status effect (**D-059**), ras dan suku (**D-060**), organisasi dunia (**D-061**). **D-051** isinya belum diterima.
 
-**Terbuka (tidak diputuskan):** skala dan tingkat reputasi (angka atau tahap), ambang, rumus perubahan; daftar faksi (bergantung D-061); hasil politik; hubungan skala D-062 dengan reputasi komunitas D-039 dan rank D-017; aturan peluruhan dan perbaikan hubungan; jenis hubungan antarorganisasi dan bagaimana dunia memunculkannya; bentuk konflik dan penyelesaiannya; seberapa besar pengaruh pemain; cara menampilkan di UI; arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
+**Terbuka (tidak diputuskan):** skala dan tingkat reputasi (angka atau tahap), ambang, rumus perubahan; daftar faksi (bergantung D-061); hasil politik; hubungan skala D-062 dengan reputasi komunitas D-039 dan rank D-017; aturan peluruhan dan perbaikan hubungan; jenis hubungan antarorganisasi dan bagaimana dunia memunculkannya; bentuk konflik dan penyelesaiannya; seberapa besar pengaruh pemain; cara menampilkan di UI; arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (cakupan saja; detail belum final). Tahap 35 (akun/login) tetap PENDING (P-006).
 
 ### D-063 — Sistem Perang dan Konflik Antarfaksi *(APPROVED / LOCKED, 2026-11-17, Tahap 54)*
 Pilihan: **D. World Conflict Hybrid Lengkap.** Ruang lingkup:
@@ -1033,7 +1033,7 @@ Ketentuan:
 
 Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), pertarungan (**D-013**), sistem kehidupan (**D-015**), dungeon (**D-016**), guild (**D-017**), companion/monster (**D-019**), ekonomi dan perdagangan (**D-021**), NPC dan sosial (**D-022**), eksplorasi (**D-028**), event dunia (**D-029**), musim dan cuaca (**D-030**), UI/HUD (**D-031**), audio (**D-032**), quest (**D-037**), hubungan sosial (**D-039**), NPC hidup (**D-040**), save/cloud (**D-044**), update konten (**D-048**), QA (**D-049**), keamanan (**D-050**), performa (**D-052**), loading (**D-053**), peta (**D-054**), waktu (**D-055**), tidur (**D-056**), kekalahan (**D-058**), status effect (**D-059**), ras (**D-060**), organisasi (**D-061**), diplomasi (**D-062**). **D-051** isinya belum diterima.
 
-**Terbuka (tidak diputuskan):** daftar konflik/perang, faksi terlibat, korban, aturan perebutan wilayah, hasil; apakah dan bagaimana kota/wilayah berubah kepemilikan; peran pemain (pilihan, hadiah, risiko); bentuk pertahanan kota dan skala serangan monster; dampak mekanik pada NPC/ekonomi/harga/akses; apakah NPC dapat terluka/hilang (dan aturan perlindungan NPC penting); apakah konflik berlangsung saat offline (terbuka di D-029) dan aturan catch-up; lamanya konflik; arti "spiritual"; romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
+**Terbuka (tidak diputuskan):** daftar konflik/perang, faksi terlibat, korban, aturan perebutan wilayah, hasil; apakah dan bagaimana kota/wilayah berubah kepemilikan; peran pemain (pilihan, hadiah, risiko); bentuk pertahanan kota dan skala serangan monster; dampak mekanik pada NPC/ekonomi/harga/akses; apakah NPC dapat terluka/hilang (dan aturan perlindungan NPC penting); apakah konflik berlangsung saat offline (terbuka di D-029) dan aturan catch-up; lamanya konflik; arti "spiritual"; romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (cakupan saja; detail belum final). Tahap 35 (akun/login) tetap PENDING (P-006).
 
 ### D-064 — Sistem Hukum, Kejahatan, dan Bounty *(APPROVED / LOCKED, 2026-11-17, Tahap 55)*
 Pilihan: **D. Law & Justice Hybrid Lengkap.** Ruang lingkup:
@@ -1065,7 +1065,7 @@ Ketentuan:
 
 Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), pertarungan (**D-013**), sistem kehidupan (**D-015**), dungeon (**D-016**), guild (**D-017**), ekonomi dan perdagangan (**D-021**), NPC dan sosial (**D-022**), eksplorasi (**D-028**), event dunia (**D-029**), UI/HUD (**D-031**), quest (**D-037**), dialog (**D-038**), hubungan sosial (**D-039**), NPC hidup (**D-040**), save/cloud (**D-044**), pengaturan (**D-045**), update konten (**D-048**), QA (**D-049**), keamanan (**D-050**), loading (**D-053**), waktu (**D-055**), kekalahan (**D-058**), status effect (**D-059**), ras (**D-060**), organisasi (**D-061**), diplomasi (**D-062**), konflik (**D-063**). **D-051** isinya belum diterima.
 
-**Terbuka (tidak diputuskan):** daftar dan kategori kejahatan; hukuman dan prosedur pengadilan; formula dan nilai bounty; skala dan ambang reputasi kriminal; aturan penangkapan dan respons penjaga; cara menebus/menghapus catatan; perilaku saat tertangkap (penjara, denda, penyitaan, dan dampak ke waktu); aturan khusus wilayah; peran Guild (D-017) dalam penegakan; apakah NPC dapat melapor dan bagaimana saksi bekerja; kejahatan terhadap NPC dan properti; apakah ada hukuman kematian/pertarungan mematikan; arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
+**Terbuka (tidak diputuskan):** daftar dan kategori kejahatan; hukuman dan prosedur pengadilan; formula dan nilai bounty; skala dan ambang reputasi kriminal; aturan penangkapan dan respons penjaga; cara menebus/menghapus catatan; perilaku saat tertangkap (penjara, denda, penyitaan, dan dampak ke waktu); aturan khusus wilayah; peran Guild (D-017) dalam penegakan; apakah NPC dapat melapor dan bagaimana saksi bekerja; kejahatan terhadap NPC dan properti; apakah ada hukuman kematian/pertarungan mematikan; arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (cakupan saja; detail belum final). Tahap 35 (akun/login) tetap PENDING (P-006).
 
 ### D-065 — Sistem Cuaca Ekstrem, Bencana Alam, dan Fenomena Spiritual *(APPROVED / LOCKED, 2026-11-17, Tahap 56)*
 Pilihan: **D. World Phenomena Hybrid Lengkap.** Ruang lingkup:
@@ -1096,7 +1096,43 @@ Ketentuan:
 
 Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), sistem kehidupan (**D-015**), dungeon (**D-016**), companion/monster (**D-019**), ekonomi (**D-021**), NPC (**D-022**), pertanian (**D-023**), peternakan (**D-024**), memancing (**D-025**), eksplorasi (**D-028**), event dunia (**D-029**), musim dan cuaca (**D-030**), UI/HUD (**D-031**), audio (**D-032**), NPC hidup (**D-040**), save/cloud (**D-044**), pengaturan dan aksesibilitas (**D-045**), update konten (**D-048**), QA (**D-049**), keamanan (**D-050**), performa (**D-052**), loading (**D-053**), peta (**D-054**), waktu (**D-055**), tidur (**D-056**), vitalitas (**D-057**), kekalahan (**D-058**), status effect (**D-059**), konflik (**D-063**). **D-051** isinya belum diterima.
 
-**Terbuka (tidak diputuskan):** katalog fenomena; frekuensi dan probabilitas; tingkat kerusakan; durasi; konsekuensi numerik; arti "spiritual" (belum didefinisikan); aturan peringatan dan perlindungan (rumah, ladang, bangunan); bagaimana kerugian dipulihkan; perilaku offline (terbuka di D-029) dan catch-up; interaksi dengan pertahanan/konflik (D-063); dampak ke peta dan fast travel; efek visual dan audio; romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
+**Terbuka (tidak diputuskan):** katalog fenomena; frekuensi dan probabilitas; tingkat kerusakan; durasi; konsekuensi numerik; arti "spiritual" (belum didefinisikan); aturan peringatan dan perlindungan (rumah, ladang, bangunan); bagaimana kerugian dipulihkan; perilaku offline (terbuka di D-029) dan catch-up; interaksi dengan pertahanan/konflik (D-063); dampak ke peta dan fast travel; efek visual dan audio; romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (cakupan saja; detail belum final). Tahap 35 (akun/login) tetap PENDING (P-006).
+
+### D-066 — Sistem Romansa, Pernikahan, dan Keluarga *(APPROVED / LOCKED, 2026-11-17, Tahap 57)*
+Pilihan: **D. Romance & Family Hybrid Lengkap.** Ruang lingkup:
+1. Persahabatan dan kedekatan dengan NPC.
+2. Hubungan romantis.
+3. Pertunangan (engagement).
+4. Pernikahan (marriage).
+5. Kehidupan bersama pasangan.
+6. Memiliki anak.
+7. Perkembangan keluarga dan kehidupan keluarga.
+
+**PEMBARUAN BATASAN D-015 (resolusi eksplisit):**
+- Pada D-015 (Tahap 5), hubungan romantis, pernikahan, membangun keluarga, dan memiliki anak **belum dipilih**. **D-066 kini menetapkan seluruh aspek itu sebagai bagian resmi permainan.** Untuk aspek romansa dan keluarga, **D-066 adalah keputusan terbaru** dan menggantikan batasan "belum ditetapkan" di D-015.
+- **Tidak ada fitur kehidupan lain di D-015 yang dihapus atau diubah** (pertanian, peternakan, memancing, memasak, musim, festival, ekonomi, pengembangan rumah dan ladang, dan seterusnya tetap berlaku).
+- Isi D-022 (pertemanan/kepercayaan), D-027 (rumah), dan D-039 (sosial) **tidak diubah**; D-066 menambah cakupan dan tidak mengganti isi keputusan tersebut. Catatan batasan di tiap tempat sudah ditandai "diperbarui oleh D-066".
+- Hanya **cakupan** yang ditetapkan; **detail belum final** (lihat Terbuka).
+
+Ketentuan:
+- **Tidak ada kandidat pasangan, aturan kelayakan, kecepatan hubungan, mekanisme pernikahan, sistem anak, atau detail keluarga yang final** tanpa desain lanjutan.
+- **Terintegrasi** dengan kehidupan harian NPC (D-040), dialog (D-038), hubungan sosial (D-039), kalender (D-055), rumah (D-027), dan event (D-029).
+- **Perkembangan hubungan konsisten dan tersimpan** (D-044).
+- Selaras dengan D-015, D-022, D-038, D-039, D-040, D-045, dan D-055.
+- Penguncian desain; implementasi belum dimulai.
+
+**Prinsip (dasar, tanpa isi final):**
+- Hubungan berkembang bertahap dari persahabatan/kedekatan (D-039) hingga bentuk yang lebih jauh; tahapan, nama, dan syarat belum ditetapkan. Perkembangan harus **dapat dipahami, konsisten, dan tidak naik tidak masuk akal** (selaras D-039), serta **tersimpan** dan dapat dipulihkan.
+- Hubungan individu tetap dibedakan dari reputasi komunitas, faksi, dan kriminal (D-039, D-062, D-064); tindakan di satu hubungan tidak otomatis mengubah yang lain kecuali lewat aturan eksplisit.
+- NPC yang terlibat tetap mengikuti **kehidupan harian dan jadwal** (D-040) dan **waktu permainan internal** (D-055); peristiwa penting (pertunangan, pernikahan, kelahiran, perayaan) terkait **kalender dan event**, bukan jam perangkat.
+- **Kehidupan bersama dan keluarga** terkait **rumah** (D-027) dan kehidupan sehari-hari; bentuknya belum diputuskan.
+- Perubahan besar harus **aman bagi save dan progres** (penulisan atomik, idempoten; tidak ada kehilangan akibat gangguan koneksi, D-044; aturan koneksi mengikuti D-051 yang **isinya belum diterima**).
+- Tetap **single-player online** (D-014): hubungan dengan NPC dalam dunia pribadi pemain; tidak ada pasangan atau keluarga antarpemain.
+- Lokalisasi Indonesia/English dan aksesibilitas (D-045).
+
+Hubungan (tidak mengubah isi keputusan lain): sistem kehidupan (**D-015**), NPC dan sosial (**D-022**), rumah (**D-027**), event dunia (**D-029**), UI/HUD (**D-031**), audio (**D-032**), dialog (**D-038**), hubungan sosial (**D-039**), NPC hidup (**D-040**), kustomisasi (**D-041**), save/cloud (**D-044**), pengaturan dan aksesibilitas (**D-045**), achievement (**D-046**), update konten (**D-048**), QA (**D-049**), keamanan (**D-050**), waktu (**D-055**), tidur (**D-056**), kekalahan (**D-058**), status effect (**D-059**), ras (**D-060**), organisasi dan faksi (**D-061**, **D-062**), hukum (**D-064**). **D-051** isinya belum diterima.
+
+**Terbuka (tidak diputuskan):** kandidat pasangan dan aturan kelayakan (termasuk pilihan pasangan); apakah dan bagaimana pemain dapat memilih untuk tidak mengikuti jalur ini (wajib/opsional) dan dampak ke progres; kecepatan dan tahapan hubungan; mekanisme pertunangan dan pernikahan; bentuk kehidupan bersama dan rumah bersama (D-027); sistem anak (cara, jumlah, usia, perkembangan) dan detail keluarga; peran keluarga dalam permainan; peringkat usia dan batas konten (mengikuti kebijakan toko, belum dirinci); pengaturan terkait (D-045); apakah ada perpisahan/kehilangan dan konsekuensinya; hubungan dengan ras/suku (D-060); arti "spiritual" (belum didefinisikan). Tahap 35 (akun/login) tetap PENDING (P-006).
 
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
