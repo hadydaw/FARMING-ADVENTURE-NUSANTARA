@@ -1,0 +1,20 @@
+[
+	{
+		"id": "default",
+		"provisional": true,
+		"note": "Nilai SEMENTARA uji teknis. D-056/D-057: efek pemulihan, batas tidur, angka konsumsi/regenerasi belum diputuskan. Hunger/thirst/fatigue belum diimplementasikan (tidak ada angka).",
+		"wake_hour": 6,
+		"step_minutes": 120,
+		"restore_on_sleep": [
+			"health",
+			"stamina",
+			"mana"
+		],
+		"action_stamina_cost": {
+			"till": 2,
+			"plant": 1,
+			"water": 1,
+			"harvest": 1
+		}
+	}
+]

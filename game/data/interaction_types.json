@@ -16,5 +16,11 @@
 		"prompt_key": "INTERACT_GENERIC",
 		"max_distance": 2.4,
 		"min_facing_dot": 0.0
+	},
+	{
+		"id": "sleep",
+		"prompt_key": "FARM_ACT_SLEEP",
+		"max_distance": 2.4,
+		"min_facing_dot": 0.0
 	}
 ]

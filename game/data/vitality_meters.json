@@ -1,0 +1,23 @@
+[
+	{
+		"id": "health",
+		"provisional": true,
+		"name_key": "VIT_HEALTH",
+		"max": 100,
+		"start": 100
+	},
+	{
+		"id": "stamina",
+		"provisional": true,
+		"name_key": "VIT_STAMINA",
+		"max": 20,
+		"start": 20
+	},
+	{
+		"id": "mana",
+		"provisional": true,
+		"name_key": "VIT_MANA",
+		"max": 10,
+		"start": 10
+	}
+]

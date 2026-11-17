@@ -29,6 +29,11 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	if farming != null and farming.sleep != null and farming.sleep.is_sleeping():
+		player.set_physics_process(false)
+		hud.show_message(tr("SLEEPING"), 0.5)
+		if not farming.sleep.step():
+			return
 	rig.target_position = player.global_position + Vector3(0, 1.0, 0)
 	player.camera_yaw_deg = rig.yaw_deg
 	sensor.facing = player.facing
@@ -38,6 +43,8 @@ func _process(_delta: float) -> void:
 func _prompt_text() -> String:
 	if sensor.current == null:
 		return ""
+	if sensor.current.has_meta("is_bed"):
+		return tr("FARM_ACT_SLEEP")
 	if sensor.current.has_meta("plot_id"):
 		return _plot_prompt(str(sensor.current.get_meta("plot_id")))
 	return tr(sensor.current.resolved_prompt_key()) + ": " + tr(str(sensor.current.get_meta("label_key", "")))
@@ -48,6 +55,10 @@ func inspect_count() -> int:
 
 
 func _on_interacted(target: Node, _actor: Node) -> void:
+	if target.has_meta("is_bed"):
+		if farming.sleep.begin():
+			hud.show_message(tr("SLEEPING"), 0.5)
+		return
 	if target.has_meta("plot_id"):
 		_on_plot_interacted(str(target.get_meta("plot_id")))
 		return
@@ -221,7 +232,9 @@ func _build_farm() -> void:
 	var cfg: Dictionary = DataRegistry.get_row("farm_config", "default")
 	farming = FarmingSession.new(GameTime.clock, DataRegistry.rows("items"), DataRegistry.rows("crops"),
 		_plot_ids(), cfg, DataRegistry.rows("weather_types"), DataRegistry.rows("weather_chances"),
-		int(cfg.get("world_seed", 0)))
+		int(cfg.get("world_seed", 0)), DataRegistry.rows("vitality_meters"), DataRegistry.get_row("rest_config", "default"))
+	farming.sleep.finished.connect(_on_woke_up)
+	_build_bed()
 	var holder := Node3D.new()
 	holder.name = "FarmPlots"
 	add_child(holder)
@@ -285,6 +298,7 @@ func refresh_farm_visuals() -> void:
 			(marker.material_override as StandardMaterial3D).albedo_color = Color(str(def["marker_color"]))
 		var info := node.get_node("Info") as Label3D
 		info.text = "UJI: " + (tr("FARM_STATE_READY") if plot.is_ready(farming.crop_defs) else (tr("FARM_STATE_GROWING") if plot.has_crop() else (tr("FARM_STATE_TILLED") if plot.tilled else tr("FARM_STATE_RAW"))))
+	hud.set_vitality_text(vitality_text())
 	hud.set_inventory_text(inventory_text())
 	hud.set_weather_text(tr(str(farming.weather_types.get(farming.weather_today(), {}).get("name_key", "WEATHER_CLEAR"))))
 	_apply_weather_look(farming.is_raining_today())
@@ -357,3 +371,44 @@ func _apply_weather_look(raining: bool) -> void:
 	var sun := get_node_or_null("Sun") as DirectionalLight3D
 	if sun != null:
 		sun.light_energy = 0.6 if raining else 1.1
+
+
+func vitality_text() -> String:
+	var v := farming.vitality
+	var parts: Array[String] = []
+	for id in v.ids():
+		parts.append("%s %d/%d" % [tr("VIT_" + str(id).to_upper()), v.value(id), v.max_value(id)])
+	return " | ".join(parts)
+
+
+## Tempat tidur SEMENTARA (kotak berlabel); bukan aset rumah final.
+func _build_bed() -> void:
+	var node := Node3D.new()
+	node.name = "Bed"
+	node.position = Vector3(-6.0, 0.0, 4.0)
+	var mesh := MeshInstance3D.new()
+	var box := BoxMesh.new()
+	box.size = Vector3(1.0, 0.4, 2.0)
+	mesh.mesh = box
+	mesh.position.y = 0.2
+	var mat := StandardMaterial3D.new()
+	mat.albedo_color = Color(0.55, 0.35, 0.65)
+	mesh.material_override = mat
+	node.add_child(mesh)
+	var label := Label3D.new()
+	label.text = "UJI: TEMPAT TIDUR"
+	label.pixel_size = 0.005
+	label.position = Vector3(0, 1.0, 0)
+	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	node.add_child(label)
+	var it := Interactable.new()
+	it.interaction_type = "sleep"
+	node.add_child(it)
+	it.set_meta("is_bed", true)
+	add_child(node)
+
+
+func _on_woke_up() -> void:
+	player.set_physics_process(true)
+	refresh_farm_visuals()
+	hud.show_message(tr("WOKE_UP"))

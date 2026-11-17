@@ -86,6 +86,25 @@ func run() -> void:
 	check(world.inventory_text().contains("x5"), "HUD tas menampilkan benih berkurang")
 	check(world.get_node("FarmPlots/plot_01/CropMarker").visible, "penanda tanaman tampil")
 
+	# Tempat tidur: tidur lewat interaksi, bangun hari berikutnya
+	check(world.vitality_text().contains("HP 100/100"), "HUD menampilkan vitalitas")
+	var bed: Node3D = world.get_node("Bed")
+	player.global_position = bed.global_position + Vector3(0, 0, 1.2)
+	await wait_frames(2)
+	world.sensor.facing = Vector3(0, 0, -1)
+	var day0 := GameTime.clock.day_index()
+	world.farming.vitality.change("stamina", -10)
+	check(world.sensor.try_interact(), "interaksi tempat tidur")
+	check(world.farming.sleep.is_sleeping(), "mulai tidur")
+	var frames := 0
+	while world.farming.sleep.is_sleeping() and frames < 200:
+		await tree.process_frame
+		frames += 1
+	check(not world.farming.sleep.is_sleeping(), "tidur selesai (%d frame)" % frames)
+	check(frames > 2, "pemrosesan lebih dari satu frame")
+	check_eq(GameTime.clock.day_index(), day0 + 1, "hari berganti setelah tidur")
+	check_eq(world.farming.vitality.value("stamina"), 20, "stamina pulih")
+
 	# Simpan / muat dan tas
 	var pm := GameTime.clock.total_minutes
 	check(world.save_game(), "simpan slot 0")

@@ -61,6 +61,10 @@ static func validate_config(c: Dictionary) -> Array[String]:
 
 # --- Turunan waktu ---
 
+func minutes_per_hour() -> int:
+	return int(_config["minutes_per_hour"])
+
+
 func minutes_per_day() -> int:
 	return int(_config["minutes_per_hour"]) * int(_config["hours_per_day"])
 

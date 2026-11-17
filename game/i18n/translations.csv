@@ -127,3 +127,11 @@ WEATHER_CLEAR,Cerah,Clear
 WEATHER_RAIN,Hujan,Rain
 HUD_WEATHER,Cuaca,Weather
 FARM_NO_RAINING,Hujan menyiram tanaman,Rain waters the crops
+VIT_HEALTH,HP,HP
+VIT_STAMINA,Stamina,Stamina
+VIT_MANA,Mana,Mana
+FARM_ACT_SLEEP,Tidur,Sleep
+SLEEPING,Tidur…,Sleeping…
+WOKE_UP,Bangun, hari baru,Woke up, a new day
+FARM_NO_TOO_TIRED,Stamina tidak cukup,Not enough stamina
+FARM_NO_SLEEPING,Sedang tidur,Sleeping

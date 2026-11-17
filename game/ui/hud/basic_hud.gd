@@ -9,6 +9,7 @@ var _prompt_label: Label
 var _message_label: Label
 var _inventory_label: Label
 var _weather_label: Label
+var _vitality_label: Label
 var _joystick: TouchJoystick
 var _interact_button: ActionButton
 var _message_timer := 0.0
@@ -50,6 +51,11 @@ func _ready() -> void:
 	root.add_child(_weather_label)
 	_weather_label.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT, Control.PRESET_MODE_MINSIZE, 0)
 	_weather_label.position.y += 80
+
+	_vitality_label = Label.new()
+	root.add_child(_vitality_label)
+	_vitality_label.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT, Control.PRESET_MODE_MINSIZE, 0)
+	_vitality_label.position.y += 165
 
 	var back := Button.new()
 	back.text = tr("COMMON_BACK")
@@ -159,3 +165,7 @@ func set_bag_slots(lines: Array) -> void:
 
 func set_weather_text(text: String) -> void:
 	_weather_label.text = tr("HUD_WEATHER") + ": " + text
+
+
+func set_vitality_text(text: String) -> void:
+	_vitality_label.text = text

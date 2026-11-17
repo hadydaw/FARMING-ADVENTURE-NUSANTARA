@@ -5,6 +5,7 @@ Format mengikuti [Keep a Changelog](https://keepachangelog.com/id-ID/1.1.0/); ve
 ## [Belum dirilis]
 
 ### Ditambahkan
+- Tidur dan pergantian hari bertahap, vitalitas dasar (HP/Stamina/Mana) dengan biaya stamina aksi pertanian, tempat tidur uji, HUD vitalitas; data sementara, 102 uji tambahan.
 - Cuaca dasar (sementara): cuaca harian deterministik per seed/hari/musim, hujan menyiram tanaman, HUD cuaca, 58 uji tambahan.
 - HUD sementara: tombol Simpan/Muat (slot 0: waktu + pertanian) dan panel Tas berkisi 24 slot; 45 uji tambahan.
 - Milestone 3 teknis (sementara): inventaris slot, petak lahan, olah/tanam/siram/tumbuh/panen per hari permainan, simpan/muat status pertanian, 12 petak uji di dunia awal dengan penanda berlabel, data uji bertanda provisional, 230 uji tambahan.

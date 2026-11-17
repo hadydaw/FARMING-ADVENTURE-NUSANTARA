@@ -508,3 +508,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Data uji bertanda provisional: 2 cuaca (cerah, hujan) dan bobot per musim. Daftar cuaca, peluang, iklim per wilayah, dampak ke hewan/ikan/NPC belum diputuskan (D-030) dan tidak diimplementasikan.
 - HUD menampilkan cuaca; tampilan hujan sementara (langit/cahaya lebih gelap, belum ada partikel/aset).
 - Uji: 16 berkas, 1098 pemeriksaan, 0 gagal; smoke test lulus.
+
+## 2026-11-17 (70) — Tidur, pergantian hari, vitalitas dasar (D-056/D-057, teknis)
+
+- Pemilik: "Kerjakan". Vitality (health/stamina/mana, nilai SEMENTARA), SleepCycle (tidur maju bertahap ke jam bangun, jam nyata dijeda, pulih saat bangun, pergantian hari diproses per langkah, bukan satu frame), biaya stamina aksi pertanian (data uji), tempat tidur penanda berlabel di dunia uji, HUD HP/Stamina/Mana.
+- Data uji bertanda provisional: `vitality_meters.json`, `rest_config.json`. Tidak dibuat (belum diputuskan): angka konsumsi/regenerasi, hunger/thirst/fatigue, tidur di penginapan/kemah, batas waktu tidur, efek pemulihan final, pingsan/kebangkitan (D-058), status effect (D-059).
+- Simpan/muat membawa vitalitas (semua-atau-tidak).
+- Uji: 17 berkas, 1200 pemeriksaan, 0 gagal; smoke test lulus.
