@@ -1,4 +1,27 @@
 [
-	{"id": "default", "provisional": true, "note": "Nilai teknis sementara; ukuran inventory dan lahan belum diputuskan (D-036, D-023).", "inventory_slots": 24,
-	 "start_items": [{"item": "tool_hoe", "count": 1}, {"item": "tool_watering_can", "count": 1}, {"item": "seed_test_a", "count": 6}, {"item": "seed_test_b", "count": 4}]}
+	{
+		"id": "default",
+		"provisional": true,
+		"note": "Nilai teknis sementara; ukuran inventory dan lahan belum diputuskan (D-036, D-023).",
+		"inventory_slots": 24,
+		"start_items": [
+			{
+				"item": "tool_hoe",
+				"count": 1
+			},
+			{
+				"item": "tool_watering_can",
+				"count": 1
+			},
+			{
+				"item": "seed_test_a",
+				"count": 6
+			},
+			{
+				"item": "seed_test_b",
+				"count": 4
+			}
+		],
+		"world_seed": 20261117
+	}
 ]

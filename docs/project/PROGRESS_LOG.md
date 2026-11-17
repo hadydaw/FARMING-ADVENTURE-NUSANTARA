@@ -501,3 +501,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 
 - Pemilik: "Kerjakan". HUD kini punya tombol Simpan, Muat, Tas. Simpan slot 0 = waktu permainan + status pertanian (SaveService, ber-checksum); muat semua-atau-tidak (gagal memulihkan keadaan sebelumnya). Panel Tas = kisi 24 slot berteks (ikon item menunggu aset C-00x).
 - Uji: 15 berkas, 1040 pemeriksaan, 0 gagal; smoke test lulus. Antarmuka sementara, belum desain UI resmi.
+
+## 2026-11-17 (69) — Cuaca dasar (D-030, teknis)
+
+- Pemilik: "Kerjakan". WeatherModel: cuaca harian deterministik dari (world_seed, hari, musim) via GameClock.daily_seed, tanpa jam perangkat; world_seed ikut tersimpan. Hujan menyiram tanaman (tumbuh pada hari yang baru berakhir), aksi siram ditolak saat hujan. `GameClock.season_id_for_day`.
+- Data uji bertanda provisional: 2 cuaca (cerah, hujan) dan bobot per musim. Daftar cuaca, peluang, iklim per wilayah, dampak ke hewan/ikan/NPC belum diputuskan (D-030) dan tidak diimplementasikan.
+- HUD menampilkan cuaca; tampilan hujan sementara (langit/cahaya lebih gelap, belum ada partikel/aset).
+- Uji: 16 berkas, 1098 pemeriksaan, 0 gagal; smoke test lulus.

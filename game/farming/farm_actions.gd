@@ -10,13 +10,15 @@ const TOOL_WATERING_CAN := "tool_watering_can"
 
 ## Menentukan aksi yang akan dilakukan tanpa mengubah apa pun.
 ## Mengembalikan {action, reason, seed_item, crop}. action kosong bila tidak ada yang bisa dilakukan.
-static func decide(plot: FarmPlot, inventory: Inventory, season_id: String, crop_defs: Dictionary) -> Dictionary:
+static func decide(plot: FarmPlot, inventory: Inventory, season_id: String, crop_defs: Dictionary, raining: bool = false) -> Dictionary:
 	if plot.has_crop():
 		if plot.is_ready(crop_defs):
 			var def: Dictionary = crop_defs[plot.crop_id]
 			if not inventory.can_add(str(def["harvest_item"]), int(def["harvest_amount"])):
 				return _no("inventory_full")
 			return {"action": "harvest", "reason": "", "seed_item": "", "crop": plot.crop_id}
+		if raining:
+			return _no("raining")
 		if plot.watered:
 			return _no("already_watered")
 		if not inventory.has(TOOL_WATERING_CAN):
@@ -37,8 +39,8 @@ static func decide(plot: FarmPlot, inventory: Inventory, season_id: String, crop
 
 
 ## Melakukan aksi hasil decide(). Mengembalikan {ok, action, reason}.
-static func perform(plot: FarmPlot, inventory: Inventory, season_id: String, crop_defs: Dictionary) -> Dictionary:
-	var d := decide(plot, inventory, season_id, crop_defs)
+static func perform(plot: FarmPlot, inventory: Inventory, season_id: String, crop_defs: Dictionary, raining: bool = false) -> Dictionary:
+	var d := decide(plot, inventory, season_id, crop_defs, raining)
 	var action := str(d["action"])
 	if action == "":
 		return {"ok": false, "action": "", "reason": d["reason"]}

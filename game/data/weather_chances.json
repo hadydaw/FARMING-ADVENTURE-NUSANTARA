@@ -1,0 +1,35 @@
+[
+	{
+		"id": "season_1",
+		"provisional": true,
+		"note": "Peluang SEMENTARA untuk uji teknis; daftar cuaca, peluang, iklim per wilayah belum diputuskan (D-030).",
+		"weights": {
+			"clear": 80,
+			"rain": 20
+		}
+	},
+	{
+		"id": "season_2",
+		"provisional": true,
+		"weights": {
+			"clear": 60,
+			"rain": 40
+		}
+	},
+	{
+		"id": "season_3",
+		"provisional": true,
+		"weights": {
+			"clear": 90,
+			"rain": 10
+		}
+	},
+	{
+		"id": "season_4",
+		"provisional": true,
+		"weights": {
+			"clear": 70,
+			"rain": 30
+		}
+	}
+]

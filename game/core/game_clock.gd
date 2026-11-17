@@ -94,6 +94,12 @@ func season_index() -> int:
 	return (day_index() / int(_config["days_per_season"])) % (_config["seasons"] as Array).size()
 
 
+## Musim pada indeks hari mana pun (0-based), tanpa mengubah jam.
+func season_id_for_day(day: int) -> String:
+	var seasons: Array = _config["seasons"]
+	return str(seasons[(maxi(day, 0) / int(_config["days_per_season"])) % seasons.size()])
+
+
 func season_id() -> String:
 	return str((_config["seasons"] as Array)[season_index()])
 

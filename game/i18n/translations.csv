@@ -123,3 +123,7 @@ SAVE_FAIL,Gagal menyimpan,Save failed
 LOAD_OK,Dimuat,Loaded
 LOAD_NONE,Belum ada simpanan,No save found
 LOAD_FAIL,Simpanan tidak valid,Invalid save
+WEATHER_CLEAR,Cerah,Clear
+WEATHER_RAIN,Hujan,Rain
+HUD_WEATHER,Cuaca,Weather
+FARM_NO_RAINING,Hujan menyiram tanaman,Rain waters the crops

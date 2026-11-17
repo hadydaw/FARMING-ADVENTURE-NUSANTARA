@@ -18,6 +18,8 @@ const TABLES := {
 	"world_props": "res://game/data/world_props.json",
 	"world_start_layout": "res://game/data/world_start_layout.json",
 	"items": "res://game/data/items.json",
+	"weather_types": "res://game/data/weather_types.json",
+	"weather_chances": "res://game/data/weather_chances.json",
 	"crops": "res://game/data/crops.json",
 	"farm_config": "res://game/data/farm_config.json",
 	"farm_plots": "res://game/data/farm_plots.json",

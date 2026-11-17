@@ -8,6 +8,7 @@ var _time_label: Label
 var _prompt_label: Label
 var _message_label: Label
 var _inventory_label: Label
+var _weather_label: Label
 var _joystick: TouchJoystick
 var _interact_button: ActionButton
 var _message_timer := 0.0
@@ -44,6 +45,11 @@ func _ready() -> void:
 	root.add_child(_inventory_label)
 	_inventory_label.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT, Control.PRESET_MODE_MINSIZE, 0)
 	_inventory_label.position.y += 110
+
+	_weather_label = Label.new()
+	root.add_child(_weather_label)
+	_weather_label.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT, Control.PRESET_MODE_MINSIZE, 0)
+	_weather_label.position.y += 80
 
 	var back := Button.new()
 	back.text = tr("COMMON_BACK")
@@ -149,3 +155,7 @@ func set_bag_slots(lines: Array) -> void:
 		l.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		_bag_grid.add_child(l)
+
+
+func set_weather_text(text: String) -> void:
+	_weather_label.text = tr("HUD_WEATHER") + ": " + text

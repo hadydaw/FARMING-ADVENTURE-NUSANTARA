@@ -57,6 +57,7 @@ func _on_interacted(target: Node, _actor: Node) -> void:
 
 func _build_environment() -> void:
 	var sun := DirectionalLight3D.new()
+	sun.name = "Sun"
 	sun.rotation_degrees = Vector3(-50, -35, 0)
 	sun.light_energy = 1.1
 	add_child(sun)
@@ -67,6 +68,7 @@ func _build_environment() -> void:
 	env.ambient_light_color = Color(0.85, 0.9, 1.0)
 	env.ambient_light_energy = 0.7
 	var world_env := WorldEnvironment.new()
+	world_env.name = "WorldEnvironment"
 	world_env.environment = env
 	add_child(world_env)
 
@@ -216,8 +218,10 @@ func _build_ui() -> void:
 # --- Pertanian (Milestone 3, UJI TEKNIS: visual petak = kotak penanda sementara) ---
 
 func _build_farm() -> void:
+	var cfg: Dictionary = DataRegistry.get_row("farm_config", "default")
 	farming = FarmingSession.new(GameTime.clock, DataRegistry.rows("items"), DataRegistry.rows("crops"),
-		_plot_ids(), DataRegistry.get_row("farm_config", "default"))
+		_plot_ids(), cfg, DataRegistry.rows("weather_types"), DataRegistry.rows("weather_chances"),
+		int(cfg.get("world_seed", 0)))
 	var holder := Node3D.new()
 	holder.name = "FarmPlots"
 	add_child(holder)
@@ -282,6 +286,8 @@ func refresh_farm_visuals() -> void:
 		var info := node.get_node("Info") as Label3D
 		info.text = "UJI: " + (tr("FARM_STATE_READY") if plot.is_ready(farming.crop_defs) else (tr("FARM_STATE_GROWING") if plot.has_crop() else (tr("FARM_STATE_TILLED") if plot.tilled else tr("FARM_STATE_RAW"))))
 	hud.set_inventory_text(inventory_text())
+	hud.set_weather_text(tr(str(farming.weather_types.get(farming.weather_today(), {}).get("name_key", "WEATHER_CLEAR"))))
+	_apply_weather_look(farming.is_raining_today())
 	var lines: Array = []
 	for sl in farming.inventory.slots():
 		lines.append("-" if (sl as Dictionary).is_empty() else "%s\nx%d" % [tr(str(farming.item_defs[sl["item"]]["name_key"])), int(sl["count"])])
@@ -341,3 +347,13 @@ func load_game() -> bool:
 	refresh_farm_visuals()
 	hud.show_message(tr("LOAD_OK"))
 	return true
+
+
+func _apply_weather_look(raining: bool) -> void:
+	# Tampilan cuaca SEMENTARA: hujan = langit dan cahaya lebih gelap (belum ada partikel/aset).
+	var we := get_node_or_null("WorldEnvironment") as WorldEnvironment
+	if we != null:
+		we.environment.background_color = Color(0.45, 0.52, 0.60) if raining else Color(0.62, 0.78, 0.90)
+	var sun := get_node_or_null("Sun") as DirectionalLight3D
+	if sun != null:
+		sun.light_energy = 0.6 if raining else 1.1

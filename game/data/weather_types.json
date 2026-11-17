@@ -1,0 +1,14 @@
+[
+	{
+		"id": "clear",
+		"provisional": true,
+		"name_key": "WEATHER_CLEAR",
+		"waters_crops": false
+	},
+	{
+		"id": "rain",
+		"provisional": true,
+		"name_key": "WEATHER_RAIN",
+		"waters_crops": true
+	}
+]
