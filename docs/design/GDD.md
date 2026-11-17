@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.21 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.22 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -352,6 +352,18 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - Terkait: orientasi (D-004), bahasa (D-007), gaya visual (D-008), semua sistem game yang ditampilkan UI (D-013 sampai D-030), akun/koneksi (D-014).
 
 **[BELUM DITETAPKAN]:** gaya visual UI rinci dan tema; tata letak tiap HUD dan daftar layar/menu; jenis dan jumlah tombol aksi; skema kontrol sentuh konkret; dukungan kontroler; ukuran target sentuh minimum; dukungan ukuran layar berbeda (HP kecil/besar, tablet); aksesibilitas (ukuran teks, kontras, buta warna); cara menampilkan status koneksi dan sinkronisasi cloud; aturan konteks "adaptif" (aktivitas apa yang mengubah UI). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+### 6.22 Audio, Musik, dan Efek Suara — D-032, LOCKED (Kombinasi Semua Sistem)
+**Ditetapkan:**
+- **Musik adaptif** menurut wilayah dan aktivitas; musik pertanian, desa, dungeon, pertempuran; **musik orkestra** untuk cerita dan boss.
+- **Efek lingkungan** mengikuti cuaca, musim, dan wilayah.
+- **Suara aktivitas** NPC, hewan, dan monster; efek senjata, skill, sihir, crafting.
+- **Audio fenomena spiritual** dan event dunia; boss dan event besar punya audio khusus.
+- Transisi musik **halus**, tidak mengganggu gameplay; tiap aktivitas punya **identitas suara** berbeda.
+- **Volume musik, efek suara, dan ambience diatur terpisah** oleh pemain.
+- Terkait: D-009, D-013, D-016, D-019, D-022, D-023 sampai D-026, D-028, D-029, D-030, D-031.
+
+**[BELUM DITETAPKAN]:** gaya musik tiap wilayah, daftar lagu, sumber/lisensi aset audio, suara pengisi, arti audio "fenomena spiritual", format/ukuran aset dan batas ukuran APK, perilaku saat di latar belakang/panggilan masuk, aksesibilitas audio. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

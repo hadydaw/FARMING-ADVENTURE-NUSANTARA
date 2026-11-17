@@ -389,6 +389,28 @@ Hubungan dengan keputusan lain (tidak mengubah isinya): orientasi dan platform (
 **Terbuka:** gaya visual UI rinci (art direction, tema), tata letak tiap HUD, jenis dan jumlah tombol aksi, skema kontrol sentuh konkret (joystick atau tap-to-move), dukungan kontroler, ukuran target sentuh minimum, apakah ada mode UI untuk layar kecil/besar/tablet, aksesibilitas (ukuran teks, kontras, buta warna), tampilan status koneksi/sinkronisasi cloud.
 Detail tata letak dan daftar layar belum ditetapkan. Implementasi UI/HUD belum dimulai (layar boot saat ini hanya uji fondasi, bukan UI game). ID D-031 tersedia saat dicatat (tanpa bentrokan).
 
+### D-032 — Sistem Audio, Musik, dan Efek Suara *(APPROVED / LOCKED, 2026-11-17, Tahap 22)*
+Pilihan: **D. Kombinasi Semua Sistem.** Ruang lingkup:
+1. Musik adaptif berdasarkan wilayah dan aktivitas
+2. Musik pertanian, desa, dungeon, dan pertempuran
+3. Musik orkestra untuk cerita dan boss
+4. Efek suara lingkungan, cuaca, dan musim
+5. Suara aktivitas NPC, hewan, dan monster
+6. Efek senjata, skill, sihir, dan crafting
+7. Audio fenomena spiritual dan event dunia
+8. Pengaturan volume musik, efek suara, dan ambience secara terpisah
+
+Ketentuan:
+- Musik berubah sesuai lokasi, aktivitas, dan situasi permainan.
+- Transisi musik halus dan tidak mengganggu gameplay.
+- Efek lingkungan mengikuti cuaca, musim, dan wilayah.
+- Tiap aktivitas gameplay punya identitas suara berbeda.
+- Boss dan event besar punya audio khusus.
+- Pemain mengatur volume musik, efek suara, dan ambience secara terpisah.
+
+Hubungan (tidak mengubah isi keputusan lain): wilayah dan eksplorasi (**D-009**, **D-028**), pertarungan dan dungeon (**D-013**, **D-016**), NPC (**D-022**), pertanian/peternakan/memancing/memasak (**D-023 sampai D-026**), event dunia (**D-029**), musim dan cuaca (**D-030**; "tampilan audio tiap musim/cuaca" yang terbuka di sana kini ditangani di sini), UI/pengaturan (**D-031**), dan monster/companion (**D-019**).
+**Terbuka:** gaya dan genre musik tiap wilayah, daftar lagu dan aturan transisi, sumber dan lisensi aset audio, suara pengisi (voice) dan bahasanya, arti audio "fenomena spiritual" (konsep spiritual belum didefinisikan, tidak ditebak), format dan ukuran aset, batas ukuran APK, perilaku saat aplikasi di latar belakang atau ada panggilan masuk, dukungan headphone/mono, subtitle/aksesibilitas audio. Implementasi audio belum dimulai. ID D-032 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

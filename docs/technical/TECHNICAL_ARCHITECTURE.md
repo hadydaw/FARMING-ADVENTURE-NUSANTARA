@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.21 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.22 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -289,6 +289,18 @@ Syarat utama: **nyaman di layar sentuh landscape**, **adaptif terhadap aktivitas
 - **Aksesibilitas:** skala teks, kontras, opsi bantu warna sebagai pengaturan (menunggu desain).
 - **Pengujian:** uji headless untuk tata letak default pada beberapa ukuran layar (tidak ada kontrol keluar layar/tumpang tindih) dan kelengkapan kunci terjemahan UI.
 - **Layar boot** saat ini (`game/boot`) hanya uji fondasi dan bukan bagian UI game.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4s. Implikasi Arsitektur dari D-032 (hanya catatan; belum diimplementasikan)
+
+- **Audio Manager terpusat** (autoload) dengan **tiga bus terpisah: Musik, Efek (SFX), Ambience** (+ Master), memakai AudioBus Godot; volume tiap bus disimpan sebagai pengaturan pemain (sama seperti tata letak UI, D-031), bukan bagian save game.
+- **Musik adaptif berbasis konteks:** pemilih musik membaca wilayah (§4o), aktivitas/konteks UI (§4r), dan situasi (combat, boss, event) lewat event bus; transisi memakai crossfade/layer (stem) agar halus, dengan prioritas (boss/event > combat > wilayah).
+- **Ambience dari data:** lapisan ambience dipilih dari wilayah + musim + cuaca + waktu (§4q) secara data-driven; berganti halus saat cuaca/musim berubah.
+- **SFX data-driven:** efek dipetakan lewat ID (aksi, item, skill, makhluk, §4g) ke aset/varian; variasi pitch/pilihan acak agar tidak monoton; batas suara bersamaan (polyphony) dan prioritas.
+- **Audio 3D/posisional** untuk suara dunia (NPC, hewan, monster) dengan jarak dan LOD, selaras simulasi LOD NPC (§4m).
+- **Aset:** streaming untuk musik panjang, pemuatan per wilayah, format terkompresi (mis. Ogg Vorbis) agar ukuran APK terkendali (§3); sumber/lisensi aset dicatat.
+- **Bahasa:** kunci audio terpisah dari terjemahan bila nanti ada suara pengisi (§6).
+- **Pengujian:** uji headless untuk kelengkapan pemetaan ID ke aset dan keberadaan bus; fokus waktu loading, bukan kualitas dengar.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres

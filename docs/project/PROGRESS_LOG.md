@@ -161,3 +161,9 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - GDD §6.21 baru dan catatan kontrol di §4 diperbarui (v0.21); Technical Architecture §4r ditambahkan (catatan saja; fokus pemisahan UI-logika, konteks UI adaptif, kontrol sebagai Input Action, tata letak tombol yang dapat disesuaikan). Hubungan dengan D-004, D-007, D-008, D-013 sampai D-030 dicatat tanpa mengubah isinya.
 - Layar boot uji fondasi tidak diubah dan bukan UI game.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 22.
+
+## 2026-11-17 (22) — D-032 Sistem Audio, Musik, dan Efek Suara dicatat
+
+- D-032 (Kombinasi Semua Sistem, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
+- GDD §6.22 baru (v0.22); Technical Architecture §4s ditambahkan (v0.22; catatan saja: bus musik/SFX/ambience terpisah, musik adaptif berbasis konteks, ambience dari cuaca/musim/wilayah, SFX data-driven). Hubungan dengan D-009, D-013, D-016, D-019, D-022 sampai D-031 dicatat tanpa mengubah isinya.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 23.
