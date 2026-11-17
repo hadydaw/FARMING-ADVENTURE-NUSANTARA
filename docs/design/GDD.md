@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.24 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.25 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -389,6 +389,19 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - Terkait: D-004, D-013, D-023, D-028, D-031, D-033.
 
 **[BELUM DITETAPKAN]:** jumlah/jenis/ikon tombol aksi, situasi tap-to-move dan cara beralih, jenis joystick, kontrol kamera bersama joystick, penargetan/lock-on, gestur tambahan, kontroler/keyboard, rentang sensitivitas, aksesibilitas (satu tangan, tahan vs ketuk), getaran. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+### 6.25 Interaksi dengan Dunia dan Objek — D-035, LOCKED (Interaksi Hybrid)
+**Ditetapkan:**
+- Tiga metode: **proximity**, **direct tap**, dan **tombol aksi kontekstual**.
+- Konteks objek dikenali: tanaman, hewan, NPC, fasilitas, item di tanah, peti, pintu, objek dungeon.
+- Hanya **aksi yang valid** untuk objek dan kondisi pemain yang ditampilkan.
+- **Tanpa interaksi ganda/konflik input** saat objek berdekatan; **target pilihan pemain diprioritaskan**.
+- Terintegrasi dengan **Kontrol Hybrid** (D-034) dan **Kamera Adaptif** (D-033).
+- UI nyaman di **Android landscape**, **Indonesia dan English**.
+- **Tidak semua interaksi otomatis**; pemain mengendalikan tindakan penting.
+- Terkait: D-007, D-013, D-016, D-022, D-023, D-024, D-027, D-028, D-031 sampai D-034.
+
+**[BELUM DITETAPKAN]:** daftar jenis objek dan aksi, radius interaksi, aturan prioritas rinci, definisi "tindakan penting" (konfirmasi), penanda target dan petunjuk aksi, animasi/durasi interaksi, interaksi saat combat, ambil banyak item sekaligus, aksesibilitas, kontroler. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

@@ -438,6 +438,20 @@ Pilihan: **D. Kontrol Hybrid.** Ketentuan:
 Hubungan (tidak mengubah isi keputusan lain): platform dan orientasi (**D-004**), pertarungan (**D-013**; kontrol sentuh untuk aksi combat yang terbuka di sana kini mengikuti keputusan ini), pertanian (**D-023**), eksplorasi (**D-028**), UI dan pengaturan tombol (**D-031**), kamera (**D-033**).
 **Terbuka:** jumlah, jenis, dan ikon tombol aksi tiap konteks; daftar situasi tap-to-move dan cara beralih/mengaktifkannya; jenis joystick (tetap/mengambang); cara mengontrol kamera bersama joystick (gestur/stik/tombol); kontrol penargetan dan lock-on; gestur tambahan; dukungan kontroler/keyboard; rentang sensitivitas; aksesibilitas (mode satu tangan, tahan vs ketuk); getaran (haptic). Implementasi kontrol belum dimulai. ID D-034 tersedia saat dicatat (tanpa bentrokan).
 
+### D-035 — Sistem Interaksi dengan Dunia dan Objek *(APPROVED / LOCKED, 2026-11-17, Tahap 25)*
+Pilihan: **D. Interaksi Hybrid.** Ketentuan:
+1. Tiga metode interaksi: **proximity** (jarak karakter ke objek/NPC), **direct tap** (ketuk objek/target langsung), dan **tombol aksi kontekstual** (muncul sesuai objek, aktivitas, dan kondisi pemain).
+2. Sistem mengenali konteks objek: tanaman, hewan, NPC, fasilitas, item di tanah, peti, pintu, objek dungeon.
+3. Hanya aksi yang valid untuk objek dan kondisi pemain saat itu yang ditampilkan.
+4. Hindari interaksi ganda atau konflik input saat beberapa objek berdekatan.
+5. Target yang dipilih pemain diprioritaskan saat objek saling berdekatan.
+6. Terintegrasi dengan Kontrol Hybrid (D-034) dan Kamera Adaptif (D-033).
+7. UI nyaman di Android landscape dan mendukung lokalisasi Indonesia dan English.
+8. Tidak semua interaksi otomatis; pemain tetap memegang kendali jelas atas tindakan penting.
+
+Hubungan (tidak mengubah isi keputusan lain): bahasa (**D-007**), pertarungan (**D-013**), dungeon (**D-016**), NPC (**D-022**), pertanian/peternakan (**D-023**, **D-024**), bangunan/peti/rumah (**D-027**), eksplorasi (**D-028**), UI (**D-031**), audio (**D-032**), kamera (**D-033**), kontrol (**D-034**).
+**Terbuka:** daftar lengkap jenis objek dan aksinya, jarak/radius interaksi, aturan prioritas rinci saat objek berdekatan, definisi "tindakan penting" yang butuh konfirmasi, tampilan penanda target dan petunjuk aksi, durasi tahan/animasi interaksi, interaksi saat combat, interaksi dengan banyak item di tanah (mis. ambil semua), aksesibilitas (target sentuh lebih besar), dukungan kontroler. Implementasi interaksi belum dimulai. ID D-035 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

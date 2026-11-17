@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.24 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.25 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -324,6 +324,18 @@ Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 - **Integrasi kamera:** input kamera (zoom/rotasi) memakai Input Action terpisah dan tidak bentrok dengan joystick; arah gerak joystick relatif terhadap kamera adaptif (§4t) dan tetap konsisten saat kamera beralih agar orientasi tidak hilang.
 - **Performa:** pemrosesan input ringan, tanpa alokasi per frame; kontrol digambar sebagai Control sederhana (sedikit draw call, §3); *dead zone* dan kurva sensitivitas dapat diatur.
 - **Pengujian:** uji headless untuk pemetaan Input Action, pembatalan tap-to-move oleh joystick, dan kepemilikan sentuhan multi-touch; kenyamanan diuji di perangkat nyata nanti.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4v. Implikasi Arsitektur dari D-035 (hanya catatan; belum diimplementasikan)
+
+- **Komponen Interactable:** objek dunia (tanaman, hewan, NPC, fasilitas, item, peti, pintu, objek dungeon) mengekspos komponen/antarmuka yang sama: ID aksi yang didukung, titik fokus, dan **validasi** (`can_interact(aktor, aksi)`) dari data dan kondisi (alat, stamina, waktu, cuaca, status quest). Jenis objek dan aksi dari data (§4g), bukan kode per objek.
+- **Pemilihan target (target selection):** pengumpul kandidat memakai area deteksi di sekitar pemain (Area3D/query fisika berkala, bukan per frame penuh) plus hasil raycast untuk ketukan langsung. Kandidat diberi skor (jarak, arah hadap/kamera, kesesuaian dengan aktivitas) dan dipilih satu **target aktif**.
+- **Prioritas input:** (1) target yang **dipilih pemain** (ketukan langsung/penguncian) menang dan bertahan sampai dilepas atau di luar jangkauan; (2) tombol UI di atas ketukan dunia (sejalan §4u); (3) target proximity terbaik; histeresis kecil agar target tidak berkedip saat objek berdekatan. Satu aksi diproses sekali (cegah dobel dari tap + tombol).
+- **Aksi valid saja:** daftar aksi dibangun dari validasi; tombol aksi kontekstual (§4u) menampilkan aksi utama target aktif, aksi tambahan lewat menu kecil. Alasan penolakan memakai kunci terjemahan (id/en, §6).
+- **Aksi penting:** tindakan yang ditandai di data (mis. menjual, membuang, tindakan tak dapat dibatalkan) memerlukan konfirmasi/tahan; aksi rutin tidak otomatis tanpa niat pemain. Definisi menunggu desain.
+- **Eksekusi aksi:** perintah aksi → sistem terkait (pertanian, peternakan, crafting, dll.) lewat event bus (§4); interaksi menyetel konteks aktivitas untuk UI (§4r) dan kamera (§4t).
+- **Performa:** deteksi berkala dan jumlah kandidat dibatasi; tanpa alokasi per frame; penanda target ringan (GL Compatibility, §3). Objek jauh tidak diperiksa (LOD, §4m).
+- **Pengujian:** uji headless untuk pemilihan target pada objek berdekatan, prioritas pilihan pemain, validasi aksi, dan tidak adanya aksi ganda.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres
