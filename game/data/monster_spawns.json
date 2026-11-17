@@ -1,0 +1,34 @@
+[
+	{
+		"id": "ms_forest_1",
+		"provisional": true,
+		"region": "region_forest",
+		"x": -6.0,
+		"z": -6.0,
+		"monster": "monster_slime_test"
+	},
+	{
+		"id": "ms_forest_2",
+		"provisional": true,
+		"region": "region_forest",
+		"x": 10.0,
+		"z": 6.0,
+		"monster": "monster_slime_test"
+	},
+	{
+		"id": "ms_forest_3",
+		"provisional": true,
+		"region": "region_forest",
+		"x": 0.0,
+		"z": 14.0,
+		"monster": "monster_boar_test"
+	},
+	{
+		"id": "ms_ancient_1",
+		"provisional": true,
+		"region": "region_ancient",
+		"x": 8.0,
+		"z": -8.0,
+		"monster": "monster_boar_test"
+	}
+]

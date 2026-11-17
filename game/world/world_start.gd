@@ -39,6 +39,7 @@ func _ready() -> void:
 	_register_village_markers()
 	_build_stations()
 	_build_gather_nodes()
+	_build_monsters()
 	Events.interaction_performed.connect(_on_interacted)
 
 
@@ -66,6 +67,8 @@ func _prompt_text() -> String:
 		return ""
 	if sensor.current.has_meta("station_id"):
 		return tr("FARM_ACT_CRAFT") + ": " + tr(str(sensor.current.get_meta("label_key", "")))
+	if sensor.current.has_meta("spawn_id"):
+		return tr("FARM_ACT_ATTACK") + ": " + tr(str(sensor.current.get_meta("label_key", "")))
 	if sensor.current.has_meta("gather_id"):
 		return tr("FARM_ACT_GATHER") + ": " + tr(str(sensor.current.get_meta("label_key", "")))
 	if sensor.current.has_meta("link_id"):
@@ -98,6 +101,9 @@ func _on_interacted(target: Node, _actor: Node) -> void:
 		return
 	if target.has_meta("station_id"):
 		_open_station(str(target.get_meta("station_id")))
+		return
+	if target.has_meta("spawn_id"):
+		_attack(str(target.get_meta("spawn_id")))
 		return
 	if target.has_meta("gather_id"):
 		_gather(str(target.get_meta("gather_id")))
@@ -301,7 +307,8 @@ func _build_farm() -> void:
 		{"fish_species": DataRegistry.rows("fish_species"), "fishing_config": DataRegistry.get_row("fishing_config", "default"),
 		"animals": DataRegistry.rows("animals"), "livestock_config": DataRegistry.get_row("livestock_config", "default"),
 		"economy_config": DataRegistry.get_row("economy_config", "default"), "item_prices": DataRegistry.rows("item_prices"), "shops": DataRegistry.rows("shops"),
-		"gather_nodes": DataRegistry.rows("gather_nodes"), "recipes": DataRegistry.rows("recipes"), "stations": DataRegistry.rows("crafting_stations")})
+		"gather_nodes": DataRegistry.rows("gather_nodes"), "recipes": DataRegistry.rows("recipes"), "stations": DataRegistry.rows("crafting_stations"),
+		"monsters": DataRegistry.rows("monsters"), "monster_spawns": DataRegistry.rows("monster_spawns"), "combat_config": DataRegistry.get_row("combat_config", "default")})
 	farming.sleep.finished.connect(_on_woke_up)
 	_build_bed()
 	_build_pond()
@@ -467,6 +474,7 @@ func vitality_text() -> String:
 	var parts: Array[String] = []
 	for id in v.ids():
 		parts.append("%s %d/%d" % [tr("VIT_" + str(id).to_upper()), v.value(id), v.max_value(id)])
+	parts.append("%s %d (EXP %d)" % [tr("VIT_LEVEL"), farming.combat.level(), farming.combat.exp_total])
 	return " | ".join(parts)
 
 
@@ -1115,4 +1123,76 @@ func _gather(node_id: String) -> void:
 	var r := farming.gather_at(node_id)
 	hud.show_message(tr("GATHER_DONE") + " +%d" % int(r["count"]) if bool(r["ok"]) else tr("GATHER_NO_" + str(r["reason"]).to_upper()))
 	_refresh_gather_visuals()
+	refresh_farm_visuals()
+
+
+# --- Monster uji dan pertarungan dasar (SEMENTARA) ---
+
+var monster_nodes: Dictionary = {}   # id spawn -> Node3D
+
+
+func _build_monsters() -> void:
+	for sp in DataRegistry.rows("monster_spawns"):
+		var mon := DataRegistry.get_row("monsters", str(sp["monster"]))
+		var node := Node3D.new()
+		node.name = str(sp["id"])
+		node.position = _region_origin(str(sp["region"])) + Vector3(float(sp["x"]), 0.0, float(sp["z"]))
+		var mesh := MeshInstance3D.new()
+		var sphere := SphereMesh.new()
+		sphere.radius = 0.6
+		sphere.height = 1.2
+		mesh.mesh = sphere
+		mesh.position.y = 0.6
+		mesh.name = "Mesh"
+		var mat := StandardMaterial3D.new()
+		mat.albedo_color = Color(str(mon["color"]))
+		mesh.material_override = mat
+		node.add_child(mesh)
+		var label := Label3D.new()
+		label.name = "Info"
+		label.pixel_size = 0.005
+		label.position = Vector3(0, 1.7, 0)
+		label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+		node.add_child(label)
+		var it := Interactable.new()
+		it.interaction_type = "monster"
+		node.add_child(it)
+		it.set_meta("spawn_id", str(sp["id"]))
+		it.set_meta("label_key", str(mon["name_key"]))
+		add_child(node)
+		monster_nodes[str(sp["id"])] = node
+		_markers.append({"node": node, "kind": "monster", "region": str(sp["region"])})
+	Events.day_changed.connect(func(_d): _refresh_monsters())
+	_refresh_monsters()
+
+
+func _refresh_monsters() -> void:
+	var day := GameTime.clock.day_index()
+	for id in monster_nodes:
+		var node: Node3D = monster_nodes[id]
+		var alive := farming.combat.is_alive(id, day)
+		(node.get_node("Mesh") as MeshInstance3D).visible = alive
+		var mon := farming.combat.spawn_monster(id)
+		(node.get_node("Info") as Label3D).text = ("UJI: %s %d/%d" % [tr(str(mon["name_key"])), farming.combat.hp_of(id, day), int(mon["hp"])]) if alive else ""
+
+
+func _attack(spawn_id: String) -> void:
+	var r := farming.attack_monster(spawn_id)
+	if not bool(r["ok"]):
+		hud.show_message(tr("COMBAT_NO_" + str(r["reason"]).to_upper()))
+		return
+	var msg := tr("COMBAT_HIT") % int(r["dealt"])
+	if bool(r["defeated"]):
+		msg = tr("COMBAT_DEFEATED") % int(r["exp"])
+		for d in r["drops"]:
+			msg += "\n%s: %s x%d" % [tr("COMBAT_DROP"), tr(str(farming.item_defs[d["item"]]["name_key"])), int(d["count"])]
+		if bool(r["leveled"]):
+			msg += "\n" + tr("COMBAT_LEVEL_UP")
+	elif int(r["taken"]) > 0:
+		msg += "  " + tr("COMBAT_TAKEN") % int(r["taken"])
+	if bool(r["fainted"]):
+		msg = tr("COMBAT_FAINTED")
+		_place_player("region_village", 0.0, 4.0)
+	hud.show_message(msg)
+	_refresh_monsters()
 	refresh_farm_visuals()

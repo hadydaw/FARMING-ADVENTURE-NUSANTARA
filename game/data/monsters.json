@@ -1,0 +1,43 @@
+[
+	{
+		"id": "monster_slime_test",
+		"provisional": true,
+		"name_key": "MONSTER_SLIME_TEST",
+		"hp": 12,
+		"attack": 3,
+		"defense": 0,
+		"exp": 5,
+		"respawn_days": 1,
+		"color": "#5ac8a0",
+		"drops": [
+			{
+				"item": "drop_test_goo",
+				"chance": 0.8,
+				"count": 1
+			}
+		]
+	},
+	{
+		"id": "monster_boar_test",
+		"provisional": true,
+		"name_key": "MONSTER_BOAR_TEST",
+		"hp": 30,
+		"attack": 6,
+		"defense": 2,
+		"exp": 14,
+		"respawn_days": 2,
+		"color": "#8a5a3a",
+		"drops": [
+			{
+				"item": "drop_test_hide",
+				"chance": 0.6,
+				"count": 1
+			},
+			{
+				"item": "drop_test_goo",
+				"chance": 0.3,
+				"count": 2
+			}
+		]
+	}
+]

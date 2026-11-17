@@ -1,0 +1,20 @@
+[
+	{
+		"id": "default",
+		"provisional": true,
+		"base_attack": 3,
+		"player_defense": 0,
+		"stamina_cost": 1,
+		"faint_money_loss": 0.1,
+		"faint_health_fraction": 0.5,
+		"attack_per_level": 1,
+		"level_exp": [
+			0,
+			20,
+			50,
+			100,
+			180,
+			300
+		]
+	}
+]

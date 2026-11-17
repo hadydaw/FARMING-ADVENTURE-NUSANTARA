@@ -124,5 +124,26 @@
 		"provisional": true,
 		"buy": 0,
 		"sell": 15
+	},
+	{
+		"id": "price_weapon_test_sword",
+		"provisional": true,
+		"item": "weapon_test_sword",
+		"buy": 80,
+		"sell": 30
+	},
+	{
+		"id": "price_drop_test_goo",
+		"provisional": true,
+		"item": "drop_test_goo",
+		"buy": 0,
+		"sell": 6
+	},
+	{
+		"id": "price_drop_test_hide",
+		"provisional": true,
+		"item": "drop_test_hide",
+		"buy": 0,
+		"sell": 12
 	}
 ]

@@ -158,5 +158,27 @@
 		"category": "decor",
 		"name_key": "ITEM_DECOR_TEST_STONE",
 		"stack_max": 20
+	},
+	{
+		"id": "weapon_test_sword",
+		"provisional": true,
+		"category": "weapon",
+		"name_key": "ITEM_WEAPON_TEST_SWORD",
+		"stack_max": 1,
+		"attack": 4
+	},
+	{
+		"id": "drop_test_goo",
+		"provisional": true,
+		"category": "material",
+		"name_key": "ITEM_DROP_TEST_GOO",
+		"stack_max": 99
+	},
+	{
+		"id": "drop_test_hide",
+		"provisional": true,
+		"category": "material",
+		"name_key": "ITEM_DROP_TEST_HIDE",
+		"stack_max": 99
 	}
 ]

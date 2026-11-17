@@ -25,6 +25,7 @@ var livestock: LivestockState
 var fishing_casts_today := 0
 var economy: Economy
 var gather: GatherState
+var combat: CombatState
 var recipes: Array = []
 var stations: Array = []
 var shops: Dictionary = {}
@@ -42,6 +43,7 @@ func _init(clock: GameClock, items: Array, crops: Array, plot_ids: Array, config
 	fishing_config = extras.get("fishing_config", {})
 	economy = Economy.new(extras.get("economy_config", {"start_money": 0, "max_money": 999999, "sold_drop": 0.1, "price_floor": 0.3, "season_multiplier": {}}), extras.get("item_prices", []))
 	gather = GatherState.new(extras.get("gather_nodes", []))
+	combat = CombatState.new(extras.get("monsters", []), extras.get("monster_spawns", []), extras.get("combat_config", {"base_attack": 1, "player_defense": 0, "stamina_cost": 0, "faint_money_loss": 0.0, "faint_health_fraction": 0.5, "attack_per_level": 0, "level_exp": [0]}))
 	recipes = extras.get("recipes", [])
 	stations = extras.get("stations", [])
 	for sh in extras.get("shops", []):
@@ -78,6 +80,7 @@ func reset() -> void:
 	economy.money = int(economy._cfg["start_money"])
 	economy._sold_today.clear()
 	gather._last_gathered.clear()
+	combat.reset()
 	for id in vitality.ids():
 		vitality.restore_full(id)
 	inventory.clear()
@@ -136,7 +139,7 @@ func preview(plot_id: String) -> Dictionary:
 
 
 func to_dict() -> Dictionary:
-	return {"v": SAVE_VERSION, "world_seed": world_seed, "vitality": vitality.to_dict(), "livestock": livestock.to_dict(), "fishing_casts": fishing_casts_today, "economy": economy.to_dict(), "gather": gather.to_dict(), "inventory": inventory.to_dict(), "grid": grid.to_dict()}
+	return {"v": SAVE_VERSION, "world_seed": world_seed, "vitality": vitality.to_dict(), "livestock": livestock.to_dict(), "fishing_casts": fishing_casts_today, "economy": economy.to_dict(), "gather": gather.to_dict(), "combat": combat.to_dict(), "inventory": inventory.to_dict(), "grid": grid.to_dict()}
 
 
 ## Semua-atau-tidak: bila salah satu bagian tidak valid, status tidak berubah.
@@ -149,13 +152,16 @@ func from_dict(data: Dictionary) -> bool:
 	var old_seed := world_seed
 	if typeof(data.get("vitality", null)) != TYPE_DICTIONARY or typeof(data.get("livestock", null)) != TYPE_DICTIONARY or int(data.get("fishing_casts", -1)) < 0 or typeof(data.get("economy", null)) != TYPE_DICTIONARY or typeof(data.get("gather", null)) != TYPE_DICTIONARY:
 		return false
+	if data.has("combat") and typeof(data["combat"]) != TYPE_DICTIONARY:
+		return false
 	if not vitality.from_dict(data["vitality"]):
 		return false
 	if not inventory.from_dict(data["inventory"]):
 		vitality.from_dict(backup["vitality"])
 		return false
 	world_seed = int(data.get("world_seed", 0))
-	if not grid.from_dict(data["grid"]) or not livestock.from_dict(data["livestock"]) or not economy.from_dict(data["economy"]) or not gather.from_dict(data["gather"]):
+	if not grid.from_dict(data["grid"]) or not livestock.from_dict(data["livestock"]) or not economy.from_dict(data["economy"]) or not gather.from_dict(data["gather"]) or (data.has("combat") and not combat.from_dict(data["combat"])):
+		combat.from_dict(backup["combat"])
 		gather.from_dict(backup["gather"])
 		economy.from_dict(backup["economy"])
 		grid.from_dict(backup["grid"])
@@ -164,6 +170,8 @@ func from_dict(data: Dictionary) -> bool:
 		vitality.from_dict(backup["vitality"])
 		world_seed = old_seed
 		return false
+	if not data.has("combat"):
+		combat.reset()
 	fishing_casts_today = int(data["fishing_casts"])
 	return true
 
@@ -263,6 +271,10 @@ func craft(recipe_id: String) -> Dictionary:
 
 func use_item(item_id: String) -> Dictionary:
 	return ItemUse.use(item_id, item_defs, inventory, vitality)
+
+
+func attack_monster(spawn_id: String) -> Dictionary:
+	return combat.attack(spawn_id, _clock.day_index(), world_seed, inventory, item_defs, vitality, economy)
 
 
 func gather_at(node_id: String) -> Dictionary:

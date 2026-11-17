@@ -241,3 +241,20 @@ GATHER_NO_NOT_READY,Belum tumbuh lagi,Not regrown yet
 GATHER_NO_INVENTORY_FULL,Tas penuh,Bag is full
 GATHER_NO_UNKNOWN,Tidak dikenal,Unknown
 MENU_CLOSE,Tutup,Close
+ITEM_WEAPON_TEST_SWORD,Pedang Uji,Test Sword
+ITEM_DROP_TEST_GOO,Lendir Uji,Test Goo
+ITEM_DROP_TEST_HIDE,Kulit Uji,Test Hide
+MONSTER_SLIME_TEST,Slime Uji,Test Slime
+MONSTER_BOAR_TEST,Babi Hutan Uji,Test Boar
+FARM_ACT_ATTACK,Serang,Attack
+COMBAT_HIT,Kena %d,Hit %d
+COMBAT_TAKEN,Terluka %d,Took %d
+COMBAT_DEFEATED,Monster kalah! EXP +%d,Monster defeated! EXP +%d
+COMBAT_DROP,Dapat,Got
+COMBAT_LEVEL_UP,Naik level!,Level up!
+COMBAT_FAINTED,Kamu pingsan dan terbangun di desa (uang berkurang),You fainted and woke up in the village (lost some money)
+COMBAT_NO_TOO_TIRED,Terlalu lelah,Too tired
+COMBAT_NO_NO_HEALTH,HP habis,No health
+COMBAT_NO_NOT_HERE,Monster tidak ada,No monster here
+COMBAT_NO_UNKNOWN,Tidak bisa menyerang,Cannot attack
+VIT_LEVEL,Lv,Lv

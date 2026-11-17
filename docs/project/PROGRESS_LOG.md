@@ -557,3 +557,11 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - HUD: menu daftar serbaguna (dipakai lagi untuk quest/papan guild nanti); slot Tas jadi tombol "Pakai".
 - Belum: ikon item, animasi memasak, kualitas/bintang hasil, resep terbuka bertahap, tingkat keahlian.
 - Uji: 22 berkas, 2074 pemeriksaan, 0 gagal; smoke test lulus. Uji perangkat fisik belum dilakukan.
+
+## 2026-11-17 (77) — Pertarungan dasar, monster, drop, pingsan, EXP/level (D-013/D-018/D-019/D-058, teknis)
+
+- CombatState: serangan tukar-pukul (pemain lalu balasan monster), biaya stamina, drop deterministik (seed+spawn+hari+jumlah kalahkan), respawn per hari, pingsan (uang -10%, HP pulih 50%, monster pulih, pemain dipindah ke desa), EXP/level dengan bonus serangan.
+- Data SEMENTARA generik: 2 monster, 4 spawn, config, pedang uji. Bukan monster/boss/senjata resmi.
+- Simpan/muat: kunci "combat" opsional (save lama tetap termuat), rollback bila rusak.
+- Belum: animasi/serangan waktu-nyata, AI monster mengejar, status efek (D-059), equip senjata/armor, skill, boss, dungeon.
+- Uji: 23 berkas, 2208 pemeriksaan, 0 gagal; smoke test lulus. Uji perangkat fisik belum dilakukan.
