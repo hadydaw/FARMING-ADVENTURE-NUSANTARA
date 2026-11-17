@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.37 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement, D-047 Monetisasi) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.38 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement, D-047 Monetisasi, D-048 Live Ops) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -583,6 +583,24 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - Terkait: D-008, D-013, D-016, D-018, D-020, D-021, D-027, D-031, D-036, D-037, D-041, D-042, D-044 sampai D-046, D-014.
 
 **[BELUM DITETAPKAN]:** daftar dan harga kosmetik, platform dan metode pembayaran, kebijakan toko dan pengembalian dana, batas usia, bentuk penjualan (item/paket), batas dekorasi murni visual vs bangunan fungsional, kosmetik hadiah vs berbayar, pemulihan pembelian di perangkat baru, kebijakan iklan (tidak ada sampai diputuskan), privasi dan persetujuan, konsep "spiritual" (belum didefinisikan). **Tidak ada implementasi toko/transaksi sebelum desain dan persiapan publikasi terkait selesai.**
+
+### 6.38 Update Konten dan Live Operations — D-048, LOCKED (Live Operations Hybrid Lengkap)
+**Ditetapkan:**
+- **Jalur konten jangka panjang:** Regular Game Updates; New Content Updates; **World Events dan Live Events**; **New Region dan World Expansion**; Dungeon, Boss, dan Monster Expansion; Quest dan Story Expansion; Balancing dan Performance Optimization; Bug Fixes dan Quality Improvements.
+- Update dapat menambah **tanaman, hewan, ikan, item, equipment, NPC, fasilitas, lokasi, dungeon, monster, dan aktivitas.**
+- **Event dunia terintegrasi** dengan kalender, musim, cuaca, NPC, ekonomi, dan quest.
+- **Konten baru tidak merusak progres yang ada**; save schema, migrasi data, dan **sinkronisasi cloud Supabase** dijaga kompatibel.
+- **Versioning dan pemeriksaan kompatibilitas** versi game.
+- Update memperhatikan **koneksi, ukuran unduhan, kapasitas perangkat Android, dan performa** (Godot 4.7.2).
+- **Event berbatas waktu:** aturan waktu konsisten; **progres permanen tidak hilang tidak adil.**
+- **Konten gameplay penting tidak bergantung pada pembelian kosmetik** (D-047).
+- **Deployment dan pengujian update** bertahap agar tidak langsung merusak produksi.
+- Terkait: D-009, D-013, D-014, D-016, D-017, D-019 sampai D-030, D-040, D-043 sampai D-047, O-001, O-002, O-004.
+
+**[BELUM DITETAPKAN]:** ritme rilis, saluran distribusi konten dan kebijakan platform, jenis konten yang boleh live tanpa update aplikasi, batas unduhan, versi minimum/paksa-update, aturan event berbatas waktu rinci, kompensasi saat balancing, lingkungan dan peluncuran bertahap, rollback, pemantauan/analitik dan privasi, komunikasi ke pemain, pemeliharaan, konsep "spiritual" (belum didefinisikan). **Tidak ada implementasi live operations atau konten tambahan sebelum seluruh tahap desain selesai.**
+
+#### Post-Launch Roadmap (arah, bukan jadwal)
+Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 menjadi kerangka: pembaruan rutin dan perbaikan → konten baru (tanaman, hewan, ikan, item, NPC, fasilitas) → event live musiman → ekspansi wilayah, dungeon, boss, dan cerita. Tanggal dan prioritas diputuskan nanti.
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 
