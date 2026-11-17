@@ -1,0 +1,50 @@
+[
+	{
+		"id": "festival_test_1",
+		"provisional": true,
+		"season": "season_1",
+		"day": 14,
+		"name_key": "FESTIVAL_TEST_1",
+		"gift": {
+			"item": "meal_test_a",
+			"count": 2
+		},
+		"exp": 5
+	},
+	{
+		"id": "festival_test_2",
+		"provisional": true,
+		"season": "season_2",
+		"day": 7,
+		"name_key": "FESTIVAL_TEST_2",
+		"gift": {
+			"item": "potion_test_health",
+			"count": 1
+		},
+		"exp": 5
+	},
+	{
+		"id": "festival_test_3",
+		"provisional": true,
+		"season": "season_3",
+		"day": 21,
+		"name_key": "FESTIVAL_TEST_3",
+		"gift": {
+			"item": "meal_test_b",
+			"count": 2
+		},
+		"exp": 5
+	},
+	{
+		"id": "festival_test_4",
+		"provisional": true,
+		"season": "season_4",
+		"day": 28,
+		"name_key": "FESTIVAL_TEST_4",
+		"gift": {
+			"item": "potion_test_stamina",
+			"count": 1
+		},
+		"exp": 5
+	}
+]

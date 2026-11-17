@@ -321,7 +321,7 @@ func _build_farm() -> void:
 		"economy_config": DataRegistry.get_row("economy_config", "default"), "item_prices": DataRegistry.rows("item_prices"), "shops": DataRegistry.rows("shops"),
 		"gather_nodes": DataRegistry.rows("gather_nodes"), "recipes": DataRegistry.rows("recipes"), "stations": DataRegistry.rows("crafting_stations"),
 		"monsters": DataRegistry.rows("monsters"), "monster_spawns": DataRegistry.rows("monster_spawns"), "combat_config": DataRegistry.get_row("combat_config", "default"),
-		"achievements": DataRegistry.rows("achievements"), "dungeons": DataRegistry.rows("dungeons"), "quests": DataRegistry.rows("quests"), "guild_config": DataRegistry.get_row("guild_config", "default")})
+		"festivals": DataRegistry.rows("festivals"), "achievements": DataRegistry.rows("achievements"), "dungeons": DataRegistry.rows("dungeons"), "quests": DataRegistry.rows("quests"), "guild_config": DataRegistry.get_row("guild_config", "default")})
 	farming.sleep.finished.connect(_on_woke_up)
 	_build_bed()
 	_build_pond()
@@ -1183,6 +1183,7 @@ func _build_monsters() -> void:
 		monster_nodes[str(sp["id"])] = node
 		_markers.append({"node": node, "kind": "monster", "region": str(sp["region"])})
 	Events.day_changed.connect(func(_d): _refresh_monsters())
+	Events.day_changed.connect(func(_d): _announce_festival())
 	_refresh_monsters()
 
 
@@ -1364,6 +1365,13 @@ func _on_dungeon_pressed(id: String) -> void:
 		else:
 			hud.show_message(tr("COMBAT_HIT") % int(r["dealt"]) + "  " + tr("COMBAT_TAKEN") % int(r["taken"]))
 	_refresh_dungeon()
+
+
+func _announce_festival() -> void:
+	var r := farming.claim_festival()
+	if bool(r["ok"]):
+		var nm := tr(str(r["event"]["name_key"]))
+		hud.show_message((tr("FESTIVAL_TODAY") if bool(r["gift_given"]) else tr("FESTIVAL_BAG_FULL")) % nm)
 
 
 func _announce_milestones() -> void:

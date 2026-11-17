@@ -5,6 +5,7 @@ Format mengikuti [Keep a Changelog](https://keepachangelog.com/id-ID/1.1.0/); ve
 ## [Belum dirilis]
 
 ### Ditambahkan
+- Kalender festival dasar (sementara): 4 festival uji (satu per musim), hadiah+EXP diklaim sekali per festival per tahun, tas penuh = terlewat, pesan HUD, simpan/muat; 30 uji tambahan.
 - Pencapaian dan petunjuk tutorial dasar (sementara): 6 pencapaian dan 3 petunjuk berbasis statistik, diumumkan sekali, tersimpan; 31 uji tambahan.
 - Dungeon dasar + bos (sementara): gua uji di kawasan kuno, 3 ruangan dibangkitkan deterministik dari seed+hari, bos di ruang akhir, hadiah dan penutupan beberapa hari, pingsan/keluar, simpan/muat run berjalan; 23 uji tambahan.
 - Quest dan guild dasar (sementara): papan guild uji, 4 quest (kumpul/kalahkan), batas quest aktif, peringkat dari poin, hadiah uang/EXP/item semua-atau-tidak, simpan/muat dengan rollback; 44 uji tambahan.

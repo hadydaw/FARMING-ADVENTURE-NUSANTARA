@@ -586,3 +586,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Data SEMENTARA generik; bukan daftar pencapaian/tutorial resmi.
 - Belum: layar daftar pencapaian, hadiah, ikon, tutorial interaktif bertahap, koleksi (ensiklopedia).
 - Uji: 26 berkas, 2500+ pemeriksaan, 0 gagal; smoke test lulus.
+
+## 2026-11-17 (81) — Event dan festival kalender (D-029, teknis)
+
+- Pemilik memilih "Event & festival kalender". FestivalCalendar: festival menurut musim + hari-dalam-musim, klaim sekali per festival per tahun ("id:tahun"), hadiah item + EXP, tas penuh = hadiah terlewat (tetap tercatat), festival berikutnya dapat dihitung, simpan/muat opsional dengan rollback.
+- Diumumkan lewat pesan HUD saat pergantian hari. Data SEMENTARA generik; bukan festival/kalender resmi (D-029 detail tetap terbuka).
+- Belum: dekorasi/aktivitas festival, toko khusus, NPC festival, layar kalender, efek khusus (diskon, cuaca).
+- Uji: 27 berkas, 2583 pemeriksaan, 0 gagal; smoke test lulus.

@@ -307,3 +307,10 @@ HINT_START,Petunjuk: ketuk Interaksi dekat objek. Cangkul tanah lalu tanam dan s
 HINT_FIRST_KILL,Petunjuk: monster menjatuhkan bahan; bawa ke dapur atau papan guild.,Hint: monsters drop materials; take them to the kitchen or guild board.
 HINT_RANK,Petunjuk: peringkat lebih tinggi membuka quest baru di papan guild.,Hint: higher rank unlocks new quests at the guild board.
 ACH_TITLE,Pencapaian,Achievements
+FESTIVAL_TEST_1,Festival Uji 1,Test Festival 1
+FESTIVAL_TEST_2,Festival Uji 2,Test Festival 2
+FESTIVAL_TEST_3,Festival Uji 3,Test Festival 3
+FESTIVAL_TEST_4,Festival Uji 4,Test Festival 4
+FESTIVAL_TODAY,Hari ini: %s! Hadiah diterima,Today: %s! Gift received
+FESTIVAL_BAG_FULL,Hari ini: %s (tas penuh - hadiah terlewat),Today: %s (bag full - gift missed)
+FESTIVAL_NEXT,Festival berikutnya: %s (hari ke-%d),Next festival: %s (day %d)
