@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.12 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.13 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -91,7 +91,7 @@ Belum: daftar wilayah, peta dunia, syarat buka tiap wilayah, ukuran wilayah, car
 
 **Di luar D-015 dan BELUM ditetapkan (jangan dianggap disetujui):** hubungan romantis, pernikahan, membangun keluarga, memiliki anak.
 
-Untuk bagian 6.3 dan 6.4 di bawah, rujuk 6.2.
+Perincian pertanian dan pertumbuhan tanaman: lihat 6.13 (D-023). Untuk bagian 6.3 dan 6.4 di bawah, rujuk 6.2.
 
 ### 6.3 Memancing dan Memasak
 Ditetapkan lewat D-015 (lihat 6.2). Rincian belum ditetapkan.
@@ -216,6 +216,21 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 
 **[BELUM DITETAPKAN]:** daftar barang dan harga dasar, mata uang, rumus permintaan/penawaran/kelangkaan, daftar merchant dan spesialisasinya, aturan dan biaya perdagangan antarwilayah (termasuk apakah butuh transportasi/waktu), bentuk "usaha" pemain (toko, bisnis, properti?), batas inflasi dan keseimbangan, penjualan/pembelian oleh companion (D-019).
 **Dan terbuka:** karena D-014 (dunia pribadi, tanpa multiplayer), ekonomi dinamis dicatat sebagai **pribadi per pemain**; lokasi perhitungan harga (klien/server) dan kemungkinan ekonomi bersama belum ditetapkan. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+### 6.13 Pertanian dan Pertumbuhan Tanaman — D-023, LOCKED (Kombinasi Semua Sistem)
+**Ditetapkan:**
+- **Mekanisme bertani lengkap:** mengolah tanah, menanam, merawat, memanen.
+- **Banyak jenis tanaman, bibit, dan varietas.**
+- **Kualitas tanah, pupuk, dan sistem pengairan.**
+- **Musim dan cuaca** memengaruhi pertumbuhan.
+- **Tanaman spiritual dan tanaman langka.**
+- **Integrasi** dengan crafting, alkimia, dan ekonomi.
+- **Pengembangan lahan dan teknologi pertanian.**
+- Ketentuan: tiap tanaman punya karakteristik dan **tahapan pertumbuhan**; kebutuhan air, pupuk, musim, dan kondisi tanah **berbeda antarjenis**; tanaman spiritual dan langka punya **mekanisme dan kegunaan khusus**; hasil panen untuk perdagangan, crafting, alkimia, dan kebutuhan petualangan; sistem **mudah diperluas** dengan tanaman dan wilayah baru.
+- Terkait: farming dan pengembangan ladang (D-015), musim/cuaca (D-015), crafting dan Alchemist (D-020), ekonomi (D-021), wilayah (D-009).
+
+**[BELUM DITETAPKAN]:** daftar tanaman, bibit, varietas; lama dan jumlah tahap tumbuh; jenis cuaca dan pengaruhnya; jenis pupuk dan kualitas tanah; mekanik pengairan; jenis teknologi pertanian dan tahap pengembangan lahan; **arti dan mekanisme "tanaman spiritual"** (belum didefinisikan); kriteria tanaman langka; batas antara "alkimia" di sini dan profesi Alchemist (D-020); keterlibatan companion (D-019) dan NPC pekerja (D-022) dalam bertani.
+**Catatan:** cuaca, yang di 6.2 masih tercantum belum ditetapkan, kini dinyatakan **ada** (memengaruhi tanaman); rinciannya tetap belum ditetapkan. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.12 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.13 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -157,6 +157,20 @@ Syarat utama: **jumlah NPC besar tetap terkelola** (kinerja di HP dan beban penu
 - **Save:** hubungan, flag cerita, kemajuan quest NPC, dan keadaan khusus NPC masuk payload save (skema berversi); jadwal tidak disimpan (diturunkan dari data + waktu).
 - **Online (D-014):** NPC adalah progres pribadi; tidak ada sinkronisasi real-time.
 - **Cakupan:** hanya pertemanan/kepercayaan; model hubungan dibuat dapat diperluas, tetapi romansa/keluarga tidak dimodelkan sampai diputuskan.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4j. Implikasi Arsitektur dari D-023 (hanya catatan; belum diimplementasikan)
+
+Syarat utama: **mudah diperluas** dengan tanaman dan wilayah baru.
+- **Tanaman sepenuhnya data:** spesies, varietas, tahap tumbuh (durasi, visual), kebutuhan (air, pupuk, musim, tanah), hasil panen, kualitas, dan flag khusus (spiritual, langka) sebagai data. Menambah tanaman/varietas/wilayah = menambah data, bukan kode.
+- **Petak tanah (plot) sebagai unit simulasi:** tiap plot menyimpan kondisi (kualitas tanah, kelembapan, pupuk) dan tanaman; pertumbuhan dihitung dari **selisih hari** lewat layanan kalender (§4b), bukan simulasi per frame, sehingga ladang besar tetap ringan dan tetap tumbuh saat pemain di dungeon atau offline.
+- **Faktor pertumbuhan modular:** air, pupuk, musim, cuaca, tanah, dan teknologi sebagai *pengali/syarat* terpisah yang digabung oleh satu fungsi pertumbuhan; faktor baru dapat ditambah tanpa mengubah tanaman yang ada.
+- **Cuaca:** sistem cuaca sebagai layanan data-driven per wilayah dan musim (belum didesain); deterministik dari seed + tanggal agar dapat diuji dan konsisten dengan penghitungan ulang selisih hari.
+- **Mekanisme khusus** (tanaman spiritual/langka) lewat sistem *efek dan kondisi* yang sama dengan quest/combat (§4d) bukan kode per tanaman; definisinya menunggu desain.
+- **Integrasi:** hasil panen adalah item di sistem item (§4g) yang masuk resep crafting/alkimia dan layanan harga (§4h); teknologi pertanian dan pengembangan lahan sebagai upgrade data pada ladang.
+- **Save:** keadaan setiap plot (tanah, air, pupuk, tanaman, tahap, waktu tanam), teknologi/upgrade lahan, dan benih yang dimiliki masuk payload save (skema berversi). Ukuran save dipantau karena banyak plot; simpan secara ringkas (hanya plot berisi/berubah).
+- **Anggaran performa:** banyak tanaman terlihat sekaligus menuntut batching/instancing dan LOD (§3).
+- **Online (D-014):** ladang adalah progres pribadi; tidak ada kunjungan ladang pemain lain.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres

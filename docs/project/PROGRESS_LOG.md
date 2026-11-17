@@ -98,3 +98,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - GDD §6.5 diganti menjadi "NPC dan Kehidupan Sosial" (v0.12); Technical Architecture §4i ditambahkan (catatan saja; fokus skala NPC besar). Hubungan dengan D-009, D-014, D-015, D-017, D-021 dicatat tanpa mengubah isinya.
 - Batasan D-015 ditegaskan ulang: romansa, pernikahan, keluarga, anak tetap belum ditetapkan (D-022 hanya pertemanan dan kepercayaan).
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 13.
+
+## 2026-11-17 (13) — D-023 Sistem Pertanian dan Pertumbuhan Tanaman dicatat
+
+- D-023 (Kombinasi Semua Sistem, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
+- GDD §6.13 baru (v0.13) dan tautan dari §6.2; Technical Architecture §4j ditambahkan (catatan saja; fokus kemudahan perluasan tanaman dan wilayah). Hubungan dengan D-009, D-015, D-019, D-020, D-021, D-022 dicatat tanpa mengubah isinya.
+- Ditandai terbuka: arti "tanaman spiritual" belum didefinisikan; batas "alkimia" vs profesi Alchemist (D-020).
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 14.

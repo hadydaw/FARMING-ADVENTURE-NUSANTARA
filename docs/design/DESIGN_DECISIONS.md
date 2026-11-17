@@ -191,6 +191,26 @@ Ketentuan desain:
 Hubungan dengan keputusan lain (tidak mengubah isinya): jadwal dan kondisi dunia memakai kalender/musim/festival (**D-015**); NPC pengurus guild dan quest (**D-017**); merchant dengan spesialisasi (**D-021**); perkembangan dunia dan wilayah (**D-009**); dunia dan NPC adalah progres pribadi pemain (**D-014**).
 Detail (daftar NPC, kepribadian, tingkat hubungan, bentuk reaksi, struktur quest bercabang, jumlah NPC target) belum ditetapkan. Implementasi belum dimulai. ID D-022 tersedia saat dicatat (tanpa bentrokan).
 
+### D-023 — Sistem Pertanian dan Pertumbuhan Tanaman *(APPROVED / LOCKED, 2026-11-17, Tahap 13)*
+Pilihan: **D. Kombinasi Semua Sistem.** Ruang lingkup:
+1. Mekanisme bertani lengkap: mengolah tanah, menanam, merawat, memanen
+2. Banyak jenis tanaman, bibit, dan varietas
+3. Kualitas tanah, pupuk, dan sistem pengairan
+4. Musim dan cuaca memengaruhi pertumbuhan tanaman
+5. Tanaman spiritual dan tanaman langka
+6. Integrasi pertanian dengan crafting, alkimia, dan ekonomi
+7. Pengembangan lahan dan teknologi pertanian
+
+Ketentuan desain:
+- Setiap tanaman punya karakteristik dan tahapan pertumbuhan.
+- Kebutuhan air, pupuk, musim, dan kondisi tanah dapat berbeda antarjenis tanaman.
+- Tanaman spiritual dan langka punya mekanisme dan kegunaan khusus.
+- Hasil panen dipakai untuk perdagangan, crafting, alkimia, dan kebutuhan petualangan.
+- Sistem harus mudah diperluas dengan tanaman dan wilayah baru.
+
+Hubungan dengan keputusan lain (tidak mengubah isinya): merinci butir farming dan pengembangan ladang pada **D-015**; musim (D-015) dan cuaca, yang kini dinyatakan memengaruhi tanaman; crafting dan profesi Alchemist pada **D-020** (istilah "alkimia" dibaca sebagai bagian sistem Alchemist D-020; rinciannya belum ditetapkan); ekonomi pada **D-021**; wilayah baru pada **D-009**; "kebutuhan petualangan" (mis. bahan potion/makanan) pada **D-013/D-020**.
+Hal baru yang **belum didefinisikan**: arti "tanaman spiritual" dan mekanismenya. Detail (daftar tanaman/varietas, lama tumbuh, tahap pertumbuhan, jenis cuaca, jenis pupuk, mekanik pengairan, teknologi pertanian, langkanya tanaman langka) belum ditetapkan. Implementasi belum dimulai. ID D-023 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |
