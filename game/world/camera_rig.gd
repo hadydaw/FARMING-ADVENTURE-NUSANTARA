@@ -85,6 +85,13 @@ func set_profile(id: String, instant: bool = false) -> bool:
 var _smoothing: float = 8.0
 
 
+## Memindahkan fokus langsung (teleport/pindah wilayah) tanpa meluncur.
+func snap_to(pos: Vector3) -> void:
+	target_position = pos
+	_focus = pos
+	_apply_pose()
+
+
 func rotate_by(delta_deg: float) -> void:
 	var limit := float(_limits.get("yaw_limit_deg", 180.0))
 	yaw_deg = clampf(yaw_deg + delta_deg, -limit, limit)

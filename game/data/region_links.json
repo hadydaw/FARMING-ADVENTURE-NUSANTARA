@@ -1,0 +1,42 @@
+[
+	{
+		"id": "link_village_forest",
+		"provisional": true,
+		"from": "region_village",
+		"x": 27.5,
+		"z": 0.0,
+		"to": "region_forest",
+		"to_x": -24.0,
+		"to_z": 0.0
+	},
+	{
+		"id": "link_forest_village",
+		"provisional": true,
+		"from": "region_forest",
+		"x": -27.5,
+		"z": 0.0,
+		"to": "region_village",
+		"to_x": 24.5,
+		"to_z": 0.0
+	},
+	{
+		"id": "link_forest_ancient",
+		"provisional": true,
+		"from": "region_forest",
+		"x": 27.5,
+		"z": 0.0,
+		"to": "region_ancient",
+		"to_x": -24.0,
+		"to_z": 0.0
+	},
+	{
+		"id": "link_ancient_forest",
+		"provisional": true,
+		"from": "region_ancient",
+		"x": -27.5,
+		"z": 0.0,
+		"to": "region_forest",
+		"to_x": 24.0,
+		"to_z": 0.0
+	}
+]

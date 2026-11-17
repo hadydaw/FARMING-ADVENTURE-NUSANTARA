@@ -46,5 +46,11 @@
 		"prompt_key": "FARM_ACT_SHOP",
 		"max_distance": 2.6,
 		"min_facing_dot": 0.0
+	},
+	{
+		"id": "travel",
+		"prompt_key": "FARM_ACT_TRAVEL",
+		"max_distance": 2.6,
+		"min_facing_dot": 0.0
 	}
 ]

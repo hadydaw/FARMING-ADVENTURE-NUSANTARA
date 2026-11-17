@@ -17,6 +17,9 @@ var dialog: DialogRunner
 var npc_nodes: Dictionary = {}
 var animal_nodes: Dictionary = {}
 var cast: FishingCast = null
+var map: MapState
+var current_region := "region_village"
+var _markers: Array = []   # {node, kind, region}
 var _npc_targets: Dictionary = {}
 var plot_nodes: Dictionary = {}  # id petak -> Node3D
 var _inspect_count := 0
@@ -32,11 +35,14 @@ func _ready() -> void:
 	_build_ui()
 	_build_farm()
 	_build_npcs()
+	_build_regions()
+	_register_village_markers()
 	Events.interaction_performed.connect(_on_interacted)
 
 
 func _process(delta: float) -> void:
 	_move_npcs(delta)
+	_update_map()
 	_update_fishing(delta)
 	if farming != null and farming.sleep != null and farming.sleep.is_sleeping():
 		player.set_physics_process(false)
@@ -56,6 +62,8 @@ func _prompt_text() -> String:
 		return ""
 	if hud.shop_visible():
 		return ""
+	if sensor.current.has_meta("link_id"):
+		return tr("FARM_ACT_TRAVEL") + ": " + tr(str(sensor.current.get_meta("label_key", "")))
 	if sensor.current.has_meta("shop_id"):
 		return tr("FARM_ACT_SHOP")
 	if cast != null:
@@ -81,6 +89,9 @@ func _on_interacted(target: Node, _actor: Node) -> void:
 	if dialog != null and dialog.is_active():
 		return
 	if hud.shop_visible():
+		return
+	if target.has_meta("link_id"):
+		travel(str(target.get_meta("link_id")))
 		return
 	if target.has_meta("shop_id") and cast == null:
 		_open_shop(str(target.get_meta("shop_id")))
@@ -386,7 +397,7 @@ const SAVE_SLOT := 0
 
 ## Simpan uji ke slot 0: waktu permainan + status pertanian (bukan jam perangkat).
 func save_game() -> bool:
-	var err := SaveService.save_slot(SAVE_SLOT, {"v": 1, "time": GameTime.clock.to_dict(), "farming": farming.to_dict(), "social": social.to_dict()})
+	var err := SaveService.save_slot(SAVE_SLOT, {"v": 1, "time": GameTime.clock.to_dict(), "farming": farming.to_dict(), "social": social.to_dict(), "map": map.to_dict(), "player": _player_save()})
 	hud.show_message(tr("SAVE_OK") if err == OK else tr("SAVE_FAIL"))
 	return err == OK
 
@@ -394,7 +405,7 @@ func save_game() -> bool:
 ## Muat dari slot 0; semua-atau-tidak (waktu dan pertanian harus sama-sama valid).
 func load_game() -> bool:
 	var data: Dictionary = SaveService.load_slot(SAVE_SLOT)
-	if data.is_empty() or typeof(data.get("time")) != TYPE_DICTIONARY or typeof(data.get("farming")) != TYPE_DICTIONARY or typeof(data.get("social")) != TYPE_DICTIONARY:
+	if data.is_empty() or typeof(data.get("time")) != TYPE_DICTIONARY or typeof(data.get("farming")) != TYPE_DICTIONARY or typeof(data.get("social")) != TYPE_DICTIONARY or typeof(data.get("map")) != TYPE_DICTIONARY or typeof(data.get("player")) != TYPE_DICTIONARY:
 		hud.show_message(tr("LOAD_NONE"))
 		return false
 	var backup_time: Dictionary = GameTime.clock.to_dict()
@@ -408,11 +419,16 @@ func load_game() -> bool:
 		farming.from_dict(backup_farm)
 		hud.show_message(tr("LOAD_FAIL"))
 		return false
-	if not social.from_dict(data["social"]):
+	var backup_map: Dictionary = map.to_dict()
+	var pl: Dictionary = data["player"]
+	if not social.from_dict(data["social"]) or not map.from_dict(data["map"]) or DataRegistry.get_row("regions", str(pl.get("region", ""))).is_empty() or not map.is_known(str(pl.get("region", ""))):
 		GameTime.clock.from_dict(backup_time)
 		farming.from_dict(backup_farm)
+		social.from_dict(backup_social)
+		map.from_dict(backup_map)
 		hud.show_message(tr("LOAD_FAIL"))
 		return false
+	_place_player(str(pl["region"]), float(pl.get("x", 0.0)), float(pl.get("z", 0.0)))
 	refresh_farm_visuals()
 	snap_npcs()
 	hud.show_message(tr("LOAD_OK"))
@@ -789,3 +805,175 @@ func _close_shop() -> void:
 	_open_shop_id = ""
 	GameTime.clock.resume("shop")
 	player.set_physics_process(true)
+
+
+# --- Wilayah, peta, minimap (D-054/D-028/D-009 teknis; wilayah generik SEMENTARA) ---
+
+func _regions() -> Array:
+	return DataRegistry.rows("regions")
+
+
+func _region_origin(region_id: String) -> Vector3:
+	return Vector3(float(DataRegistry.get_row("regions", region_id)["origin_x"]), 0.0, 0.0)
+
+
+func _build_regions() -> void:
+	var ids: Array = []
+	for r in _regions():
+		ids.append(str(r["id"]))
+	map = MapState.new(ids, ["region_village"])
+	var holder := Node3D.new()
+	holder.name = "Regions"
+	add_child(holder)
+	for r in _regions():
+		if not bool(r.get("generated", false)):
+			continue
+		var node := Node3D.new()
+		node.name = str(r["id"])
+		node.position = _region_origin(str(r["id"]))
+		holder.add_child(node)
+		_build_region_ground(node, float(r["size"]), Color(str(r["ground"])))
+		var keep: Array = []
+		for l in DataRegistry.rows("region_links"):
+			if str(l["from"]) == str(r["id"]):
+				keep.append(Vector2(float(l["x"]), float(l["z"])))
+			if str(l["to"]) == str(r["id"]):
+				keep.append(Vector2(float(l["to_x"]), float(l["to_z"])))
+		for row in RegionLayout.generate(int(r["seed"]), float(r["size"]), r["props"], keep, 4.0):
+			var def := DataRegistry.get_row("world_props", str(row["prop"]))
+			var pn := _make_prop(def, row)
+			if pn != null:
+				node.add_child(pn)
+	for l in DataRegistry.rows("region_links"):
+		_build_portal(l)
+
+
+func _build_region_ground(parent: Node3D, size_m: float, color: Color) -> void:
+	var body := StaticBody3D.new()
+	body.name = "Ground"
+	var mi := MeshInstance3D.new()
+	var plane := PlaneMesh.new()
+	plane.size = Vector2(size_m, size_m)
+	var mat := StandardMaterial3D.new()
+	mat.albedo_color = color
+	mat.roughness = 1.0
+	plane.material = mat
+	mi.mesh = plane
+	body.add_child(mi)
+	var cs := CollisionShape3D.new()
+	var box := BoxShape3D.new()
+	box.size = Vector3(size_m, 0.2, size_m)
+	cs.shape = box
+	cs.position = Vector3(0, -0.1, 0)
+	body.add_child(cs)
+	parent.add_child(body)
+	var half := size_m / 2.0
+	for side in [Vector3(1, 0, 0), Vector3(-1, 0, 0), Vector3(0, 0, 1), Vector3(0, 0, -1)]:
+		var wall := StaticBody3D.new()
+		wall.name = "Boundary"
+		var ws := CollisionShape3D.new()
+		var wb := BoxShape3D.new()
+		wb.size = Vector3(size_m if side.x == 0 else 1.0, 4.0, 1.0 if side.x == 0 else size_m)
+		ws.shape = wb
+		wall.position = side * (half + 0.5) + Vector3(0, 2, 0)
+		wall.add_child(ws)
+		parent.add_child(wall)
+
+
+func _build_portal(link: Dictionary) -> void:
+	var node := Node3D.new()
+	node.name = str(link["id"])
+	node.position = _region_origin(str(link["from"])) + Vector3(float(link["x"]), 0.0, float(link["z"]))
+	var mesh := MeshInstance3D.new()
+	var cyl := CylinderMesh.new()
+	cyl.top_radius = 0.35
+	cyl.bottom_radius = 0.35
+	cyl.height = 2.4
+	mesh.mesh = cyl
+	mesh.position.y = 1.2
+	var mat := StandardMaterial3D.new()
+	mat.albedo_color = Color(0.75, 0.4, 0.95)
+	mesh.material_override = mat
+	node.add_child(mesh)
+	var target_key := str(DataRegistry.get_row("regions", str(link["to"]))["name_key"])
+	var label := Label3D.new()
+	label.text = "UJI: GERBANG"
+	label.pixel_size = 0.005
+	label.position = Vector3(0, 2.8, 0)
+	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	node.add_child(label)
+	var it := Interactable.new()
+	it.interaction_type = "travel"
+	node.add_child(it)
+	it.set_meta("link_id", str(link["id"]))
+	it.set_meta("label_key", target_key)
+	add_child(node)
+	_markers.append({"node": node, "kind": "portal", "region": str(link["from"])})
+
+
+func _register_village_markers() -> void:
+	for sh in DataRegistry.rows("shops"):
+		_markers.append({"node": get_node(str(sh["id"])), "kind": "shop", "region": "region_village"})
+	_markers.append({"node": get_node("Bed"), "kind": "bed", "region": "region_village"})
+	for sp in DataRegistry.get_row("fishing_config", "default")["spots"]:
+		_markers.append({"node": get_node(str(sp["id"])), "kind": "pond", "region": "region_village"})
+	for id in animal_nodes:
+		_markers.append({"node": animal_nodes[id], "kind": "animal", "region": "region_village"})
+	for id in npc_nodes:
+		_markers.append({"node": npc_nodes[id], "kind": "npc", "region": "region_village"})
+
+
+func _update_map() -> void:
+	if map == null or player == null:
+		return
+	var rid := RegionRules.region_at(_regions(), player.global_position)
+	if rid != "" and rid != current_region:
+		current_region = rid
+		map.discover(rid)
+		var nm := tr(str(DataRegistry.get_row("regions", rid)["name_key"]))
+		hud.show_message(tr("MAP_ENTERED") % nm)
+	var region := DataRegistry.get_row("regions", current_region)
+	var origin := _region_origin(current_region)
+	var local := player.global_position - origin
+	var list: Array = []
+	for m in _markers:
+		if str(m["region"]) == current_region and is_instance_valid(m["node"]):
+			var lp: Vector3 = (m["node"] as Node3D).global_position - origin
+			list.append({"pos": Vector2(lp.x, lp.z), "kind": m["kind"]})
+	hud.set_region_name(tr(str(region["name_key"])))
+	hud.update_map(float(region["size"]), Color(str(region["ground"])), Vector2(local.x, local.z), Vector2(player.facing.x, player.facing.z), list)
+	if hud.map_visible():
+		var lines: Array[String] = [tr("MAP_DISCOVERED") + ":"]
+		for r in _regions():
+			lines.append("- " + (tr(str(r["name_key"])) if map.is_known(str(r["id"])) else tr("MAP_UNKNOWN")))
+		lines.append("")
+		lines.append(tr("MAP_LEGEND"))
+		hud.set_map_info("\n".join(lines))
+
+
+func _player_save() -> Dictionary:
+	var origin := _region_origin(current_region)
+	var local := player.global_position - origin
+	return {"region": current_region, "x": local.x, "z": local.z}
+
+
+func _place_player(region_id: String, lx: float, lz: float) -> void:
+	player.global_position = _region_origin(region_id) + Vector3(lx, 0.0, lz)
+	player.velocity = Vector3.ZERO
+	current_region = region_id
+	rig.snap_to(player.global_position + Vector3(0, 1.0, 0))
+
+
+## Berpindah lewat gerbang; wilayah terkunci menolak. Mengembalikan true bila pindah.
+func travel(link_id: String) -> bool:
+	var link := DataRegistry.get_row("region_links", link_id)
+	if link.is_empty():
+		return false
+	var dest := DataRegistry.get_row("regions", str(link["to"]))
+	if not RegionRules.is_unlocked(dest, GameTime.clock.day_index(), farming.inventory):
+		hud.show_message(tr("MAP_LOCKED"))
+		return false
+	map.discover(str(link["to"]))
+	_place_player(str(link["to"]), float(link["to_x"]), float(link["to_z"]))
+	hud.show_message(tr("MAP_ENTERED") % tr(str(dest["name_key"])))
+	return true

@@ -18,6 +18,8 @@ const TABLES := {
 	"world_props": "res://game/data/world_props.json",
 	"world_start_layout": "res://game/data/world_start_layout.json",
 	"items": "res://game/data/items.json",
+	"regions": "res://game/data/regions.json",
+	"region_links": "res://game/data/region_links.json",
 	"economy_config": "res://game/data/economy_config.json",
 	"item_prices": "res://game/data/item_prices.json",
 	"shops": "res://game/data/shops.json",

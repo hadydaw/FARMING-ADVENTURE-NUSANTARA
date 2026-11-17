@@ -199,3 +199,13 @@ SHOP_NO_NOT_FOR_SALE,Tidak dijual,Not for sale
 SHOP_NO_NOT_BUYING,Tidak dibeli toko,Shop does not buy this
 SHOP_NO_NO_ITEM,Barang tidak ada,You don't have this
 SHOP_NO_UNKNOWN,Tidak dikenal,Unknown
+REGION_TEST_VILLAGE,Wilayah uji: Desa,Test region: Village
+REGION_TEST_FOREST,Wilayah uji: Hutan,Test region: Forest
+REGION_TEST_ANCIENT,Wilayah uji: Kawasan kuno,Test region: Ancient area
+FARM_ACT_TRAVEL,Pergi,Travel
+MAP_ENTERED,Memasuki: %s,Entering: %s
+MAP_LOCKED,Wilayah terkunci,Region locked
+HUD_MAP,Peta,Map
+MAP_LEGEND,"Pemain, gerbang, toko, tidur, kolam, hewan, warga","Player, gate, shop, bed, pond, animals, villagers"
+MAP_DISCOVERED,Wilayah terbuka,Discovered regions
+MAP_UNKNOWN,Belum dikenal,Unknown

@@ -23,6 +23,11 @@ var _shop_panel: PanelContainer
 var _shop_title: Label
 var _shop_buy: VBoxContainer
 var _shop_sell: VBoxContainer
+var _minimap: MinimapView
+var _map_panel: PanelContainer
+var _map_big: MinimapView
+var _map_info: Label
+var _region_label: Label
 
 signal dialog_next
 signal dialog_choice(index: int)
@@ -82,7 +87,7 @@ func _ready() -> void:
 	col.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT, Control.PRESET_MODE_MINSIZE, 0)
 	col.position.y += UiTheme.MIN_TOUCH_HEIGHT + 60
 	col.position.x -= 200
-	for spec in [["HUD_SAVE", "save"], ["HUD_LOAD", "load"], ["HUD_BAG", "bag"]]:
+	for spec in [["HUD_SAVE", "save"], ["HUD_LOAD", "load"], ["HUD_BAG", "bag"], ["HUD_MAP", "map"]]:
 		var b := Button.new()
 		b.text = tr(spec[0])
 		b.custom_minimum_size = Vector2(200, UiTheme.MIN_TOUCH_HEIGHT)
@@ -92,6 +97,7 @@ func _ready() -> void:
 			"save": b.pressed.connect(func(): save_pressed.emit())
 			"load": b.pressed.connect(func(): load_pressed.emit())
 			"bag": b.pressed.connect(func(): _bag_panel.visible = not _bag_panel.visible)
+			"map": b.pressed.connect(func(): toggle_map())
 
 	_bag_panel = PanelContainer.new()
 	_bag_panel.visible = false
@@ -148,6 +154,32 @@ func _ready() -> void:
 	close.custom_minimum_size = Vector2(0, UiTheme.MIN_TOUCH_HEIGHT)
 	close.pressed.connect(func(): shop_close.emit())
 	sbox.add_child(close)
+
+	_minimap = MinimapView.new()
+	_minimap.custom_minimum_size = Vector2(170, 170)
+	_minimap.size = Vector2(170, 170)
+	root.add_child(_minimap)
+	_minimap.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT, Control.PRESET_MODE_KEEP_SIZE, 0)
+	_minimap.position.x -= 200 + 24 + 0
+	_minimap.position.y += 10
+	_region_label = Label.new()
+	root.add_child(_region_label)
+	_region_label.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP, Control.PRESET_MODE_MINSIZE, 8)
+	_map_panel = PanelContainer.new()
+	_map_panel.visible = false
+	root.add_child(_map_panel)
+	_map_panel.set_anchors_and_offsets_preset(Control.PRESET_CENTER, Control.PRESET_MODE_MINSIZE, 0)
+	_map_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	_map_panel.grow_vertical = Control.GROW_DIRECTION_BOTH
+	var mbox := HBoxContainer.new()
+	_map_panel.add_child(mbox)
+	_map_big = MinimapView.new()
+	_map_big.custom_minimum_size = Vector2(520, 520)
+	mbox.add_child(_map_big)
+	_map_info = Label.new()
+	_map_info.custom_minimum_size = Vector2(360, 0)
+	_map_info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	mbox.add_child(_map_info)
 
 	_joystick = TouchJoystick.new()
 	_joystick.size = Vector2(380, 380)
@@ -283,3 +315,25 @@ func _fill_shop(box: VBoxContainer, header: String, rows: Array, on_press: Calla
 
 func hide_shop() -> void:
 	_shop_panel.visible = false
+
+
+func map_visible() -> bool:
+	return _map_panel.visible
+
+
+func toggle_map() -> void:
+	_map_panel.visible = not _map_panel.visible
+
+
+func set_region_name(text: String) -> void:
+	_region_label.text = text
+
+
+func set_map_info(text: String) -> void:
+	_map_info.text = text
+
+
+func update_map(size: float, color: Color, player: Vector2, facing: Vector2, markers: Array) -> void:
+	_minimap.set_data(size, color, player, facing, markers)
+	if _map_panel.visible:
+		_map_big.set_data(size, color, player, facing, markers)

@@ -1,0 +1,57 @@
+[
+	{
+		"id": "region_village",
+		"provisional": true,
+		"note": "WILAYAH UJI generik, bukan wilayah resmi (D-009/D-028: nama, identitas, isi belum diputuskan).",
+		"name_key": "REGION_TEST_VILLAGE",
+		"origin_x": 0.0,
+		"size": 60.0,
+		"ground": "#5b8049",
+		"unlock": {
+			"type": "always"
+		},
+		"generated": false
+	},
+	{
+		"id": "region_forest",
+		"provisional": true,
+		"name_key": "REGION_TEST_FOREST",
+		"origin_x": 200.0,
+		"size": 60.0,
+		"ground": "#3f6b3a",
+		"unlock": {
+			"type": "always"
+		},
+		"generated": true,
+		"seed": 101,
+		"props": {
+			"tree_a": 26,
+			"tree_b": 26,
+			"bush": 14,
+			"rock_a": 4,
+			"tuft": 30
+		}
+	},
+	{
+		"id": "region_ancient",
+		"provisional": true,
+		"name_key": "REGION_TEST_ANCIENT",
+		"origin_x": 400.0,
+		"size": 60.0,
+		"ground": "#8a826e",
+		"unlock": {
+			"type": "has_item",
+			"item": "fish_test_a",
+			"note": "Syarat buka SEMENTARA untuk menguji penguncian (D-054: wilayah tidak dibuka semua sejak awal)."
+		},
+		"generated": true,
+		"seed": 202,
+		"props": {
+			"rock_a": 20,
+			"rock_b": 20,
+			"tree_b": 6,
+			"fence": 10,
+			"tuft": 8
+		}
+	}
+]

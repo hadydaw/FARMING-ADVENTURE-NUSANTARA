@@ -537,3 +537,15 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Data SEMENTARA/provisional: nama mata uang ("Koin (uji)"), harga, stok toko; harga jual tidak pernah melebihi harga beli (tanpa arbitrase, diuji). Belum ada: merchant spesialis, perdagangan antarwilayah, harga monster/tambang, pembelian hewan, ekonomi dinamis berbasis pasokan global, kekayaan/usaha.
 - Uji: 20 berkas, 1728 pemeriksaan, 0 gagal; smoke test lulus.
 - Catatan UI: baris teks Tas di HUD melebar di bawah panel toko; akan dirapikan saat UI resmi.
+
+## 2026-11-17 (74) — Peta, minimap, wilayah (D-054/D-028/D-009, teknis)
+
+- Pemilik memilih "Peta, minimap, dan wilayah". 3 wilayah uji generik (desa, hutan, kawasan kuno; bukan wilayah resmi) di koordinat dunia terpisah, gerbang dua arah, props wilayah dihasilkan deterministik dari seed (RegionLayout).
+- D-054 "tidak membuka semua wilayah sejak awal": RegionRules (always/min_day/has_item; jenis tak dikenal = terkunci); kawasan kuno terkunci sampai punya item syarat SEMENTARA.
+- MapState (wilayah ditemukan, simpan/muat), MinimapView (minimap + peta penuh, penanda gerbang/toko/tidur/kolam/hewan/warga), simpan membawa wilayah dan posisi pemain, CameraRig.snap_to.
+- Belum: zoom/pan peta, kompas, penanda quest, fast travel, penemuan lokasi tersembunyi.
+- Uji: 21 berkas, 1857 pemeriksaan, 0 gagal; smoke test lulus.
+
+## 2026-11-17 (75) — Instruksi pemilik: kerjakan semua tahap sendiri
+
+- Pemilik tidur dan meminta seluruh tahap dikerjakan sampai game siap dites saat bangun. Dikerjakan berurutan dengan data uji sementara; tidak ada konten resmi yang dikarang; klaim uji perangkat fisik tetap tidak dibuat.
