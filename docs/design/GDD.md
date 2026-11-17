@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.17 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.18 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -73,6 +73,7 @@ Untuk setiap sistem: **Ditetapkan** = sudah ada keputusan; **Belum** = menunggu 
 - Pembukaan wilayah dapat bergantung pada **level karakter, rank petualang, quest, dan progres cerita**.
 - Setiap wilayah dapat memiliki **desa, kota, sumber daya, monster, dan dungeon** tersendiri.
 
+Dirinci di 6.18 (D-028).
 Belum: daftar wilayah, peta dunia, syarat buka tiap wilayah, ukuran wilayah, cara perpindahan antarwilayah (loading/streaming).
 
 ### 6.2 Sistem Kehidupan — D-015, LOCKED (Kehidupan Lengkap ala Story of Seasons)
@@ -291,6 +292,20 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 
 **[BELUM DITETAPKAN]:** daftar bangunan dan fungsinya; tahap upgrade rumah; ukuran dan tahap ekspansi lahan; metode penataan (grid atau penempatan bebas, rotasi, batas); daftar dekorasi dan apakah dekorasi punya efek gameplay; **arti "bangunan spiritual" dan fungsi "paviliun"**; syarat membuka bangunan spiritual; biaya dan material; kapasitas penyimpanan; apakah bangunan dapat rusak/perlu perawatan.
 **Tetap BELUM ditetapkan (D-015):** hubungan romantis, pernikahan, keluarga, dan anak. D-027 tidak mencakupnya. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+### 6.18 Eksplorasi Dunia dan Perjalanan — D-028, LOCKED (Kombinasi Semua Sistem)
+**Ditetapkan:**
+- **Dunia luas** dengan wilayah yang **dibuka bertahap.**
+- **Desa, kota, hutan, gunung, gua, dan lautan.**
+- **Wilayah spiritual, reruntuhan, dan pulau tersembunyi.**
+- **Sumber daya, monster, rahasia, dan lokasi unik.**
+- **Perjalanan darat, air, dan transportasi khusus.**
+- **Peta dunia, penanda lokasi, dan fast travel.**
+- **Eksplorasi terintegrasi** dengan quest, dungeon, dan progres pemain.
+- Ketentuan: tiap wilayah punya **identitas visual, sumber daya, dan tantangan**; pembukaan wilayah **mengikuti progres dan kebutuhan cerita**; perjalanan dan transportasi **sesuai geografi**; peta menunjukkan **lokasi, penanda, dan tempat yang telah ditemukan**; fast travel dibuka dengan **aturan progres yang jelas**; eksplorasi **terhubung** dengan pertanian, petualangan, quest, dan dungeon.
+- Terkait: Progressive World Unlock (D-009, 6.1), dungeon (D-016), guild/rank/quest (D-017), level (D-018), monster (D-013), sumber daya (D-020, D-023, D-025), progres dunia pribadi (D-014).
+
+**[BELUM DITETAPKAN]:** daftar dan jumlah wilayah, ukuran dunia, peta dunia; syarat buka tiap wilayah; **arti "wilayah spiritual"**; jenis transportasi khusus (kendaraan/tunggangan/kapal) dan hubungannya dengan companion (D-019); aturan fast travel (syarat, biaya, batas); apakah perjalanan memakan waktu kalender; cara penandaan peta (otomatis atau manual); isi tiap wilayah (monster, sumber daya, lokasi unik, rahasia); cara perpindahan antarwilayah (loading/streaming). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

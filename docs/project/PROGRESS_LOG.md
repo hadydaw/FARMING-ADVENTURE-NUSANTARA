@@ -133,3 +133,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - GDD §6.4 diarahkan ke §6.17 baru (v0.17); Technical Architecture §4n ditambahkan (catatan saja). Hubungan dengan D-009, D-015, D-017, D-020, D-021, D-023, D-024, D-026 dicatat tanpa mengubah isinya.
 - Ditandai terbuka: arti "bangunan spiritual" dan "paviliun"; metode penataan lahan (grid/bebas). Romansa, pernikahan, keluarga, anak tetap belum ditetapkan.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 18.
+
+## 2026-11-17 (18) — D-028 Sistem Eksplorasi Dunia dan Perjalanan dicatat
+
+- D-028 (Kombinasi Semua Sistem, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
+- GDD §6.18 baru (v0.18) dan tautan dari §6.1; Technical Architecture §4o ditambahkan (catatan saja; fokus dunia luas di HP dan kemudahan menambah wilayah). Hubungan dengan D-009, D-013, D-014, D-016, D-017, D-018, D-019, D-020, D-023, D-025 dicatat tanpa mengubah isinya.
+- Ditandai terbuka: arti "wilayah spiritual"; jenis transportasi khusus dan hubungannya dengan companion; aturan fast travel; apakah perjalanan memakan waktu kalender.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 19.

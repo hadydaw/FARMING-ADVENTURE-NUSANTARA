@@ -298,6 +298,28 @@ Hubungan dengan keputusan lain (tidak mengubah isinya): merinci butir **pengemba
 **Penegasan:** tidak ada keputusan tentang kamar keluarga, pasangan, atau anak; romansa, pernikahan, keluarga, dan anak tetap belum ditetapkan (D-015).
 Detail (daftar bangunan, tahap upgrade, ukuran lahan, biaya, syarat buka bangunan spiritual) belum ditetapkan. Implementasi belum dimulai. ID D-027 tersedia saat dicatat (tanpa bentrokan).
 
+### D-028 — Sistem Eksplorasi Dunia dan Perjalanan *(APPROVED / LOCKED, 2026-11-17, Tahap 18)*
+Pilihan: **D. Kombinasi Semua Sistem.** Ruang lingkup:
+1. Dunia luas dengan wilayah yang dibuka bertahap
+2. Desa, kota, hutan, gunung, gua, dan lautan
+3. Wilayah spiritual, reruntuhan, dan pulau tersembunyi
+4. Sumber daya, monster, rahasia, dan lokasi unik
+5. Perjalanan darat, air, dan transportasi khusus
+6. Peta dunia, penanda lokasi, dan fast travel
+7. Eksplorasi terintegrasi dengan quest, dungeon, dan progres pemain
+
+Ketentuan desain:
+- Setiap wilayah punya identitas visual, sumber daya, dan tantangan tersendiri.
+- Pembukaan wilayah mengikuti progres pemain dan kebutuhan cerita.
+- Perjalanan dan transportasi sesuai karakteristik geografis wilayah.
+- Peta membantu mengenali lokasi, penanda, dan tempat yang telah ditemukan.
+- Fast travel dibuka dengan aturan progres yang jelas.
+- Eksplorasi terhubung dengan pertanian, petualangan, quest, dan dungeon.
+
+Hubungan dengan keputusan lain (tidak mengubah isinya): merinci **Progressive World Unlock (D-009)** (wilayah, desa/kota, sumber daya, monster, dungeon per wilayah); dungeon (**D-016**, termasuk dungeon rahasia); guild, rank, dan quest (**D-017**); monster (**D-013**); sumber daya dan material (**D-020, D-023, D-025**); pembukaan wilayah memakai level (**D-018**), rank (**D-017**), quest, dan cerita; lautan dan perairan (**D-025**); progres dunia bersifat pribadi (**D-014**).
+**Terbuka:** arti "wilayah spiritual" belum didefinisikan (sama seperti elemen "spiritual" lain); jenis "transportasi khusus" (kendaraan, tunggangan, kapal), apakah tunggangan terkait companion/monster (D-019); aturan fast travel (syarat, biaya, batasan); ukuran dunia dan jumlah wilayah; apakah perjalanan memakan waktu permainan (kalender).
+Detail (daftar wilayah, peta dunia, syarat buka tiap wilayah, rute, lokasi unik) belum ditetapkan. Implementasi belum dimulai. ID D-028 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

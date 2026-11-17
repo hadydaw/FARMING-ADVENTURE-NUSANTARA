@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.17 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.18 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -226,6 +226,22 @@ Syarat utama: **mendukung penambahan jenis bangunan baru** dan tata letak bebas 
 - **Pembukaan bangunan** (termasuk spiritual) memakai sistem kondisi/efek (§4d) terhadap rank, quest, dan progres.
 - **Save:** daftar bangunan (jenis, posisi, rotasi, tingkat, isi/penyimpanan), area terbuka, dan dekorasi masuk payload save (skema berversi; migrasi menjaga tata letak bila definisi bangunan berubah). Simpan ringkas (hanya perbedaan dari keadaan awal) agar ukuran save terkendali.
 - **Online (D-014):** lahan adalah progres pribadi; tidak ada kunjungan lahan pemain lain.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4o. Implikasi Arsitektur dari D-028 (hanya catatan; belum diimplementasikan)
+
+Syarat utama: **dunia luas di HP** tanpa melampaui memori, dan **wilayah/lokasi baru mudah ditambah**.
+- **Dunia = daftar wilayah (region) berbasis data:** tiap wilayah punya ID, scene/paket, syarat buka, daftar lokasi, tabel sumber daya dan monster. Wilayah baru = paket baru + data. Region adalah unit muat/bongkar (§4); hanya region aktif (+ tetangga yang dipra-muat) berada di memori.
+- **Streaming di dalam wilayah besar:** area dibagi menjadi *chunk*/zona yang dimuat sesuai jarak; LOD dan occlusion sederhana sesuai anggaran §3 (renderer Compatibility). Batas wilayah/zona ditandai transisi (pintu, gerbang, layar muat) sesuai desain nanti.
+- **Pembukaan wilayah dan fast travel = kondisi data** (§4d): level, rank, quest, flag cerita; aturan fast travel (titik yang sudah ditemukan, syarat, biaya, waktu) sebagai data, bukan hardcode.
+- **Peta:** data lokasi (koordinat, tipe, ikon) terpisah dari render; keadaan "ditemukan/dikunjungi" per lokasi dan wilayah disimpan di save; penanda pemain disimpan sebagai data ringan. Peta dunia dapat dirender dari gambar statis + overlay data.
+- **Transportasi:** tunggangan/kendaraan/kapal sebagai jenis *pergerakan* (profil gerak, area yang bisa dilalui) yang dipasang pada pemain; memakai model makhluk bersama (§4f) bila berupa tunggangan hidup; sampai diputuskan, tidak dimodelkan khusus. Navigasi memakai navigation mesh per area/air.
+- **Waktu perjalanan:** bila perjalanan memakan waktu kalender, dihitung lewat layanan kalender (§4b) sehingga musim, cuaca, jadwal NPC, dan pertumbuhan tanaman ikut konsisten.
+- **Lokasi unik, rahasia, reruntuhan, pulau tersembunyi:** sebagai *objek dunia* berbasis data dengan syarat penemuan (kondisi/efek, §4d) dan hadiah; dungeon (D-016) terhubung lewat titik masuk di data wilayah.
+- **Sumber daya dan monster per wilayah:** tabel spawn/gathering per wilayah (data) memakai sistem loot dan acak ber-seed yang sama (§4g, §4l).
+- **Save:** wilayah terbuka, lokasi ditemukan, penanda peta, titik fast travel terbuka, dan keadaan objek dunia unik (sudah diambil/dibuka) masuk payload save (skema berversi). Simpan sebagai perbedaan dari keadaan awal untuk menjaga ukuran.
+- **Online (D-014):** dunia dan progres penjelajahan adalah pribadi; tidak ada sinkronisasi real-time.
+- **Pengujian:** validator data otomatis untuk rujukan wilayah/lokasi yang rusak dan wilayah yang tidak dapat dicapai.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres
