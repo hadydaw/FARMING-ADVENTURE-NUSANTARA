@@ -18,3 +18,23 @@ signal scene_change_failed(scene_id: String, reason: String)
 signal back_requested
 @warning_ignore("unused_signal")
 signal input_source_changed(source: String)
+
+# --- Waktu permainan (D-055) ---
+@warning_ignore("unused_signal")
+signal time_changed(total_minutes: int)
+@warning_ignore("unused_signal")
+signal hour_changed(hour: int)
+@warning_ignore("unused_signal")
+signal day_changed(day_index: int)
+@warning_ignore("unused_signal")
+signal phase_changed(phase_id: String)
+@warning_ignore("unused_signal")
+signal season_changed(season_id: String)
+@warning_ignore("unused_signal")
+signal time_paused_changed(paused: bool)
+
+# --- Interaksi objek ---
+@warning_ignore("unused_signal")
+signal interaction_target_changed(target: Node)
+@warning_ignore("unused_signal")
+signal interaction_performed(target: Node, actor: Node)

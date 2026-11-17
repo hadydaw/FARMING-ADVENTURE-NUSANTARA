@@ -1,0 +1,3 @@
+[
+	{"id": "default", "provisional": true, "note": "Batas zoom/rotasi masih TERBUKA di D-033; nilai teknis sementara.", "zoom_min": 0.7, "zoom_max": 1.5, "yaw_limit_deg": 180.0, "pitch_min_deg": 15.0, "pitch_max_deg": 70.0}
+]

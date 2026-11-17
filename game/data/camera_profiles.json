@@ -1,0 +1,5 @@
+[
+	{"id": "farming", "provisional": true, "distance": 9.0, "pitch_deg": 50.0, "fov": 45.0, "follow_smoothing": 8.0, "transition_seconds": 0.6},
+	{"id": "exploration", "provisional": true, "distance": 11.0, "pitch_deg": 40.0, "fov": 50.0, "follow_smoothing": 6.0, "transition_seconds": 0.6},
+	{"id": "interaction", "provisional": true, "distance": 5.0, "pitch_deg": 25.0, "fov": 40.0, "follow_smoothing": 10.0, "transition_seconds": 0.5}
+]

@@ -1,0 +1,3 @@
+[
+	{"id": "generic", "prompt_key": "INTERACT_GENERIC", "max_distance": 2.0, "min_facing_dot": 0.2}
+]

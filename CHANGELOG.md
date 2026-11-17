@@ -5,6 +5,9 @@ Format mengikuti [Keep a Changelog](https://keepachangelog.com/id-ID/1.1.0/); ve
 ## [Belum dirilis]
 
 ### Ditambahkan
+- Milestone 2 (sebagian, teknis): GameClock/GameTime (jam, kalender, musim, fase, jeda, simpan/muat, seed harian), CameraRig adaptif (3 profil konteks, zoom/rotasi berbatas), MovementMath, Interactable/InteractionSensor, tabel data waktu/kamera/interaksi, layar Uji Sistem, 207 uji tambahan. Menunggu aset visual dari ChatGPT.
+- Spesifikasi aset M2 (B-001..B-007) untuk 3D Stylized dan analisis workflow 3D (O-010).
+- Bahasa bawaan Inggris.
 - Milestone 1 (0.2.0): data registry JSON, pengaturan skema + simpan atomik, input Android (joystick, tombol aksi, area aman), SceneManager, menu utama, layar Pengaturan, layar diagnostik, tema UI, bus audio, lokalisasi id/en, 383 uji unit otomatis.
 - Dokumen workflow produksi (O-009), rencana implementasi, dan dokumen aset di `docs/assets/`.
 - Fondasi proyek: repo, struktur direktori, dokumentasi (GDD, Technical Architecture, Backend Design, Build & Release, Roadmap, Development Rules).

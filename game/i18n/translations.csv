@@ -44,3 +44,25 @@ FT_MOVE,"Gerak: %.2f, %.2f","Move: %.2f, %.2f"
 FT_ACTIONS,Aksi aktif: %s,Active actions: %s
 ACT_INTERACT,Interaksi,Interact
 ACT_PRIMARY,Aksi 1,Action 1
+MENU_SYSTEMS_TEST,Uji Sistem (diagnostik),Systems Test (diagnostics)
+ST_TITLE,"Uji Sistem M2 (diagnostik): waktu, kamera, interaksi. Balok = penanda uji teknis (bukan aset).","Systems Test M2 (diagnostics): time, camera, interaction. Boxes = technical test markers (not assets)."
+ST_TIME,Hari %d | %s | Tahun %d | Hari ke-%d musim,Day %d | %s | Year %d | Day %d of season
+ST_PHASE,Fase: %s | Musim: %s,Phase: %s | Season: %s
+ST_PAUSED,(waktu berhenti: %s),(time paused: %s)
+ST_CAMERA,Kamera: %s | zoom %.2f | yaw %.0f,Camera: %s | zoom %.2f | yaw %.0f
+ST_TARGET,Dekat: %s,Nearby: %s
+ST_NO_TARGET,tidak ada,none
+ST_INTERACTED,Berinteraksi: %s (kali %d),Interacted: %s (count %d)
+ST_BTN_PROFILE,Ganti kamera,Switch camera
+ST_BTN_ROTATE,Putar kamera,Rotate camera
+ST_BTN_ZOOM,Zoom,Zoom
+ST_BTN_HOUR,+1 jam,+1 hour
+INTERACT_GENERIC,Interaksi,Interact
+PHASE_MORNING,Pagi,Morning
+PHASE_DAY,Siang,Day
+PHASE_EVENING,Sore,Evening
+PHASE_NIGHT,Malam,Night
+SEASON_1,Musim 1,Season 1
+SEASON_2,Musim 2,Season 2
+SEASON_3,Musim 3,Season 3
+SEASON_4,Musim 4,Season 4

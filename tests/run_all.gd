@@ -14,6 +14,8 @@ func _initialize() -> void:
 func _run() -> void:
 	# Pengaturan nyata diarahkan ke berkas uji agar tidak menyentuh data pemain.
 	# (Autoload dirujuk lewat node karena skrip utama dikompilasi sebelum autoload terdaftar.)
+	# Beri satu frame agar _ready semua autoload (mis. DataRegistry) sudah berjalan.
+	await process_frame
 	var settings: Node = root.get_node("GameSettings")
 	settings.path = SETTINGS_TEST_PATH
 	settings.reset_all()

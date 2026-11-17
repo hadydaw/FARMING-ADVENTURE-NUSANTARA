@@ -2,11 +2,13 @@
 
 Status: **berlaku** (arahan wajib pemilik, dicatat sebagai O-009). Tidak mengubah D-001 sampai D-069.
 
+**Klarifikasi O-010:** D-008 (3D Stylized) tetap berlaku. ChatGPT membuat seluruh gambar (konsep, turnaround, tekstur, ikon, UI, referensi visual); **Claude membangun model 3D, geometri, material, shader teknis, rig, dan integrasi** dari desain visual ChatGPT. Claude tidak membuat/mengganti desain visual final. Spesifikasi aset ada di `docs/assets/ASSET_REQUESTS_M2.md`; analisis kelayakan di `docs/assets/ANALISIS_3D_STYLIZED_WORKFLOW.md`.
+
 ## 1. Pembagian peran
 
 | Pihak | Tanggung jawab |
 |---|---|
-| **ChatGPT** | Seluruh desain visual dan aset gambar: art direction; desain dunia, bangunan, karakter, monster, NPC, hewan, companion, boss; sprite, sprite sheet, frame animasi; terrain, props, tanaman, aset dungeon; ikon, UI art, HUD, menu, peta; tekstur efek dan partikel. |
+| **ChatGPT** | Seluruh desain visual dan aset gambar: art direction; desain dunia, bangunan, karakter, monster, NPC, hewan, companion, boss (konsep dan acuan ortografis); tekstur dan material swatch; terrain, props, tanaman, aset dungeon (acuan); ikon, UI art, HUD, menu, peta; tekstur efek dan partikel. |
 | **Claude** | Arsitektur teknis Godot, GDScript, sistem gameplay, scene/node, collision/fisika, navigasi/AI, sistem animasi dengan aset yang disediakan, import setting/atlas, material/shader teknis, implementasi UI dengan art yang disediakan, integrasi audio, debugging/optimasi, build APK, uji otomatis. |
 | **Pemilik** | Meninjau dan menyetujui aset, menjalankan uji di perangkat fisik, menyetujui keputusan resmi. |
 
@@ -37,7 +39,8 @@ Aset **belum selesai** sebelum gambar final ada, terintegrasi, dan diperiksa.
 
 `docs/assets/ASSET_MASTER_LIST.md`, `ART_DIRECTION.md`, `ASSET_INTEGRATION_GUIDE.md`, `ASSET_QC_LOG.md`.
 
-## 5. Risiko produksi terbuka (butuh keputusan pemilik)
+## 5. Risiko produksi terbuka
 
-1. **D-008 (3D Stylized) versus sprite/sprite sheet.** Arahan produksi menyebut sprite dan sprite sheet, sedangkan D-008 menetapkan 3D Stylized. Claude tidak mengubah D-008. Perlu dipastikan: apakah visual final 3D (model `.glb`) atau 2D/2.5D (sprite di dunia 3D, billboard)?
-2. **Sumber model 3D.** Pembuatan gambar oleh ChatGPT menghasilkan gambar 2D, bukan mesh `.glb`. Bila D-008 tetap 3D penuh, sumber model 3D harus ditentukan pemilik. Sampai ada keputusan, Claude hanya membangun sistem yang tidak bergantung pada format visual (data, logika, input, UI).
+1. **D-008 dikonfirmasi: 3D Stylized tetap** (O-010). Istilah "sprite/sprite sheet" pada arahan awal dipahami sebagai acuan gambar; aset final dunia berupa model 3D.
+2. **Sumber model 3D.** ChatGPT menghasilkan gambar 2D, bukan mesh. Claude membangun mesh lewat kode (tanpa Blender di lingkungan ini). Batas kualitas, terutama bentuk organik (karakter, hewan, monster), diuraikan di `docs/assets/ANALISIS_3D_STYLIZED_WORKFLOW.md` beserta opsi A/B/C. Keputusan metode untuk karakter menunggu uji percontohan props/bangunan dan persetujuan pemilik.
+3. Aturan "tidak dari bentuk geometri sederhana" perlu ditegaskan pemilik terhadap mesh poli rendah yang dibangun dari profil kustom.

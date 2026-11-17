@@ -20,6 +20,7 @@ GameSettings="*res://game/core/game_settings.gd"
 GameDisplay="*res://game/core/game_display.gd"
 InputService="*res://game/core/input_service.gd"
 SceneManager="*res://game/core/scene_manager.gd"
+GameTime="*res://game/core/game_time.gd"
 AppInfo="*res://game/core/app_info.gd"
 SaveService="*res://game/core/save_service.gd"
 

@@ -467,3 +467,11 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 ## 2026-11-17 (63) — Bahasa bawaan Inggris
 
 - Arahan pemilik: game dua bahasa (Indonesia dan Inggris), **Inggris sebagai bahasa bawaan**. Bahasa awal tidak lagi mengikuti bahasa perangkat; pemain dapat ganti ke Indonesia di Pengaturan. Fallback terjemahan: Inggris. Catatan: D-007 di GDD menyebut "Indonesia utama"; teks D-007 tidak diubah, pemilik perlu mengonfirmasi bila ingin dicatat resmi.
+
+## 2026-11-17 (64) — Klarifikasi D-008 (O-010) + Milestone 2 bagian teknis
+
+- Pemilik mengonfirmasi laporan M1 (cc6dbb2, build dev sukses, 383 uji; belum diterima pengguna sebelum uji di HP) dan menegaskan **D-008 3D Stylized tetap**. Dicatat sebagai klarifikasi O-010, bukan keputusan baru.
+- Dokumen: `docs/assets/ANALISIS_3D_STYLIZED_WORKFLOW.md`, `docs/assets/ASSET_REQUESTS_M2.md` (B-001..B-007 versi 3D), pembaruan MASTER_LIST, INTEGRATION_GUIDE, ART_DIRECTION, PRODUCTION_WORKFLOW, IMPLEMENTATION_PLAN.
+- Kode M2 tanpa aset visual: GameClock/GameTime, CameraRig, MovementMath, Interactable/InteractionSensor, tabel data, layar Uji Sistem. Uji: 12 berkas, 590 pemeriksaan, 0 gagal.
+- Nilai waktu/kamera/interaksi bertanda `provisional` (bukan keputusan desain).
+- Belum dikerjakan (menunggu aset): model dan animasi pemain, dunia awal, HUD visual.

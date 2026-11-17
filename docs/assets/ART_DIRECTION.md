@@ -17,6 +17,7 @@ Status: **kerangka**. Isi visual (palet, proporsi, gaya garis, referensi) dibuat
 | Gaya efek dan partikel | Belum ada |
 
 ## Batasan teknis untuk pembuat aset
-- Ukuran tekstur kelipatan 2, maksimum 2048 px (rekomendasi 1024 untuk karakter).
-- Latar transparan (PNG RGBA) untuk sprite/ikon; tanpa watermark.
+- Ukuran tekstur kelipatan 2; objek dunia ≤ 1024 px (TA §3).
+- Latar transparan (PNG RGBA) untuk ikon/UI/kartu daun; tanpa watermark dan tanpa teks.
+- Karakter, bangunan, dan props: paket acuan ortografis (turnaround) yang konsisten antar sudut; Claude membangun model 3D darinya.
 - Rincian per aset ada di `ASSET_MASTER_LIST.md`.

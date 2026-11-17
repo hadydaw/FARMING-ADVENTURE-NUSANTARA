@@ -1,0 +1,42 @@
+[
+	{
+		"id": "default",
+		"provisional": true,
+		"note": "NILAI TEKNIS SEMENTARA, bukan keputusan desain. Panjang hari/musim/fase dan kecepatan jam masih TERBUKA di D-055/D-030.",
+		"game_minutes_per_real_second": 1.0,
+		"minutes_per_hour": 60,
+		"hours_per_day": 24,
+		"days_per_season": 28,
+		"seasons": [
+			"season_1",
+			"season_2",
+			"season_3",
+			"season_4"
+		],
+		"start_hour": 6,
+		"max_step_seconds": 1.0,
+		"phases": [
+			{
+				"id": "night",
+				"start_hour": 0
+			},
+			{
+				"id": "morning",
+				"start_hour": 5
+			},
+			{
+				"id": "day",
+				"start_hour": 11
+			},
+			{
+				"id": "evening",
+				"start_hour": 17
+			},
+			{
+				"id": "night",
+				"start_hour": 20
+			}
+		],
+		"run_in_background": false
+	}
+]

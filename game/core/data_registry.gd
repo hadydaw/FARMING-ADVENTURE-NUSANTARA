@@ -11,6 +11,10 @@ const TABLES := {
 	"scenes": "res://game/data/scenes.json",
 	"settings": "res://game/data/settings_schema.json",
 	"input_actions": "res://game/data/input_actions.json",
+	"time_config": "res://game/data/time_config.json",
+	"camera_profiles": "res://game/data/camera_profiles.json",
+	"camera_limits": "res://game/data/camera_limits.json",
+	"interaction_types": "res://game/data/interaction_types.json",
 }
 
 var load_errors: Array[String] = []

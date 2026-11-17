@@ -26,6 +26,7 @@ func _ready() -> void:
 
 	column.add_child(_button("MENU_SETTINGS", func(): SceneManager.go("settings")))
 	column.add_child(_button("MENU_FOUNDATION_TEST", func(): SceneManager.go("foundation_test")))
+	column.add_child(_button("MENU_SYSTEMS_TEST", func(): SceneManager.go("systems_test")))
 
 	var version := Label.new()
 	version.text = tr("MENU_VERSION") % AppInfo.version
