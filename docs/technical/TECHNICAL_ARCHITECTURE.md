@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.53 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.54 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -756,6 +756,23 @@ Memperluas organisasi dan wilayah (§4ar, §4o), hubungan faksi (§4as), konflik
 - **Performa (D-052):** deteksi berbasis kejadian dan area (bukan polling per frame); penjaga jauh disimulasikan agregat/LOD; pemrosesan berat dibagi per frame (§4am, §4ai); angka belum diukur.
 - **Update konten (D-048):** kode hukum, jenis pelanggaran, dan prosedur baru sebagai data baru; ID di-deprecate tetap dikenali; validator memeriksa referensi dan jalur penyelesaian.
 - **Pengujian (D-049):** uji headless untuk pemisahan tiga reputasi, tindakan tidak disengaja tidak langsung berat, determinisme dan idempotensi, setiap status buronan dapat diselesaikan, hukum per wilayah valid, perlindungan data inti, migrasi save, dan ketahanan terhadap interupsi dan perubahan jam perangkat.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4av. Implikasi Arsitektur dari D-065 (hanya catatan; belum diimplementasikan; tidak ada angka)
+
+Memperluas event dunia (§4p) dan musim/cuaca (§4q), dengan `GameClock` (§4al), pipeline hari (§4am), status effect (§4ap), konflik (§4at), pertanian (§4j), peternakan (§4k), monster (§4f, §4a), ekonomi (§4h), wilayah (§4o, §4ak), cloud save (§5a). Hanya rancangan; tidak ada katalog, frekuensi, atau angka.
+- **`Phenomenon` sebagai data:** fenomena (cuaca ekstrem, bencana, fenomena langka, perubahan lingkungan) berupa definisi ber-ID stabil (§4ag) yang memperluas model event/cuaca yang ada (§4p, §4q) dengan: jenis (tag), syarat kemunculan (kondisi data terhadap musim, cuaca, tanggal, wilayah, progres), tahap (peringatan → berlangsung → pemulihan), efek dampak, dan syarat akhir. Setiap definisi wajib punya aturan kemunculan, dampak, dan akhir (validator). Kategori "spiritual" hanya tag; **tidak ada logika untuk "spiritual"** karena belum didefinisikan.
+- **Penjadwalan deterministik:** kemunculan dihitung dari benih (seed + tanggal + ID) dan `GameClock` (§4al), bukan jam perangkat; hasil sama setelah muat ulang save; tahap digerakkan oleh sinyal hari/fase dan pipeline hari-selisih (§4am); perilaku offline dan catch-up terbuka (D-029); dasar saat koneksi terganggu menunggu **D-051** (isi belum diterima, tidak dikarang).
+- **Keadaan dunia per-save:** fenomena aktif/terjadwal disimpan sebagai bagian save berversi (`section_version`) dengan migrasi (§5a, D-044); ID di-deprecate tetap dikenali; save lama tanpa fenomena tetap valid.
+- **Dampak lewat efek data:** wilayah (kondisi tag §4o), NPC (jadwal/lokasi §4aa), tanaman/hewan (§4j, §4k), monster (spawn/perilaku §4f), sumber daya, eksplorasi (hambatan data §4ak), dan ekonomi (harga/ketersediaan §4h) dipengaruhi lewat kondisi/efek bersama (§4x) dan status effect (§4ap); tidak ada percabangan kode per fenomena; nilai kerugian/pemulihan tidak ditetapkan.
+- **Perlindungan progres dan save:** kode fenomena **tidak menulis** ke inventori, uang, quest utama, rumah, atau ladang kecuali lewat efek data eksplisit; komit atomik idempoten dengan revisi (§5, §5a); interupsi saat fenomena dilanjutkan tanpa dobel proses; validator memastikan setiap fenomena dapat berakhir, setiap kerugian punya jalur pemulihan data, dan progres utama dapat diselesaikan; tidak ada keadaan buntu (selaras D-058, D-063).
+- **Peringatan dan persiapan:** tahap peringatan sebagai data (isyarat HUD §4r, audio §4s, NPC/dialog §4y, quest §4x) agar pemain dapat bersiap; durasi dan tingkat tidak ditetapkan.
+- **Visual dan audio:** efek (partikel, langit, pencahayaan, audio) sebagai varian data yang dapat dikurangi pada perangkat lemah tanpa mengubah hasil (§4ai, D-052); opsi aksesibilitas (pengurangan kilatan/guncangan kamera, D-045); transisi wilayah memakai streaming/Loading normal (§4aj).
+- **Peta (§4ak):** menampilkan status fenomena hanya untuk informasi yang sudah diketahui pemain; fast travel ke area terdampak memakai larangan konteks data.
+- **Keamanan (D-050, §5b):** keadaan pribadi per akun; hasil bernilai tinggi divalidasi urutan server; checksum bukan anti-cheat; tidak ada fenomena antarpemain.
+- **Update konten (D-048):** fenomena baru ditambah sebagai data baru; validator memeriksa referensi, jalur akhir, dan terjemahan Indonesia/English; kompatibel dengan save lama.
+- **Pengujian (D-049):** uji headless untuk determinisme (seed+tanggal), konsistensi dengan musim/cuaca/kalender, idempotensi tahap, setiap fenomena dapat berakhir, perlindungan data inti, migrasi save, tidak ada keadaan buntu, ketahanan terhadap interupsi dan perubahan jam perangkat, serta kesetaraan hasil antara simulasi per hari dan susul-kejar.
 - **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 

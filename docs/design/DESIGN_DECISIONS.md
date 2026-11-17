@@ -1067,6 +1067,37 @@ Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), pertarungan (**
 
 **Terbuka (tidak diputuskan):** daftar dan kategori kejahatan; hukuman dan prosedur pengadilan; formula dan nilai bounty; skala dan ambang reputasi kriminal; aturan penangkapan dan respons penjaga; cara menebus/menghapus catatan; perilaku saat tertangkap (penjara, denda, penyitaan, dan dampak ke waktu); aturan khusus wilayah; peran Guild (D-017) dalam penegakan; apakah NPC dapat melapor dan bagaimana saksi bekerja; kejahatan terhadap NPC dan properti; apakah ada hukuman kematian/pertarungan mematikan; arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
 
+### D-065 — Sistem Cuaca Ekstrem, Bencana Alam, dan Fenomena Spiritual *(APPROVED / LOCKED, 2026-11-17, Tahap 56)*
+Pilihan: **D. World Phenomena Hybrid Lengkap.** Ruang lingkup:
+1. Cuaca ekstrem.
+2. Bencana alam.
+3. Fenomena spiritual (**arti "spiritual" belum didefinisikan**; sudah tercatat terbuka di D-029 dan D-030 dan tidak ditebak di sini).
+4. Perubahan lingkungan.
+5. Event dunia langka.
+6. Dampak fenomena terhadap wilayah, NPC, tanaman, hewan, monster, sumber daya, eksplorasi, dan ekonomi.
+
+Ketentuan:
+- **Tidak ada katalog final, frekuensi, probabilitas, tingkat kerusakan, durasi, atau konsekuensi numerik** tanpa desain lanjutan.
+- **Fenomena konsisten dengan musim, cuaca, kalender, dan event dunia.**
+- **Fenomena tidak boleh merusak data save atau menghilangkan progres pemain secara tidak adil.**
+- Selaras dengan D-029, D-030, D-048, D-051, dan D-055.
+- Penguncian desain; implementasi belum dimulai.
+
+**Prinsip (dasar, tanpa angka):**
+- Fenomena adalah **keadaan dunia berdata** yang memperluas jenis event dunia (D-029) dan sistem musim/cuaca (D-030); tidak memakai sistem terpisah. Setiap fenomena nantinya punya aturan kemunculan, dampak, dan akhir yang jelas (kewajiban kelengkapan, isinya belum ditetapkan).
+- **Konsisten dengan waktu dan musim:** kemunculan dan akhir fenomena mengikuti waktu permainan internal (D-055), kalender, musim, dan cuaca; tidak memakai jam perangkat; hasil acak deterministik dari seed (anti save-scumming).
+- **Perlindungan progres dan save:** fenomena tidak boleh menghapus atau merusak data save; kerugian bagi pemain (tanaman, hewan, sumber daya, bangunan) hanya lewat aturan eksplisit yang kelak ditetapkan, harus dapat diperkirakan atau diberi peringatan, dan tidak boleh membuat progres utama hilang atau pemain buntu (selaras D-058, D-063).
+- **Adil dan dapat dipersiapkan:** pemain mendapat peringatan/isyarat dan pilihan untuk bersiap atau menghindar bila aturan menetapkan; pemain tidak dipaksa mengikuti setiap fenomena.
+- **Dampak luas lewat sistem yang ada:** wilayah, NPC (D-040), tanaman (D-023), hewan (D-024), monster (D-019), sumber daya, eksplorasi (D-028), dan ekonomi (D-021) terpengaruh lewat efek data (termasuk status effect D-059), bukan kode khusus.
+- **Event langka** tetap pilihan terkait; kelangkaan bukan jaminan angka.
+- **Koneksi:** perilaku saat koneksi terganggu mengikuti D-051 (**isi belum diterima**, tidak dikarang); dasar D-055: koneksi tidak memajukan atau memundurkan waktu.
+- **Live ops:** fenomena baru ditambah lewat update konten (D-048) sebagai data tanpa merusak save lama.
+- Dunia pribadi per pemain (single-player online, D-014).
+
+Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), sistem kehidupan (**D-015**), dungeon (**D-016**), companion/monster (**D-019**), ekonomi (**D-021**), NPC (**D-022**), pertanian (**D-023**), peternakan (**D-024**), memancing (**D-025**), eksplorasi (**D-028**), event dunia (**D-029**), musim dan cuaca (**D-030**), UI/HUD (**D-031**), audio (**D-032**), NPC hidup (**D-040**), save/cloud (**D-044**), pengaturan dan aksesibilitas (**D-045**), update konten (**D-048**), QA (**D-049**), keamanan (**D-050**), performa (**D-052**), loading (**D-053**), peta (**D-054**), waktu (**D-055**), tidur (**D-056**), vitalitas (**D-057**), kekalahan (**D-058**), status effect (**D-059**), konflik (**D-063**). **D-051** isinya belum diterima.
+
+**Terbuka (tidak diputuskan):** katalog fenomena; frekuensi dan probabilitas; tingkat kerusakan; durasi; konsekuensi numerik; arti "spiritual" (belum didefinisikan); aturan peringatan dan perlindungan (rumah, ladang, bangunan); bagaimana kerugian dipulihkan; perilaku offline (terbuka di D-029) dan catch-up; interaksi dengan pertahanan/konflik (D-063); dampak ke peta dan fast travel; efek visual dan audio; romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

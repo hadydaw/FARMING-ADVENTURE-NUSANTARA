@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.53 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement, D-047 Monetisasi, D-048 Live Ops, D-049 QA, D-050 Keamanan, D-052 Performa, D-053 Loading, D-054 Peta, D-055 Waktu, D-056 Tidur, D-057 Vitalitas, D-058 Kekalahan, D-059 Status Effect, D-060 Ras & Suku, D-061 Organisasi Dunia, D-062 Hubungan Faksi, D-063 Konflik Dunia, D-064 Hukum) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.54 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement, D-047 Monetisasi, D-048 Live Ops, D-049 QA, D-050 Keamanan, D-052 Performa, D-053 Loading, D-054 Peta, D-055 Waktu, D-056 Tidur, D-057 Vitalitas, D-058 Kekalahan, D-059 Status Effect, D-060 Ras & Suku, D-061 Organisasi Dunia, D-062 Hubungan Faksi, D-063 Konflik Dunia, D-064 Hukum, D-065 Fenomena Dunia) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -796,6 +796,18 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - Selaras dengan D-017, D-022, D-039, D-060, D-061, D-062, D-063. Terkait: D-009, D-013, D-021, D-028, D-029, D-037, D-038, D-040, D-044, D-045, D-048 sampai D-050, D-053, D-055, D-058, D-059.
 
 **[BELUM DITETAPKAN]:** kategori kejahatan, hukuman, prosedur pengadilan, formula bounty, skala reputasi kriminal, aturan penangkapan, cara menebus, aturan khusus wilayah, peran Guild, arti "spiritual" (belum didefinisikan). **Tidak ada** model romansa/pernikahan/keluarga/anak (belum diputuskan).
+
+### 6.54 Cuaca Ekstrem, Bencana Alam, dan Fenomena Spiritual — D-065, LOCKED (World Phenomena Hybrid Lengkap)
+**Ditetapkan:**
+- **Cuaca ekstrem**, **bencana alam**, **perubahan lingkungan**, dan **event dunia langka.**
+- **Fenomena spiritual** disebut pemilik, tetapi **arti "spiritual" belum didefinisikan** (juga terbuka di D-029 dan D-030).
+- **Dampak** pada wilayah, NPC, tanaman, hewan, monster, sumber daya, eksplorasi, dan ekonomi lewat efek data yang eksplisit.
+- **Konsisten dengan musim, cuaca, kalender, dan event dunia**; mengikuti waktu permainan internal (D-055), bukan jam perangkat.
+- **Tidak merusak save atau menghilangkan progres secara tidak adil**; pemain dapat bersiap/diberi isyarat dan tidak dipaksa mengikuti setiap fenomena.
+- **Tanpa angka:** tidak ada katalog, frekuensi, probabilitas, kerusakan, atau durasi final.
+- Selaras dengan D-029, D-030, D-048, D-051 (isi belum diterima), D-055. Terkait: D-009, D-019, D-021, D-023 sampai D-025, D-028, D-031, D-032, D-040, D-044, D-045, D-049 sampai D-054, D-056 sampai D-059, D-063.
+
+**[BELUM DITETAPKAN]:** katalog fenomena, frekuensi/probabilitas, tingkat kerusakan, durasi, konsekuensi numerik, arti "spiritual", aturan peringatan/perlindungan/pemulihan, perilaku offline, dampak ke peta/fast travel. **Tidak ada** model romansa/pernikahan/keluarga/anak (belum diputuskan).
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 
