@@ -59,3 +59,9 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - D-016 (Kombinasi Dungeon Tetap dan Acak, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
 - GDD §6.8 diperbarui (v0.6); Technical Architecture §4c ditambahkan (catatan saja).
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 7.
+
+## 2026-11-17 (7) — D-017 Sistem Adventurer Guild dicatat
+
+- D-017 (Guild Petualang Lengkap, LOCKED) dicatat; ID tersedia, tanpa bentrokan. D-011 diberi catatan dikukuhkan oleh D-017 (isi tidak berubah).
+- GDD §6.6 diperbarui (v0.7); Technical Architecture §4d ditambahkan (catatan saja).
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 8.

@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.6 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.7 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -103,9 +103,19 @@ Ditetapkan lewat D-015 (pengembangan rumah dan ladang; lihat 6.2). Rincian belum
 Ditetapkan: interaksi dengan NPC.
 Belum: jadwal harian, dialog, daftar NPC, tingkat hubungan/persahabatan. **Hubungan romantis, pernikahan, keluarga, dan anak belum ditetapkan** (lihat 6.2).
 
-### 6.6 Adventurer Guild, Quest, dan Rank
-Ditetapkan: Adventurer Guild, quest, berburu monster, rank **F, E, D, C, B, A, S, SS, SSS** (direncanakan).
-Belum: syarat naik rank, jenis quest, hadiah, hubungan rank dengan pembukaan wilayah.
+### 6.6 Adventurer Guild — D-017, LOCKED (Guild Petualang Lengkap)
+**Ditetapkan:**
+- **Rank petualang:** F, E, D, C, B, A, S, SS, SSS.
+- **Quest Board** dan **misi khusus**.
+- **Ujian kenaikan rank.**
+- **Sistem reputasi dan prestasi.**
+- **Spesialisasi petualang.**
+- **Training dan pengembangan kemampuan.**
+- **Hadiah, gelar, dan penghargaan.**
+- **Guild Master dan NPC pengurus.**
+- Berlaku sejak sebelumnya: berburu monster lewat quest (D-010); rank dapat memengaruhi pembukaan wilayah (D-009).
+
+**[BELUM DITETAPKAN]:** syarat tiap rank dan isi ujian, jenis dan daftar quest/misi khusus, rumus reputasi, daftar prestasi/gelar/hadiah, jenis spesialisasi (dan hubungannya dengan skill tree D-013), bentuk training, nama dan karakter Guild Master dan NPC pengurus, hubungan rank dengan akses dungeon (D-016) dan wilayah, keseimbangan dengan sistem kehidupan (D-015). **Tidak ada implementasi guild sebelum seluruh tahap desain selesai.**
 
 ### 6.7 Pertarungan (Action RPG) — D-013, LOCKED
 **Ditetapkan (Kombinasi Semua Sistem):**
@@ -163,7 +173,7 @@ Urutan usulan pembahasan bersama ChatGPT (dari yang paling memengaruhi arsitektu
 3. Struktur dunia dan wilayah (ukuran, loading, peta).
 4. ~~Sistem kehidupan~~ (D-015 terkunci); sisanya: detail aturan (musim, waktu, stamina, ekonomi, resep, festival).
 5. ~~Dungeon~~ (D-016 terkunci: tetap + acak); sisanya: detail loot, boss, kesulitan.
-6. Rank, quest, dan progres cerita.
+6. ~~Guild, rank, quest~~ (D-017 terkunci); sisanya: progres cerita dan detail quest.
 7. NPC dan hubungan.
 8. Art direction 3D Stylized dan sumber aset.
 9. Monetisasi (belum disebut; default: tidak ada sampai diputuskan).

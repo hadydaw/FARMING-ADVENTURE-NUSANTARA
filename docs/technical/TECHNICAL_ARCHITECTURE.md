@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.6 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.7 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -88,6 +88,17 @@ Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 - **Dungeon sebagai unit muat** (bagian dari region): dimuat dan dibongkar untuk menjaga memori HP; ruangan acak dibatasi anggaran performa §3.
 - **Save:** status penyelesaian Story Dungeon, dungeon rahasia yang terbuka, hadiah unik yang sudah didapat, dan seed/lantai aktif masuk payload save (skema berversi).
 - **Online (D-014):** progres dungeon bersifat pribadi; tidak ada sinkronisasi real-time. Validasi server atas loot baru dipertimbangkan hanya bila diputuskan.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4d. Implikasi Arsitektur dari D-017 (hanya catatan; belum diimplementasikan)
+
+- **Sistem progres terpusat** (`rank`, `reputasi`, `prestasi`, `gelar`, `spesialisasi`) sebagai satu layanan yang dibaca oleh pembukaan wilayah (D-009), akses dungeon (D-016), dan quest. Hindari menyebar pengecekan rank di banyak tempat.
+- **Quest sebagai data:** definisi quest (syarat, tujuan, hadiah) berbasis data dengan sistem *kondisi* dan *efek* yang dapat dipakai ulang (farming, combat, dungeon, kalender). Quest Board = tampilan atas data ini; misi khusus = quest dengan pemicu/syarat tertentu.
+- **Ujian kenaikan rank** sebagai jenis quest khusus, berstatus dalam save.
+- **Event bus:** pencapaian (monster dikalahkan, item diserahkan, dungeon selesai) dipancarkan sebagai event; reputasi dan prestasi mendengarkannya.
+- **Save:** rank, reputasi, prestasi, gelar, spesialisasi, status quest, dan hasil ujian masuk payload save (skema berversi).
+- **Online (D-014):** progres guild bersifat pribadi; tidak ada papan peringkat/real-time kecuali diputuskan. Validasi server atas hadiah/rank baru dipertimbangkan hanya bila diputuskan.
+- **NPC pengurus:** memakai kerangka NPC umum (belum didesain).
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres

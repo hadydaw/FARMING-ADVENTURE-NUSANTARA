@@ -20,7 +20,7 @@ Keputusan **Teknis (rutin)** dibuat Claude secara mandiri dan boleh ditinjau/dig
 | D-008 | Gaya visual: **3D Stylized** untuk seluruh dunia, lingkungan, karakter, monster, bangunan, tanaman, dan objek. **Dikonfirmasi pemilik sebagai keputusan Tahap 1 (Visual Game), 2026-11-17.** | 2026-11-17 |
 | D-009 | Sistem dunia **Progressive World Unlock**: mulai di satu desa awal; banyak wilayah terbuka bertahap; syarat bisa berupa level karakter, rank petualang, quest, progres cerita; tiap wilayah dapat punya desa, kota, sumber daya, monster, dan dungeon. **Dikonfirmasi pemilik sebagai keputusan Tahap 2 (Sistem Dunia): pemain mulai dari satu desa; wilayah baru terbuka bertahap berdasarkan perkembangan permainan.** | 2026-11-17 |
 | D-010 | Konsep: kehidupan bertani ala Story of Seasons + petualangan RPG (cakupan aktivitas pemain lengkap di GDD bagian 3). | 2026-11-17 |
-| D-011 | Rank petualang direncanakan: F, E, D, C, B, A, S, SS, SSS. | 2026-11-17 |
+| D-011 | Rank petualang direncanakan: F, E, D, C, B, A, S, SS, SSS (dikukuhkan di D-017). | 2026-11-17 |
 | D-012 | Tahap pertama hanya fondasi (repo, struktur, dokumen, Android, pipeline). **Belum ada implementasi gameplay.** Sistem pertarungan, multiplayer, dungeon, farming, NPC, dll. ditentukan dulu lewat tahap desain bersama ChatGPT. | 2026-11-17 |
 
 | O-001 | Engine **Godot 4.7.2 + GDScript** disetujui. "Android Native" = aplikasi APK sungguhan yang dipasang langsung di HP; **bukan** WebView, game browser, atau PWA. | 2026-11-17 |
@@ -85,6 +85,19 @@ Pilihan: **D. Kombinasi Dungeon Tetap dan Acak.**
 3. **Fitur tambahan:** dungeon rahasia, boss spesial, hadiah unik.
 
 Detail (jumlah lantai/ruangan, algoritma acak, tabel loot, kesulitan, syarat dungeon rahasia, daftar boss) belum ditetapkan. Implementasi belum dimulai. ID D-016 tersedia saat dicatat (tanpa bentrokan).
+
+### D-017 — Sistem Adventurer Guild *(APPROVED / LOCKED, 2026-11-17, Tahap 7)*
+Pilihan: **D. Guild Petualang Lengkap.** Fitur yang ditetapkan:
+1. Rank petualang **F, E, D, C, B, A, S, SS, SSS** (menegaskan D-011)
+2. Quest Board dan misi khusus
+3. Ujian kenaikan rank
+4. Sistem reputasi dan prestasi
+5. Spesialisasi petualang
+6. Training dan pengembangan kemampuan
+7. Hadiah, gelar, dan penghargaan
+8. Guild Master dan NPC pengurus
+
+Detail (syarat tiap rank, isi ujian, jenis spesialisasi, daftar quest/gelar/hadiah, rumus reputasi, nama dan karakter NPC) belum ditetapkan. Implementasi belum dimulai. ID D-017 tersedia saat dicatat (tanpa bentrokan).
 
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
