@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.46 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.47 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -630,6 +630,25 @@ Memakai model makhluk bersama (§4a, §4f), perkembangan karakter (§4e), mesin 
 - **Performa (D-052):** tanpa pembaruan per frame; modifier di-cache dan dihitung ulang hanya saat berubah; angka belum diukur.
 - **Update konten (D-048):** sumber daya, efek, makanan/potion baru ditambah sebagai data; validator memastikan referensi efek/ID valid dan tidak ada efek tanpa sumber daya terkait.
 - **Pengujian (D-049):** uji headless untuk batas nilai (tidak di bawah nol/di atas kapasitas), `spend` atomik, pemulihan sekali per transaksi (idempoten), efek berdurasi setelah tidur/perjalanan, migrasi save, dan tidak ada ketergantungan jam perangkat.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4ao. Implikasi Arsitektur dari D-058 (hanya catatan; belum diimplementasikan; semua angka usulan dan belum diukur)
+
+Bertumpu pada vitalitas (§4an), pertarungan (§4a), `GameClock` (§4al), pipeline hari (§4am), NPC hidup (§4aa), peta dan titik (§4ak), loading (§4aj), cloud save (§5a), keamanan (§5b). Hanya rancangan; tidak ada penalti, durasi, atau aturan final ditetapkan.
+- **`DefeatService` tunggal:** satu layanan dan satu mesin keadaan (normal → pingsan/kalah → diselamatkan/dipulihkan → kembali bermain) untuk semua konteks. Pemicu dari event vitalitas (§4an) dan pertarungan (§4a) lewat event bus; tidak ada logika kekalahan terpisah di tiap sistem.
+- **Aturan sebagai data per konteks:** profil kekalahan (luar ruangan, dungeon §4c, interior §4n, event §4p, quest §4x, boss) berupa resource ber-ID stabil (§4ag): urutan langkah, sumber penyelamatan yang diizinkan, tempat kebangkitan yang diizinkan, konsekuensi (daftar efek kosong sampai diputuskan). Perubahan aturan tidak memerlukan kode.
+- **Penyelamatan NPC:** NPC penyelamat dipilih dari data dan sistem NPC (§4aa, §4i), lewat adegan/dialog ringan (§4y) tanpa simulasi penuh NPC jauh (LOD); ada jalur cadangan bila tidak ada NPC yang memenuhi syarat sehingga pemain tidak pernah buntu.
+- **Klinik dan fasilitas:** fasilitas pemulihan sebagai objek dunia berdata (§4n, §4o) dengan layanan, syarat buka, dan biaya (kosong sampai diputuskan, ekonomi §4h); dapat diperluas lewat konten (D-048).
+- **Tempat kebangkitan dan checkpoint:** titik checkpoint dan fasilitas didefinisikan sebagai data (ID, wilayah, titik muncul aman, syarat buka, jenis) dan memakai status penemuan/pembukaan wilayah (§4ak, D-009). Pemilih tempat memilih titik valid sesuai lokasi dan kondisi, memeriksa keterjangkauan dan keamanan sebelum memindahkan pemain; validator konten memastikan setiap wilayah punya setidaknya satu titik kebangkitan valid.
+- **Transisi:** perpindahan ke tempat kebangkitan memakai transisi Loading (§4aj) dengan kesinambungan kamera/audio; tidak ada lompatan waktu atau mundur di luar jalur resmi `advance_time` (§4al); apakah waktu maju saat pingsan masih terbuka.
+- **Integritas dan keadilan:** pemrosesan kekalahan satu transaksi atomik dengan ID transaksi/revisi (§5, §5a); tidak menggandakan hadiah, tidak mengubah hasil acak (seed+tanggal), tidak mengubah item/uang/EXP/progres kecuali lewat aturan data eksplisit; save terakhir yang sah tetap tersedia; interupsi saat pingsan dilanjutkan tanpa dobel proses. Item/flag cerita tidak dimodifikasi oleh kode kekalahan di luar aturan data.
+- **Koneksi (§5a, D-044):** sinkronisasi hasil sebagai bagian save berrevisi; operasi bernilai tinggi tetap divalidasi urutan server (§5b); perilaku saat koneksi putus menunggu **D-051** (isi belum diterima, tidak dikarang); dasar: tidak merusak data dan tidak memajukan/memundurkan waktu karena koneksi.
+- **Companion/monster (§4f):** keadaan mereka saat pemain pingsan diatur profil data (belum ditetapkan).
+- **UI/audio dan aksesibilitas (D-031, D-032, D-045):** layar pingsan/pilihan pemulihan sebagai UI ringan dengan kunci terjemahan, tanpa teks tertanam, opsi pengurangan efek visual/guncangan; musik/ambient lewat bus; tidak menimbulkan tekanan berlebihan.
+- **Tutorial (D-043, §4ad) dan achievement (D-046, §4ae):** tutorial menjelaskan pemulihan secara bertahap; achievement hanya membaca event bus dan tidak mendorong perilaku merugikan.
+- **Performa (D-052):** tanpa pemrosesan berat dalam satu frame; pemilihan tempat dan transisi memakai anggaran per frame; angka belum diukur.
+- **Pengujian (D-049):** uji headless untuk mesin keadaan (semua konteks), idempotensi dan interupsi di tiap langkah, titik kebangkitan selalu valid dan terjangkau di tiap wilayah, tidak ada kehilangan data di luar aturan data, determinisme, konsistensi dengan waktu dan save, serta uji migrasi save lama.
 - **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 

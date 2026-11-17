@@ -339,3 +339,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
 - GDD §6.46 baru (v0.46); Technical Architecture §4an ditambahkan (v0.46); catatan saja: `VitalityComponent` berbasis data (Health, Stamina, Mana, Hunger, Thirst, Fatigue), biaya aksi dan efek pemulihan sebagai data, tick berfrekuensi rendah dari `GameClock`, profil kebutuhan yang dapat disetel agar tidak memberatkan, transaksi item idempoten, event bus untuk UI. Semua angka, efek saat habis, dan balance sengaja tidak ditetapkan.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.
+
+## 2026-11-17 (47) — D-058 Sistem Kematian, Pingsan, dan Kebangkitan dicatat
+
+- D-058 (Defeat & Recovery Hybrid Lengkap, LOCKED) dicatat sebagai **Tahap 49**; ID tersedia, tanpa bentrokan. **D-051 (Tahap 42) tetap dicadangkan**, isinya belum diterima; tidak ada isi yang dikarang. Pesan Stage 47 yang terkirim dua kali tidak dicatat ulang (D-056 sudah ada).
+- **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
+- GDD §6.47 baru (v0.47); Technical Architecture §4ao ditambahkan (v0.47); catatan saja: `DefeatService` tunggal dengan mesin keadaan, profil kekalahan per konteks sebagai data, penyelamatan NPC dengan jalur cadangan, klinik/checkpoint/titik kebangkitan berbasis data dan divalidasi, transaksi atomik idempoten, tanpa penggandaan hadiah. Semua penalti, durasi, dan aturan checkpoint final sengaja tidak ditetapkan.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.

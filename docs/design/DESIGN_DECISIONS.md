@@ -855,6 +855,34 @@ Hubungan (tidak mengubah isi keputusan lain): pertarungan (**D-013**), sistem ke
 
 **Terbuka (tidak diputuskan):** semua angka (kapasitas, konsumsi, regenerasi, penalti, batas); efek bila sumber daya habis (termasuk apakah hunger/thirst/fatigue bisa melemahkan atau hanya memberi bonus/malus ringan, dan apakah ada risiko pingsan atau kekalahan); apakah kebutuhan dapat diatur lewat tingkat kesulitan/pengaturan; apakah Mana dipakai semua kelas; kaitan dengan efek tidur (D-056, yang juga masih terbuka); daftar efek makanan/potion; stamina mount (D-042); arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
 
+### D-058 — Sistem Kematian, Pingsan, dan Kebangkitan Karakter *(APPROVED / LOCKED, 2026-11-17, Tahap 49)*
+Pilihan: **D. Defeat & Recovery Hybrid Lengkap.** Ruang lingkup:
+1. Pingsan (fainting) dan penanganan kekalahan (defeat).
+2. Penyelamatan oleh NPC saat pemain pingsan.
+3. Klinik dan fasilitas pemulihan.
+4. Kebangkitan (revival) di lokasi/fasilitas yang sesuai.
+5. Checkpoint berdasarkan lokasi dan kondisi pemain.
+6. Integrasi dengan pertarungan, dungeon, eksplorasi, vitalitas, NPC, dan progres dunia.
+
+Ketentuan:
+- **Tidak ada penalti** kehilangan item, uang, EXP, atau progres yang ditetapkan tanpa keputusan desain lanjutan.
+- **Durasi pemulihan dan aturan checkpoint final tidak ditetapkan sepihak.**
+- Sistem harus **adil** dan **tidak membuat pemain kehilangan progres secara tidak wajar** (prinsip).
+- Selaras dengan D-015, D-029, D-040, D-044, D-048, D-056, dan D-057.
+- Penguncian desain; implementasi belum dimulai.
+
+**Prinsip (dasar, tanpa angka):**
+- Kekalahan adalah **keadaan permainan yang dapat dipulihkan**, ditangani oleh satu alur resmi yang konsisten untuk semua konteks (luar ruangan, dungeon, interior, event/quest); pemain selalu punya jalan kembali bermain.
+- Pemicu berasal dari sistem vitalitas dan pertarungan (D-057, D-013); pemulihan dapat melibatkan **NPC penyelamat**, **klinik/fasilitas**, dan **checkpoint** sesuai lokasi dan kondisi.
+- Tempat kebangkitan dipilih dari aturan data (lokasi/fasilitas/checkpoint yang valid, sudah terbuka, dan aman), bukan titik tetap tunggal.
+- Penanganan kekalahan **tidak boleh dipakai untuk menggandakan hadiah atau mengulang hasil acak** (hasil deterministik dari seed dan tanggal, D-055); tidak memakai jam perangkat.
+- **Aman terhadap interupsi dan koneksi:** pemrosesan kekalahan ditulis atomik dan idempoten (D-044); perilaku saat koneksi putus mengikuti D-051 (**isi belum diterima**, tidak dikarang).
+- Tetap **single-player online** (D-014); tidak ada kematian oleh pemain lain.
+
+Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), pertarungan (**D-013**), sistem kehidupan (**D-015**), dungeon (**D-016**), guild (**D-017**), companion (**D-019**), ekonomi (**D-021**), NPC (**D-022**), rumah/fasilitas (**D-027**), eksplorasi (**D-028**), event dunia (**D-029**), UI/HUD (**D-031**), audio (**D-032**), quest (**D-037**), dialog (**D-038**), NPC hidup (**D-040**), tutorial (**D-043**), save/cloud (**D-044**), pengaturan dan aksesibilitas (**D-045**), achievement (**D-046**), update konten (**D-048**), QA (**D-049**), keamanan (**D-050**), performa (**D-052**), loading (**D-053**), peta (**D-054**), waktu (**D-055**), tidur (**D-056**), vitalitas (**D-057**). **D-051** isinya belum diterima.
+
+**Terbuka (tidak diputuskan):** semua penalti (item, uang, EXP, progres) dan apakah ada; durasi pemulihan; aturan dan jenis checkpoint final; kondisi tepat pingsan vs kalah; aturan penyelamatan NPC (siapa, kapan, biaya, tidak selalu tersedia); biaya dan layanan klinik; apakah waktu permainan maju saat pingsan (jalur waktu D-055/D-056); nasib companion/monster saat pemain pingsan; perlakuan khusus di dungeon, boss, dan event; opsi kesulitan/pengaturan terkait; arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |
