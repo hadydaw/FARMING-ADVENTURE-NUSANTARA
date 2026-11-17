@@ -333,3 +333,15 @@ UPGRADE_NO_NO_MATERIAL,Bahan kurang,Missing materials
 UPGRADE_NO_OWNED,Sudah dimiliki,Already owned
 UPGRADE_NO_LOCKED,Butuh upgrade sebelumnya,Needs earlier upgrade
 UPGRADE_NO_UNKNOWN,Upgrade tidak dikenal,Unknown upgrade
+FARM_ACT_CAMP,Kemah Teman,Companion Camp
+COMPANION_CAMP,Kemah Teman Uji,Test Companion Camp
+COMPANION_TEST_A,Teman Uji A,Test Companion A
+COMPANION_TEST_B,Teman Uji B,Test Companion B
+COMPANION_RECRUIT,Rekrut,Recruit
+COMPANION_ACTIVE,Aktif (ketuk untuk istirahatkan),Active (tap to rest)
+COMPANION_READY,Siap (ketuk untuk ikut),Ready (tap to bring along)
+COMPANION_DONE,Teman diperbarui,Companion updated
+COMPANION_NO_NO_MONEY,Uang kurang,Not enough money
+COMPANION_NO_OWNED,Sudah direkrut,Already recruited
+COMPANION_NO_NOT_OWNED,Belum direkrut,Not recruited
+COMPANION_NO_UNKNOWN,Teman tidak dikenal,Unknown companion

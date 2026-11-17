@@ -9,6 +9,8 @@ const SAVE_VERSION := 1
 
 var config: Dictionary
 var exp_total := 0
+var bonus_attack := 0   # dari companion aktif (turunan, tidak disimpan)
+var bonus_guard := 0
 var kills := 0
 var _monsters: Dictionary = {}   # id monster -> row
 var _spawns: Dictionary = {}     # id spawn -> row
@@ -31,6 +33,11 @@ func level() -> int:
 		if exp_total >= int(th[i]):
 			lv = i + 1
 	return lv
+
+
+## Pertahanan pemain (dasar + penahan companion).
+func player_defense() -> int:
+	return int(config["player_defense"]) + bonus_guard
 
 
 func spawn_monster(spawn_id: String) -> Dictionary:
@@ -57,7 +64,7 @@ func player_attack(inventory: Inventory, item_defs: Dictionary) -> int:
 		if (sl as Dictionary).is_empty():
 			continue
 		best = maxi(best, int((item_defs.get(str(sl["item"]), {}) as Dictionary).get("attack", 0)))
-	return int(config["base_attack"]) + best + (level() - 1) * int(config["attack_per_level"])
+	return int(config["base_attack"]) + best + (level() - 1) * int(config["attack_per_level"]) + bonus_attack
 
 
 ## Satu putaran serang. Mengembalikan {ok, reason, dealt, taken, defeated, drops:[{item,count}], exp, fainted, leveled}.
@@ -93,7 +100,7 @@ func attack(spawn_id: String, day: int, world_seed: int, inventory: Inventory, i
 		res["drops"] = _roll_drops(mon, spawn_id, day, world_seed, inventory)
 		return res
 	_hp[spawn_id] = hp
-	var taken := maxi(0, int(mon["attack"]) - int(config["player_defense"]))
+	var taken := maxi(0, int(mon["attack"]) - player_defense())
 	res["taken"] = absi(vitality.change("health", -taken))
 	if vitality.value("health") <= 0:
 		res["fainted"] = true

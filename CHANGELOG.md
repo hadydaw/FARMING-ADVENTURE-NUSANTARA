@@ -5,6 +5,7 @@ Format mengikuti [Keep a Changelog](https://keepachangelog.com/id-ID/1.1.0/); ve
 ## [Belum dirilis]
 
 ### Ditambahkan
+- Companion dasar (sementara): kemah teman uji, 2 teman direkrut dengan uang, satu aktif memberi bonus serangan dan penahan serangan balik (juga di dungeon), pengikut visual sederhana, simpan/muat dengan rollback; 29 uji tambahan.
 - Upgrade permanen (sementara): tukang uji di desa, 4 upgrade (tas +6 slot x2, stamina maks +10, HP maks +20) dibeli dengan uang+bahan, simpan/muat memulihkan ukuran tas dan meter dengan rollback utuh; 44 uji tambahan.
 - Menu utama "Lanjutkan" (memuat simpanan terbaru) dan simpan otomatis ke slot 1 setiap bangun tidur; simpan/muat per slot; 26 uji tambahan.
 - Kalender festival dasar (sementara): 4 festival uji (satu per musim), hadiah+EXP diklaim sekali per festival per tahun, tas penuh = terlewat, pesan HUD, simpan/muat; 30 uji tambahan.

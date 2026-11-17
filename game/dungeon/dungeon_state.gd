@@ -106,7 +106,7 @@ func attack(day: int, combat: CombatState, inventory: Inventory, item_defs: Dict
 			room += 1
 			enemy_hp = int(current_monster()["hp"])
 		return res
-	var taken := maxi(0, int(mon["attack"]) - int(combat.config["player_defense"]))
+	var taken := maxi(0, int(mon["attack"]) - combat.player_defense())
 	res["taken"] = absi(vitality.change("health", -taken))
 	if vitality.value("health") <= 0:
 		res["fainted"] = true

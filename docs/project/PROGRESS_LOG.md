@@ -607,3 +607,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Tukang uji di desa memakai menu daftar serbaguna. Data SEMENTARA generik.
 - Belum: upgrade rumah/petak lahan baru (butuh node dunia dan desain D-027), tampilan rumah, tingkat alat.
 - Uji: 28 berkas, 2720 pemeriksaan, 0 gagal; smoke test lulus.
+
+## 2026-11-18 (84) — Companion dasar (D-019, teknis)
+
+- CompanionState: rekrut dengan uang, satu aktif (ganti/istirahat), bonus serangan + penahan ke CombatState (turunan, tidak disimpan; diterapkan ulang setelah muat/reset), dipakai juga oleh dungeon. Simpan/muat opsional (save lama = direset) dengan rollback utuh.
+- Kemah teman uji di desa (menu daftar), pengikut berupa bola berwarna yang mengikuti pemain. Data SEMENTARA generik; bukan companion resmi (kepribadian, cerita, kemampuan khusus belum ada, D-019 detail terbuka).
+- Belum: companion bertarung sendiri/AI, tingkat kedekatan, perintah, bantuan pertanian, ikut ke wilayah lain secara fisik saat travel (visual menyusul lewat lerp).
+- Uji: 29 berkas, 2805 pemeriksaan, 0 gagal; smoke test lulus.

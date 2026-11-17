@@ -88,5 +88,11 @@
 		"prompt_key": "FARM_ACT_UPGRADE",
 		"max_distance": 2.4,
 		"min_facing_dot": 0.0
+	},
+	{
+		"id": "camp",
+		"prompt_key": "FARM_ACT_CAMP",
+		"max_distance": 2.4,
+		"min_facing_dot": 0.0
 	}
 ]

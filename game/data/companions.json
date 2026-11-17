@@ -1,0 +1,20 @@
+[
+	{
+		"id": "companion_test_a",
+		"provisional": true,
+		"name_key": "COMPANION_TEST_A",
+		"cost": 120,
+		"attack": 2,
+		"guard": 1,
+		"color": "#e0a040"
+	},
+	{
+		"id": "companion_test_b",
+		"provisional": true,
+		"name_key": "COMPANION_TEST_B",
+		"cost": 220,
+		"attack": 4,
+		"guard": 2,
+		"color": "#40a0e0"
+	}
+]

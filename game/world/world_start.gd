@@ -42,6 +42,7 @@ func _ready() -> void:
 	_build_monsters()
 	_build_board()
 	_build_upgrade_site()
+	_build_camp()
 	_build_dungeon_entrance()
 	Events.interaction_performed.connect(_on_interacted)
 	if SaveService.pending_load_slot >= 0:
@@ -51,6 +52,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	_follow_companion(delta)
 	_move_npcs(delta)
 	_update_map()
 	_update_fishing(delta)
@@ -74,6 +76,8 @@ func _prompt_text() -> String:
 		return ""
 	if sensor.current.has_meta("station_id"):
 		return tr("FARM_ACT_CRAFT") + ": " + tr(str(sensor.current.get_meta("label_key", "")))
+	if sensor.current.has_meta("is_camp"):
+		return tr("FARM_ACT_CAMP")
 	if sensor.current.has_meta("is_upgrade"):
 		return tr("FARM_ACT_UPGRADE")
 	if sensor.current.has_meta("dungeon_id"):
@@ -114,6 +118,9 @@ func _on_interacted(target: Node, _actor: Node) -> void:
 		return
 	if target.has_meta("station_id"):
 		_open_station(str(target.get_meta("station_id")))
+		return
+	if target.has_meta("is_camp"):
+		_open_camp()
 		return
 	if target.has_meta("is_upgrade"):
 		_open_upgrades()
@@ -331,7 +338,7 @@ func _build_farm() -> void:
 		"economy_config": DataRegistry.get_row("economy_config", "default"), "item_prices": DataRegistry.rows("item_prices"), "shops": DataRegistry.rows("shops"),
 		"gather_nodes": DataRegistry.rows("gather_nodes"), "recipes": DataRegistry.rows("recipes"), "stations": DataRegistry.rows("crafting_stations"),
 		"monsters": DataRegistry.rows("monsters"), "monster_spawns": DataRegistry.rows("monster_spawns"), "combat_config": DataRegistry.get_row("combat_config", "default"),
-		"upgrades": DataRegistry.rows("upgrades"), "festivals": DataRegistry.rows("festivals"), "achievements": DataRegistry.rows("achievements"), "dungeons": DataRegistry.rows("dungeons"), "quests": DataRegistry.rows("quests"), "guild_config": DataRegistry.get_row("guild_config", "default")})
+		"companions": DataRegistry.rows("companions"), "upgrades": DataRegistry.rows("upgrades"), "festivals": DataRegistry.rows("festivals"), "achievements": DataRegistry.rows("achievements"), "dungeons": DataRegistry.rows("dungeons"), "quests": DataRegistry.rows("quests"), "guild_config": DataRegistry.get_row("guild_config", "default")})
 	farming.sleep.finished.connect(_on_woke_up)
 	_build_bed()
 	_build_pond()
@@ -385,6 +392,7 @@ func _plot_ids() -> Array:
 
 func refresh_farm_visuals() -> void:
 	_announce_milestones()
+	_update_companion_visual()
 	for pid in plot_nodes:
 		var plot: FarmPlot = farming.grid.plot(pid)
 		var node: Node3D = plot_nodes[pid]
@@ -1094,6 +1102,9 @@ func _on_menu_pressed(id: String) -> void:
 	if _open_station_id == "__board__":
 		_on_board_pressed(id)
 		return
+	if _open_station_id == "__camp__":
+		_on_camp_pressed(id)
+		return
 	if _open_station_id == "__upgrade__":
 		_on_upgrade_pressed(id)
 		return
@@ -1455,3 +1466,95 @@ func _on_upgrade_pressed(id: String) -> void:
 	var r := farming.upgrade_buy(id)
 	hud.show_message(tr("UPGRADE_DONE") if bool(r["ok"]) else tr("UPGRADE_NO_" + str(r["reason"]).to_upper()))
 	_refresh_upgrades()
+
+
+# --- Kemah teman + pengikut visual (SEMENTARA) ---
+
+var companion_node: MeshInstance3D
+
+
+func _build_camp() -> void:
+	var cfg: Dictionary = DataRegistry.get_row("companion_config", "default")
+	var node := Node3D.new()
+	node.name = "CompanionCamp"
+	node.position = Vector3(float(cfg["x"]), 0.0, float(cfg["z"]))
+	var mesh := MeshInstance3D.new()
+	var cone := CylinderMesh.new()
+	cone.top_radius = 0.05
+	cone.bottom_radius = 1.1
+	cone.height = 1.6
+	mesh.mesh = cone
+	mesh.position.y = 0.8
+	var mat := StandardMaterial3D.new()
+	mat.albedo_color = Color(0.85, 0.7, 0.4)
+	mesh.material_override = mat
+	node.add_child(mesh)
+	var label := Label3D.new()
+	label.text = "UJI: " + tr(str(cfg["name_key"]))
+	label.pixel_size = 0.005
+	label.position = Vector3(0, 2.2, 0)
+	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	node.add_child(label)
+	var it := Interactable.new()
+	it.interaction_type = "camp"
+	node.add_child(it)
+	it.set_meta("is_camp", true)
+	add_child(node)
+	_markers.append({"node": node, "kind": "npc", "region": "region_village"})
+	companion_node = MeshInstance3D.new()
+	var sph := SphereMesh.new()
+	sph.radius = 0.35
+	sph.height = 0.7
+	companion_node.mesh = sph
+	companion_node.material_override = StandardMaterial3D.new()
+	companion_node.visible = false
+	add_child(companion_node)
+
+
+func _open_camp() -> void:
+	_open_station_id = "__camp__"
+	GameTime.clock.pause("menu")
+	player.set_physics_process(false)
+	_refresh_camp()
+
+
+func _refresh_camp() -> void:
+	var cp := farming.companions
+	var rows: Array = []
+	for id in cp.ids():
+		var r := cp.row(str(id))
+		var tail := ""
+		var enabled := true
+		if not cp.owned(str(id)):
+			tail = "%s %d" % [tr("COMPANION_RECRUIT"), int(r["cost"])]
+		else:
+			tail = tr("COMPANION_ACTIVE") if cp.active_id == str(id) else tr("COMPANION_READY")
+		rows.append({"id": str(id), "text": "%s  [%s]  (ATK +%d, DEF +%d)" % [tr(str(r["name_key"])), tail, int(r["attack"]), int(r["guard"])], "enabled": enabled})
+	hud.show_menu(tr("COMPANION_CAMP"), rows)
+	_update_companion_visual()
+	refresh_farm_visuals()
+
+
+func _on_camp_pressed(id: String) -> void:
+	var cp := farming.companions
+	var r: Dictionary = cp.recruit(id, farming.economy) if not cp.owned(id) else farming.companion_toggle(id)
+	hud.show_message(tr("COMPANION_DONE") if bool(r["ok"]) else tr("COMPANION_NO_" + str(r["reason"]).to_upper()))
+	_refresh_camp()
+
+
+func _update_companion_visual() -> void:
+	if companion_node == null:
+		return
+	var id := farming.companions.active_id
+	companion_node.visible = id != ""
+	if id != "":
+		(companion_node.material_override as StandardMaterial3D).albedo_color = Color(str(farming.companions.row(id)["color"]))
+		if companion_node.position.distance_to(player.global_position) > 6.0:
+			companion_node.global_position = player.global_position + Vector3(1.2, 0.4, 1.2)
+
+
+func _follow_companion(delta: float) -> void:
+	if companion_node == null or player == null or not companion_node.visible:
+		return
+	var target := player.global_position + Vector3(1.2, 0.5, 1.2)
+	companion_node.global_position = companion_node.global_position.lerp(target, clampf(delta * 4.0, 0.0, 1.0))
