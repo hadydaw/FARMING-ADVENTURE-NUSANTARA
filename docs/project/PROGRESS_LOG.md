@@ -293,3 +293,12 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna.
 - GDD §6.40 baru (v0.40); Technical Architecture §5b ditambahkan (v0.40) dan `BACKEND_DESIGN.md` §6a (v0.5); catatan saja: model ancaman, validasi server berlapis (struktur/rentang, invarian dan kewajaran, operasi bernilai tinggi otoritatif lewat fungsi server), deteksi anti-cheat tanpa hukuman otomatis dengan jalur pemulihan dan banding, perlindungan database (RLS, hak minimum, lingkungan terpisah, enkripsi, cadangan, tanpa rahasia di repo), audit log append-only minim data pribadi, monitoring dan peringatan, pendekatan hemat biaya. Keamanan tanpa biaya bagi pemain; biaya operasional ditanggung pengelola. D-047 dan D-014 tidak diubah.
 - Tidak ada perubahan kode/gameplay/CI; tidak ada implementasi keamanan, akun, atau proyek Supabase. Menunggu keputusan Tahap 42 (Tahap 35 tetap PENDING).
+
+
+## 2026-11-17 (41) — D-052 Sistem Performa dan Optimasi Perangkat Android dicatat
+
+- D-052 (Adaptive Performance Hybrid Lengkap, LOCKED) dicatat sebagai **Tahap 43**, sesuai ID yang dituju pemilik; ID tersedia, tanpa bentrokan.
+- **D-051 (Tahap 42) belum diterima**: ID dicadangkan dan dibiarkan kosong, tidak diisi dan tidak dipakai ulang sampai keputusan Tahap 42 dikirim.
+- **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. **Tidak ada hasil performa atau uji perangkat fisik yang diklaim**; semua angka berstatus usulan belum diukur.
+- GDD §6.41 baru (v0.41); Technical Architecture §4ai ditambahkan dan §3 diberi rujukan (v0.41); catatan saja: PerfService dengan kelas perangkat dan preset grafis, penyesuaian dinamis dengan histeresis dan UI tetap resolusi asli, frame pacing dan anggaran milidetik per sistem, optimasi CPU/GPU/RAM untuk GL Compatibility, pemuatan aset per wilayah, LOD NPC/animasi, kesadaran baterai dan termal, degradasi bertahap lintas perangkat, instrumentasi, serta aturan bukti performa (D-049). Hubungan dengan O-001, D-004, D-008, D-009, D-022, D-028, D-031 sampai D-034, D-040 sampai D-042, D-044, D-045, D-048 sampai D-050 dicatat tanpa mengubah isinya.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.

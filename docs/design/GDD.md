@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.40 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement, D-047 Monetisasi, D-048 Live Ops, D-049 QA, D-050 Keamanan) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.41 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement, D-047 Monetisasi, D-048 Live Ops, D-049 QA, D-050 Keamanan, D-052 Performa) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -626,6 +626,18 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - Terkait: D-014, D-018, D-021, D-036, D-037, D-039, D-044 sampai D-049, O-003, O-004.
 
 **[BELUM DITETAPKAN]:** tingkat validasi/otoritas server, tingkat penegakan terhadap kecurangan pribadi, daftar aksi wajib validasi, aturan deteksi dan ambang, tindakan dan banding, audit log (isi, retensi, akses), alat monitoring, anggaran operasional, enkripsi dan cadangan, kebijakan privasi dan hak data, hubungan dengan akun/login (Tahap 35 PENDING, P-006), pelaporan celah, konsep "spiritual" (belum didefinisikan). **Tidak ada implementasi keamanan sebelum seluruh tahap desain selesai.**
+
+### 6.41 Performa dan Optimasi Perangkat Android — D-052, LOCKED (Adaptive Performance Hybrid Lengkap)
+**Ditetapkan:**
+- **Delapan area:** CPU/GPU; RAM dan memori; **grafis adaptif** menurut kemampuan perangkat; pemuatan aset dan resource; optimasi NPC, AI, animasi, dan simulasi dunia; **baterai dan kesadaran termal**; **frame pacing dan stabilitas FPS**; penanganan perangkat Android berkemampuan berbeda.
+- Platform tetap **Android native, landscape-first, arm64, Godot 4.7.2, GL Compatibility.**
+- **Stabilitas gameplay didahulukan** daripada efek visual.
+- Grafik adaptif **menjaga keterbacaan UI dan identitas visual** 3D Stylized.
+- Selaras dengan kamera (D-033), NPC (D-040), wilayah (D-009, D-028), pengaturan grafis (D-045), dan QA (D-049).
+- **Tidak ada klaim hasil performa atau uji perangkat fisik** sebelum benar-benar dilakukan.
+- Terkait: O-001, D-004, D-008, D-009, D-022, D-028, D-031 sampai D-034, D-040 sampai D-042, D-044, D-045, D-048 sampai D-050.
+
+**[BELUM DITETAPKAN]:** target FPS dan batas bawah, kelas perangkat dan klasifikasinya, opsi dan urutan penurunan kualitas, ambang suhu/baterai, anggaran nyata (memori, draw call, poligon, tekstur, ukuran APK), perangkat dan versi Android minimum, mode hemat baterai, peran renderer lain, konsep "spiritual" (belum didefinisikan). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

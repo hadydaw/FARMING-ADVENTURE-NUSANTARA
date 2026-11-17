@@ -701,6 +701,29 @@ Ketentuan penting:
 Hubungan (tidak mengubah isi keputusan lain): single-player online dan Cloud Save (**D-014**; tanpa multiplayer, kunjungan, co-op), Supabase (**O-003**), ekonomi (**D-021**), inventory (**D-036**), perkembangan karakter (**D-018**), quest (**D-037**), sosial (**D-039**), monetisasi kosmetik (**D-047**), save, konflik, dan idempotensi transaksi (**D-044**; keputusan ini menambah lapisan validasi/deteksi di atasnya), update dan migrasi (**D-048**), QA (**D-049**), pengaturan (**D-045**), achievement (**D-046**), serta aturan keamanan kredensial **O-004** (private keystore, rahasia di Secrets). Pernyataan lama bahwa checksum "bukan anti-curang" dan data klien tidak dipercaya untuk fitur ekonomi/rank (TECHNICAL_ARCHITECTURE §5, BACKEND_DESIGN §5) kini memiliki dasar keputusan.
 **Terbuka:** seberapa jauh simulasi dijalankan atau divalidasi di server (validasi masuk akal/batas dan invarian vs. otoritas penuh sisi server untuk operasi tertentu) — karena game single-player online, kecurangan murni pribadi tidak merugikan pemain lain, sehingga tingkat penegakan terhadap pemain yang hanya mengubah progres pribadi belum diputuskan (fokus awal: melindungi akun, transaksi/pembelian, integritas save, dan data apa pun yang dibagikan lewat server); daftar data dan aksi yang wajib divalidasi server; aturan deteksi dan ambang (mis. lonjakan mata uang, item mustahil, atribut di luar rentang, kecepatan progres tak wajar); tindakan terhadap pelanggaran (peringatan, pembatasan fitur tertentu, pemulihan data, penangguhan) dan proses banding agar tidak merugikan pemain jujur (false positive); isi, retensi, dan akses audit log serta kepatuhan privasi (data pribadi minimum); alat monitoring dan peringatan, serta siapa yang menanggapi; anggaran operasional (batas paket layanan, biaya validasi dan log yang bertambah seiring pemain — tanggung jawab pengelola; belum dihitung); enkripsi data saat disimpan, kebijakan cadangan dan pemulihan bencana; kebijakan privasi, persetujuan, hak pemain atas data (akses, hapus), dan proteksi usia; hubungan dengan akun/login (**Tahap 35, P-006, tetap PENDING**; tidak ada desain akun dibuat di sini); pelaporan celah keamanan; peran konsep "spiritual" (belum didefinisikan). Implementasi keamanan belum dimulai. ID D-050 tersedia saat dicatat (tanpa bentrokan).
 
+### D-052 — Sistem Performa dan Optimasi Perangkat Android *(APPROVED / LOCKED, 2026-11-17, Tahap 43)*
+Pilihan: **D. Adaptive Performance Hybrid Lengkap.** Ruang lingkup:
+1. Optimasi CPU dan GPU.
+2. RAM dan manajemen memori.
+3. Kualitas grafis adaptif berdasarkan kemampuan perangkat.
+4. Pemuatan aset dan manajemen resource.
+5. Optimasi NPC, AI, animasi, dan simulasi dunia.
+6. Konsumsi baterai dan kesadaran termal perangkat.
+7. Frame pacing dan stabilitas FPS.
+8. Penanganan perangkat Android dengan kemampuan berbeda.
+
+Ketentuan:
+- Platform tetap Android native, landscape-first, arm64, Godot 4.7.2 dengan GL Compatibility.
+- Stabilitas gameplay tidak dikorbankan demi efek visual.
+- Grafik adaptif mempertahankan keterbacaan UI dan identitas visual game.
+- Selaras dengan keputusan kamera, NPC, dunia/wilayah, dan QA.
+- **Tidak boleh mengklaim hasil performa atau pengujian perangkat fisik sebelum benar-benar dilakukan.**
+- Ini penguncian desain, bukan instruksi memulai implementasi.
+
+Hubungan (tidak mengubah isi keputusan lain): engine dan renderer (**O-001**, **D-004**, **T-001** sampai **T-009**), gaya visual (**D-008**), dunia, wilayah, dan eksplorasi (**D-009**, **D-028**), pertarungan dan dungeon (**D-013**, **D-016**), companion dan monster (**D-019**), pertanian dan peternakan (**D-023**, **D-024**), bangunan (**D-027**), event dunia dan cuaca (**D-029**, **D-030**), UI (**D-031**), audio (**D-032**), kamera (**D-033**), kontrol (**D-034**), NPC dan kehidupan desa (**D-022**, **D-040**), kustomisasi karakter (**D-041**), mount (**D-042**), save dan sinkronisasi (**D-044**), pengaturan dan profil grafis (**D-045**; keputusan ini mengisi dasar pemilihan profil), update konten (**D-048**), QA dan release gate (**D-049**), keamanan (**D-050**).
+**Catatan penomoran:** pemilik menetapkan D-052 untuk Tahap 43. **D-051 (Tahap 42) belum diterima**; ID itu **dicadangkan dan dibiarkan kosong** (tidak diisi dan tidak dipakai ulang) sampai keputusan Tahap 42 dikirim. Bila Tahap 42 kelak mendapat ID lain, hal itu dicatat saat diterima.
+**Terbuka (semua angka dan ambang belum diukur):** target FPS (mis. 30/60) dan batas bawah per kelas perangkat; definisi kelas perangkat (rendah/menengah/tinggi) dan cara klasifikasi; daftar opsi grafis adaptif dan urutan penurunan kualitas; ambang suhu, baterai, dan pemicu penurunan kualitas; anggaran memori, draw call, poligon, dan ukuran tekstur nyata; ukuran unduhan dan APK maksimum; versi Android dan perangkat minimum yang didukung; mode hemat baterai; peran Vulkan/Mobile renderer bila GL Compatibility tidak cukup (ditinjau ulang, saat ini tidak diubah); kebijakan aset (kompresi, atlas, LOD) per kelas; peran konsep "spiritual" (belum didefinisikan). **Tidak ada hasil pengukuran atau pengujian perangkat fisik yang diklaim;** P-005 tetap menunggu laporan pengguna. Implementasi belum dimulai. ID D-052 tersedia saat dicatat (tanpa bentrokan). Tahap 35 (akun dan login, P-006) tetap PENDING.
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |
