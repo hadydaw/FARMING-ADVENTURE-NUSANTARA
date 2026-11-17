@@ -76,10 +76,17 @@ Kunci unik `saves(player_id, slot)`. Akses dibatasi per pemain (Row Level Securi
 
 ## 6. Keamanan dan Privasi
 
-- Autentikasi: awalnya login anonim/perangkat dengan opsi menautkan email/akun Google (detail saat implementasi).
+- Autentikasi: awalnya identitas anonim dengan opsi menautkan email/akun Google (arahan pemilik, draft; lihat §6b; metode penautan belum diputuskan).
 - Data pribadi minimum. Perlu kebijakan privasi sebelum rilis publik yang mengumpulkan akun.
 - Kunci/rahasia server disimpan di pengaturan penyedia dan GitHub Secrets, **tidak pernah** di repo.
 - Pembatasan laju (rate limit) dan validasi ukuran payload di server.
+
+## 6b. Identitas anonim untuk Rilis Awal (DRAFT, menunggu persetujuan P-007; rancangan saja)
+
+- Arahan pemilik: identitas anonim otomatis lewat **Supabase Anonymous Auth** saat pertama bermain, tanpa username/kata sandi; siapkan penautan akun untuk login permanen (Tahap 35, DEFERRED).
+- Pengguna anonim memakai peran `authenticated`; RLS berbasis `auth.uid()` dan, bila perlu, klaim `is_anonymous`. Penautan (`updateUser` untuk email/telepon, `linkIdentity` untuk OAuth dengan manual linking aktif) mempertahankan ID pengguna sehingga save tetap.
+- **Kehilangan akses:** hapus aplikasi, hapus data, atau ganti perangkat sebelum penautan membuat save cloud tidak dapat diakses. Pemulihan tidak boleh diasumsikan. Klien tidak boleh diam-diam membuat identitas baru saat sesi hilang (D-051); perlakuan save lokal (T2), pencadangan token Android (T3), anti-penyalahgunaan dan pembersihan identitas terlantar (T4) belum ditetapkan.
+- Perlu peringatan risiko untuk pemain (Indonesia/English). Rincian di `../design/RELEASE_SCOPE_PROPOSAL_P007.md` §5 dan §7.
 
 ## 6a. Konsekuensi D-050 (Keamanan dan Perlindungan Data; rancangan saja)
 

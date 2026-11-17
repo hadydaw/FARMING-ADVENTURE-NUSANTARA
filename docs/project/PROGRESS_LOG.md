@@ -443,3 +443,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - **Dokumen:** `RELEASE_SCOPE.md` ditulis ulang; `RELEASE_SCOPE_PROPOSAL_P007.md` baru (**DRAFT PROPOSAL**, P-007 **belum dikunci**); `ROADMAP.md` disusun ulang (Fase 4 Online dan Ketahanan Koneksi, Fase 5 Beta dan Rilis Awal, Fase 6 Pembaruan; gerbang G0 s.d. G7+ tanpa tanggal).
 - **Terbuka:** Q1 identitas Cloud Save tanpa login (tidak diputuskan); P-002, P-005, P-006 (DEFERRED), P-007 menunggu pemilik; target performa D-052 perlu pengukuran nyata; "spiritual" TBD.
 - Tidak ada perubahan kode/gameplay/CI.
+
+## 2026-11-17 (60) — Proposal P-007 rev. 2 (jawaban pemilik Q1 sampai Q6)
+
+- Jawaban pemilik dimasukkan ke `RELEASE_SCOPE_PROPOSAL_P007.md` (**DRAFT PROPOSAL, P-007 belum dikunci**): Q1 identitas anonim Supabase + persiapan account linking + peringatan risiko; Q2 ramuan dasar dan herbal masuk Rilis Awal; Q3 companion dasar masuk; Q4 romansa tahap awal masuk (pertunangan dan seterusnya via pembaruan); Q5 target 3 wilayah, 2 dungeon, 12 NPC inti (target desain, perlu validasi produksi); Q6 kustomisasi dasar masuk, transaksi kosmetik ditunda.
+- Tabel per sistem diperbarui (48 baris). Pemeriksaan konsistensi D-014, D-019, D-034, D-041, D-044, D-047, D-066, D-069 dicatat. Teks D-014 tidak diubah; tafsir "akun anonim otomatis" menunggu konfirmasi pemilik.
+- Implikasi teknis: identitas anonim hilang bila aplikasi dihapus, data dibersihkan, atau ganti perangkat sebelum ditautkan; pemulihan tidak diasumsikan. Daftar TBD T1 sampai T20 dibuat.
+- `RELEASE_SCOPE.md`, `ROADMAP.md`, `BACKEND_DESIGN.md` (§6b) disinkronkan. Tidak ada perubahan kode/gameplay/CI. Tahap 35 tetap DEFERRED; P-002, P-005, P-006, P-007 pending.

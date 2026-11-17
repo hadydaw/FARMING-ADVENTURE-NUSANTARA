@@ -35,7 +35,7 @@ Satu desa awal yang dapat dimainkan: loop inti (ladang → hasil → jual/masak)
 ## Fase 4 — Online dan Ketahanan Koneksi
 
 Backend sesuai `BACKEND_DESIGN.md`: Cloud Save, sinkronisasi progres, penanganan konflik revisi, dan **Connection Resilience (D-051)**: sambung ulang otomatis, pemulihan sesi, perlindungan data belum sinkron, retry idempoten, status koneksi. Single-player online (D-014); tanpa multiplayer dan **tanpa mode offline penuh**.
-**Account/Login (Tahap 35) DEFERRED** (P-006) dan tidak termasuk fase ini; identitas Cloud Save tanpa login masih pertanyaan terbuka (Q1, P-007). Pemulihan lintas perangkat bergantung pada keputusan itu.
+**Account/Login (Tahap 35) DEFERRED** (P-006) dan tidak termasuk fase ini; arahan pemilik (draft P-007): Cloud Save memakai identitas anonim Supabase dengan persiapan account linking. Pemulihan lintas perangkat atau setelah aplikasi dihapus **hanya bila identitas sudah ditautkan**; tanpa itu tidak dijamin.
 **Selesai:** progres tersinkron aman; **uji putus koneksi → pemulihan koneksi** dan uji konflik lulus.
 
 ## Fase 5 — Beta dan Rilis Awal
@@ -58,7 +58,7 @@ Berbasis **gerbang kriteria**, tanpa tanggal, biaya, atau angka performa/ukuran.
 | G1 Penguncian lingkup | Persetujuan P-007; penguncian detail lingkup vertical slice; detail D-051 | GDD tanpa [BELUM DITETAPKAN] kritis untuk lingkup slice |
 | G2 Fondasi gameplay | Fase 2 | Karakter bergerak di area uji; performa diukur di HP |
 | G3 Vertical slice | Fase 3 | Alur desa → guild → dungeon → kembali tuntas di HP |
-| G4 Online dan ketahanan koneksi | Fase 4 (Cloud Save, D-051); keputusan Q1 | Uji putus koneksi → pemulihan koneksi lulus |
+| G4 Online dan ketahanan koneksi | Fase 4 (Cloud Save identitas anonim, D-051); T1 dan T2 (P-007) | Uji putus koneksi → pemulihan koneksi lulus |
 | G5 Uji tertutup | Uji perangkat beragam, performa dan ukuran **diukur nyata**, uji migrasi save, uji gangguan koneksi | Kriteria `RELEASE_SCOPE.md` §4 terpenuhi |
 | G6 Rilis Awal | Release candidate, kebijakan privasi, penandatanganan, rilis via GitHub Releases (D-005) | Persetujuan pemilik |
 | G7+ Pembaruan berkala | Gelombang pembaruan terencana (Fase 6) | Tiap pembaruan lolos uji fixture save, regresi performa/ukuran, CHANGELOG |
