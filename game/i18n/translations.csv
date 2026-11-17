@@ -66,3 +66,8 @@ SEASON_1,Musim 1,Season 1
 SEASON_2,Musim 2,Season 2
 SEASON_3,Musim 3,Season 3
 SEASON_4,Musim 4,Season 4
+MENU_MESH_PILOT,Pilot Mesh (diagnostik),Mesh Pilot (diagnostics)
+MP_TITLE,"PILOT TEKNIS Opsi A: props B-003 dari mesh kode. Bukan aset final, belum ada acuan ChatGPT.","TECHNICAL PILOT Option A: B-003 props from code mesh. Not a final asset, no ChatGPT reference yet."
+MP_CURRENT,Prop: %s | %d segitiga,Prop: %s | %d triangles
+MP_PREV,Sebelumnya,Previous
+MP_NEXT,Berikutnya,Next

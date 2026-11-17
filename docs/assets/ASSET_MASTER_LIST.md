@@ -11,6 +11,8 @@ Kolom: ID, Nama, Kategori, Gambar referensi, Ukuran/format, Animasi/frame, Lokas
 | A-001 | Kubus uji render | diagnostik | - | mesh primitif | putar | `game/diagnostics/foundation_test.tscn` | **PLACEHOLDER teknis**, bukan aset | Hanya uji render, dilabeli di layar |
 | A-002 | Font bawaan Godot | ui_font | - | bawaan engine | - | (engine) | Sementara | Font final belum ditentukan |
 
+| A-003 | Pilot props mesh-kode (pohon A/B, batu A/B, pagar, semak, rumput) | pilot | - | .glb, 55-559 segitiga | - | `game/assets/models/pilot/` | **PILOT TEKNIS, bukan aset final** | Tanpa acuan ChatGPT; dihapus saat B-003 final dibangun |
+
 ## B. Kebutuhan Milestone 2 (Playable Foundation, visual 3D Stylized)
 
 Spesifikasi lengkap: `ASSET_REQUESTS_M2.md`. ChatGPT membuat gambar (acuan ortografis, tekstur seamless, ikon, UI); Claude membangun model 3D dari gambar yang disetujui.

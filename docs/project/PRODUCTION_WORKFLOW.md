@@ -42,5 +42,5 @@ Aset **belum selesai** sebelum gambar final ada, terintegrasi, dan diperiksa.
 ## 5. Risiko produksi terbuka
 
 1. **D-008 dikonfirmasi: 3D Stylized tetap** (O-010). Istilah "sprite/sprite sheet" pada arahan awal dipahami sebagai acuan gambar; aset final dunia berupa model 3D.
-2. **Sumber model 3D.** ChatGPT menghasilkan gambar 2D, bukan mesh. Claude membangun mesh lewat kode (tanpa Blender di lingkungan ini). Batas kualitas, terutama bentuk organik (karakter, hewan, monster), diuraikan di `docs/assets/ANALISIS_3D_STYLIZED_WORKFLOW.md` beserta opsi A/B/C. Keputusan metode untuk karakter menunggu uji percontohan props/bangunan dan persetujuan pemilik.
+2. **Sumber model 3D: Opsi A dipilih (O-011), metode diuji bertahap.** Uji props B-003 sudah dilakukan sebagai pilot tanpa acuan (`docs/assets/PILOT_MESH_OPSI_A.md`); kategori lain belum terbukti. Riwayat risiko: ChatGPT menghasilkan gambar 2D, bukan mesh. Claude membangun mesh lewat kode (tanpa Blender di lingkungan ini). Batas kualitas, terutama bentuk organik (karakter, hewan, monster), diuraikan di `docs/assets/ANALISIS_3D_STYLIZED_WORKFLOW.md` beserta opsi A/B/C. Keputusan metode untuk karakter menunggu uji percontohan props/bangunan dan persetujuan pemilik.
 3. Aturan "tidak dari bentuk geometri sederhana" perlu ditegaskan pemilik terhadap mesh poli rendah yang dibangun dari profil kustom.

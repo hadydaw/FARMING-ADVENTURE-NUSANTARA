@@ -3,5 +3,6 @@
 	{"id": "main_menu", "path": "res://game/ui/main_menu/main_menu.tscn"},
 	{"id": "settings", "path": "res://game/ui/settings/settings_screen.tscn"},
 	{"id": "foundation_test", "path": "res://game/diagnostics/foundation_test.tscn"},
-	{"id": "systems_test", "path": "res://game/diagnostics/systems_test.tscn"}
+	{"id": "systems_test", "path": "res://game/diagnostics/systems_test.tscn"},
+	{"id": "mesh_pilot", "path": "res://game/diagnostics/mesh_pilot.tscn"}
 ]

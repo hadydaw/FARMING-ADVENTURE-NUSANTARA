@@ -5,6 +5,7 @@ Format mengikuti [Keep a Changelog](https://keepachangelog.com/id-ID/1.1.0/); ve
 ## [Belum dirilis]
 
 ### Ditambahkan
+- Pilot mesh Opsi A (O-011): MeshBuilder (mesh kustom lewat kode, ekspor .glb), 7 props pilot B-003 (bukan aset final), layar Pilot Mesh, 98 uji tambahan, laporan `docs/assets/PILOT_MESH_OPSI_A.md`.
 - Milestone 2 (sebagian, teknis): GameClock/GameTime (jam, kalender, musim, fase, jeda, simpan/muat, seed harian), CameraRig adaptif (3 profil konteks, zoom/rotasi berbatas), MovementMath, Interactable/InteractionSensor, tabel data waktu/kamera/interaksi, layar Uji Sistem, 207 uji tambahan. Menunggu aset visual dari ChatGPT.
 - Spesifikasi aset M2 (B-001..B-007) untuk 3D Stylized dan analisis workflow 3D (O-010).
 - Bahasa bawaan Inggris.

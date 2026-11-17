@@ -475,3 +475,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Kode M2 tanpa aset visual: GameClock/GameTime, CameraRig, MovementMath, Interactable/InteractionSensor, tabel data, layar Uji Sistem. Uji: 12 berkas, 590 pemeriksaan, 0 gagal.
 - Nilai waktu/kamera/interaksi bertanda `provisional` (bukan keputusan desain).
 - Belum dikerjakan (menunggu aset): model dan animasi pemain, dunia awal, HUD visual.
+
+## 2026-11-17 (65) — Arah Opsi A (O-011) + uji percontohan props
+
+- Pemilik memilih Opsi A (custom mesh lewat kode) sebagai metode yang diuji bertahap; dicatat **O-011**. Aturan: sumber desain hanya acuan ChatGPT, tanpa model eksternal, tanpa primitif placeholder sebagai final.
+- Pilot B-003 dibuat: MeshBuilder, 7 props generik (559 sampai 55 segitiga), bake ke .glb, skrip pasca-impor warna vertex, layar Pilot Mesh. Berlabel PILOT TEKNIS karena acuan ChatGPT belum ada.
+- Bug ditemukan dan diperbaiki lewat screenshot: urutan sisi depan Godot (searah jarum jam) dan arah normal; kini dikunci oleh uji.
+- Uji: 13 berkas, 688 pemeriksaan, 0 gagal. Laporan keterbatasan: `docs/assets/PILOT_MESH_OPSI_A.md`. Menunggu evaluasi visual pemilik sebelum memperluas.

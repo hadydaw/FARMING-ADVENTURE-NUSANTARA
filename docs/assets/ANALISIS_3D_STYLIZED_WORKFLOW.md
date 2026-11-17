@@ -1,6 +1,6 @@
 # Analisis: 3D Stylized (D-008) dengan Workflow Aset ChatGPT
 
-Status: analisis teknis untuk keputusan pemilik. **D-008 tidak berubah** (3D Stylized tetap berlaku; O-010 hanya klarifikasi pelaksanaan).
+Status: analisis teknis. **Pemilik memilih Opsi A (O-011)**; hasil uji percontohan props ada di `PILOT_MESH_OPSI_A.md`. **D-008 tidak berubah** (3D Stylized tetap berlaku; O-010 hanya klarifikasi pelaksanaan).
 
 ## 1. Fakta batasan
 
