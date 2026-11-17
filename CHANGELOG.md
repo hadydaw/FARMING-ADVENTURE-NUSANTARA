@@ -5,6 +5,7 @@ Format mengikuti [Keep a Changelog](https://keepachangelog.com/id-ID/1.1.0/); ve
 ## [Belum dirilis]
 
 ### Ditambahkan
+- Fondasi NPC (sementara): jadwal harian menurut jam/cuaca, dialog bersyarat dan bercabang dengan UI, hubungan (friendship), 2 NPC uji generik, simpan/muat sosial; 150 uji tambahan.
 - Tidur dan pergantian hari bertahap, vitalitas dasar (HP/Stamina/Mana) dengan biaya stamina aksi pertanian, tempat tidur uji, HUD vitalitas; data sementara, 102 uji tambahan.
 - Cuaca dasar (sementara): cuaca harian deterministik per seed/hari/musim, hujan menyiram tanaman, HUD cuaca, 58 uji tambahan.
 - HUD sementara: tombol Simpan/Muat (slot 0: waktu + pertanian) dan panel Tas berkisi 24 slot; 45 uji tambahan.

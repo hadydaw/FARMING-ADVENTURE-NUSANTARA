@@ -135,3 +135,21 @@ SLEEPING,Tidur…,Sleeping…
 WOKE_UP,Bangun, hari baru,Woke up, a new day
 FARM_NO_TOO_TIRED,Stamina tidak cukup,Not enough stamina
 FARM_NO_SLEEPING,Sedang tidur,Sleeping
+INTERACT_TALK,Bicara,Talk
+NPC_TEST_A,Warga uji A,Test villager A
+NPC_TEST_B,Warga uji B,Test villager B
+DLG_TEST_RAIN,"(Dialog uji) Hujan begini, lebih baik berteduh.","(Test dialog) Rainy weather, better stay dry."
+DLG_TEST_FRIEND,"(Dialog uji) Senang bertemu lagi, teman!","(Test dialog) Good to see you again, friend!"
+DLG_TEST_HELLO,"(Dialog uji) Halo, ini percakapan uji teknis.","(Test dialog) Hello, this is a technical test conversation."
+DLG_TEST_ASK,(Dialog uji) Ada yang bisa kubantu?,(Test dialog) Can I help you with something?
+DLG_TEST_CHOICE_KIND,Bersikap ramah,Be friendly
+DLG_TEST_CHOICE_BYE,Pamit,Say goodbye
+DLG_TEST_THANKS,"(Dialog uji) Terima kasih, kamu baik.","(Test dialog) Thank you, you are kind."
+DLG_TEST_REPEAT,(Dialog uji) Kita sudah bicara hari ini.,(Test dialog) We already talked today.
+DLG_TEST_B_MORNING,(Dialog uji) Selamat pagi!,(Test dialog) Good morning!
+DLG_TEST_B_OTHER,(Dialog uji) Halo.,(Test dialog) Hello.
+DLG_NEXT,Lanjut,Next
+ACT_ACTIVITY_REST,istirahat,resting
+ACT_ACTIVITY_WORK,bekerja,working
+ACT_ACTIVITY_SOCIALIZE,bersosialisasi,socializing
+ACT_ACTIVITY_SHELTER,berteduh,sheltering

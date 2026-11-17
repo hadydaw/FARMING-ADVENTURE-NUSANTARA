@@ -1,0 +1,9 @@
+[
+	{
+		"id": "default",
+		"provisional": true,
+		"note": "Nilai SEMENTARA uji teknis (D-039 belum menetapkan skala hubungan).",
+		"friendship_max": 100,
+		"friendship_start": 0
+	}
+]

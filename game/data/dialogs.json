@@ -1,0 +1,107 @@
+[
+	{
+		"id": "dlg_a_rain",
+		"npc": "npc_test_a",
+		"provisional": true,
+		"priority": 20,
+		"once_per_day": false,
+		"conditions": {
+			"weather": "rain"
+		},
+		"lines": [
+			"DLG_TEST_RAIN"
+		],
+		"choices": []
+	},
+	{
+		"id": "dlg_a_friend",
+		"npc": "npc_test_a",
+		"provisional": true,
+		"priority": 15,
+		"once_per_day": false,
+		"conditions": {
+			"min_friendship": 3
+		},
+		"lines": [
+			"DLG_TEST_FRIEND"
+		],
+		"choices": []
+	},
+	{
+		"id": "dlg_a_talk",
+		"npc": "npc_test_a",
+		"provisional": true,
+		"priority": 10,
+		"once_per_day": true,
+		"conditions": {},
+		"lines": [
+			"DLG_TEST_HELLO",
+			"DLG_TEST_ASK"
+		],
+		"choices": [
+			{
+				"text_key": "DLG_TEST_CHOICE_KIND",
+				"friendship": 2,
+				"next": "dlg_a_thanks"
+			},
+			{
+				"text_key": "DLG_TEST_CHOICE_BYE",
+				"friendship": 0,
+				"next": ""
+			}
+		]
+	},
+	{
+		"id": "dlg_a_thanks",
+		"npc": "npc_test_a",
+		"provisional": true,
+		"priority": 0,
+		"once_per_day": false,
+		"conditions": {
+			"never_auto": true
+		},
+		"lines": [
+			"DLG_TEST_THANKS"
+		],
+		"choices": []
+	},
+	{
+		"id": "dlg_a_repeat",
+		"npc": "npc_test_a",
+		"provisional": true,
+		"priority": 1,
+		"once_per_day": false,
+		"conditions": {},
+		"lines": [
+			"DLG_TEST_REPEAT"
+		],
+		"choices": []
+	},
+	{
+		"id": "dlg_b_morning",
+		"npc": "npc_test_b",
+		"provisional": true,
+		"priority": 10,
+		"once_per_day": false,
+		"conditions": {
+			"hour_from": 5,
+			"hour_to": 12
+		},
+		"lines": [
+			"DLG_TEST_B_MORNING"
+		],
+		"choices": []
+	},
+	{
+		"id": "dlg_b_other",
+		"npc": "npc_test_b",
+		"provisional": true,
+		"priority": 1,
+		"once_per_day": false,
+		"conditions": {},
+		"lines": [
+			"DLG_TEST_B_OTHER"
+		],
+		"choices": []
+	}
+]

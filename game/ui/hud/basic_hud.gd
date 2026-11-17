@@ -15,7 +15,13 @@ var _interact_button: ActionButton
 var _message_timer := 0.0
 var _bag_panel: PanelContainer
 var _bag_grid: GridContainer
+var _dialog_panel: PanelContainer
+var _dialog_label: Label
+var _dialog_choices: VBoxContainer
+var _dialog_next: Button
 
+signal dialog_next
+signal dialog_choice(index: int)
 signal save_pressed
 signal load_pressed
 
@@ -89,6 +95,27 @@ func _ready() -> void:
 	_bag_grid = GridContainer.new()
 	_bag_grid.columns = 6
 	_bag_panel.add_child(_bag_grid)
+
+	_dialog_panel = PanelContainer.new()
+	_dialog_panel.visible = false
+	root.add_child(_dialog_panel)
+	_dialog_panel.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM, Control.PRESET_MODE_MINSIZE, 20)
+	_dialog_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	_dialog_panel.grow_vertical = Control.GROW_DIRECTION_BEGIN
+	var dbox := VBoxContainer.new()
+	dbox.custom_minimum_size = Vector2(900, 0)
+	_dialog_panel.add_child(dbox)
+	_dialog_label = Label.new()
+	_dialog_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_dialog_label.custom_minimum_size = Vector2(880, 80)
+	dbox.add_child(_dialog_label)
+	_dialog_choices = VBoxContainer.new()
+	dbox.add_child(_dialog_choices)
+	_dialog_next = Button.new()
+	_dialog_next.text = tr("DLG_NEXT")
+	_dialog_next.custom_minimum_size = Vector2(0, UiTheme.MIN_TOUCH_HEIGHT)
+	_dialog_next.pressed.connect(func(): dialog_next.emit())
+	dbox.add_child(_dialog_next)
 
 	_joystick = TouchJoystick.new()
 	_joystick.size = Vector2(380, 380)
@@ -169,3 +196,26 @@ func set_weather_text(text: String) -> void:
 
 func set_vitality_text(text: String) -> void:
 	_vitality_label.text = text
+
+
+func dialog_visible() -> bool:
+	return _dialog_panel.visible
+
+
+## Menampilkan satu baris dialog; bila `choice_texts` tidak kosong, tampil sebagai tombol pilihan.
+func show_dialog(text: String, choice_texts: Array) -> void:
+	_dialog_panel.visible = true
+	_dialog_label.text = text
+	for c in _dialog_choices.get_children():
+		c.queue_free()
+	for i in choice_texts.size():
+		var b := Button.new()
+		b.text = str(choice_texts[i])
+		b.custom_minimum_size = Vector2(0, UiTheme.MIN_TOUCH_HEIGHT)
+		b.pressed.connect(func(): dialog_choice.emit(i))
+		_dialog_choices.add_child(b)
+	_dialog_next.visible = choice_texts.is_empty()
+
+
+func hide_dialog() -> void:
+	_dialog_panel.visible = false

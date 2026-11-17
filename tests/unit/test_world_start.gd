@@ -105,6 +105,41 @@ func run() -> void:
 	check_eq(GameTime.clock.day_index(), day0 + 1, "hari berganti setelah tidur")
 	check_eq(world.farming.vitality.value("stamina"), 20, "stamina pulih")
 
+	# NPC uji: posisi jadwal, dialog, hubungan, waktu berhenti saat bicara
+	check_eq(world.npc_nodes.size(), 2, "2 NPC uji terpasang")
+	world.snap_npcs()
+	var npc_a: Node3D = world.npc_nodes["npc_test_a"]
+	var exp_loc := Vector3(float(DataRegistry.get_row("npc_locations", world.npc_state("npc_test_a")["location"])["x"]), 0.0, float(DataRegistry.get_row("npc_locations", world.npc_state("npc_test_a")["location"])["z"]))
+	check(npc_a.position.distance_to(exp_loc) < 0.01, "NPC berada di lokasi jadwal")
+	world.farming.world_seed = 1
+	while world.farming.is_raining_today():
+		world.farming.world_seed += 1
+	player.global_position = npc_a.global_position + Vector3(0, 0, 1.2)
+	await wait_frames(2)
+	world.sensor.facing = Vector3(0, 0, -1)
+	var tgt: Interactable = world.sensor.refresh()
+	check(tgt != null and tgt.has_meta("npc_id"), "NPC terdeteksi sebagai target")
+	var minute_before := GameTime.clock.total_minutes
+	check(world.sensor.try_interact(), "mulai bicara")
+	check(world.dialog.is_active() and world.hud.dialog_visible(), "dialog tampil")
+	check(GameTime.clock.is_paused(), "waktu berhenti saat dialog")
+	await wait_frames(5)
+	check_eq(GameTime.clock.total_minutes, minute_before, "jam tidak maju saat dialog")
+	world.hud.dialog_next.emit()
+	world.hud.dialog_choice.emit(0)
+	check_eq(world.social.friendship("npc_test_a"), 2, "friendship bertambah lewat UI")
+	world.hud.dialog_next.emit()
+	check(not world.dialog.is_active() and not world.hud.dialog_visible(), "dialog ditutup")
+	check(not GameTime.clock.is_paused(), "waktu berjalan lagi")
+	# Jadwal berubah menurut jam: NPC bergerak ke lokasi baru
+	GameTime.clock.add_minutes(7 * 60)
+	await wait_frames(2)
+	var tgt_after: Vector3 = world._npc_targets["npc_test_a"]
+	check(tgt_after.distance_to(exp_loc) > 1.0, "target NPC berubah menurut jadwal")
+	var d0 := npc_a.position.distance_to(tgt_after)
+	await wait_frames(20)
+	check(npc_a.position.distance_to(tgt_after) < d0, "NPC bergerak menuju lokasi baru")
+
 	# Simpan / muat dan tas
 	var pm := GameTime.clock.total_minutes
 	check(world.save_game(), "simpan slot 0")

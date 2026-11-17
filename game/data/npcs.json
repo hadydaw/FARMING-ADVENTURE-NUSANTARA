@@ -1,0 +1,64 @@
+[
+	{
+		"id": "npc_test_a",
+		"provisional": true,
+		"note": "NPC UJI TEKNIS generik, BUKAN NPC resmi (daftar NPC belum diputuskan, T12).",
+		"name_key": "NPC_TEST_A",
+		"color": "#4aa3d8",
+		"rain_location": "loc_home_a",
+		"schedule": [
+			{
+				"from": 0,
+				"to": 6,
+				"location": "loc_home_a",
+				"activity": "rest"
+			},
+			{
+				"from": 6,
+				"to": 12,
+				"location": "loc_field",
+				"activity": "work"
+			},
+			{
+				"from": 12,
+				"to": 18,
+				"location": "loc_square",
+				"activity": "socialize"
+			},
+			{
+				"from": 18,
+				"to": 24,
+				"location": "loc_home_a",
+				"activity": "rest"
+			}
+		]
+	},
+	{
+		"id": "npc_test_b",
+		"provisional": true,
+		"note": "NPC UJI TEKNIS generik, BUKAN NPC resmi.",
+		"name_key": "NPC_TEST_B",
+		"color": "#d8a34a",
+		"rain_location": "loc_home_b",
+		"schedule": [
+			{
+				"from": 0,
+				"to": 8,
+				"location": "loc_home_b",
+				"activity": "rest"
+			},
+			{
+				"from": 8,
+				"to": 16,
+				"location": "loc_square",
+				"activity": "work"
+			},
+			{
+				"from": 16,
+				"to": 24,
+				"location": "loc_home_b",
+				"activity": "rest"
+			}
+		]
+	}
+]

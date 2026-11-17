@@ -12,6 +12,10 @@ var sensor: InteractionSensor
 var hud: BasicHud
 var prop_count := 0
 var farming: FarmingSession
+var social: SocialState
+var dialog: DialogRunner
+var npc_nodes: Dictionary = {}
+var _npc_targets: Dictionary = {}
 var plot_nodes: Dictionary = {}  # id petak -> Node3D
 var _inspect_count := 0
 var _models: Dictionary = {}  # prop id -> PackedScene
@@ -25,10 +29,12 @@ func _ready() -> void:
 	_build_camera()
 	_build_ui()
 	_build_farm()
+	_build_npcs()
 	Events.interaction_performed.connect(_on_interacted)
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	_move_npcs(delta)
 	if farming != null and farming.sleep != null and farming.sleep.is_sleeping():
 		player.set_physics_process(false)
 		hud.show_message(tr("SLEEPING"), 0.5)
@@ -43,6 +49,10 @@ func _process(_delta: float) -> void:
 func _prompt_text() -> String:
 	if sensor.current == null:
 		return ""
+	if dialog != null and dialog.is_active():
+		return ""
+	if sensor.current.has_meta("npc_id"):
+		return tr("INTERACT_TALK") + ": " + tr(str(sensor.current.get_meta("label_key", "")))
 	if sensor.current.has_meta("is_bed"):
 		return tr("FARM_ACT_SLEEP")
 	if sensor.current.has_meta("plot_id"):
@@ -55,6 +65,11 @@ func inspect_count() -> int:
 
 
 func _on_interacted(target: Node, _actor: Node) -> void:
+	if dialog != null and dialog.is_active():
+		return
+	if target.has_meta("npc_id"):
+		_start_dialog(str(target.get_meta("npc_id")))
+		return
 	if target.has_meta("is_bed"):
 		if farming.sleep.begin():
 			hud.show_message(tr("SLEEPING"), 0.5)
@@ -337,7 +352,7 @@ const SAVE_SLOT := 0
 
 ## Simpan uji ke slot 0: waktu permainan + status pertanian (bukan jam perangkat).
 func save_game() -> bool:
-	var err := SaveService.save_slot(SAVE_SLOT, {"v": 1, "time": GameTime.clock.to_dict(), "farming": farming.to_dict()})
+	var err := SaveService.save_slot(SAVE_SLOT, {"v": 1, "time": GameTime.clock.to_dict(), "farming": farming.to_dict(), "social": social.to_dict()})
 	hud.show_message(tr("SAVE_OK") if err == OK else tr("SAVE_FAIL"))
 	return err == OK
 
@@ -345,11 +360,12 @@ func save_game() -> bool:
 ## Muat dari slot 0; semua-atau-tidak (waktu dan pertanian harus sama-sama valid).
 func load_game() -> bool:
 	var data: Dictionary = SaveService.load_slot(SAVE_SLOT)
-	if data.is_empty() or typeof(data.get("time")) != TYPE_DICTIONARY or typeof(data.get("farming")) != TYPE_DICTIONARY:
+	if data.is_empty() or typeof(data.get("time")) != TYPE_DICTIONARY or typeof(data.get("farming")) != TYPE_DICTIONARY or typeof(data.get("social")) != TYPE_DICTIONARY:
 		hud.show_message(tr("LOAD_NONE"))
 		return false
 	var backup_time: Dictionary = GameTime.clock.to_dict()
 	var backup_farm: Dictionary = farming.to_dict()
+	var backup_social: Dictionary = social.to_dict()
 	if not GameTime.clock.from_dict(data["time"]):
 		hud.show_message(tr("LOAD_FAIL"))
 		return false
@@ -358,7 +374,13 @@ func load_game() -> bool:
 		farming.from_dict(backup_farm)
 		hud.show_message(tr("LOAD_FAIL"))
 		return false
+	if not social.from_dict(data["social"]):
+		GameTime.clock.from_dict(backup_time)
+		farming.from_dict(backup_farm)
+		hud.show_message(tr("LOAD_FAIL"))
+		return false
 	refresh_farm_visuals()
+	snap_npcs()
 	hud.show_message(tr("LOAD_OK"))
 	return true
 
@@ -412,3 +434,102 @@ func _on_woke_up() -> void:
 	player.set_physics_process(true)
 	refresh_farm_visuals()
 	hud.show_message(tr("WOKE_UP"))
+
+
+# --- NPC uji (jadwal + dialog; konten generik SEMENTARA, bukan NPC resmi) ---
+
+func _build_npcs() -> void:
+	var scfg: Dictionary = DataRegistry.get_row("social_config", "default")
+	var ids: Array = []
+	for n in DataRegistry.rows("npcs"):
+		ids.append(str(n["id"]))
+	social = SocialState.new(ids, int(scfg["friendship_max"]), int(scfg["friendship_start"]))
+	dialog = DialogRunner.new(DataRegistry.rows("dialogs"), social)
+	dialog.line_changed.connect(func(key, choices):
+		hud.show_dialog(tr(key), choices.map(func(k): return tr(str(k)))))
+	dialog.ended.connect(_on_dialog_ended)
+	hud.dialog_next.connect(func(): dialog.advance(GameTime.clock.day_index()))
+	hud.dialog_choice.connect(func(i): dialog.choose(i, GameTime.clock.day_index()))
+	var holder := Node3D.new()
+	holder.name = "Npcs"
+	add_child(holder)
+	for n in DataRegistry.rows("npcs"):
+		var node := Node3D.new()
+		node.name = str(n["id"])
+		var mesh := MeshInstance3D.new()
+		var cap := CapsuleMesh.new()
+		cap.radius = 0.3
+		cap.height = 1.6
+		mesh.mesh = cap
+		mesh.position.y = 0.8
+		var mat := StandardMaterial3D.new()
+		mat.albedo_color = Color(str(n["color"]))
+		mesh.material_override = mat
+		node.add_child(mesh)
+		var label := Label3D.new()
+		label.name = "Info"
+		label.pixel_size = 0.005
+		label.position = Vector3(0, 2.0, 0)
+		label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+		node.add_child(label)
+		var it := Interactable.new()
+		it.interaction_type = "talk"
+		node.add_child(it)
+		it.set_meta("npc_id", str(n["id"]))
+		it.set_meta("label_key", str(n["name_key"]))
+		holder.add_child(node)
+		npc_nodes[str(n["id"])] = node
+	Events.hour_changed.connect(func(_h): _update_npc_targets())
+	Events.day_changed.connect(func(_d): _update_npc_targets())
+	snap_npcs()
+
+
+func npc_state(npc_id: String) -> Dictionary:
+	return ScheduleResolver.resolve(DataRegistry.get_row("npcs", npc_id), GameTime.clock.hour(), farming.is_raining_today())
+
+
+func _location_pos(loc_id: String) -> Vector3:
+	var l := DataRegistry.get_row("npc_locations", loc_id)
+	return Vector3(float(l.get("x", 0.0)), 0.0, float(l.get("z", 0.0)))
+
+
+func _update_npc_targets() -> void:
+	for id in npc_nodes:
+		var st := npc_state(id)
+		_npc_targets[id] = _location_pos(str(st["location"]))
+		(npc_nodes[id].get_node("Info") as Label3D).text = "UJI: %s (%s)" % [tr(str(DataRegistry.get_row("npcs", id)["name_key"])), tr("ACT_ACTIVITY_" + str(st["activity"]).to_upper())]
+
+
+## Menaruh NPC langsung di posisi jadwal sekarang (awal permainan, setelah muat).
+func snap_npcs() -> void:
+	_update_npc_targets()
+	for id in npc_nodes:
+		(npc_nodes[id] as Node3D).position = _npc_targets[id]
+
+
+func _move_npcs(delta: float) -> void:
+	# Gerak lurus sederhana menuju lokasi jadwal; belum ada pencarian jalur (D-040 #6 menyusul).
+	for id in npc_nodes:
+		if dialog != null and dialog.is_active() and dialog.active_npc() == id:
+			continue
+		var node: Node3D = npc_nodes[id]
+		var target: Vector3 = _npc_targets.get(id, node.position)
+		node.position = node.position.move_toward(target, 2.5 * delta)
+
+
+func _dialog_context() -> Dictionary:
+	return {"hour": GameTime.clock.hour(), "weather": farming.weather_today(),
+		"season": GameTime.clock.season_id(), "day": GameTime.clock.day_index()}
+
+
+func _start_dialog(npc_id: String) -> void:
+	if dialog.start(npc_id, _dialog_context()):
+		GameTime.clock.pause("dialog")  # SEMENTARA: waktu berhenti saat dialog
+		player.set_physics_process(false)
+
+
+func _on_dialog_ended() -> void:
+	hud.hide_dialog()
+	GameTime.clock.resume("dialog")
+	player.set_physics_process(true)
+	refresh_farm_visuals()

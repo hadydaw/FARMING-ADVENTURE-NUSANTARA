@@ -515,3 +515,9 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Data uji bertanda provisional: `vitality_meters.json`, `rest_config.json`. Tidak dibuat (belum diputuskan): angka konsumsi/regenerasi, hunger/thirst/fatigue, tidur di penginapan/kemah, batas waktu tidur, efek pemulihan final, pingsan/kebangkitan (D-058), status effect (D-059).
 - Simpan/muat membawa vitalitas (semua-atau-tidak).
 - Uji: 17 berkas, 1200 pemeriksaan, 0 gagal; smoke test lulus.
+
+## 2026-11-17 (71) — Fondasi NPC: jadwal, dialog, hubungan (D-038/D-039/D-040, teknis)
+
+- Pemilik: "Kerjakan dan kasih Pilihan ke aku". Dibangun: ScheduleResolver (lokasi+aktivitas = fungsi murni dari jam dan cuaca; hujan = berteduh), SocialState (friendship per NPC, penanda dialog per hari, simpan/muat semua-atau-tidak), DialogRunner (syarat cuaca/musim/jam/friendship, prioritas, sekali-sehari, pilihan memengaruhi hubungan dan bercabang), UI dialog di HUD, 2 NPC uji generik yang bergerak menurut jadwal, waktu berhenti saat dialog (sementara).
+- SEMUA konten generik dan bertanda provisional; BUKAN NPC/dialog resmi (T12 terbuka). Format data dialog dan aturan prioritas bersifat sementara (terbuka di D-038). Belum ada: pencarian jalur/penanganan terjebak, LOD simulasi, interaksi antar-NPC, kebutuhan NPC, ekonomi NPC, romansa (T9).
+- Simpan/muat membawa data sosial. Uji: 18 berkas, 1350 pemeriksaan, 0 gagal; smoke test lulus.
