@@ -496,3 +496,8 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Dunia uji: 12 petak berupa kotak penanda berlabel "UJI", penanda tanaman tumbuh menurut tahap, HUD tas, prompt aksi, terjemahan id/en.
 - Uji: 15 berkas, 995 pemeriksaan, 0 gagal. Perilaku tas penuh menahan panen tanpa kehilangan tanaman; save rusak ditolak tanpa mengubah status.
 - Belum: menu/tombol simpan di UI, pemilihan alat manual (D-034), visual C-001..C-006.
+
+## 2026-11-17 (68) — Simpan/muat dan panel tas di HUD
+
+- Pemilik: "Kerjakan". HUD kini punya tombol Simpan, Muat, Tas. Simpan slot 0 = waktu permainan + status pertanian (SaveService, ber-checksum); muat semua-atau-tidak (gagal memulihkan keadaan sebelumnya). Panel Tas = kisi 24 slot berteks (ikon item menunggu aset C-00x).
+- Uji: 15 berkas, 1040 pemeriksaan, 0 gagal; smoke test lulus. Antarmuka sementara, belum desain UI resmi.

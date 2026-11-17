@@ -11,6 +11,11 @@ var _inventory_label: Label
 var _joystick: TouchJoystick
 var _interact_button: ActionButton
 var _message_timer := 0.0
+var _bag_panel: PanelContainer
+var _bag_grid: GridContainer
+
+signal save_pressed
+signal load_pressed
 
 
 func _ready() -> void:
@@ -46,6 +51,32 @@ func _ready() -> void:
 	root.add_child(back)
 	back.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT, Control.PRESET_MODE_KEEP_SIZE)
 	back.pressed.connect(func(): SceneManager.back())
+
+	var col := VBoxContainer.new()
+	root.add_child(col)
+	col.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT, Control.PRESET_MODE_MINSIZE, 0)
+	col.position.y += UiTheme.MIN_TOUCH_HEIGHT + 60
+	col.position.x -= 200
+	for spec in [["HUD_SAVE", "save"], ["HUD_LOAD", "load"], ["HUD_BAG", "bag"]]:
+		var b := Button.new()
+		b.text = tr(spec[0])
+		b.custom_minimum_size = Vector2(200, UiTheme.MIN_TOUCH_HEIGHT)
+		b.name = "Btn_" + spec[1]
+		col.add_child(b)
+		match spec[1]:
+			"save": b.pressed.connect(func(): save_pressed.emit())
+			"load": b.pressed.connect(func(): load_pressed.emit())
+			"bag": b.pressed.connect(func(): _bag_panel.visible = not _bag_panel.visible)
+
+	_bag_panel = PanelContainer.new()
+	_bag_panel.visible = false
+	root.add_child(_bag_panel)
+	_bag_panel.set_anchors_and_offsets_preset(Control.PRESET_CENTER, Control.PRESET_MODE_MINSIZE, 0)
+	_bag_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	_bag_panel.grow_vertical = Control.GROW_DIRECTION_BOTH
+	_bag_grid = GridContainer.new()
+	_bag_grid.columns = 6
+	_bag_panel.add_child(_bag_grid)
 
 	_joystick = TouchJoystick.new()
 	_joystick.size = Vector2(380, 380)
@@ -96,3 +127,25 @@ func interact_button() -> ActionButton:
 
 func set_inventory_text(text: String) -> void:
 	_inventory_label.text = text
+
+
+func bag_visible() -> bool:
+	return _bag_panel.visible
+
+
+func toggle_bag() -> void:
+	_bag_panel.visible = not _bag_panel.visible
+
+
+## Menggambar ulang kisi tas: tiap slot satu kotak teks (ikon item menunggu aset C-00x).
+func set_bag_slots(lines: Array) -> void:
+	for c in _bag_grid.get_children():
+		c.queue_free()
+	for t in lines:
+		var l := Label.new()
+		l.text = str(t)
+		l.custom_minimum_size = Vector2(150, 70)
+		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		l.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		_bag_grid.add_child(l)

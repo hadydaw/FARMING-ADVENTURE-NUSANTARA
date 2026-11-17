@@ -86,6 +86,23 @@ func run() -> void:
 	check(world.inventory_text().contains("x5"), "HUD tas menampilkan benih berkurang")
 	check(world.get_node("FarmPlots/plot_01/CropMarker").visible, "penanda tanaman tampil")
 
+	# Simpan / muat dan tas
+	var pm := GameTime.clock.total_minutes
+	check(world.save_game(), "simpan slot 0")
+	GameTime.clock.add_minutes(120)
+	world.farming.act_on("plot_01")  # siram
+	world.farming.inventory.clear()
+	check(world.load_game(), "muat slot 0")
+	check_eq(GameTime.clock.total_minutes, pm, "waktu kembali ke saat disimpan")
+	check(world.farming.inventory.count("seed_test_a") == 5, "inventory dipulihkan")
+	check(world.farming.grid.plot("plot_01").has_crop(), "petak dipulihkan")
+	check(not world.hud.bag_visible(), "tas awalnya tertutup")
+	world.hud.toggle_bag()
+	check(world.hud.bag_visible(), "tas terbuka")
+	world.hud.toggle_bag()
+	SaveService.delete_slot(0)
+	check(not world.load_game(), "muat tanpa simpanan ditolak")
+
 	# Batas dunia
 	player.global_position = Vector3(28, 0, 0)
 	player.input_override = Vector2(1, 0)  # kanan relatif yaw 0 = +X (menuju batas)

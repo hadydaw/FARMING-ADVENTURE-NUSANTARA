@@ -115,3 +115,11 @@ FARM_NO_ALREADY_READY,Sudah siap panen,Already ready
 FARM_NO_ALREADY_TILLED,Sudah dicangkul,Already tilled
 FARM_NO_UNKNOWN_CROP,Tanaman tidak dikenal,Unknown crop
 FARM_NO_UNKNOWN_ACTION,Aksi tidak dikenal,Unknown action
+HUD_SAVE,Simpan,Save
+HUD_LOAD,Muat,Load
+HUD_BAG,Tas,Bag
+SAVE_OK,Tersimpan,Saved
+SAVE_FAIL,Gagal menyimpan,Save failed
+LOAD_OK,Dimuat,Loaded
+LOAD_NONE,Belum ada simpanan,No save found
+LOAD_FAIL,Simpanan tidak valid,Invalid save

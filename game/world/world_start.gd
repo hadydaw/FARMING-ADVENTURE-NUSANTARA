@@ -252,6 +252,8 @@ func _build_farm() -> void:
 		holder.add_child(node)
 		plot_nodes[str(row["id"])] = node
 	Events.day_changed.connect(func(_d): refresh_farm_visuals())
+	hud.save_pressed.connect(save_game)
+	hud.load_pressed.connect(load_game)
 	refresh_farm_visuals()
 
 
@@ -280,6 +282,10 @@ func refresh_farm_visuals() -> void:
 		var info := node.get_node("Info") as Label3D
 		info.text = "UJI: " + (tr("FARM_STATE_READY") if plot.is_ready(farming.crop_defs) else (tr("FARM_STATE_GROWING") if plot.has_crop() else (tr("FARM_STATE_TILLED") if plot.tilled else tr("FARM_STATE_RAW"))))
 	hud.set_inventory_text(inventory_text())
+	var lines: Array = []
+	for sl in farming.inventory.slots():
+		lines.append("-" if (sl as Dictionary).is_empty() else "%s\nx%d" % [tr(str(farming.item_defs[sl["item"]]["name_key"])), int(sl["count"])])
+	hud.set_bag_slots(lines)
 
 
 func inventory_text() -> String:
@@ -304,3 +310,34 @@ func _on_plot_interacted(plot_id: String) -> void:
 	else:
 		hud.show_message(tr("FARM_NO_" + str(r["reason"]).to_upper()))
 	refresh_farm_visuals()
+
+
+const SAVE_SLOT := 0
+
+
+## Simpan uji ke slot 0: waktu permainan + status pertanian (bukan jam perangkat).
+func save_game() -> bool:
+	var err := SaveService.save_slot(SAVE_SLOT, {"v": 1, "time": GameTime.clock.to_dict(), "farming": farming.to_dict()})
+	hud.show_message(tr("SAVE_OK") if err == OK else tr("SAVE_FAIL"))
+	return err == OK
+
+
+## Muat dari slot 0; semua-atau-tidak (waktu dan pertanian harus sama-sama valid).
+func load_game() -> bool:
+	var data: Dictionary = SaveService.load_slot(SAVE_SLOT)
+	if data.is_empty() or typeof(data.get("time")) != TYPE_DICTIONARY or typeof(data.get("farming")) != TYPE_DICTIONARY:
+		hud.show_message(tr("LOAD_NONE"))
+		return false
+	var backup_time: Dictionary = GameTime.clock.to_dict()
+	var backup_farm: Dictionary = farming.to_dict()
+	if not GameTime.clock.from_dict(data["time"]):
+		hud.show_message(tr("LOAD_FAIL"))
+		return false
+	if not farming.from_dict(data["farming"]):
+		GameTime.clock.from_dict(backup_time)
+		farming.from_dict(backup_farm)
+		hud.show_message(tr("LOAD_FAIL"))
+		return false
+	refresh_farm_visuals()
+	hud.show_message(tr("LOAD_OK"))
+	return true
