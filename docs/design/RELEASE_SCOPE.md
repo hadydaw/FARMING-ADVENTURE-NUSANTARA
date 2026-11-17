@@ -31,7 +31,7 @@ Rilis Awal dianggap utuh bila pemain dapat menjalani satu lingkaran bermain dari
 
 ## 3. Isi Rilis Awal
 
-Tabel per sistem (WAJIB / UPDATE / LANJUTAN; **disetujui, O-008**), jawaban pemilik Q1 sampai Q6, kebutuhan cerita utama, implikasi teknis identitas anonim, pemeriksaan konsistensi, dan daftar TBD (T1 sampai T20) ada di **`RELEASE_SCOPE_PROPOSAL_P007.md`**. Itu **DRAFT PROPOSAL**; belum keputusan. Ringkasan arah usulan:
+Tabel per sistem (WAJIB / UPDATE / LANJUTAN; **disetujui, O-008**), jawaban pemilik Q1 sampai Q6, kebutuhan cerita utama, implikasi teknis identitas anonim, pemeriksaan konsistensi, dan daftar TBD (T1 sampai T20) ada di **`RELEASE_SCOPE_PROPOSAL_P007.md`**. Lingkupnya **disetujui pemilik (O-008)**; TBD T1 sampai T20 masih terbuka. Ringkasan:
 - **WAJIB:** pertanian, peternakan, memancing, memasak/crafting dan ramuan dasar, ekonomi, NPC dan kehidupan desa (target 12 NPC inti), pertarungan, companion dasar, quest, Guild awal, target 3 wilayah dan 2 dungeon, romansa tahap awal, kustomisasi dasar, cerita utama berpenutup, dan seluruh fondasi platform (save/Cloud Save, ketahanan koneksi, pengaturan, tutorial, lokalisasi, keamanan, QA).
 - **UPDATE (fondasi di Rilis Awal bila perlu):** pertunangan, pernikahan, keluarga, anak (D-066 tetap utuh), taming lanjutan/evolusi, alkimia tingkat tinggi, faksi/diplomasi, hukum, mount, achievement, transaksi kosmetik (ditunda), event live, login permanen.
 - **LANJUTAN:** endgame lengkap, wilayah tersembunyi, dungeon dan boss lanjutan/legendaris, ekspansi cerita, konflik dunia, fenomena ekstrem.
