@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.16 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.17 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -213,6 +213,19 @@ Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 - **Ekonomi:** resep langka dan hasil olahan masuk layanan harga (§4h).
 - **Save:** resep yang dikenal beserta tingkat penguasaan, tingkat dapur/laboratorium, efek aktif, dan stok bahan masuk payload save (skema berversi).
 - **Online (D-014):** progres pribadi.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4n. Implikasi Arsitektur dari D-027 (hanya catatan; belum diimplementasikan)
+
+Syarat utama: **mendukung penambahan jenis bangunan baru** dan tata letak bebas buatan pemain.
+- **Bangunan sebagai data + komponen fungsi:** definisi bangunan (model, ukuran/footprint, biaya, syarat buka, tahap upgrade) dengan *komponen fungsi* yang dapat dipasang (penyimpanan, kandang D-024, produksi, stasiun crafting D-020, dapur/laboratorium D-026, greenhouse D-023, spiritual). Jenis baru = data + kombinasi komponen yang ada.
+- **Fasilitas = stasiun pada mesin yang sudah ada:** produksi, memasak, alkimia, dan crafting memakai mesin resep (§4g, §4m); kandang memakai simulasi hewan (§4k); greenhouse memakai petak tanaman (§4j). Bangunan hanya menyediakan *tempat dan tingkat* bagi sistem tersebut, bukan logika sendiri.
+- **Penataan lahan:** penempatan lewat satu *sistem penempatan* (validasi tabrakan, area boleh bangun, rotasi); metode grid atau bebas menunggu desain, dirancang agar dapat berganti tanpa mengubah data bangunan. Navigasi NPC/hewan/companion diperbarui saat tata letak berubah (rebake navigation mesh bertahap, §4i).
+- **Dekorasi** berukuran banyak: pakai instancing/batching dan batas jumlah per lahan sesuai anggaran performa (§3); efek gameplay dekorasi (jika ada) sebagai data.
+- **Ekspansi lahan** sebagai perluasan area ber-ID (bagian wilayah/region, §4); keadaan tiap area dimuat bersama region.
+- **Pembukaan bangunan** (termasuk spiritual) memakai sistem kondisi/efek (§4d) terhadap rank, quest, dan progres.
+- **Save:** daftar bangunan (jenis, posisi, rotasi, tingkat, isi/penyimpanan), area terbuka, dan dekorasi masuk payload save (skema berversi; migrasi menjaga tata letak bila definisi bangunan berubah). Simpan ringkas (hanya perbedaan dari keadaan awal) agar ukuran save terkendali.
+- **Online (D-014):** lahan adalah progres pribadi; tidak ada kunjungan lahan pemain lain.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres

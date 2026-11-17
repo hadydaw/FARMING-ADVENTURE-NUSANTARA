@@ -126,3 +126,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - GDD §6.3 diarahkan ke §6.16 baru (v0.16); Technical Architecture §4m ditambahkan (catatan saja). Hubungan dengan D-013, D-015, D-016, D-018, D-020, D-021, D-023, D-024, D-025 dicatat tanpa mengubah isinya.
 - Ditandai terbuka: batas dengan profesi Alchemist/crafting equipment (D-020); arti "tanaman spiritual"; keterampilan pemain vs profesi NPC.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 17.
+
+## 2026-11-17 (17) — D-027 Sistem Rumah, Lahan, dan Bangunan dicatat
+
+- D-027 (Kombinasi Semua Sistem, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
+- GDD §6.4 diarahkan ke §6.17 baru (v0.17); Technical Architecture §4n ditambahkan (catatan saja). Hubungan dengan D-009, D-015, D-017, D-020, D-021, D-023, D-024, D-026 dicatat tanpa mengubah isinya.
+- Ditandai terbuka: arti "bangunan spiritual" dan "paviliun"; metode penataan lahan (grid/bebas). Romansa, pernikahan, keluarga, anak tetap belum ditetapkan.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 18.

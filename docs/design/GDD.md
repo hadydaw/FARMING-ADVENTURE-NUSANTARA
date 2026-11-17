@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.16 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.17 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -98,7 +98,7 @@ Perincian pertanian dan pertumbuhan tanaman: lihat 6.13 (D-023); peternakan dan 
 - **Memasak:** ditetapkan lewat D-015 dan dirinci di 6.16 (D-026, Memasak dan Alkimia).
 
 ### 6.4 Rumah
-Ditetapkan lewat D-015 (pengembangan rumah dan ladang; lihat 6.2). Rincian belum ditetapkan.
+Ditetapkan lewat D-015 (pengembangan rumah dan ladang; lihat 6.2) dan dirinci di 6.17 (D-027, Rumah, Lahan, dan Bangunan).
 
 ### 6.5 NPC dan Kehidupan Sosial — D-022, LOCKED (Kombinasi Semua Sistem)
 **Ditetapkan:**
@@ -276,6 +276,21 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - Terkait: memasak (D-015), pembuatan potion/makanan dan Alchemist (D-020), pertanian (D-023), peternakan (D-024), memancing (D-025), dungeon/monster (D-016, D-013), buff dan karakter (D-013, D-018), ekonomi (D-021), rumah (D-015).
 
 **[BELUM DITETAPKAN]:** daftar resep dan ramuan; jenis dan besar efek (pemulihan, buff) serta durasi/penumpukan; rumus kualitas bahan dan pengaruh kemampuan memasak; cara resep ditemukan, dipelajari, dan dikembangkan (dari NPC, buku, dungeon, eksperimen?); jenis dan tahap upgrade dapur dan laboratorium; apakah memasak/alkimia keterampilan pemain, profesi NPC, atau keduanya; **batas dengan profesi Alchemist dan crafting equipment (D-020)**; arti **"tanaman spiritual"** (D-023); mekanik memasak (minigame atau otomatis). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+### 6.17 Rumah, Lahan, dan Bangunan — D-027, LOCKED (Kombinasi Semua Sistem)
+**Ditetapkan:**
+- **Rumah utama** dengan upgrade bertingkat.
+- **Gudang, kandang, greenhouse, dan workshop.**
+- **Bangunan produksi** dan **fasilitas peternakan.**
+- **Paviliun** dan **bangunan spiritual.**
+- **Dekorasi** dan **penataan lahan bebas.**
+- **Ekspansi lahan dan fasilitas.**
+- **Bangunan dengan fungsi khusus** sesuai progres pemain.
+- Ketentuan: bangunan punya **fungsi gameplay yang jelas**; rumah dan fasilitas dikembangkan **bertahap**; **tata letak dan dekorasi dapat disesuaikan** pemain; fasilitas produksi **terintegrasi** dengan pertanian, peternakan, memasak, dan alkimia; bangunan spiritual **dapat dibuka lewat progres**; sistem **mendukung jenis bangunan baru**.
+- Terkait: rumah dan ladang (D-015), pertanian (D-023), peternakan (D-024), memasak/alkimia (D-026), crafting (D-020), ekonomi (D-021), progres/wilayah (D-009, D-017).
+
+**[BELUM DITETAPKAN]:** daftar bangunan dan fungsinya; tahap upgrade rumah; ukuran dan tahap ekspansi lahan; metode penataan (grid atau penempatan bebas, rotasi, batas); daftar dekorasi dan apakah dekorasi punya efek gameplay; **arti "bangunan spiritual" dan fungsi "paviliun"**; syarat membuka bangunan spiritual; biaya dan material; kapasitas penyimpanan; apakah bangunan dapat rusak/perlu perawatan.
+**Tetap BELUM ditetapkan (D-015):** hubungan romantis, pernikahan, keluarga, dan anak. D-027 tidak mencakupnya. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

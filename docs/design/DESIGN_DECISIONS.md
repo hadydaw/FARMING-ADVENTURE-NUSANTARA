@@ -275,6 +275,29 @@ Hubungan dengan keputusan lain (tidak mengubah isinya): merinci butir **memasak*
 **Terbuka:** "tanaman spiritual" masih belum didefinisikan (D-023); rumus efek, daftar resep, dan cara resep ditemukan/dipelajari/dikembangkan belum ditetapkan; apakah memasak/alkimia berupa keterampilan pemain, profesi NPC, atau keduanya belum ditetapkan.
 Implementasi belum dimulai. ID D-026 tersedia saat dicatat (tanpa bentrokan).
 
+### D-027 — Sistem Rumah, Lahan, dan Bangunan *(APPROVED / LOCKED, 2026-11-17, Tahap 17)*
+Pilihan: **D. Kombinasi Semua Sistem.** Ruang lingkup:
+1. Rumah utama dengan upgrade bertingkat
+2. Gudang, kandang, greenhouse, dan workshop
+3. Bangunan produksi dan fasilitas peternakan
+4. Paviliun serta bangunan spiritual
+5. Dekorasi dan penataan lahan bebas
+6. Ekspansi lahan dan fasilitas
+7. Bangunan dengan fungsi khusus sesuai progres pemain
+
+Ketentuan desain:
+- Bangunan punya fungsi gameplay yang jelas.
+- Rumah dan fasilitas dikembangkan bertahap.
+- Tata letak dan dekorasi lahan dapat disesuaikan pemain.
+- Fasilitas produksi terintegrasi dengan pertanian, peternakan, memasak, dan alkimia.
+- Bangunan spiritual dapat dibuka lewat progres permainan.
+- Sistem mendukung penambahan jenis bangunan baru.
+
+Hubungan dengan keputusan lain (tidak mengubah isinya): merinci butir **pengembangan rumah** dan **pengembangan/perluasan ladang** pada **D-015**; pertanian (**D-023**, greenhouse), peternakan (**D-024**, kandang dan fasilitas), memasak dan alkimia (**D-026**, dapur dan laboratorium sebagai fasilitas), crafting (**D-020**, workshop/penyimpanan); biaya dan material berkaitan dengan ekonomi (**D-021**); pembukaan bangunan spiritual lewat progres (**D-009**, **D-017**) bergantung pada keputusan yang belum ada.
+**Terbuka:** arti "bangunan spiritual" dan "paviliun" (fungsi gameplay) belum didefinisikan, sama seperti elemen "spiritual" lain (D-023, D-024, D-025); apakah penataan lahan bebas berbasis grid atau penempatan bebas belum ditetapkan; batas dengan sistem pengembangan di D-015 (rumah/ladang) tidak bertentangan, hanya dirinci.
+**Penegasan:** tidak ada keputusan tentang kamar keluarga, pasangan, atau anak; romansa, pernikahan, keluarga, dan anak tetap belum ditetapkan (D-015).
+Detail (daftar bangunan, tahap upgrade, ukuran lahan, biaya, syarat buka bangunan spiritual) belum ditetapkan. Implementasi belum dimulai. ID D-027 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |
