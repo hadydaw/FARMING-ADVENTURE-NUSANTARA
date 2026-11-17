@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.13 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.14 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -171,6 +171,20 @@ Syarat utama: **mudah diperluas** dengan tanaman dan wilayah baru.
 - **Save:** keadaan setiap plot (tanah, air, pupuk, tanaman, tahap, waktu tanam), teknologi/upgrade lahan, dan benih yang dimiliki masuk payload save (skema berversi). Ukuran save dipantau karena banyak plot; simpan secara ringkas (hanya plot berisi/berubah).
 - **Anggaran performa:** banyak tanaman terlihat sekaligus menuntut batching/instancing dan LOD (§3).
 - **Online (D-014):** ladang adalah progres pribadi; tidak ada kunjungan ladang pemain lain.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4k. Implikasi Arsitektur dari D-024 (hanya catatan; belum diimplementasikan)
+
+Syarat utama: **spesies dan fasilitas baru dapat ditambah.**
+- **Spesies sebagai data:** kebutuhan pakan, kesehatan, laju pertumbuhan, aturan berkembang biak, produk (dan kualitasnya), kelangkaan, flag spiritual, dan model/animasi sebagai data. Spesies baru = data baru.
+- **Memakai model "makhluk" bersama (§4f):** hewan ternak adalah makhluk dengan komponen *ternak*; hewan spiritual dapat berbagi skill/efek dengan sistem yang sama. Batas ternak vs pet/companion (D-019) menunggu desain; model bersama membuat perubahan peran tidak memaksa data ditulis ulang.
+- **Simulasi berbasis selisih hari:** kebutuhan, kesehatan, pertumbuhan, dan produksi dihitung per hari lewat layanan kalender (§4b), bukan per frame; berlaku saat pemain jauh/offline, sama seperti tanaman (§4j). Hewan hanya "hidup" (bergerak/animasi) bila dekat pemain (LOD seperti NPC, §4i).
+- **Kesehatan dan perawatan** sebagai nilai terpisah yang menjadi pengali produktivitas dan kualitas produk; aturan kesehatan modular agar faktor baru bisa ditambah.
+- **Berkembang biak:** aturan per spesies (data) dengan hasil acak ber-seed yang dapat diuji dan dikunci di save agar tidak dimanipulasi dengan memuat ulang (§4g); pewarisan sifat (jika ada) menunggu desain.
+- **Fasilitas** (kandang, dll.) sebagai data dengan kapasitas dan upgrade; terhubung ke sistem pengembangan ladang/rumah (D-015).
+- **Integrasi:** produk ternak adalah item (§4g) yang masuk resep crafting dan layanan harga (§4h); pakan dapat berupa hasil panen (§4j).
+- **Save:** daftar hewan (spesies, umur/tahap, kesehatan, perawatan, status produksi, sifat), fasilitas, dan stok pakan masuk payload save (skema berversi); simpan ringkas untuk kawanan besar.
+- **Online (D-014):** peternakan adalah progres pribadi.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres

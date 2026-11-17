@@ -211,6 +211,27 @@ Ketentuan desain:
 Hubungan dengan keputusan lain (tidak mengubah isinya): merinci butir farming dan pengembangan ladang pada **D-015**; musim (D-015) dan cuaca, yang kini dinyatakan memengaruhi tanaman; crafting dan profesi Alchemist pada **D-020** (istilah "alkimia" dibaca sebagai bagian sistem Alchemist D-020; rinciannya belum ditetapkan); ekonomi pada **D-021**; wilayah baru pada **D-009**; "kebutuhan petualangan" (mis. bahan potion/makanan) pada **D-013/D-020**.
 Hal baru yang **belum didefinisikan**: arti "tanaman spiritual" dan mekanismenya. Detail (daftar tanaman/varietas, lama tumbuh, tahap pertumbuhan, jenis cuaca, jenis pupuk, mekanik pengairan, teknologi pertanian, langkanya tanaman langka) belum ditetapkan. Implementasi belum dimulai. ID D-023 tersedia saat dicatat (tanpa bentrokan).
 
+### D-024 — Sistem Peternakan dan Hewan *(APPROVED / LOCKED, 2026-11-17, Tahap 14)*
+Pilihan: **D. Kombinasi Semua Sistem.** Ruang lingkup:
+1. Hewan ternak biasa dan hewan langka
+2. Sistem kesehatan dan kebutuhan makanan hewan
+3. Pertumbuhan dan perkembangbiakan
+4. Kualitas produk ternak
+5. Hewan spiritual dengan kemampuan khusus
+6. Integrasi peternakan dengan crafting, ekonomi, dan petualangan
+7. Pengembangan kandang dan fasilitas peternakan
+
+Ketentuan desain:
+- Setiap spesies punya kebutuhan, karakteristik, dan hasil produk berbeda.
+- Kesehatan dan kualitas perawatan memengaruhi produktivitas.
+- Hewan tumbuh dan berkembang biak sesuai aturan spesies.
+- Hewan spiritual punya karakteristik dan kemampuan unik.
+- Sistem mendukung penambahan spesies dan fasilitas baru.
+
+Hubungan dengan keputusan lain (tidak mengubah isinya): merinci butir peternakan dan pemeliharaan hewan pada **D-015**; produk ternak untuk crafting/makanan (**D-020**) dan perdagangan (**D-021**); pakan dapat berasal dari hasil pertanian (**D-023**); "petualangan" dapat berkaitan dengan companion/monster (**D-019**) dan material/loot (**D-016/D-020**); pengembangan kandang berkaitan dengan pengembangan ladang dan rumah (**D-015**).
+**Batas yang masih terbuka:** perbedaan hewan ternak (D-024) dengan pet/companion (D-019), serta hubungan "hewan spiritual" dengan companion dan monster, belum ditetapkan. "Hewan spiritual" (seperti "tanaman spiritual" di D-023) belum didefinisikan. "Perkembangbiakan" dibaca sebagai berlaku untuk **hewan**; tidak berkaitan dengan keluarga/anak pemain, yang tetap belum ditetapkan (D-015).
+Detail (daftar spesies dan produk, jenis fasilitas, aturan kesehatan, kebutuhan pakan, aturan kawin/lahir, daftar hewan langka dan spiritual) belum ditetapkan. Implementasi belum dimulai. ID D-024 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

@@ -105,3 +105,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - GDD §6.13 baru (v0.13) dan tautan dari §6.2; Technical Architecture §4j ditambahkan (catatan saja; fokus kemudahan perluasan tanaman dan wilayah). Hubungan dengan D-009, D-015, D-019, D-020, D-021, D-022 dicatat tanpa mengubah isinya.
 - Ditandai terbuka: arti "tanaman spiritual" belum didefinisikan; batas "alkimia" vs profesi Alchemist (D-020).
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 14.
+
+## 2026-11-17 (14) — D-024 Sistem Peternakan dan Hewan dicatat
+
+- D-024 (Kombinasi Semua Sistem, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
+- GDD §6.14 baru (v0.14) dan tautan dari §6.2; Technical Architecture §4k ditambahkan (catatan saja). Hubungan dengan D-015, D-016, D-019, D-020, D-021, D-023 dicatat tanpa mengubah isinya.
+- Ditandai terbuka: arti "hewan spiritual"; batas hewan ternak vs pet/companion (D-019). "Perkembangbiakan" dicatat berlaku untuk hewan saja; keluarga/anak pemain tetap belum ditetapkan.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 15.

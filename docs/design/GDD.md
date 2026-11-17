@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.13 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.14 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -91,7 +91,7 @@ Belum: daftar wilayah, peta dunia, syarat buka tiap wilayah, ukuran wilayah, car
 
 **Di luar D-015 dan BELUM ditetapkan (jangan dianggap disetujui):** hubungan romantis, pernikahan, membangun keluarga, memiliki anak.
 
-Perincian pertanian dan pertumbuhan tanaman: lihat 6.13 (D-023). Untuk bagian 6.3 dan 6.4 di bawah, rujuk 6.2.
+Perincian pertanian dan pertumbuhan tanaman: lihat 6.13 (D-023); peternakan dan hewan: lihat 6.14 (D-024). Untuk bagian 6.3 dan 6.4 di bawah, rujuk 6.2.
 
 ### 6.3 Memancing dan Memasak
 Ditetapkan lewat D-015 (lihat 6.2). Rincian belum ditetapkan.
@@ -231,6 +231,21 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 
 **[BELUM DITETAPKAN]:** daftar tanaman, bibit, varietas; lama dan jumlah tahap tumbuh; jenis cuaca dan pengaruhnya; jenis pupuk dan kualitas tanah; mekanik pengairan; jenis teknologi pertanian dan tahap pengembangan lahan; **arti dan mekanisme "tanaman spiritual"** (belum didefinisikan); kriteria tanaman langka; batas antara "alkimia" di sini dan profesi Alchemist (D-020); keterlibatan companion (D-019) dan NPC pekerja (D-022) dalam bertani.
 **Catatan:** cuaca, yang di 6.2 masih tercantum belum ditetapkan, kini dinyatakan **ada** (memengaruhi tanaman); rinciannya tetap belum ditetapkan. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+### 6.14 Peternakan dan Hewan — D-024, LOCKED (Kombinasi Semua Sistem)
+**Ditetapkan:**
+- **Hewan ternak biasa dan hewan langka.**
+- **Kesehatan dan kebutuhan makanan** hewan.
+- **Pertumbuhan dan perkembangbiakan.**
+- **Kualitas produk ternak.**
+- **Hewan spiritual** dengan kemampuan khusus.
+- **Integrasi** dengan crafting, ekonomi, dan petualangan.
+- **Pengembangan kandang dan fasilitas peternakan.**
+- Ketentuan: tiap spesies punya kebutuhan, karakteristik, dan produk berbeda; **kesehatan dan kualitas perawatan memengaruhi produktivitas**; hewan **tumbuh dan berkembang biak** sesuai aturan spesies; hewan spiritual punya karakter dan kemampuan unik; sistem **mendukung penambahan spesies dan fasilitas baru**.
+- Terkait: peternakan dan pengembangan ladang (D-015), crafting (D-020), ekonomi (D-021), pakan dari pertanian (D-023), companion/monster (D-019), loot/material (D-016).
+
+**[BELUM DITETAPKAN]:** daftar spesies, hewan langka, dan hewan spiritual; produk tiap spesies; kebutuhan pakan; aturan kesehatan dan penyakit; aturan kawin, kelahiran, dan pertumbuhan; jenis kandang dan fasilitas serta upgrade-nya; **arti dan kemampuan "hewan spiritual"**; **batas antara hewan ternak (D-024) dan pet/companion (D-019)**; apakah hewan ternak dapat dibawa ke petualangan.
+**Catatan:** "perkembangbiakan" berlaku untuk hewan, bukan keluarga/anak pemain (tetap belum ditetapkan, D-015). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 
