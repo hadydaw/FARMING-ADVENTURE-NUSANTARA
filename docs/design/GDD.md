@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.58 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement, D-047 Monetisasi, D-048 Live Ops, D-049 QA, D-050 Keamanan, D-052 Performa, D-053 Loading, D-054 Peta, D-055 Waktu, D-056 Tidur, D-057 Vitalitas, D-058 Kekalahan, D-059 Status Effect, D-060 Ras & Suku, D-061 Organisasi Dunia, D-062 Hubungan Faksi, D-063 Konflik Dunia, D-064 Hukum, D-065 Fenomena Dunia, D-066 Romansa & Keluarga, D-067 Cerita Utama, D-068 Endgame, D-069 Rilis & Roadmap) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.59 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement, D-047 Monetisasi, D-048 Live Ops, D-049 QA, D-050 Keamanan, D-052 Performa, D-053 Loading, D-054 Peta, D-055 Waktu, D-056 Tidur, D-057 Vitalitas, D-058 Kekalahan, D-059 Status Effect, D-060 Ras & Suku, D-061 Organisasi Dunia, D-062 Hubungan Faksi, D-063 Konflik Dunia, D-064 Hukum, D-065 Fenomena Dunia, D-066 Romansa & Keluarga, D-067 Cerita Utama, D-068 Endgame, D-069 Rilis & Roadmap, D-051 Ketahanan Koneksi) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -675,8 +675,8 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - **Aktivitas monster dan lokasi** dipengaruhi waktu; **event dunia** dengan jadwal/syarat waktu.
 - Terintegrasi dengan **musim, cuaca, pertanian, peternakan, memancing, dungeon, dan ekonomi.**
 - **Waktu permainan memakai simulasi internal**, bukan semata-mata jam perangkat; disimpan di save sebagai sumber kebenaran.
-- **Konsistensi waktu:** perpindahan wilayah dan loading tidak membuat waktu melompat/mundur; mengubah jam perangkat tidak mengubah waktu permainan; gangguan koneksi tidak memajukan atau memundurkan waktu (perilaku lanjutan menunggu D-051).
-- Selaras dengan D-029, D-030, D-040, D-044, dan D-051 (isi D-051 belum diterima).
+- **Konsistensi waktu:** perpindahan wilayah dan loading tidak membuat waktu melompat/mundur; mengubah jam perangkat tidak mengubah waktu permainan; gangguan koneksi tidak memajukan atau memundurkan waktu (kerangka koneksi di D-051; rincian tetap terbuka).
+- Selaras dengan D-029, D-030, D-040, D-044, dan D-051.
 - Terkait: D-009, D-015, D-016, D-021 sampai D-026, D-031, D-032, D-045, D-048, D-050, D-052 sampai D-054.
 
 **[BELUM DITETAPKAN]:** panjang hari/bulan/tahun dan fase hari, kecepatan jam, apakah waktu berjalan di menu/dialog/pertarungan/latar belakang/offline, kebijakan event waktu nyata vs kalender, aturan catch-up, panjang musim, konsep "spiritual" (belum didefinisikan). Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§6.55, cakupan saja; detail belum final).
@@ -690,7 +690,7 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - Pergantian hari **satu jalur resmi**, deterministik (seed + tanggal), **tidak memakai jam perangkat**, tanpa waktu mundur.
 - **Pemrosesan berat tidak dalam satu frame**; ditutupi transisi/loading (D-053).
 - **Aman terhadap gangguan koneksi dan penyimpanan** (transaksi idempoten, penulisan atomik, tanpa dobel proses).
-- Tetap **single-player online** (D-014). Selaras dengan D-044, D-055, dan D-051 (isi D-051 belum diterima).
+- Tetap **single-player online** (D-014). Selaras dengan D-044, D-055, dan D-051.
 - Terkait: D-015, D-021 sampai D-024, D-027 sampai D-032, D-040, D-045, D-048 sampai D-050, D-052, D-053.
 
 **[BELUM DITETAPKAN]:** efek pemulihan, batas tidur dan aturan jam tidur, biaya/fasilitas penginapan, aturan dan risiko kemah, tidur singkat tanpa ganti hari, perilaku offline/catch-up, konsep "spiritual" (belum didefinisikan). Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§6.55, cakupan saja; detail belum final).
@@ -703,7 +703,7 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - Terintegrasi dengan **farming, eksplorasi, pertarungan, dungeon, memasak, alkimia, dan tidur.**
 - **Tidak memberatkan:** kebutuhan karakter tidak boleh membuat farming dan eksplorasi terlalu merepotkan.
 - **Tanpa angka** konsumsi, regenerasi, penalti, atau balance final (menunggu desain lanjutan).
-- Selaras dengan D-015, D-026, D-043, D-046, D-056; D-051 belum diterima isinya.
+- Selaras dengan D-015, D-026, D-043, D-046, D-056; D-051 berlaku (Connection Resilience).
 - Terkait: D-013, D-016, D-018 sampai D-020, D-023 sampai D-025, D-028, D-031, D-036, D-042, D-044, D-045, D-048 sampai D-050, D-052, D-055.
 
 **[BELUM DITETAPKAN]:** semua angka, efek saat habis (termasuk risiko pingsan/kekalahan), apakah kebutuhan dapat diatur lewat kesulitan/pengaturan, cakupan Mana, daftar efek makanan/potion, stamina mount, konsep "spiritual" (belum didefinisikan). Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§6.55, cakupan saja; detail belum final).
@@ -718,7 +718,7 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - Terintegrasi dengan **pertarungan, dungeon, eksplorasi, vitalitas, NPC, dan progres dunia.**
 - **Adil:** pemain tidak kehilangan progres secara tidak wajar; pemain selalu punya jalan kembali bermain.
 - **Aman:** deterministik, idempoten, tanpa jam perangkat, aman terhadap interupsi/koneksi.
-- Tetap **single-player online.** Selaras dengan D-015, D-029, D-040, D-044, D-048, D-056, D-057; D-051 belum diterima isinya.
+- Tetap **single-player online.** Selaras dengan D-015, D-029, D-040, D-044, D-048, D-056, D-057; D-051 berlaku (Connection Resilience).
 - Terkait: D-009, D-013, D-016, D-019, D-021, D-022, D-027, D-028, D-031, D-032, D-037, D-038, D-043, D-045, D-046, D-049, D-050, D-052 sampai D-055.
 
 **[BELUM DITETAPKAN]:** semua penalti (item, uang, EXP, progres), durasi pemulihan, aturan checkpoint final, aturan penyelamatan NPC, biaya/layanan klinik, efek pada waktu, nasib companion, perlakuan dungeon/boss/event, konsep "spiritual" (belum didefinisikan). Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§6.55, cakupan saja; detail belum final).
@@ -733,7 +733,7 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - Satu sistem bersama untuk pemain, companion, monster, dan sumber lain; terintegrasi dengan **pertarungan, dungeon, pertanian, memasak, alkimia, monster, dan perkembangan karakter.**
 - **Setiap efek wajib punya definisi, sumber, target, durasi, dan aturan penghapusan** yang jelas (isi ditetapkan kemudian).
 - Efek berdurasi mengikuti **waktu permainan internal** (D-055); adil dan tidak membuat kehilangan progres secara tidak wajar (D-058).
-- Selaras dengan D-018, D-026, D-046, D-057, D-058; D-051 belum diterima isinya.
+- Selaras dengan D-018, D-026, D-046, D-057, D-058; D-051 berlaku (Connection Resilience).
 - Terkait: D-013, D-016, D-019, D-020, D-023, D-024, D-029 sampai D-032, D-036, D-043 sampai D-045, D-048 sampai D-050, D-052, D-053, D-055, D-056.
 
 **[BELUM DITETAPKAN]:** katalog efek, durasi, stacking, probabilitas, angka balance, arti "spiritual", daftar elemen/penyakit, cara menyembuhkan, persistensi setelah kekalahan/tidur/perpindahan wilayah. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§6.55, cakupan saja; detail belum final).
@@ -805,7 +805,7 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - **Konsisten dengan musim, cuaca, kalender, dan event dunia**; mengikuti waktu permainan internal (D-055), bukan jam perangkat.
 - **Tidak merusak save atau menghilangkan progres secara tidak adil**; pemain dapat bersiap/diberi isyarat dan tidak dipaksa mengikuti setiap fenomena.
 - **Tanpa angka:** tidak ada katalog, frekuensi, probabilitas, kerusakan, atau durasi final.
-- Selaras dengan D-029, D-030, D-048, D-051 (isi belum diterima), D-055. Terkait: D-009, D-019, D-021, D-023 sampai D-025, D-028, D-031, D-032, D-040, D-044, D-045, D-049 sampai D-054, D-056 sampai D-059, D-063.
+- Selaras dengan D-029, D-030, D-048, D-051, D-055. Terkait: D-009, D-019, D-021, D-023 sampai D-025, D-028, D-031, D-032, D-040, D-044, D-045, D-049 sampai D-054, D-056 sampai D-059, D-063.
 
 **[BELUM DITETAPKAN]:** katalog fenomena, frekuensi/probabilitas, tingkat kerusakan, durasi, konsekuensi numerik, arti "spiritual", aturan peringatan/perlindungan/pemulihan, perilaku offline, dampak ke peta/fast travel. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§6.55, cakupan saja; detail belum final).
 
@@ -855,7 +855,16 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - **Tidak ada tanggal rilis atau target biaya.** Keputusan terkunci Tahap 1 sampai 59 tidak diubah; rilis hanya memilih seberapa banyak sistem terkunci dibuka.
 - Rincian: `RELEASE_SCOPE.md` (isi Rilis Awal berstatus **usulan**, P-007) dan `ROADMAP.md`. Terkait: seluruh D-013 sampai D-068, terutama D-014, D-044, D-045, D-047 sampai D-050, D-052, D-053, D-068.
 
-**[BELUM DITETAPKAN]:** isi final Rilis Awal, kanal distribusi, matriks perangkat, batas ukuran/performa, urutan dan jadwal pembaruan, apakah Rilis Awal memuat busur cerita yang selesai, apakah romansa/keluarga masuk Rilis Awal, arti "spiritual" (belum didefinisikan).
+**[BELUM DITETAPKAN]:** isi final Rilis Awal, matriks perangkat, batas ukuran/performa, urutan dan jadwal pembaruan, apakah Rilis Awal memuat busur cerita yang selesai, apakah romansa/keluarga masuk Rilis Awal, arti "spiritual" (belum didefinisikan).
+
+### 6.59 Ketahanan Koneksi — D-051, LOCKED (Connection Resilience Hybrid Lengkap; Tahap 42, isi diterima setelah Tahap 60)
+**Ditetapkan:**
+- **Sambung ulang otomatis**, **pemulihan sesi**, **perlindungan data yang belum tersinkron**, **penanganan gangguan server**, **percobaan ulang yang aman dan idempoten**, serta **status koneksi dan sinkronisasi** yang terlihat pemain.
+- **Tidak ada full offline mode**; tidak bertentangan dengan D-014 dan D-044 (cache lokal hanya penyangga perlindungan data).
+- Gangguan koneksi tidak memajukan/memundurkan waktu permainan (D-055). Indonesia/English dan aksesibilitas (D-045).
+- Terkait: D-014, D-031, D-044, D-045, D-048 sampai D-050, D-052, D-053, D-055, D-056, D-058, D-069.
+
+**[BELUM DITETAPKAN]:** selang dan batas sambung ulang, masa tenggang, perilaku gangguan berkepanjangan (jeda, mode terbatas, keluar ke menu), tindakan yang diizinkan saat terputus, batas penyangga, tampilan status, telemetri, kebutuhan identitas/sesi (bergantung Tahap 35, DEFERRED), perilaku event saat terputus, arti "spiritual" (belum didefinisikan). Semua angka belum diukur.
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

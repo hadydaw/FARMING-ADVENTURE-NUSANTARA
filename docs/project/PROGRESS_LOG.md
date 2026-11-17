@@ -435,3 +435,11 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
 - GDD §6.58 baru (v0.58); Technical Architecture §4az ditambahkan (v0.58); catatan saja: lingkup rilis sebagai penanda fitur data, save aditif untuk sistem yang belum rilis, cerita aditif lintas rilis, anggaran perangkat ditetapkan setelah diukur, uji fixture save tiap rilis.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan), P-007, dan berikutnya.
+
+## 2026-11-17 (59) — D-051 dicatat; koreksi Rilis Awal; DRAFT PROPOSAL P-007
+
+- **D-051 (Connection Resilience Hybrid Lengkap, Tahap 42)** dicatat resmi: sambung ulang otomatis, pemulihan sesi, perlindungan data belum sinkron, penanganan server mati, retry aman dan idempoten, status koneksi/sinkron, tanpa mode offline penuh; tidak bertentangan dengan D-014 dan D-044. Detail angka (interval, batas, tampilan) terbuka. GDD §6.59, TA §4ba, BACKEND_DESIGN §5b.
+- **Koreksi pemilik atas D-069:** D-014 tidak otomatis mewajibkan Account/Login di Rilis Awal; **Tahap 35 tetap DEFERRED** (P-006) sampai persiapan Google Play; kanal APK publik = **GitHub Releases (D-005)**; istilah "offline→online" diganti "uji putus koneksi → pemulihan koneksi"; ekspansi setelah Rilis Awal. Keputusan Tahap 1 sampai 60 tidak diubah.
+- **Dokumen:** `RELEASE_SCOPE.md` ditulis ulang; `RELEASE_SCOPE_PROPOSAL_P007.md` baru (**DRAFT PROPOSAL**, P-007 **belum dikunci**); `ROADMAP.md` disusun ulang (Fase 4 Online dan Ketahanan Koneksi, Fase 5 Beta dan Rilis Awal, Fase 6 Pembaruan; gerbang G0 s.d. G7+ tanpa tanggal).
+- **Terbuka:** Q1 identitas Cloud Save tanpa login (tidak diputuskan); P-002, P-005, P-006 (DEFERRED), P-007 menunggu pemilik; target performa D-052 perlu pengukuran nyata; "spiritual" TBD.
+- Tidak ada perubahan kode/gameplay/CI.

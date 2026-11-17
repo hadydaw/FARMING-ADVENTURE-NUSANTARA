@@ -66,6 +66,14 @@ Kunci unik `saves(player_id, slot)`. Akses dibatasi per pemain (Row Level Securi
 - **Validasi sisi server:** hal yang memengaruhi ekonomi atau rank kompetitif tidak dipercaya dari klien (§5); cakupan validasi menunggu desain.
 - Belum ada kode server, akun, atau proyek Supabase yang dibuat; tidak ada rahasia di repositori.
 
+## 5b. Konsekuensi D-051 (Ketahanan Koneksi; rancangan saja)
+
+- Server mendukung **operasi tulis idempoten** (ID transaksi + revisi), sehingga percobaan ulang klien tidak menggandakan hasil.
+- Klien menyimpan **antrean perubahan tertunda** (bukan mode offline penuh) dan mengirimnya saat koneksi pulih; konflik diselesaikan lewat revisi (§5a).
+- Kode galat dibedakan antara sementara dan permanen agar klien tahu kapan mencoba ulang; status server (gangguan) dapat dikomunikasikan ke klien.
+- Pemulihan sesi bergantung pada identitas pemain; mekanisme identitas (Tahap 35, P-006) **DEFERRED** dan tidak diasumsikan.
+- Selang, batas, masa tenggang, dan perilaku gangguan berkepanjangan belum ditetapkan.
+
 ## 6. Keamanan dan Privasi
 
 - Autentikasi: awalnya login anonim/perangkat dengan opsi menautkan email/akun Google (detail saat implementasi).
@@ -97,5 +105,5 @@ Konfigurasi lingkungan (URL, kunci publik) disuntik saat build; belum diimplemen
 1. Pemilik menyetujui penyedia dan membuat akun/proyek (P-003).
 2. Skema database + kebijakan akses (migrasi SQL di `backend/`).
 3. Adapter `BackendClient` untuk penyedia terpilih.
-4. UI masuk akun + indikator sinkron + penanganan konflik.
-5. Uji sinkron: offline→online, dua perangkat, konflik.
+4. UI indikator koneksi/sinkron + penanganan konflik. (UI masuk akun termasuk Tahap 35, P-006, **DEFERRED** sampai persiapan publikasi Google Play; bukan syarat Rilis Awal via GitHub Releases.)
+5. Uji sinkron: putus koneksi→pemulihan koneksi, dua perangkat, konflik. (Game tetap online; cache lokal bukan mode offline penuh, D-014/D-044/D-051.)
