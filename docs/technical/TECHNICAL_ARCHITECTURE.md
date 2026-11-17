@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.30 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.31 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -414,6 +414,19 @@ Memperdalam simulasi NPC di §4i (LOD, jadwal) dan memakai penyimpan hubungan §
 - **Online/cloud:** NPC adalah progres pribadi (D-014); tidak ada sinkronisasi real-time; cloud save lewat mekanisme save yang sama.
 - **Lokalisasi:** nama NPC, peran, dan teks aktivitas lewat kunci terjemahan id/en (§6).
 - **Pengujian:** uji headless simulasi jadwal 1 musim untuk semua NPC (tak ada yang terjebak atau tanpa lokasi valid), konsistensi posisi saat transisi LOD dan muat ulang, fallback, serta anggaran waktu CPU per frame di perangkat target nanti.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4ab. Implikasi Arsitektur dari D-041 (hanya catatan; belum diimplementasikan)
+
+- **Karakter modular:** satu rangka (skeleton) bersama dengan **slot** bagian (kepala/wajah, rambut, badan, tangan, kaki, punggung, aksesori, senjata); tiap bagian adalah resource data (mesh, material, titik pasang/atachment) yang dirancang terhadap rangka yang sama, sehingga animasi tunggal berlaku untuk semua kombinasi dan tidak ada animasi per pakaian. Warna (rambut, kulit, pakaian) lewat parameter material/palet, bukan mesh/tekstur baru.
+- **Dua lapisan data:** **equipment (fungsi)** menentukan atribut (§4g, §4e); **tampilan (cosmetic)** menentukan apa yang digambar. Tampilan akhir = kosmetik terpilih per slot, atau bila kosong/tidak diganti, visual bawaan equipment. Mengganti kosmetik tidak mengubah atribut; mengganti equipment tidak harus mengubah kosmetik. Aturan per aktivitas (mis. profil pakaian untuk farming/petualangan) sebagai data.
+- **Katalog kosmetik dari data:** ID stabil, slot, kunci terjemahan nama/deskripsi (id/en, §6), syarat pembukaan sebagai kondisi (quest §4x, pencapaian, event §4p, dungeon, eksplorasi) memakai mesin kondisi/efek bersama; item kosmetik yang terbuka dicatat sebagai koleksi pemain (wardrobe), bukan item yang memakan slot inventory (§4w) kecuali diputuskan lain; perolehan lewat crafting/toko memakai sistem item yang sama (§4g, §4h).
+- **Konsistensi 3D dan animasi:** bagian dibuat pada rangka dan skala acuan; aturan penutup (bagian yang menyembunyikan bagian lain, mis. topi menyembunyikan rambut) sebagai data per bagian (mask/hide-flags) untuk mencegah tembus mesh; senjata dan perlengkapan memakai titik pasang bernama dan pose tersimpan (di tangan/punggung); pembaruan tampilan hanya saat berubah, bukan tiap frame.
+- **Performa (Android, GL Compatibility):** anggaran poligon/tulang per karakter dan jumlah material (draw call) per karakter; **penggabungan mesh** (merge/atlas tekstur bersama) setelah perubahan tampilan untuk menekan draw call; tekstur atlas dan kompresi sesuai target (§3); LOD karakter dan penyederhanaan untuk NPC jauh; pemuatan bagian sesuai kebutuhan (lazy load) dan pooling resource; batas variasi ditetapkan dalam desain konten.
+- **UI:** character creator dan wardrobe memakai manajer konteks UI (§4r), pratinjau 3D kecil dengan kamera khusus (§4t) dan kontrol sentuh (§4u), kategori/filter seperti inventory; semua label lewat kunci terjemahan dan tidak ada teks pada tekstur/aset visual.
+- **Persistence:** keadaan tampilan (pilihan wajah/rambut/warna, kosmetik terpilih per slot, aturan per aktivitas) dan koleksi yang terbuka masuk payload save (§5) berversi dengan ID stabil; bagian yang dihapus/diubah di versi baru ditangani migrasi (jatuh ke bawaan); cloud save Supabase lewat mekanisme save yang sama (D-014). Pengaturan tampilan murni UI (mis. urutan filter) dapat berupa pengaturan pemain.
+- **Konsumen lain:** NPC dan companion dapat memakai sistem karakter modular yang sama (belum diputuskan); event dan cerita dapat memaksa kosmetik sementara lewat efek data.
+- **Pengujian:** uji headless untuk keterpenuhan slot dan titik pasang, aturan penutup, perhitungan tampilan akhir (kosmetik vs equipment), serialisasi-migrasi, tidak adanya teks pada aset, dan anggaran draw call/material per karakter; uji visual dan FPS di perangkat nyata nanti.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres

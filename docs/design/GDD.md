@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.30 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.31 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -472,6 +472,22 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - Terkait: D-007, D-009, D-014, D-015, D-017, D-021 sampai D-024, D-026 sampai D-030, D-032, D-035, D-037 sampai D-039.
 
 **[BELUM DITETAPKAN]:** daftar NPC dan peran, jenis dan kerincian kebutuhan NPC, model keputusan AI, jarak LOD dan batas NPC aktif, dampak interaksi antar-NPC, dampak ekonomi NPC ke harga/pasokan, bentuk dan pemicu perkembangan desa, aturan fallback/terjebak rinci, perilaku saat pertarungan/bencana, konsep "spiritual" (belum didefinisikan). **Romansa, pernikahan, keluarga, dan anak BELUM diputuskan; tidak dimodelkan.** **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+### 6.31 Kustomisasi Karakter Pemain — D-041, LOCKED (Character Customization Hybrid Lengkap)
+**Ditetapkan:**
+- **Identitas visual:** wajah, rambut, warna rambut, dan elemen penampilan lain yang didukung model.
+- **Koleksi pakaian** per aktivitas: sehari-hari, petani, petualang, kostum khusus.
+- **Equipment visual:** armor, senjata terlihat, aksesori, perlengkapan khusus.
+- **Pembukaan penampilan** lewat quest, dungeon, event, eksplorasi, pencapaian, progres.
+- **Fungsi equipment dipisah dari cosmetic** bila perlu: tampilan dipilih tanpa kehilangan atribut.
+- Pergantian pakaian/perlengkapan **konsisten pada model 3D dan animasi.**
+- **UI character creator dan wardrobe** nyaman di **Android landscape.**
+- Terintegrasi dengan **inventory D-036, equipment/crafting, progression, quest, event, cloud save Supabase.**
+- **Indonesia dan English**; **tanpa teks pada aset visual.**
+- **Jumlah variasi mesh, material, aksesori dijaga** untuk performa Android.
+- Terkait: D-007, D-008, D-013, D-014, D-018 sampai D-021, D-029, D-031, D-033, D-036, D-037.
+
+**[BELUM DITETAPKAN]:** pilihan jenis kelamin/tubuh, daftar opsi penampilan, slot kosmetik, daftar set pakaian dan sumber pembukaan, cara memperoleh (beli/buat/dibuka), aturan ganti otomatis per aktivitas, perlakuan senjata saat tidak dipakai, aturan mengganti penampilan, anggaran variasi dan performa, penerapan ke NPC/companion, mode foto, aksesibilitas, konsep "spiritual" (belum didefinisikan). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

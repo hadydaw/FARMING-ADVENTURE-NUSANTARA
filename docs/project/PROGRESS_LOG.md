@@ -217,3 +217,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - D-040 (NPC Living World Hybrid, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
 - GDD §6.30 baru (v0.30); Technical Architecture §4aa ditambahkan (v0.30; catatan saja: tiga tingkat simulasi LOD, jadwal + perilaku berjenjang dengan time-slicing, penanganan terjebak dan fallback, respons event, konsistensi saat muat ulang tanpa menyimpan jalur). Hubungan dengan D-007, D-009, D-014, D-015, D-017, D-021 sampai D-024, D-026 sampai D-030, D-032, D-035, D-037 sampai D-039 dicatat tanpa mengubah isinya. Romansa/pernikahan/keluarga/anak tetap belum diputuskan.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 31.
+
+
+## 2026-11-17 (31) — D-041 Sistem Kustomisasi Karakter Pemain dicatat
+
+- D-041 (Character Customization Hybrid Lengkap, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
+- GDD §6.31 baru (v0.31); Technical Architecture §4ab ditambahkan (v0.31; catatan saja: karakter modular pada satu rangka, pemisahan equipment dan kosmetik, katalog kosmetik dari data, penggabungan mesh untuk performa Android, penyimpanan dan cloud save). Hubungan dengan D-007, D-008, D-013, D-014, D-018 sampai D-021, D-029, D-031, D-033, D-036, D-037 dicatat tanpa mengubah isinya.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 32.

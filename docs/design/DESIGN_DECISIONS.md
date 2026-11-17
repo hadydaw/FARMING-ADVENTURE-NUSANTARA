@@ -531,6 +531,22 @@ Pilihan: **D. NPC Living World Hybrid.** Ketentuan:
 Hubungan (tidak mengubah isi keputusan lain): bahasa (**D-007**), dunia dan wilayah (**D-009**), kehidupan (**D-015**), guild (**D-017**), ekonomi (**D-021**), NPC dan kehidupan sosial (**D-022**; keputusan ini memperdalam simulasi NPC di sana), pertanian/peternakan/memasak (**D-023**, **D-024**, **D-026**), bangunan dan desa (**D-027**), eksplorasi (**D-028**), event dunia (**D-029**), musim/cuaca (**D-030**), audio (**D-032**), interaksi (**D-035**), quest (**D-037**), dialog (**D-038**), sosial (**D-039**), online dan cloud save (**D-014**, **O-003**).
 **Terbuka:** daftar NPC dan perannya; jenis dan jumlah kebutuhan NPC (apakah ada, seberapa rinci); model keputusan AI (mis. jadwal + utilitas ringan); jarak/tingkat LOD simulasi dan jumlah NPC aktif maksimum; aturan interaksi sosial antar-NPC (dampak ke pemain); aktivitas ekonomi NPC (dampak ke harga/pasokan); bentuk "perkembangan desa" dan pemicunya; aturan fallback dan penanganan terjebak secara rinci; perilaku NPC saat pertarungan/bencana; peran konsep "spiritual" (belum didefinisikan). **Romansa, pernikahan, keluarga, dan anak tetap BELUM diputuskan dan tidak dimodelkan.** Implementasi AI NPC belum dimulai. ID D-040 tersedia saat dicatat (tanpa bentrokan).
 
+### D-041 — Sistem Kustomisasi Karakter Pemain *(APPROVED / LOCKED, 2026-11-17, Tahap 31)*
+Pilihan: **D. Character Customization Hybrid Lengkap.** Ketentuan:
+1. Kustomisasi identitas visual: wajah, rambut, warna rambut, dan elemen penampilan lain yang didukung model karakter.
+2. Koleksi pakaian per aktivitas: sehari-hari, petani, petualang, dan kostum khusus.
+3. Equipment visual: armor, senjata yang terlihat pada karakter, aksesori, perlengkapan khusus.
+4. Penampilan dibuka lewat quest, dungeon, event, eksplorasi, pencapaian, dan progres permainan.
+5. Fungsi equipment dipisahkan dari cosmetic appearance jika perlu, sehingga pemain memilih tampilan tanpa kehilangan atribut equipment.
+6. Pergantian pakaian dan perlengkapan konsisten pada model 3D dan animasi.
+7. UI character creator dan wardrobe nyaman di Android landscape.
+8. Terintegrasi dengan inventory (D-036), equipment/crafting, progression karakter, quest, event, dan cloud save Supabase.
+9. Semua pilihan penampilan mendukung lokalisasi Indonesia dan English; tidak ada teks pada aset visual.
+10. Variasi mesh, material, dan aksesori dijaga agar performa Android terjaga.
+
+Hubungan (tidak mengubah isi keputusan lain): bahasa (**D-007**), gaya visual (**D-008**), pertarungan dan senjata (**D-013**), perkembangan karakter (**D-018**), companion (**D-019**), equipment dan crafting (**D-020**), ekonomi/toko (**D-021**), event dunia (**D-029**), UI (**D-031**), kamera (**D-033**), inventory (**D-036**), quest (**D-037**), online dan cloud save (**D-014**, **O-003**).
+**Terbuka:** apakah ada pilihan jenis kelamin/tubuh dan bagaimana dinyatakan; daftar opsi wajah, rambut, warna, dan elemen lain; slot kosmetik (kepala, badan, kaki, punggung, dll.) dan aksesori; daftar set pakaian dan sumber pembukaan tiap item; apakah penampilan dapat dibeli, dibuat, atau hanya dibuka; aturan override kosmetik (per aktivitas, otomatis ganti baju); perlakuan senjata di punggung/pinggang saat tidak dipakai; mengganti penampilan setelah pembuatan karakter (kapan, biaya); batas variasi mesh/material/tekstur dan anggaran performa; apakah NPC/companion memakai sistem yang sama; foto/mode tampil; aksesibilitas; peran konsep "spiritual" (belum didefinisikan). Implementasi creator dan wardrobe belum dimulai. ID D-041 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |
