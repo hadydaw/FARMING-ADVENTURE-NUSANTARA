@@ -1,0 +1,16 @@
+[
+	{
+		"id": "shop_test",
+		"provisional": true,
+		"note": "TOKO UJI generik, bukan merchant resmi (D-021).",
+		"name_key": "SHOP_TEST",
+		"x": -3.0,
+		"z": -3.0,
+		"stock": [
+			"seed_test_a",
+			"seed_test_b",
+			"feed_test",
+			"bait_test"
+		]
+	}
+]

@@ -40,5 +40,11 @@
 		"prompt_key": "INTERACT_GENERIC",
 		"max_distance": 2.4,
 		"min_facing_dot": 0.0
+	},
+	{
+		"id": "shop",
+		"prompt_key": "FARM_ACT_SHOP",
+		"max_distance": 2.6,
+		"min_facing_dot": 0.0
 	}
 ]

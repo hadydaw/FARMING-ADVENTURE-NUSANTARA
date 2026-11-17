@@ -54,6 +54,10 @@ func _prompt_text() -> String:
 		return ""
 	if dialog != null and dialog.is_active():
 		return ""
+	if hud.shop_visible():
+		return ""
+	if sensor.current.has_meta("shop_id"):
+		return tr("FARM_ACT_SHOP")
 	if cast != null:
 		return tr("FARM_ACT_FISH")
 	if sensor.current.has_meta("spot_id"):
@@ -75,6 +79,11 @@ func inspect_count() -> int:
 
 func _on_interacted(target: Node, _actor: Node) -> void:
 	if dialog != null and dialog.is_active():
+		return
+	if hud.shop_visible():
+		return
+	if target.has_meta("shop_id") and cast == null:
+		_open_shop(str(target.get_meta("shop_id")))
 		return
 	if cast != null:
 		_reel()
@@ -267,11 +276,13 @@ func _build_farm() -> void:
 		_plot_ids(), cfg, DataRegistry.rows("weather_types"), DataRegistry.rows("weather_chances"),
 		int(cfg.get("world_seed", 0)), DataRegistry.rows("vitality_meters"), DataRegistry.get_row("rest_config", "default"),
 		{"fish_species": DataRegistry.rows("fish_species"), "fishing_config": DataRegistry.get_row("fishing_config", "default"),
-		"animals": DataRegistry.rows("animals"), "livestock_config": DataRegistry.get_row("livestock_config", "default")})
+		"animals": DataRegistry.rows("animals"), "livestock_config": DataRegistry.get_row("livestock_config", "default"),
+		"economy_config": DataRegistry.get_row("economy_config", "default"), "item_prices": DataRegistry.rows("item_prices"), "shops": DataRegistry.rows("shops")})
 	farming.sleep.finished.connect(_on_woke_up)
 	_build_bed()
 	_build_pond()
 	_build_pens()
+	_build_shop()
 	var holder := Node3D.new()
 	holder.name = "FarmPlots"
 	add_child(holder)
@@ -351,7 +362,7 @@ func inventory_text() -> String:
 	for s in farming.inventory.slots():
 		if not (s as Dictionary).is_empty():
 			parts.append("%s x%d" % [tr(str(farming.item_defs[s["item"]]["name_key"])), int(s["count"])])
-	return tr("FARM_BAG") + ": " + (", ".join(parts) if not parts.is_empty() else "-")
+	return tr("HUD_MONEY") + ": %d | " % farming.economy.money + tr("FARM_BAG") + ": " + (", ".join(parts) if not parts.is_empty() else "-")
 
 
 func _plot_prompt(plot_id: String) -> String:
@@ -697,3 +708,84 @@ func _on_animal_interacted(animal_id: String) -> void:
 	else:
 		hud.show_message(tr("FARM_NO_" + str(r["reason"]).to_upper()))
 	refresh_farm_visuals()
+
+
+# --- Toko uji (SEMENTARA: kios penanda, barang/harga generik) ---
+
+var _open_shop_id := ""
+
+
+func _build_shop() -> void:
+	for sh in DataRegistry.rows("shops"):
+		var node := Node3D.new()
+		node.name = str(sh["id"])
+		node.position = Vector3(float(sh["x"]), 0.0, float(sh["z"]))
+		var mesh := MeshInstance3D.new()
+		var box := BoxMesh.new()
+		box.size = Vector3(1.8, 1.2, 1.0)
+		mesh.mesh = box
+		mesh.position.y = 0.6
+		var mat := StandardMaterial3D.new()
+		mat.albedo_color = Color(0.85, 0.65, 0.25)
+		mesh.material_override = mat
+		node.add_child(mesh)
+		var label := Label3D.new()
+		label.text = "UJI: " + tr(str(sh["name_key"]))
+		label.pixel_size = 0.005
+		label.position = Vector3(0, 1.6, 0)
+		label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+		node.add_child(label)
+		var it := Interactable.new()
+		it.interaction_type = "shop"
+		node.add_child(it)
+		it.set_meta("shop_id", str(sh["id"]))
+		add_child(node)
+	hud.shop_buy.connect(_on_shop_buy)
+	hud.shop_sell.connect(_on_shop_sell)
+	hud.shop_close.connect(_close_shop)
+
+
+func _open_shop(shop_id: String) -> void:
+	_open_shop_id = shop_id
+	GameTime.clock.pause("shop")  # SEMENTARA: waktu berhenti saat belanja
+	player.set_physics_process(false)
+	_refresh_shop()
+
+
+func _refresh_shop() -> void:
+	var sh: Dictionary = farming.shops[_open_shop_id]
+	var buy_rows: Array = []
+	for item in sh["stock"]:
+		var price := farming.economy.buy_price(str(item))
+		buy_rows.append({"item": item, "text": "%s  %d" % [tr(str(farming.item_defs[item]["name_key"])), price], "enabled": farming.economy.money >= price})
+	var sell_rows: Array = []
+	var seen := {}
+	for slot in farming.inventory.slots():
+		if (slot as Dictionary).is_empty() or seen.has(slot["item"]):
+			continue
+		seen[slot["item"]] = true
+		var item := str(slot["item"])
+		var price := farming.economy.sell_price(item, GameTime.clock.season_id())
+		if price > 0:
+			sell_rows.append({"item": item, "text": "%s x%d  %d" % [tr(str(farming.item_defs[item]["name_key"])), farming.inventory.count(item), price], "enabled": true})
+	hud.show_shop(tr(str(sh["name_key"])) + "   " + tr("HUD_MONEY") + ": %d" % farming.economy.money, buy_rows, sell_rows)
+	refresh_farm_visuals()
+
+
+func _on_shop_buy(item: String) -> void:
+	var r := farming.shop_buy(_open_shop_id, item, 1)
+	hud.show_message(tr("SHOP_BOUGHT") if bool(r["ok"]) else tr("SHOP_NO_" + str(r["reason"]).to_upper()))
+	_refresh_shop()
+
+
+func _on_shop_sell(item: String) -> void:
+	var r := farming.shop_sell(item, 1)
+	hud.show_message(tr("SHOP_SOLD") + " +%d" % int(r["total"]) if bool(r["ok"]) else tr("SHOP_NO_" + str(r["reason"]).to_upper()))
+	_refresh_shop()
+
+
+func _close_shop() -> void:
+	hud.hide_shop()
+	_open_shop_id = ""
+	GameTime.clock.resume("shop")
+	player.set_physics_process(true)

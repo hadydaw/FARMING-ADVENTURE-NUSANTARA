@@ -184,3 +184,18 @@ ANIMAL_STATE_READY,siap diambil,ready
 ANIMAL_STATE_YOUNG,muda,young
 FARM_NO_UNKNOWN_ANIMAL,Hewan tidak dikenal,Unknown animal
 FARM_NO_UNKNOWN_SPOT,Tempat tidak dikenal,Unknown spot
+CURRENCY_TEST,Koin (uji),Coin (test)
+SHOP_TEST,Toko uji,Test shop
+FARM_ACT_SHOP,Belanja,Shop
+HUD_MONEY,Uang,Money
+SHOP_BUY,Beli,Buy
+SHOP_SELL,Jual,Sell
+SHOP_CLOSE,Tutup,Close
+SHOP_BOUGHT,Dibeli,Bought
+SHOP_SOLD,Terjual,Sold
+SHOP_NO_NO_MONEY,Uang tidak cukup,Not enough money
+SHOP_NO_INVENTORY_FULL,Tas penuh,Bag is full
+SHOP_NO_NOT_FOR_SALE,Tidak dijual,Not for sale
+SHOP_NO_NOT_BUYING,Tidak dibeli toko,Shop does not buy this
+SHOP_NO_NO_ITEM,Barang tidak ada,You don't have this
+SHOP_NO_UNKNOWN,Tidak dikenal,Unknown

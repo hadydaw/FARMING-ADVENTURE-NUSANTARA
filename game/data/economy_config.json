@@ -1,0 +1,17 @@
+[
+	{
+		"id": "default",
+		"provisional": true,
+		"note": "Mata uang dan angka SEMENTARA uji teknis (D-021 belum menetapkan nama mata uang, harga, atau skala).",
+		"start_money": 100,
+		"max_money": 999999,
+		"sold_drop": 0.1,
+		"price_floor": 0.3,
+		"season_multiplier": {
+			"season_1": 1.0,
+			"season_2": 1.1,
+			"season_3": 0.9,
+			"season_4": 1.0
+		}
+	}
+]

@@ -23,6 +23,8 @@ var fish_species: Array = []
 var fishing_config: Dictionary = {}
 var livestock: LivestockState
 var fishing_casts_today := 0
+var economy: Economy
+var shops: Dictionary = {}
 var weather_types: Dictionary = {}
 var weather_chances: Dictionary = {}
 
@@ -35,6 +37,9 @@ func _init(clock: GameClock, items: Array, crops: Array, plot_ids: Array, config
 	rest_config = rest_cfg
 	fish_species = extras.get("fish_species", [])
 	fishing_config = extras.get("fishing_config", {})
+	economy = Economy.new(extras.get("economy_config", {"start_money": 0, "max_money": 999999, "sold_drop": 0.1, "price_floor": 0.3, "season_multiplier": {}}), extras.get("item_prices", []))
+	for sh in extras.get("shops", []):
+		shops[str(sh["id"])] = sh
 	var lcfg: Dictionary = extras.get("livestock_config", {"neglect_limit": 3, "pens": []})
 	livestock = LivestockState.new(extras.get("animals", []), lcfg["pens"], int(lcfg["neglect_limit"]))
 	vitality = Vitality.new(meter_rows)
@@ -64,6 +69,8 @@ func _stack_max(item_id: String) -> int:
 ## Mulai baru: petak kosong, inventory berisi item awal dari data.
 func reset() -> void:
 	grid.reset()
+	economy.money = int(economy._cfg["start_money"])
+	economy._sold_today.clear()
 	for id in vitality.ids():
 		vitality.restore_full(id)
 	inventory.clear()
@@ -91,6 +98,7 @@ func _waters(weather_id: String) -> bool:
 func _on_day_changed(day: int) -> void:
 	grid.advance_day(_waters(weather_on_day(day - 1)))
 	livestock.advance_day()
+	economy.advance_day()
 	fishing_casts_today = 0
 
 
@@ -121,7 +129,7 @@ func preview(plot_id: String) -> Dictionary:
 
 
 func to_dict() -> Dictionary:
-	return {"v": SAVE_VERSION, "world_seed": world_seed, "vitality": vitality.to_dict(), "livestock": livestock.to_dict(), "fishing_casts": fishing_casts_today, "inventory": inventory.to_dict(), "grid": grid.to_dict()}
+	return {"v": SAVE_VERSION, "world_seed": world_seed, "vitality": vitality.to_dict(), "livestock": livestock.to_dict(), "fishing_casts": fishing_casts_today, "economy": economy.to_dict(), "inventory": inventory.to_dict(), "grid": grid.to_dict()}
 
 
 ## Semua-atau-tidak: bila salah satu bagian tidak valid, status tidak berubah.
@@ -132,7 +140,7 @@ func from_dict(data: Dictionary) -> bool:
 		return false
 	var backup := to_dict()
 	var old_seed := world_seed
-	if typeof(data.get("vitality", null)) != TYPE_DICTIONARY or typeof(data.get("livestock", null)) != TYPE_DICTIONARY or int(data.get("fishing_casts", -1)) < 0:
+	if typeof(data.get("vitality", null)) != TYPE_DICTIONARY or typeof(data.get("livestock", null)) != TYPE_DICTIONARY or int(data.get("fishing_casts", -1)) < 0 or typeof(data.get("economy", null)) != TYPE_DICTIONARY:
 		return false
 	if not vitality.from_dict(data["vitality"]):
 		return false
@@ -140,7 +148,8 @@ func from_dict(data: Dictionary) -> bool:
 		vitality.from_dict(backup["vitality"])
 		return false
 	world_seed = int(data.get("world_seed", 0))
-	if not grid.from_dict(data["grid"]) or not livestock.from_dict(data["livestock"]):
+	if not grid.from_dict(data["grid"]) or not livestock.from_dict(data["livestock"]) or not economy.from_dict(data["economy"]):
+		economy.from_dict(backup["economy"])
 		grid.from_dict(backup["grid"])
 		livestock.from_dict(backup["livestock"])
 		inventory.from_dict(backup["inventory"])
@@ -214,3 +223,15 @@ func animal_act(animal_id: String) -> Dictionary:
 	if sleep != null and sleep.is_sleeping():
 		return {"ok": false, "action": "", "reason": "sleeping"}
 	return livestock.perform(animal_id, inventory)
+
+
+# --- Toko (D-021, SEMENTARA) ---
+
+func shop_buy(shop_id: String, item: String, n: int = 1) -> Dictionary:
+	if not shops.has(shop_id):
+		return {"ok": false, "reason": "unknown", "total": 0}
+	return economy.buy(inventory, item, n, shops[shop_id]["stock"])
+
+
+func shop_sell(item: String, n: int = 1) -> Dictionary:
+	return economy.sell(inventory, item, n, _clock.season_id())

@@ -19,9 +19,16 @@ var _dialog_panel: PanelContainer
 var _dialog_label: Label
 var _dialog_choices: VBoxContainer
 var _dialog_next: Button
+var _shop_panel: PanelContainer
+var _shop_title: Label
+var _shop_buy: VBoxContainer
+var _shop_sell: VBoxContainer
 
 signal dialog_next
 signal dialog_choice(index: int)
+signal shop_buy(item: String)
+signal shop_sell(item: String)
+signal shop_close
 signal save_pressed
 signal load_pressed
 
@@ -116,6 +123,31 @@ func _ready() -> void:
 	_dialog_next.custom_minimum_size = Vector2(0, UiTheme.MIN_TOUCH_HEIGHT)
 	_dialog_next.pressed.connect(func(): dialog_next.emit())
 	dbox.add_child(_dialog_next)
+
+	_shop_panel = PanelContainer.new()
+	_shop_panel.visible = false
+	root.add_child(_shop_panel)
+	_shop_panel.set_anchors_and_offsets_preset(Control.PRESET_CENTER, Control.PRESET_MODE_MINSIZE, 0)
+	_shop_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	_shop_panel.grow_vertical = Control.GROW_DIRECTION_BOTH
+	var sbox := VBoxContainer.new()
+	_shop_panel.add_child(sbox)
+	_shop_title = Label.new()
+	sbox.add_child(_shop_title)
+	var cols := HBoxContainer.new()
+	cols.add_theme_constant_override("separation", 24)
+	sbox.add_child(cols)
+	_shop_buy = VBoxContainer.new()
+	_shop_buy.custom_minimum_size = Vector2(420, 0)
+	cols.add_child(_shop_buy)
+	_shop_sell = VBoxContainer.new()
+	_shop_sell.custom_minimum_size = Vector2(420, 0)
+	cols.add_child(_shop_sell)
+	var close := Button.new()
+	close.text = tr("SHOP_CLOSE")
+	close.custom_minimum_size = Vector2(0, UiTheme.MIN_TOUCH_HEIGHT)
+	close.pressed.connect(func(): shop_close.emit())
+	sbox.add_child(close)
 
 	_joystick = TouchJoystick.new()
 	_joystick.size = Vector2(380, 380)
@@ -219,3 +251,35 @@ func show_dialog(text: String, choice_texts: Array) -> void:
 
 func hide_dialog() -> void:
 	_dialog_panel.visible = false
+
+
+func shop_visible() -> bool:
+	return _shop_panel.visible
+
+
+## Menampilkan toko. Baris: {item, text, enabled}. Tombol memancarkan shop_buy / shop_sell.
+func show_shop(title: String, buy_rows: Array, sell_rows: Array) -> void:
+	_shop_panel.visible = true
+	_shop_title.text = title
+	_fill_shop(_shop_buy, tr("SHOP_BUY"), buy_rows, func(item): shop_buy.emit(item))
+	_fill_shop(_shop_sell, tr("SHOP_SELL"), sell_rows, func(item): shop_sell.emit(item))
+
+
+func _fill_shop(box: VBoxContainer, header: String, rows: Array, on_press: Callable) -> void:
+	for c in box.get_children():
+		c.queue_free()
+	var h := Label.new()
+	h.text = header
+	box.add_child(h)
+	for r in rows:
+		var b := Button.new()
+		b.text = str(r["text"])
+		b.disabled = not bool(r["enabled"])
+		b.custom_minimum_size = Vector2(0, UiTheme.MIN_TOUCH_HEIGHT)
+		var item := str(r["item"])
+		b.pressed.connect(func(): on_press.call(item))
+		box.add_child(b)
+
+
+func hide_shop() -> void:
+	_shop_panel.visible = false

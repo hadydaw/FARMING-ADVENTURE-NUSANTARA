@@ -1,0 +1,79 @@
+[
+	{
+		"item": "seed_test_a",
+		"provisional": true,
+		"buy": 10,
+		"sell": 5,
+		"id": "seed_test_a"
+	},
+	{
+		"item": "seed_test_b",
+		"provisional": true,
+		"buy": 14,
+		"sell": 7,
+		"id": "seed_test_b"
+	},
+	{
+		"item": "produce_test_a",
+		"provisional": true,
+		"buy": 0,
+		"sell": 20,
+		"id": "produce_test_a"
+	},
+	{
+		"item": "produce_test_b",
+		"provisional": true,
+		"buy": 0,
+		"sell": 35,
+		"id": "produce_test_b"
+	},
+	{
+		"item": "fish_test_a",
+		"provisional": true,
+		"buy": 0,
+		"sell": 15,
+		"id": "fish_test_a"
+	},
+	{
+		"item": "fish_test_b",
+		"provisional": true,
+		"buy": 0,
+		"sell": 25,
+		"id": "fish_test_b"
+	},
+	{
+		"item": "fish_test_c",
+		"provisional": true,
+		"buy": 0,
+		"sell": 50,
+		"id": "fish_test_c"
+	},
+	{
+		"item": "feed_test",
+		"provisional": true,
+		"buy": 5,
+		"sell": 2,
+		"id": "feed_test"
+	},
+	{
+		"item": "bait_test",
+		"provisional": true,
+		"buy": 3,
+		"sell": 1,
+		"id": "bait_test"
+	},
+	{
+		"item": "product_animal_test_a",
+		"provisional": true,
+		"buy": 0,
+		"sell": 25,
+		"id": "product_animal_test_a"
+	},
+	{
+		"item": "product_animal_test_b",
+		"provisional": true,
+		"buy": 0,
+		"sell": 40,
+		"id": "product_animal_test_b"
+	}
+]

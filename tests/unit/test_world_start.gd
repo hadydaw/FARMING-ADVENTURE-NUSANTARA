@@ -172,15 +172,37 @@ func run() -> void:
 	check_eq(world.farming.inventory.count("feed_test"), feed_before - 1, "pakan berkurang")
 	check(world.farming.livestock.animals["pen_01"].fed, "hewan kenyang")
 
+	# Toko: buka, beli, jual, tutup
+	var shop_node: Node3D = world.get_node("shop_test")
+	player.global_position = shop_node.global_position + Vector3(0, 0, 1.4)
+	await wait_frames(2)
+	world.sensor.facing = Vector3(0, 0, -1)
+	var shop_target: Interactable = world.sensor.refresh()
+	check(shop_target != null and shop_target.has_meta("shop_id"), "toko terdeteksi")
+	check(world.sensor.try_interact() and world.hud.shop_visible(), "toko terbuka")
+	check(GameTime.clock.is_paused(), "waktu berhenti saat belanja")
+	var money0: int = world.farming.economy.money
+	var seeds0: int = world.farming.inventory.count("seed_test_a")
+	world.hud.shop_buy.emit("seed_test_a")
+	check_eq(world.farming.inventory.count("seed_test_a"), seeds0 + 1, "beli benih lewat UI")
+	check_eq(world.farming.economy.money, money0 - 10, "uang berkurang 10")
+	world.farming.inventory.add("fish_test_a", 2)
+	world.hud.shop_sell.emit("fish_test_a")
+	check(world.farming.economy.money > money0 - 10, "uang bertambah setelah jual")
+	world.hud.shop_close.emit()
+	check(not world.hud.shop_visible() and not GameTime.clock.is_paused(), "toko ditutup, waktu berjalan")
+	check(world.inventory_text().contains(tr("HUD_MONEY")), "HUD menampilkan uang")
+
 	# Simpan / muat dan tas
 	var pm := GameTime.clock.total_minutes
+	var seeds_saved: int = world.farming.inventory.count("seed_test_a")
 	check(world.save_game(), "simpan slot 0")
 	GameTime.clock.add_minutes(120)
 	world.farming.act_on("plot_01")  # siram
 	world.farming.inventory.clear()
 	check(world.load_game(), "muat slot 0")
 	check_eq(GameTime.clock.total_minutes, pm, "waktu kembali ke saat disimpan")
-	check(world.farming.inventory.count("seed_test_a") == 5, "inventory dipulihkan")
+	check_eq(world.farming.inventory.count("seed_test_a"), seeds_saved, "inventory dipulihkan")
 	check(world.farming.grid.plot("plot_01").has_crop(), "petak dipulihkan")
 	check(not world.hud.bag_visible(), "tas awalnya tertutup")
 	world.hud.toggle_bag()

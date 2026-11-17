@@ -530,3 +530,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Semua spesies/hewan/angka generik dan provisional (bukan daftar resmi). Belum ada: kualitas hasil, ikan spiritual/legendaris, alat/umpan beragam, perkembangbiakan, kandang berkembang, pembelian hewan (menunggu ekonomi).
 - Simpan/muat membawa ternak dan penghitung lemparan. Uji: 19 berkas, 1577 pemeriksaan, 0 gagal; smoke test lulus.
 - Catatan visual: kolam uji berdekatan dengan semak prop pilot sehingga kamera tertutup semak di titik itu; tata letak sementara.
+
+## 2026-11-17 (73) — Ekonomi dan toko dasar (D-021, teknis)
+
+- Pemilik: "Kerjakan kasih pilihan". Economy (uang, harga beli/jual dari data, pengali musim, penurunan harga jual menurut jumlah terjual hari itu, pulih tiap hari, beli/jual semua-atau-tidak), toko uji (kios penanda + panel Beli/Jual), uang di HUD, waktu berhenti saat belanja (sementara). Simpan/muat membawa uang dan penghitung jual harian.
+- Data SEMENTARA/provisional: nama mata uang ("Koin (uji)"), harga, stok toko; harga jual tidak pernah melebihi harga beli (tanpa arbitrase, diuji). Belum ada: merchant spesialis, perdagangan antarwilayah, harga monster/tambang, pembelian hewan, ekonomi dinamis berbasis pasokan global, kekayaan/usaha.
+- Uji: 20 berkas, 1728 pemeriksaan, 0 gagal; smoke test lulus.
+- Catatan UI: baris teks Tas di HUD melebar di bawah panel toko; akan dirapikan saat UI resmi.
