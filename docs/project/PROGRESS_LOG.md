@@ -53,3 +53,9 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - GDD §6.2–6.5 diperbarui (v0.5); Technical Architecture §4b ditambahkan.
 - Romansa, pernikahan, keluarga, anak ditandai **belum ditetapkan** di GDD dan Decision Log.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 6 (sistem dungeon).
+
+## 2026-11-17 (6) — D-016 Sistem Dungeon dicatat
+
+- D-016 (Kombinasi Dungeon Tetap dan Acak, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
+- GDD §6.8 diperbarui (v0.6); Technical Architecture §4c ditambahkan (catatan saja).
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 7.

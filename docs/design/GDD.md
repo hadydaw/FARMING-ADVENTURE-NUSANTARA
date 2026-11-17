@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.5 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.6 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -123,9 +123,14 @@ Juga berlaku: ada monster dan boss (6.8).
 
 **[BELUM DITETAPKAN]:** aturan damage dan stat, daftar elemen dan interaksinya, daftar jenis senjata, sumber daya skill (mana/stamina), jendela waktu parry/dodge, struktur skill tree, kontrol sentuh untuk semua aksi di atas, penargetan/kamera saat bertarung, bentuk AI musuh, keseimbangan dengan kehidupan bertani. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
-### 6.8 Dungeon dan Boss
-Ditetapkan: dungeon exploration, boss, setiap wilayah dapat punya dungeon.
-Belum: struktur dungeon (fixed/prosedural), lantai, loot, kesulitan.
+### 6.8 Dungeon dan Boss — D-016, LOCKED (Kombinasi Dungeon Tetap dan Acak)
+**Ditetapkan:**
+- **Story Dungeon:** desain dan tata letak ruangan tetap; terhubung dengan cerita atau quest; memiliki monster dan boss khusus; memiliki hadiah penyelesaian.
+- **Exploration Dungeon:** tata letak ruangan dibuat acak; penempatan monster dan tantangan dapat bervariasi; menyediakan material dan harta karun; dapat dijelajahi berulang kali.
+- **Fitur tambahan:** dungeon rahasia, boss spesial, hadiah unik.
+- Berlaku sejak sebelumnya (D-003, D-009): dungeon exploration dan boss ada; setiap wilayah dapat punya dungeon.
+
+**[BELUM DITETAPKAN]:** jumlah lantai/ruangan, aturan dan seed pembuatan acak, tabel loot dan drop, tingkat kesulitan dan penskalaan, batas masuk (rank/level/stamina), cara membuka dungeon rahasia, daftar boss dan boss spesial, jenis hadiah unik, hubungan dungeon dengan Progressive World Unlock dan rank petualang, keseimbangan dengan sistem kehidupan (D-015). **Tidak ada implementasi dungeon sebelum seluruh tahap desain selesai.**
 
 ### 6.9 Material dan Equipment
 Ditetapkan: mengumpulkan material dan membuat equipment.
@@ -157,7 +162,7 @@ Urutan usulan pembahasan bersama ChatGPT (dari yang paling memengaruhi arsitektu
 2. ~~Pertarungan~~ (D-013 terkunci); sisanya: detail aturan combat, kamera dan kontrol sentuh.
 3. Struktur dunia dan wilayah (ukuran, loading, peta).
 4. ~~Sistem kehidupan~~ (D-015 terkunci); sisanya: detail aturan (musim, waktu, stamina, ekonomi, resep, festival).
-5. Dungeon (fixed vs prosedural), loot, boss.
+5. ~~Dungeon~~ (D-016 terkunci: tetap + acak); sisanya: detail loot, boss, kesulitan.
 6. Rank, quest, dan progres cerita.
 7. NPC dan hubungan.
 8. Art direction 3D Stylized dan sumber aset.

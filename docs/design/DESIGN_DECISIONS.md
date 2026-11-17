@@ -77,6 +77,15 @@ Pilihan: **B. Kehidupan Lengkap ala Story of Seasons.** Fitur yang ditetapkan:
 
 Catatan: ID D-015 tersedia saat dicatat (tidak ada bentrokan). Detail aturan tiap fitur (daftar tanaman/hewan, panjang musim, resep, harga, jadwal festival, tahap upgrade) belum ditetapkan. Implementasi belum dimulai.
 
+### D-016 — Sistem Dungeon *(APPROVED / LOCKED, 2026-11-17, Tahap 6)*
+Pilihan: **D. Kombinasi Dungeon Tetap dan Acak.**
+
+1. **Story Dungeon:** desain dan tata letak ruangan **tetap**; terhubung dengan cerita atau quest; monster dan boss khusus; hadiah penyelesaian.
+2. **Exploration Dungeon:** tata letak ruangan **acak**; penempatan monster dan tantangan dapat bervariasi; menyediakan material dan harta karun; dapat dijelajahi berulang kali.
+3. **Fitur tambahan:** dungeon rahasia, boss spesial, hadiah unik.
+
+Detail (jumlah lantai/ruangan, algoritma acak, tabel loot, kesulitan, syarat dungeon rahasia, daftar boss) belum ditetapkan. Implementasi belum dimulai. ID D-016 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

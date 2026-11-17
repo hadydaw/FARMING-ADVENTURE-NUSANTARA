@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.5 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.6 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -78,6 +78,16 @@ Sistem Kehidupan (farming, ternak, memancing, memasak, musim, festival, ekonomi,
 - **Save:** keadaan ladang, hewan, inventori, uang, rumah, dan tanggal masuk payload save (skema berversi, migrasi antarversi); ukuran payload dipantau karena dunia pribadi ikut tersimpan.
 - **Ekonomi:** karena single-player online, ekonomi bersifat pribadi; validasi server untuk mencegah manipulasi save baru diputuskan bila diperlukan.
 - **Hanya yang ditetapkan:** hubungan romantis/pernikahan/keluarga/anak tidak ada dalam arsitektur sampai diputuskan.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4c. Implikasi Arsitektur dari D-016 (hanya catatan; belum diimplementasikan)
+
+- **Dua jenis dungeon, satu kerangka:** Story Dungeon = scene/level tetap buatan tangan; Exploration Dungeon = dirakit saat runtime dari potongan ruangan (modul) berdasarkan **seed**. Keduanya berbagi sistem monster, loot, dan boss.
+- **Generator acak deterministik:** diberi seed → hasil sama; bisa diuji headless dan direproduksi untuk debugging. Seed dapat disimpan di save agar sesi dungeon dapat dilanjutkan.
+- **Data-driven:** potongan ruangan, tabel spawn, tabel loot, boss, dungeon rahasia, dan hadiah unik sebagai data.
+- **Dungeon sebagai unit muat** (bagian dari region): dimuat dan dibongkar untuk menjaga memori HP; ruangan acak dibatasi anggaran performa §3.
+- **Save:** status penyelesaian Story Dungeon, dungeon rahasia yang terbuka, hadiah unik yang sudah didapat, dan seed/lantai aktif masuk payload save (skema berversi).
+- **Online (D-014):** progres dungeon bersifat pribadi; tidak ada sinkronisasi real-time. Validasi server atas loot baru dipertimbangkan hanya bila diputuskan.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres
