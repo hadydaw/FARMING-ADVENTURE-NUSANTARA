@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.19 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.20 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -88,7 +88,7 @@ Belum: daftar wilayah, peta dunia, syarat buka tiap wilayah, ukuran wilayah, car
 - **Pengembangan rumah** (membangun dan mengembangkan rumah).
 - **Pengembangan dan perluasan ladang.**
 
-**[BELUM DITETAPKAN]:** daftar tanaman dan hewan, jumlah dan panjang musim, kalender dan sistem waktu (termasuk acuan jam: perangkat atau server), cuaca, stamina, mekanik memancing, resep dan efek makanan (termasuk hubungannya dengan RPG/buff), harga dan keseimbangan ekonomi, jadwal dan jenis festival, tahap upgrade rumah dan ladang, dekorasi, penyimpanan, keseimbangan dengan pertarungan dan dungeon.
+**[BELUM DITETAPKAN]:** daftar tanaman dan hewan, panjang musim (jumlah musim: empat, D-030), kalender dan sistem waktu (termasuk acuan jam: perangkat atau server), cuaca, stamina, mekanik memancing, resep dan efek makanan (termasuk hubungannya dengan RPG/buff), harga dan keseimbangan ekonomi, jadwal dan jenis festival, tahap upgrade rumah dan ladang, dekorasi, penyimpanan, keseimbangan dengan pertarungan dan dungeon.
 
 **Di luar D-015 dan BELUM ditetapkan (jangan dianggap disetujui):** hubungan romantis, pernikahan, membangun keluarga, memiliki anak.
 
@@ -322,6 +322,21 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - Terkait: kalender/festival (D-015), NPC (D-022), ekonomi (D-021), wilayah (D-009, D-028), monster/boss/dungeon (D-013, D-016), quest (D-017), pertanian/peternakan/memancing (D-023, D-024, D-025), bangunan (D-027).
 
 **[BELUM DITETAPKAN]:** daftar event dan jadwalnya; bobot dan syarat peluang kejadian acak; bentuk dan bobot dampak (harga, stok, keamanan, perilaku NPC); daftar world boss dan monster legendaris; **arti "fenomena spiritual"**; bentuk pemberitahuan dan persiapan; apakah event berjalan saat pemain offline; aturan bila pemain mengubah waktu perangkat atau memuat ulang save; tingkat konsekuensi (apakah ada kerugian permanen); cara event dapat dilewatkan atau gagal. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+### 6.20 Musim, Cuaca, dan Lingkungan — D-030, LOCKED (Kombinasi Semua Sistem)
+**Ditetapkan:**
+- **Empat musim** dengan perubahan lingkungan.
+- **Cuaca dinamis** dan **pergantian siang-malam.**
+- **Hujan, badai, salju, kabut, dan fenomena ekstrem.**
+- **Iklim berbeda** di setiap wilayah.
+- **Fenomena spiritual** dan **kondisi alam langka.**
+- **Pengaruh** terhadap tanaman, hewan, ikan, dan monster; serta NPC, eksplorasi, dan perdagangan.
+- **Kalender dunia** dan **perubahan lingkungan berkelanjutan.**
+- Ketentuan: tiap wilayah dapat berkarakter iklim berbeda; musim dan cuaca **konsisten dengan kalender dunia**; kondisi lingkungan **memengaruhi aktivitas gameplay**; fenomena spiritual punya **aturan kemunculan dan dampak yang jelas**; perubahan cuaca dan musim **tersinkron dengan single-player online dan cloud save**.
+- Terkait: musim dan kalender (D-015), tanaman (D-023), hewan (D-024), ikan (D-025), NPC (D-022), perdagangan (D-021), wilayah (D-009, D-028), event (D-029), bangunan spiritual (D-027), cloud save (D-014).
+- Menegaskan: **jumlah musim = empat** (sebelumnya terbuka di 6.2); keberadaan **cuaca** (sudah dicatat di 6.13).
+
+**[BELUM DITETAPKAN]:** nama dan panjang tiap musim, panjang hari dan siklus siang-malam, daftar cuaca dan peluangnya per iklim, daftar iklim dan pemetaannya ke wilayah, bentuk "fenomena ekstrem", **arti "fenomena spiritual"** dan aturan kemunculan/dampaknya, "kondisi alam langka", bentuk perubahan lingkungan berkelanjutan (apakah permanen), tampilan (visual/audio) tiap musim/cuaca, aturan bila waktu perangkat diubah (lihat D-029). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

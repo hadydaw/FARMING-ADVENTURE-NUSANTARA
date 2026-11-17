@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.19 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.20 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -257,6 +257,21 @@ Syarat utama: event harus **konsisten dan adil** pada game **single-player onlin
 - **Pedagang misterius/penemuan langka:** merchant/lokasi sementara berbasis data (§4h, §4o) dengan masa tampil; hasil langka dikunci di save (§4g).
 - **Save:** event aktif (tahap, sisa durasi), riwayat event yang sudah terjadi, seed event, dan dampak yang sedang berlaku masuk payload save (skema berversi); simpan ringkas.
 - **Pengujian:** simulasi headless deterministik (seed + kalender → urutan event) dan validator data event.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4q. Implikasi Arsitektur dari D-030 (hanya catatan; belum diimplementasikan)
+
+Syarat utama: musim/cuaca **konsisten dengan kalender dunia** dan **tersinkron dengan single-player online + cloud save**.
+- **Satu sumber kebenaran lingkungan:** kalender (§4b) memberi tanggal/musim/jam; **layanan cuaca/iklim** (satu layanan) menjawab "cuaca di wilayah X pada waktu T". Tanaman (§4j), hewan (§4k), ikan (§4l), monster/spawn (§4o), NPC (§4i), harga (§4h), dan event (§4p) membaca layanan yang sama; tidak ada sumber cuaca terpisah.
+- **Cuaca deterministik:** cuaca = fungsi dari *seed dunia + wilayah/iklim + tanggal* (dan peluang berbobot dari tabel data iklim), sehingga (1) sama di semua perangkat dan setelah memuat ulang save, (2) dapat dihitung untuk hari lampau/selisih hari tanpa menyimpan riwayat, (3) dapat diuji headless. Perubahan akibat event (D-029) disimpan sebagai *override* berdurasi.
+- **Sinkron dengan cloud save:** karena yang tersimpan adalah seed + tanggal permainan (bukan keadaan cuaca per frame), pemuatan di perangkat lain menghasilkan lingkungan yang identik; tidak ada sinkronisasi real-time. Acuan jam (perangkat vs server) dan perlindungan dari manipulasi jam perangkat dipilih bersama D-029 (server dapat menjadi acuan waktu bila diputuskan).
+- **Iklim sebagai data per wilayah:** profil iklim (suhu/curah/peluang tiap cuaca per musim), pengali ke sistem lain, dan aturan fenomena sebagai data; wilayah baru = profil iklim baru.
+- **Fenomena ekstrem/spiritual/langka** sebagai jenis cuaca/kondisi data dengan syarat kemunculan dan dampak (kondisi/efek, §4d); isi fenomena spiritual menunggu desain.
+- **Dampak ke gameplay lewat pengali dan flag** yang dibaca sistem lain (bukan pemanggilan langsung), seperti dampak event (§4p).
+- **Rendering/performa:** siang-malam, hujan, kabut, salju, badai diimplementasikan hemat untuk renderer Compatibility (§3): partikel terbatas, pencahayaan sederhana, transisi lingkungan lewat parameter Environment; anggaran partikel dan draw call dipatuhi; kualitas dapat diturunkan di perangkat lemah.
+- **Audio:** ambience per musim/cuaca/waktu sebagai data (menunggu desain audio).
+- **Save:** seed dunia, tanggal/jam permainan, override cuaca aktif, dan keadaan perubahan lingkungan berkelanjutan (bila ada) masuk payload save (skema berversi).
+- **Pengujian:** simulasi headless deterministik (seed + tanggal → cuaca) dan validator profil iklim.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres

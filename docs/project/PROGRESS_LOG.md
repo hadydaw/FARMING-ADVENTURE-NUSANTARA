@@ -147,3 +147,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - GDD §6.19 baru (v0.19); Technical Architecture §4p ditambahkan (catatan saja; fokus determinisme event dan anti save-scumming untuk single-player online). Hubungan dengan D-009, D-013, D-014, D-015, D-016, D-017, D-020, D-021, D-022, D-023, D-024, D-025, D-027, D-028 dicatat tanpa mengubah isinya.
 - Ditandai terbuka: arti "fenomena spiritual"; event saat offline; aturan waktu perangkat/muat ulang save; tingkat konsekuensi. World boss/invasi dicatat sebagai pengalaman pemain tunggal (konsisten D-014).
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 20.
+
+## 2026-11-17 (20) — D-030 Sistem Musim, Cuaca, dan Lingkungan dicatat
+
+- D-030 (Kombinasi Semua Sistem, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
+- GDD §6.20 baru (v0.20); daftar belum ditetapkan di §6.2 diperbarui (jumlah musim = empat). Technical Architecture §4q ditambahkan (catatan saja; fokus satu sumber kebenaran lingkungan, cuaca deterministik dari seed + tanggal, sinkron dengan cloud save). Hubungan dengan D-009, D-013, D-014, D-015, D-021 sampai D-025, D-027 sampai D-029 dicatat tanpa mengubah isinya.
+- Ditandai terbuka: arti "fenomena spiritual"; panjang musim; daftar cuaca dan iklim; aturan waktu perangkat.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 21.

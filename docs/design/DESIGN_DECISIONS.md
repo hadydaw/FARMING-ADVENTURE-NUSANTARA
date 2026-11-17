@@ -343,6 +343,28 @@ Hubungan dengan keputusan lain (tidak mengubah isinya): kalender, musim, festiva
 **Terbuka:** arti "fenomena spiritual" belum didefinisikan (elemen "spiritual" lain, D-023 sampai D-028); apakah event dapat berlangsung saat pemain tidak bermain atau offline; bagaimana event diperlakukan bila waktu perangkat berubah atau pemain memuat ulang save (aturan keadilan); frekuensi dan keparahan konsekuensi (apakah ada kerugian permanen/kehilangan item atau bangunan).
 Detail (daftar event, jadwal, bobot peluang, dampak, hadiah) belum ditetapkan. Implementasi belum dimulai. ID D-029 tersedia saat dicatat (tanpa bentrokan).
 
+### D-030 — Sistem Musim, Cuaca, dan Lingkungan *(APPROVED / LOCKED, 2026-11-17, Tahap 20)*
+Pilihan: **D. Kombinasi Semua Sistem.** Ruang lingkup:
+1. **Empat musim** dengan perubahan lingkungan
+2. Cuaca dinamis dan pergantian siang malam
+3. Hujan, badai, salju, kabut, dan fenomena ekstrem
+4. Iklim berbeda di setiap wilayah
+5. Fenomena spiritual dan kondisi alam langka
+6. Pengaruh terhadap tanaman, hewan, ikan, dan monster
+7. Pengaruh terhadap NPC, eksplorasi, dan perdagangan
+8. Kalender dunia dan perubahan lingkungan berkelanjutan
+
+Ketentuan desain:
+- Setiap wilayah dapat punya karakteristik iklim berbeda.
+- Perubahan musim dan cuaca konsisten dengan kalender dunia.
+- Kondisi lingkungan dapat memengaruhi aktivitas gameplay.
+- Fenomena spiritual punya aturan kemunculan dan dampak yang jelas.
+- Perubahan cuaca dan musim tersinkron dengan sistem single-player online dan cloud save.
+
+Hubungan dengan keputusan lain (tidak mengubah isinya): merinci butir **pergantian musim** (D-015) dan menetapkan **jumlah musim = empat**; cuaca yang memengaruhi tanaman (**D-023**), ikan (**D-025**), hewan (**D-024**), monster dan wilayah (**D-013, D-028**); NPC dan jadwal (**D-022**); perdagangan dan harga (**D-021**); event bencana dan fenomena (**D-029**); kalender dan festival (**D-015**); sinkronisasi dengan akun/cloud save (**D-014**).
+**Terbuka:** arti "fenomena spiritual" belum didefinisikan (dan kini dinyatakan harus punya aturan kemunculan serta dampak jelas, tetapi isinya belum ada); panjang tiap musim, nama musim, dan daftar cuaca per iklim; daftar iklim/wilayah; hubungan fenomena spiritual dengan event (D-029) dan bangunan spiritual (D-027); acuan waktu (perangkat vs server) dan aturan bila waktu perangkat diubah (lihat D-029).
+Detail (panjang musim, daftar cuaca, peluang, dampak numerik, iklim tiap wilayah) belum ditetapkan. Implementasi belum dimulai. ID D-030 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |
