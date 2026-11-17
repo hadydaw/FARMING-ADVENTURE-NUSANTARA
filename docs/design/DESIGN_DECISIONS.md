@@ -598,6 +598,24 @@ Hubungan (tidak mengubah isi keputusan lain): **D-014** (internet wajib, Cloud S
 **Catatan konsistensi:** frasa "offline-first" di `BACKEND_DESIGN.md` (§5 dan diagram) dan `TECHNICAL_ARCHITECTURE.md` §8 berarti *tulis ke penyimpanan lokal dulu sebagai penyangga* dan bukan bermain offline; ketiga tempat itu diperjelas. Implementasi lokal saat ini (`SaveService`, 3 slot) adalah fondasi dan tetap berlaku sebagai cache lokal.
 **Terbuka:** perilaku game bila koneksi putus berkepanjangan (jeda, mode terbatas, atau keluar ke menu) dan batas waktunya; metode login dan kebijakan multi-perangkat (sudah terbuka di D-014); jumlah slot save per akun (saat ini 3 lokal) dan apakah slot ikut cloud; aturan rinci resolusi konflik (pilihan pemain, penggabungan per bagian yang aman, atau pemenang otomatis dengan syarat); frekuensi dan ambang auto-save; batas ukuran payload dan retensi cadangan cloud; apa yang divalidasi server untuk ekonomi/rank (anti-curang); kebijakan hapus akun dan data; bentuk indikator UI; penanganan jam perangkat yang diubah; peran konsep "spiritual" (belum didefinisikan). Implementasi save/cloud belum dimulai (selain fondasi lokal yang sudah ada). ID D-044 tersedia saat dicatat (tanpa bentrokan).
 
+### D-045 — Sistem Pengaturan dan Aksesibilitas *(APPROVED / LOCKED, 2026-11-17, Tahap 36)*
+Pilihan: **D. Settings Hybrid Lengkap.** Ketentuan:
+1. Kategori pengaturan: **Audio** (musik, efek suara, ambience); **Graphics** (kualitas grafis, efek visual, opsi performa); **Camera** (sensitivitas, zoom, rotasi); **Controls** (ukuran, posisi, sensitivitas kontrol sentuh); **HUD** (tampilan dan elemen antarmuka); **Language** (Indonesia dan English); **Accessibility** (ukuran teks, kontras, kenyamanan visual); **Configuration Profiles** (penyimpanan konfigurasi pilihan pemain).
+2. Pilihan kualitas grafis sesuai kemampuan perangkat Android.
+3. Pengaturan kontrol mendukung virtual joystick, tombol aksi kontekstual, dan tap-to-move.
+4. Pengaturan kamera konsisten dengan Kamera Adaptif (D-033).
+5. Pemain dapat menyesuaikan ukuran dan posisi elemen HUD tanpa merusak tata letak antarmuka.
+6. Pengaturan bahasa memakai sistem localization; tidak ada teks bahasa pada aset gambar.
+7. Pengaturan penting tersimpan dan dipulihkan saat game dibuka kembali.
+8. Pengaturan lokal perangkat dipisah dari data progres cloud jika secara teknis lebih tepat.
+9. Opsi reset ke pengaturan default.
+10. Prioritas: kemudahan di Android landscape dan performa Godot 4.7.2 GL Compatibility.
+
+Hubungan (tidak mengubah isi keputusan lain): platform dan performa (**D-004**, **T-001** sampai **T-009** dan **O-001** untuk engine), bahasa (**D-007**), gaya visual (**D-008**), UI dan tata letak tombol (**D-031**), volume audio (**D-032**), kamera (**D-033**), kontrol (**D-034**), tutorial/petunjuk (**D-043**), save dan sinkronisasi (**D-044**; pengaturan UI sudah dicatat di sana sebagai jalur terpisah dari progres), online (**D-014**).
+**Terbuka:** daftar opsi grafis rinci dan tingkat kualitas (mis. Rendah/Sedang/Tinggi/Auto) serta batas FPS; cara mendeteksi tingkat perangkat; isi Accessibility rinci (skala teks, kontras tinggi, bantuan buta warna, kurangi guncangan kamera, getaran, subtitle/audio, mode satu tangan); jumlah dan nama profil konfigurasi; pengaturan mana yang ikut cloud (per akun) dan mana khusus perangkat (tata letak HUD/kontrol bergantung ukuran layar sehingga bisa per perangkat); dukungan kontroler/keyboard; pengaturan notifikasi/baterai/penghemat data; tata letak layar Pengaturan; apakah pengaturan dapat diubah saat bermain atau hanya lewat menu jeda; konsep "spiritual" (belum didefinisikan). Implementasi pengaturan belum dimulai. ID D-045 tersedia saat dicatat (tanpa bentrokan).
+
+**Catatan status (instruksi pemilik):** Tahap 35 "Sistem Akun dan Login Pemain" berstatus **PENDING** dan baru dibahas saat persiapan publikasi Google Play Store (dicatat sebagai **P-006**). Tidak ada keputusan akun/login yang dibuat di sini; metode login tetap terbuka (D-014). Nomor keputusan D-045 dipakai untuk Tahap 36; tidak ada ID yang dicadangkan untuk Tahap 35.
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |
@@ -621,3 +639,4 @@ Hubungan (tidak mengubah isi keputusan lain): **D-014** (internet wajib, Cloud S
 | P-003 | Penyedia backend | Fase online | **Selesai** (O-003, diperkuat D-014); akun Supabase dibuat saat fase online dimulai |
 | P-004 | Lisensi | Publikasi source | **Selesai** (O-005) |
 | P-005 | Hasil uji APK dev di HP (`docs/project/TESTING_APK.md`) | Menutup Fase 0 | Menunggu |
+| P-006 | Tahap 35: Sistem Akun dan Login Pemain (metode login, multi-perangkat, hapus akun, privasi) | Persiapan publikasi Google Play Store | **PENDING** (atas instruksi pemilik; dibahas saat persiapan publikasi; status tidak diubah) |

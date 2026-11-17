@@ -245,3 +245,11 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - D-044 (Cloud Save Hybrid Lengkap, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
 - GDD §6.34 baru (v0.34); Technical Architecture §5a ditambahkan (v0.34; catatan saja: alur cache lokal ke Supabase, auto-save berbasis event, skema modular berversi, validasi, pemulihan berlapis, retry terbatas, resolusi konflik tanpa penimpaan diam-diam, ID transaksi idempoten, keamanan RLS tanpa rahasia di klien/repo); `BACKEND_DESIGN.md` §5a ditambahkan dan frasa "offline-first" diperjelas agar tidak dibaca sebagai mode offline (konsisten dengan D-014 online-only). Hubungan dengan D-007, D-014, D-031, D-036, D-037, D-039, D-040, D-042, D-043, O-003 dicatat tanpa mengubah isinya.
 - Tidak ada perubahan kode/gameplay/CI; fondasi lokal `SaveService` tidak diubah. Menunggu keputusan Tahap 35.
+
+
+## 2026-11-17 (35) — D-045 Sistem Pengaturan dan Aksesibilitas dicatat
+
+- D-045 (Settings Hybrid Lengkap, LOCKED) dicatat sebagai **Tahap 36**; ID tersedia, tanpa bentrokan.
+- **Status Tahap 35 (Sistem Akun dan Login Pemain): PENDING**, atas instruksi pemilik; dibahas saat persiapan publikasi Google Play Store; dicatat sebagai P-006 tanpa keputusan apa pun. Catatan pada entri (34) yang menulis "Menunggu keputusan Tahap 35" kini digantikan oleh status ini.
+- GDD §6.35 baru (v0.35); Technical Architecture §6a ditambahkan (v0.35; catatan saja: layanan pengaturan berbasis skema dengan cakupan per pengaturan, penyimpanan terpisah dari progres, profil konfigurasi, preset grafis GL Compatibility, editor tata letak kontrol/HUD, aksesibilitas lewat Theme). Hubungan dengan D-004, D-007, D-008, D-014, D-031 sampai D-034, D-043, D-044 dicatat tanpa mengubah isinya.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 37 (Tahap 35 tetap PENDING).

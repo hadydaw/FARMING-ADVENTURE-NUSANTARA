@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.34 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.35 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -497,6 +497,24 @@ Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 - `game/i18n/translations.csv` kolom `keys,id,en` → diimpor Godot menjadi `translations.id.translation` dan `translations.en.translation`.
 - Bahasa bawaan `id`; fallback `id`. Layar boot memuat tombol ganti bahasa sebagai uji.
 - Aturan: tidak ada string UI di kode; teks dialog/quest panjang nanti dapat dipisah per berkas, tetap kunci → teks.
+
+### 6a. Implikasi Arsitektur dari D-045 (hanya catatan; belum diimplementasikan)
+
+Menyatukan pengaturan yang tersebar di D-031 sampai D-034 dan D-043 (lihat §4r sampai §4u, §4ad, §5a). Implementasi lokalisasi awal tetap di atas.
+- **Layanan Pengaturan terpusat** (autoload): satu **skema pengaturan berbasis data** (ID kunci stabil, tipe, rentang, nilai default, kategori, cakupan, kunci terjemahan label/deskripsi) sehingga menambah opsi tidak butuh perubahan UI manual; semua sistem membaca nilai lewat layanan dan mendengarkan sinyal perubahan (tanpa menyimpan salinan). Nilai di luar rentang atau kunci tak dikenal diperbaiki ke default saat dimuat.
+- **Cakupan (scope) per pengaturan:** (1) **perangkat saja** (grafis, penghemat baterai/performa, kontrol/HUD yang bergantung ukuran layar, kemampuan perangkat) disimpan lokal di `user://settings.cfg` terpisah dari save game; (2) **preferensi akun** (bahasa, volume, kamera, aksesibilitas, profil) disimpan lokal dan dapat disinkronkan lewat jalur pengaturan terpisah dari payload progres (D-044, §5a); (3) **progres game** tidak termasuk pengaturan. Pembagian akhir menunggu desain; skema mendukung penandaan cakupan per pengaturan tanpa mengubah kode. Catatan klarifikasi: §4r menyebut tata letak tombol ikut cloud; dengan D-045 penandaan cakupan menentukan ini per pengaturan (tata letak bergantung ukuran layar sehingga dapat per perangkat).
+- **Penyimpanan:** tulis atomik (.tmp → ganti) dengan debounce setelah perubahan dan simpan paksa saat aplikasi masuk latar belakang; versi skema pengaturan dengan migrasi; pemulihan otomatis dari berkas cadangan atau default bila rusak; **reset ke default** per kategori dan global (dengan konfirmasi) yang tidak menyentuh progres game.
+- **Profil konfigurasi:** profil = snapshot nilai pengaturan (dengan cakupan yang boleh diprofilkan), disimpan sebagai data bernama; ganti profil menerapkan nilai secara atomik; profil dapat mencakup tata letak kontrol/HUD; jumlah profil dan sinkronisasi menunggu desain.
+- **Profil grafis (GL Compatibility):** tingkat kualitas (mis. Rendah/Sedang/Tinggi/Auto) adalah **preset data** yang menyetel parameter yang didukung renderer Compatibility: skala render 3D, kualitas/jarak bayangan, jarak render dan kepadatan objek (vegetasi, §4j), kualitas partikel dan efek cuaca (§4q), anti-aliasing yang tersedia, batas FPS, serta LOD (§3). Tingkat awal dipilih heuristik dari informasi perangkat (RAM, GPU/driver, resolusi) tanpa benchmark berat, dengan **override** manual; perubahan dapat diterapkan langsung dengan pratinjau dan dikembalikan bila diperlukan. Fitur yang tidak didukung GL Compatibility tidak ditawarkan. Daftar opsi dan angka menunggu desain dan pengukuran di perangkat nyata.
+- **Kontrol dan HUD:** editor tata letak (mode edit) menampilkan kontrol/HUD dengan seret dan ubah ukuran, **snap**, batas aman (safe area/notch), pencegahan tumpang tindih dan keluar layar (validasi dan koreksi otomatis), serta **reset tata letak**; konfigurasi tersimpan per konteks (§4r) dan per kontrol: joystick, tombol aksi kontekstual, tap-to-move (§4u). Pengaturan sensitivitas (dead zone, kurva) dan kamera (sensitivitas, batas zoom/rotasi, mengurangi guncangan; §4t) berupa nilai dengan rentang terkontrol sehingga selalu konsisten dengan profil kamera adaptif.
+- **Bahasa:** pergantian bahasa memakai `TranslationServer` (id/en, §6) dengan pembaruan UI langsung tanpa memulai ulang; tidak ada teks pada aset gambar; bahasa awal dari bahasa perangkat bila didukung, jika tidak `id`.
+- **Aksesibilitas:** skala teks global lewat Theme terpusat (§4r) dengan layout yang toleran teks panjang; tema kontras tinggi dan bantuan buta warna sebagai varian Theme/palet (tidak mengandalkan warna saja untuk makna); opsi kurangi guncangan/efek kedip; ukuran target sentuh minimum dapat diperbesar; opsi bantuan audio/subtitle dan getaran menunggu desain. Nilai bawaan harus nyaman tanpa harus membuka pengaturan.
+- **Audio:** pengaturan volume per bus (§4s) memakai layanan yang sama.
+- **UI Pengaturan:** panel di manajer konteks UI (§4r), kategori di sisi kiri (landscape), daftar tervirtualisasi, kontrol berukuran nyaman, terapkan/batal; semua label lewat kunci terjemahan; dapat dibuka dari menu utama dan menu jeda.
+- **Performa:** layanan ringan, sinyal hanya untuk nilai yang berubah, tidak ada alokasi per frame (§3); perubahan grafis diterapkan tanpa memuat ulang adegan bila memungkinkan.
+- **Pengujian:** uji headless untuk skema (default dan rentang valid), muat/simpan/migrasi/pemulihan, reset, penerapan profil, kelengkapan kunci terjemahan id/en, validasi tata letak (tanpa tumpang tindih atau keluar layar pada beberapa ukuran layar), dan bahwa pengaturan tidak masuk payload save progres.
+- **Tahap 35 (akun dan login) PENDING:** tidak ada asumsi desain akun di sini; jalur sinkron pengaturan bergantung pada keputusan itu (P-006).
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 7. Input Sentuh
 

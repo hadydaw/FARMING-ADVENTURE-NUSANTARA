@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.34 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.35 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -535,6 +535,23 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - Terkait: D-007, D-014, D-031, D-036, D-037, D-039, D-040, D-042, D-043, O-003.
 
 **[BELUM DITETAPKAN]:** perilaku saat koneksi putus lama, metode login dan multi-perangkat, jumlah slot dan peran slot di cloud, aturan rinci resolusi konflik, frekuensi auto-save, batas ukuran dan retensi cadangan, validasi server (ekonomi/rank), kebijakan hapus akun/data, bentuk indikator UI, jam perangkat diubah, konsep "spiritual" (belum didefinisikan). **Tidak ada implementasi cloud/save lanjutan sebelum seluruh tahap desain selesai.**
+
+### 6.35 Pengaturan dan Aksesibilitas — D-045, LOCKED (Settings Hybrid Lengkap)
+**Ditetapkan:**
+- **Kategori:** Audio (musik, efek suara, ambience); Graphics (kualitas, efek visual, opsi performa); Camera (sensitivitas, zoom, rotasi); Controls (ukuran, posisi, sensitivitas kontrol sentuh); HUD (tampilan dan elemen); Language (Indonesia dan English); Accessibility (ukuran teks, kontras, kenyamanan visual); **Configuration Profiles**.
+- **Kualitas grafis** menyesuaikan kemampuan perangkat Android.
+- **Kontrol:** virtual joystick, tombol aksi kontekstual, dan tap-to-move dapat diatur (D-034).
+- **Kamera** konsisten dengan Kamera Adaptif (D-033).
+- **HUD** dapat diubah ukuran dan posisinya **tanpa merusak tata letak** (D-031).
+- **Bahasa** memakai localization; **tanpa teks pada aset gambar.**
+- Pengaturan penting **tersimpan dan dipulihkan**; **pengaturan lokal perangkat dipisah dari progres cloud** bila secara teknis lebih tepat.
+- **Reset ke default** tersedia.
+- Prioritas **Android landscape** dan **performa** (Godot 4.7.2, GL Compatibility).
+- Terkait: D-004, D-007, D-008, D-014, D-031 sampai D-034, D-043, D-044.
+
+**[BELUM DITETAPKAN]:** opsi grafis rinci dan tingkatnya, deteksi tingkat perangkat, isi aksesibilitas rinci, profil konfigurasi, pembagian pengaturan lokal vs cloud, kontroler/keyboard, pengaturan baterai/data, tata letak layar Pengaturan, perubahan saat bermain, konsep "spiritual" (belum didefinisikan). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+> **Catatan:** Tahap 35 (Sistem Akun dan Login Pemain) berstatus **PENDING** dan dibahas saat persiapan publikasi Google Play Store (P-006); tidak diubah oleh keputusan ini.
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 
