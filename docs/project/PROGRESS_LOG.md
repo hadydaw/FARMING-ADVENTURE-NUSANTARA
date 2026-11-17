@@ -361,3 +361,11 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
 - GDD §6.49 baru (v0.49); Technical Architecture §4aq ditambahkan (v0.49); catatan saja: kelompok/ras/suku sebagai data ber-ID, referensi bukan salinan, perlakuan berbeda hanya lewat aturan data eksplisit (anti diskriminasi tersembunyi) dengan audit validator, lokalisasi dua bahasa. Daftar ras, lore, kemampuan, populasi, dan hubungan antarbangsa sengaja tidak ditetapkan.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.
+
+## 2026-11-17 (50) — D-061 Sistem Kerajaan, Wilayah Kekuasaan, dan Organisasi Dunia dicatat
+
+- D-061 (World Civilization Hybrid Lengkap, LOCKED) dicatat sebagai **Tahap 52**; ID tersedia, tanpa bentrokan. **D-051 (Tahap 42) tetap dicadangkan**, isinya belum diterima; tidak ada isi yang dikarang. "Sekte spiritual" dicatat sebagai disebut pemilik; arti "spiritual" **tetap tidak didefinisikan**.
+- Tidak ada dokumen worldbuilding terpisah di `docs/`; dunia dicatat di GDD (§6.50 baru). Tidak dibuat dokumen baru.
+- **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
+- GDD §6.50 baru (v0.50); Technical Architecture §4ar ditambahkan (v0.50); catatan saja: `Organization` sebagai data ber-ID, guild D-017 tidak diubah, wilayah pengaruh sebagai relasi data, hubungan antarorganisasi sebagai graf data, keadaan per-save yang deterministik, organisasi rahasia tanpa kebocoran, struktur additive agar berkembang seiring progres. Nama, jumlah, pemimpin, peta politik, sejarah, dan hubungan sengaja tidak ditetapkan.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.

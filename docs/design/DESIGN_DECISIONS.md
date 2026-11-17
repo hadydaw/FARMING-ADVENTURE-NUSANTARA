@@ -942,6 +942,35 @@ Hubungan (tidak mengubah isi keputusan lain): dunia dan Progressive World Unlock
 
 **Terbuka (tidak diputuskan):** daftar ras/suku/bangsa; lore dan sejarah; kemampuan/bonus ras (bila ada); populasi dan persebaran; hubungan antarbangsa; apakah pemain memilih ras/suku/asal-usul dan apa dampaknya (D-041, D-018); arti "spiritual" dan "garis keturunan spiritual" (belum didefinisikan, tidak ditebak); daftar peradaban kuno; hubungan dengan budaya nyata; bahasa dan sistem penamaan; romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
 
+### D-061 — Sistem Kerajaan, Wilayah Kekuasaan, dan Organisasi Dunia *(APPROVED / LOCKED, 2026-11-17, Tahap 52)*
+Pilihan: **D. World Civilization Hybrid Lengkap.** Ruang lingkup:
+1. Kerajaan dan kekaisaran.
+2. Sekte spiritual (**arti "spiritual" belum didefinisikan**; hanya dicatat sebagai jenis yang disebut pemilik).
+3. Klan dan keluarga besar.
+4. Guild petualang (tetap sesuai D-017; tidak diubah).
+5. Aliansi regional.
+6. Kota independen.
+7. Organisasi rahasia.
+8. Wilayah pengaruh, kepentingan, identitas, dan hubungan antarorganisasi.
+
+Ketentuan:
+- **Tidak ada nama, jumlah, pemimpin, peta politik, sejarah, atau hubungan organisasi final** tanpa desain lanjutan.
+- **Struktur organisasi harus dapat berkembang seiring progres dunia.**
+- Selaras dengan D-028 (eksplorasi dunia), D-060 (ras dan suku), D-017 (guild petualang), dan D-029 (event dunia).
+- Tidak mengubah keputusan terdahulu. Penguncian desain, bukan instruksi implementasi.
+
+**Prinsip (dasar, tanpa isi lore):**
+- Organisasi dunia adalah **bagian dunia yang dapat berubah**: kondisi dan hubungannya dapat bergeser seiring progres pemain, quest, dan event, tidak statis (arah desain; aturan perubahan belum ditetapkan).
+- **Guild petualang (D-017)** tetap satu jenis organisasi yang ada; D-061 menempatkannya sebagai salah satu dari beberapa jenis organisasi tanpa mengubah rank, fitur, atau isinya.
+- Identitas, budaya, dan wilayah tiap organisasi **konsisten** dan terkait kelompok (D-060) dan wilayah (D-009, D-028) tanpa diskriminasi tersembunyi: perbedaan perlakuan hanya lewat aturan desain yang eksplisit.
+- Wilayah pengaruh tidak membuka atau menutup wilayah di luar aturan Progressive World Unlock (D-009) dan tidak mengubah aturan eksplorasi (D-028).
+- Organisasi rahasia **tidak terlihat sebelum ditemukan**; tidak membocorkan informasi lewat peta/UI (selaras D-054).
+- Dunia tetap **pribadi per pemain** (single-player online, D-014); perubahan kondisi dunia bersifat per-save.
+
+Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), sistem kehidupan (**D-015**), dungeon (**D-016**), guild (**D-017**), perkembangan karakter (**D-018**), ekonomi dan perdagangan (**D-021**), NPC dan sosial (**D-022**), eksplorasi (**D-028**), event dunia (**D-029**), quest dan cerita (**D-037**), dialog (**D-038**), hubungan sosial (**D-039**), NPC hidup (**D-040**), save/cloud (**D-044**), update konten (**D-048**), keamanan (**D-050**), peta (**D-054**), waktu (**D-055**), ras dan suku (**D-060**). **D-051** isinya belum diterima.
+
+**Terbuka (tidak diputuskan):** nama, jumlah, pemimpin, peta politik, sejarah, dan hubungan antarorganisasi; arti "spiritual" dan isi sekte (tidak ditebak); aturan dan cara perubahan kondisi organisasi seiring progres; efek mekanik (reputasi per organisasi, akses, dagang, quest); hubungan dengan guild petualang selain D-017; jenis dan cara menemukan organisasi rahasia; apakah ada konflik/perang dan bagaimana ditampilkan; romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan (termasuk dalam konteks klan). Tahap 35 (akun/login) tetap PENDING (P-006).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

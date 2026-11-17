@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.49 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.50 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -683,6 +683,22 @@ Terkait data dunia (§4o, §4ak), NPC (§4i, §4aa), guild (§4d), ekonomi (§4h
 - **Save/cloud (D-044, §5a):** hanya ID kelompok yang relevan masuk save (mis. reputasi per kelompok bila ada), dengan `section_version` dan migrasi; ID yang di-deprecate tetap dikenali.
 - **Update konten (D-048):** kelompok, budaya, dan peradaban baru ditambah sebagai data baru; validator memastikan semua referensi valid dan kunci terjemahan lengkap di kedua bahasa.
 - **Pengujian (D-049):** uji headless untuk referensi ID valid, kelengkapan terjemahan, tidak ada aturan perlakuan berbeda di luar data yang terdaftar, konsistensi atribut antar NPC/wilayah, dan migrasi save.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4ar. Implikasi Arsitektur dari D-061 (hanya catatan; belum diimplementasikan; tidak ada angka)
+
+Memperluas guild (§4d), kelompok/identitas (§4aq), data dunia dan wilayah (§4o, §4ak), event (§4p), NPC (§4i, §4aa), quest/cerita (§4x), ekonomi (§4h), hubungan sosial (§4z), versi konten (§4ag), cloud save (§5a). Hanya rancangan; tidak ada daftar organisasi atau lore.
+- **`Organization` sebagai data:** setiap organisasi (kerajaan, kekaisaran, sekte, klan, guild, aliansi, kota independen, organisasi rahasia) berupa resource ber-ID stabil (§4ag) dengan jenis sebagai tag, kunci terjemahan, referensi kelompok (§4aq), wilayah pengaruh (daftar ID wilayah §4o), dan atribut identitas. Guild petualang tetap memakai struktur §4d (D-017) dan hanya mendapat ID organisasi sebagai pembungkus; rank dan fiturnya tidak diubah. Kategori "spiritual" hanya tag; **tidak ada logika untuk "spiritual"** karena belum didefinisikan.
+- **Wilayah pengaruh:** pemetaan organisasi ↔ wilayah/lokasi sebagai data relasi (bukan salinan atribut), dibaca oleh peta (§4ak), NPC, toko, dan quest; tidak mengubah status buka wilayah (D-009).
+- **Hubungan antarorganisasi sebagai graf data:** tepi (jenis, status, syarat) antar ID organisasi; isi tidak ditetapkan. Perubahan hubungan dan kondisi organisasi diterapkan lewat efek data yang dipicu quest/event/progres (§4x, §4p) melalui event bus, bukan kode khusus; **state per-save** (dunia pribadi per pemain) dengan benih deterministik agar hasil acak tidak bisa diulang lewat muat ulang save (D-055).
+- **Keadaan organisasi per pemain:** ditemukan/dikenal, reputasi/hubungan (bila diputuskan), status hubungan terkini; monoton untuk penemuan dan terikat revisi; bagian save dengan `section_version` dan migrasi (§5a, D-044). Tidak menyimpan lore (data konten, bukan save).
+- **Organisasi rahasia:** status penemuan sama seperti lokasi tersembunyi (§4ak): tidak ada kebocoran ke peta/UI/pencarian sebelum ditemukan; validator memeriksa bahwa tampilan tidak mengekspos data tersembunyi.
+- **Perkembangan seiring progres:** struktur dibuat tambahan (additive): organisasi, wilayah, dan hubungan baru ditambah sebagai data baru dengan ID stabil lewat update konten (D-048); ID yang di-deprecate tetap dikenali di save lama; tidak ada angka atau jumlah organisasi yang dikodekan keras.
+- **Perlakuan berbeda eksplisit (§4aq):** semua aturan yang memakai ID organisasi (harga, akses, dialog, quest) terdaftar dan dapat diaudit; tidak ada percabangan tersembunyi.
+- **Lokalisasi dan aset:** teks lewat kunci Indonesia/English (D-045); lambang/ikon sebagai aset data (atlas ikon bersama) tanpa teks tertanam; pemuatan sesuai kebutuhan (§4aj, §4ai).
+- **Keamanan (D-050, §5b):** keadaan organisasi bersifat pribadi per akun; operasi bernilai tinggi (ekonomi/hadiah) divalidasi urutan server; checksum bukan anti-cheat.
+- **Pengujian (D-049):** uji headless untuk validitas referensi (wilayah, kelompok, hubungan), tidak ada kebocoran data tersembunyi, aturan perubahan deterministik dan idempoten, migrasi save, kelengkapan terjemahan, dan guild D-017 tidak berubah perilakunya.
 - **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
