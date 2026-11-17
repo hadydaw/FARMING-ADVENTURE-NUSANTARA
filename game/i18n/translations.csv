@@ -153,3 +153,34 @@ ACT_ACTIVITY_REST,istirahat,resting
 ACT_ACTIVITY_WORK,bekerja,working
 ACT_ACTIVITY_SOCIALIZE,bersosialisasi,socializing
 ACT_ACTIVITY_SHELTER,berteduh,sheltering
+ITEM_TOOL_FISHING_ROD,Pancing (uji),Fishing rod (test)
+ITEM_BAIT_TEST,Umpan uji,Test bait
+ITEM_FISH_TEST_A,Ikan uji A,Test fish A
+ITEM_FISH_TEST_B,Ikan uji B,Test fish B
+ITEM_FISH_TEST_C,Ikan uji C,Test fish C
+ITEM_FEED_TEST,Pakan uji,Test feed
+ITEM_PRODUCT_ANIMAL_TEST_A,Hasil ternak uji A,Test animal product A
+ITEM_PRODUCT_ANIMAL_TEST_B,Hasil ternak uji B,Test animal product B
+ANIMAL_TEST_A,Hewan uji A,Test animal A
+ANIMAL_TEST_B,Hewan uji B,Test animal B
+FARM_ACT_FISH,Memancing,Fish
+FARM_ACT_FEED,Beri pakan,Feed
+FARM_ACT_COLLECT,Ambil hasil,Collect
+FISH_WAITING,Menunggu ikan…,Waiting for a bite…
+FISH_BITE,Ada gigitan! Tekan Interaksi,A bite! Press Interact
+FISH_CAUGHT,Dapat ikan!,Caught a fish!
+FISH_ESCAPED,Ikan lepas,The fish got away
+FISH_TOO_EARLY,Terlalu cepat,Too early
+FISH_NO_FISH,Tidak ada ikan sekarang,No fish right now
+FARM_NO_NEED_ROD,Butuh pancing,Need a fishing rod
+FARM_NO_FISHING,Sedang memancing,Already fishing
+FARM_NO_NEED_FEED,Tidak punya pakan,No feed
+FARM_NO_NOT_HUNGRY,Sudah diberi pakan,Already fed
+FARM_DONE_FEED,Hewan diberi pakan,Animal fed
+FARM_DONE_COLLECT,Hasil diambil,Product collected
+ANIMAL_STATE_HUNGRY,lapar,hungry
+ANIMAL_STATE_FED,kenyang,fed
+ANIMAL_STATE_READY,siap diambil,ready
+ANIMAL_STATE_YOUNG,muda,young
+FARM_NO_UNKNOWN_ANIMAL,Hewan tidak dikenal,Unknown animal
+FARM_NO_UNKNOWN_SPOT,Tempat tidak dikenal,Unknown spot

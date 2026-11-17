@@ -1,8 +1,100 @@
 [
-	{"id": "tool_hoe", "provisional": true, "category": "tool", "name_key": "ITEM_TOOL_HOE", "stack_max": 1},
-	{"id": "tool_watering_can", "provisional": true, "category": "tool", "name_key": "ITEM_TOOL_WATERING_CAN", "stack_max": 1},
-	{"id": "seed_test_a", "provisional": true, "category": "seed", "name_key": "ITEM_SEED_TEST_A", "stack_max": 20},
-	{"id": "seed_test_b", "provisional": true, "category": "seed", "name_key": "ITEM_SEED_TEST_B", "stack_max": 20},
-	{"id": "produce_test_a", "provisional": true, "category": "produce", "name_key": "ITEM_PRODUCE_TEST_A", "stack_max": 20},
-	{"id": "produce_test_b", "provisional": true, "category": "produce", "name_key": "ITEM_PRODUCE_TEST_B", "stack_max": 20}
+	{
+		"id": "tool_hoe",
+		"provisional": true,
+		"category": "tool",
+		"name_key": "ITEM_TOOL_HOE",
+		"stack_max": 1
+	},
+	{
+		"id": "tool_watering_can",
+		"provisional": true,
+		"category": "tool",
+		"name_key": "ITEM_TOOL_WATERING_CAN",
+		"stack_max": 1
+	},
+	{
+		"id": "seed_test_a",
+		"provisional": true,
+		"category": "seed",
+		"name_key": "ITEM_SEED_TEST_A",
+		"stack_max": 20
+	},
+	{
+		"id": "seed_test_b",
+		"provisional": true,
+		"category": "seed",
+		"name_key": "ITEM_SEED_TEST_B",
+		"stack_max": 20
+	},
+	{
+		"id": "produce_test_a",
+		"provisional": true,
+		"category": "produce",
+		"name_key": "ITEM_PRODUCE_TEST_A",
+		"stack_max": 20
+	},
+	{
+		"id": "produce_test_b",
+		"provisional": true,
+		"category": "produce",
+		"name_key": "ITEM_PRODUCE_TEST_B",
+		"stack_max": 20
+	},
+	{
+		"id": "tool_fishing_rod",
+		"provisional": true,
+		"category": "tool",
+		"name_key": "ITEM_TOOL_FISHING_ROD",
+		"stack_max": 1
+	},
+	{
+		"id": "bait_test",
+		"provisional": true,
+		"category": "bait",
+		"name_key": "ITEM_BAIT_TEST",
+		"stack_max": 20
+	},
+	{
+		"id": "fish_test_a",
+		"provisional": true,
+		"category": "fish",
+		"name_key": "ITEM_FISH_TEST_A",
+		"stack_max": 20
+	},
+	{
+		"id": "fish_test_b",
+		"provisional": true,
+		"category": "fish",
+		"name_key": "ITEM_FISH_TEST_B",
+		"stack_max": 20
+	},
+	{
+		"id": "fish_test_c",
+		"provisional": true,
+		"category": "fish",
+		"name_key": "ITEM_FISH_TEST_C",
+		"stack_max": 20
+	},
+	{
+		"id": "feed_test",
+		"provisional": true,
+		"category": "feed",
+		"name_key": "ITEM_FEED_TEST",
+		"stack_max": 20
+	},
+	{
+		"id": "product_animal_test_a",
+		"provisional": true,
+		"category": "animal_product",
+		"name_key": "ITEM_PRODUCT_ANIMAL_TEST_A",
+		"stack_max": 20
+	},
+	{
+		"id": "product_animal_test_b",
+		"provisional": true,
+		"category": "animal_product",
+		"name_key": "ITEM_PRODUCT_ANIMAL_TEST_B",
+		"stack_max": 20
+	}
 ]

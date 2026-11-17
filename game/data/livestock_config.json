@@ -1,0 +1,28 @@
+[
+	{
+		"id": "default",
+		"provisional": true,
+		"note": "Hewan awal SEMENTARA (pembelian hewan menunggu ekonomi/D-021).",
+		"neglect_limit": 3,
+		"pens": [
+			{
+				"id": "pen_01",
+				"species": "animal_a",
+				"x": -8.0,
+				"z": -4.0
+			},
+			{
+				"id": "pen_02",
+				"species": "animal_a",
+				"x": -10.0,
+				"z": -4.0
+			},
+			{
+				"id": "pen_03",
+				"species": "animal_b",
+				"x": -8.0,
+				"z": -6.5
+			}
+		]
+	}
+]

@@ -1,0 +1,66 @@
+[
+	{
+		"id": "fish_a",
+		"provisional": true,
+		"note": "IKAN UJI TEKNIS generik, bukan daftar resmi (D-025).",
+		"item": "fish_test_a",
+		"habitats": [
+			"pond"
+		],
+		"seasons": [
+			"season_1",
+			"season_2",
+			"season_3",
+			"season_4"
+		],
+		"hour_from": 0,
+		"hour_to": 24,
+		"weather": [
+			"clear",
+			"rain"
+		],
+		"weight": 60,
+		"rarity": 1
+	},
+	{
+		"id": "fish_b",
+		"provisional": true,
+		"item": "fish_test_b",
+		"habitats": [
+			"pond"
+		],
+		"seasons": [
+			"season_1",
+			"season_2"
+		],
+		"hour_from": 5,
+		"hour_to": 12,
+		"weather": [
+			"clear",
+			"rain"
+		],
+		"weight": 30,
+		"rarity": 2
+	},
+	{
+		"id": "fish_c",
+		"provisional": true,
+		"item": "fish_test_c",
+		"habitats": [
+			"pond"
+		],
+		"seasons": [
+			"season_1",
+			"season_2",
+			"season_3",
+			"season_4"
+		],
+		"hour_from": 0,
+		"hour_to": 24,
+		"weather": [
+			"rain"
+		],
+		"weight": 10,
+		"rarity": 3
+	}
+]

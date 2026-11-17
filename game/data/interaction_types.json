@@ -28,5 +28,17 @@
 		"prompt_key": "INTERACT_TALK",
 		"max_distance": 2.6,
 		"min_facing_dot": 0.0
+	},
+	{
+		"id": "fish_spot",
+		"prompt_key": "FARM_ACT_FISH",
+		"max_distance": 3.0,
+		"min_facing_dot": 0.0
+	},
+	{
+		"id": "animal",
+		"prompt_key": "INTERACT_GENERIC",
+		"max_distance": 2.4,
+		"min_facing_dot": 0.0
 	}
 ]

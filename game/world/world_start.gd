@@ -15,6 +15,8 @@ var farming: FarmingSession
 var social: SocialState
 var dialog: DialogRunner
 var npc_nodes: Dictionary = {}
+var animal_nodes: Dictionary = {}
+var cast: FishingCast = null
 var _npc_targets: Dictionary = {}
 var plot_nodes: Dictionary = {}  # id petak -> Node3D
 var _inspect_count := 0
@@ -35,6 +37,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	_move_npcs(delta)
+	_update_fishing(delta)
 	if farming != null and farming.sleep != null and farming.sleep.is_sleeping():
 		player.set_physics_process(false)
 		hud.show_message(tr("SLEEPING"), 0.5)
@@ -51,6 +54,12 @@ func _prompt_text() -> String:
 		return ""
 	if dialog != null and dialog.is_active():
 		return ""
+	if cast != null:
+		return tr("FARM_ACT_FISH")
+	if sensor.current.has_meta("spot_id"):
+		return tr("FARM_ACT_FISH")
+	if sensor.current.has_meta("animal_id"):
+		return _animal_prompt(str(sensor.current.get_meta("animal_id")))
 	if sensor.current.has_meta("npc_id"):
 		return tr("INTERACT_TALK") + ": " + tr(str(sensor.current.get_meta("label_key", "")))
 	if sensor.current.has_meta("is_bed"):
@@ -66,6 +75,15 @@ func inspect_count() -> int:
 
 func _on_interacted(target: Node, _actor: Node) -> void:
 	if dialog != null and dialog.is_active():
+		return
+	if cast != null:
+		_reel()
+		return
+	if target.has_meta("spot_id"):
+		_start_fishing(str(target.get_meta("spot_id")))
+		return
+	if target.has_meta("animal_id"):
+		_on_animal_interacted(str(target.get_meta("animal_id")))
 		return
 	if target.has_meta("npc_id"):
 		_start_dialog(str(target.get_meta("npc_id")))
@@ -247,9 +265,13 @@ func _build_farm() -> void:
 	var cfg: Dictionary = DataRegistry.get_row("farm_config", "default")
 	farming = FarmingSession.new(GameTime.clock, DataRegistry.rows("items"), DataRegistry.rows("crops"),
 		_plot_ids(), cfg, DataRegistry.rows("weather_types"), DataRegistry.rows("weather_chances"),
-		int(cfg.get("world_seed", 0)), DataRegistry.rows("vitality_meters"), DataRegistry.get_row("rest_config", "default"))
+		int(cfg.get("world_seed", 0)), DataRegistry.rows("vitality_meters"), DataRegistry.get_row("rest_config", "default"),
+		{"fish_species": DataRegistry.rows("fish_species"), "fishing_config": DataRegistry.get_row("fishing_config", "default"),
+		"animals": DataRegistry.rows("animals"), "livestock_config": DataRegistry.get_row("livestock_config", "default")})
 	farming.sleep.finished.connect(_on_woke_up)
 	_build_bed()
+	_build_pond()
+	_build_pens()
 	var holder := Node3D.new()
 	holder.name = "FarmPlots"
 	add_child(holder)
@@ -314,6 +336,7 @@ func refresh_farm_visuals() -> void:
 		var info := node.get_node("Info") as Label3D
 		info.text = "UJI: " + (tr("FARM_STATE_READY") if plot.is_ready(farming.crop_defs) else (tr("FARM_STATE_GROWING") if plot.has_crop() else (tr("FARM_STATE_TILLED") if plot.tilled else tr("FARM_STATE_RAW"))))
 	hud.set_vitality_text(vitality_text())
+	_refresh_animals()
 	hud.set_inventory_text(inventory_text())
 	hud.set_weather_text(tr(str(farming.weather_types.get(farming.weather_today(), {}).get("name_key", "WEATHER_CLEAR"))))
 	_apply_weather_look(farming.is_raining_today())
@@ -532,4 +555,145 @@ func _on_dialog_ended() -> void:
 	hud.hide_dialog()
 	GameTime.clock.resume("dialog")
 	player.set_physics_process(true)
+	refresh_farm_visuals()
+
+
+# --- Memancing dan peternakan (SEMENTARA: penanda berlabel, data uji generik) ---
+
+func _build_pond() -> void:
+	for sp in DataRegistry.get_row("fishing_config", "default")["spots"]:
+		var node := Node3D.new()
+		node.name = str(sp["id"])
+		node.position = Vector3(float(sp["x"]), 0.0, float(sp["z"]))
+		var mesh := MeshInstance3D.new()
+		var cyl := CylinderMesh.new()
+		cyl.top_radius = 2.5
+		cyl.bottom_radius = 2.5
+		cyl.height = 0.05
+		mesh.mesh = cyl
+		mesh.position.y = 0.03
+		var mat := StandardMaterial3D.new()
+		mat.albedo_color = Color(0.25, 0.5, 0.8)
+		mesh.material_override = mat
+		node.add_child(mesh)
+		var label := Label3D.new()
+		label.text = "UJI: KOLAM"
+		label.pixel_size = 0.005
+		label.position = Vector3(0, 1.0, 0)
+		label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+		node.add_child(label)
+		var it := Interactable.new()
+		it.interaction_type = "fish_spot"
+		it.position = Vector3(-2.0, 0, 0)  # titik tepi kolam tempat pemain berdiri
+		node.add_child(it)
+		it.set_meta("spot_id", str(sp["id"]))
+		add_child(node)
+
+
+func _start_fishing(spot_id: String) -> void:
+	var r := farming.begin_fishing(spot_id)
+	if not bool(r["ok"]):
+		var key: String = {"need_rod": "FARM_NO_NEED_ROD", "too_tired": "FARM_NO_TOO_TIRED", "no_fish": "FISH_NO_FISH", "inventory_full": "FARM_NO_INVENTORY_FULL", "sleeping": "FARM_NO_SLEEPING"}.get(str(r["reason"]), "FARM_NO_UNKNOWN_ACTION")
+		hud.show_message(tr(key))
+		return
+	cast = r["cast"]
+	hud.show_message(tr("FISH_WAITING"), 5.0)
+	refresh_farm_visuals()
+
+
+func _update_fishing(delta: float) -> void:
+	if cast == null:
+		return
+	var before := cast.state
+	cast.advance(delta)
+	if cast.state != before:
+		if cast.state == FishingCast.BITE:
+			hud.show_message(tr("FISH_BITE"), 2.0)
+		elif cast.state == FishingCast.ESCAPED:
+			_end_cast()
+
+
+func _reel() -> void:
+	cast.reel()
+	_end_cast()
+
+
+func _end_cast() -> void:
+	if cast.state == FishingCast.CAUGHT:
+		farming.finish_fishing(cast)
+		hud.show_message(tr("FISH_CAUGHT"))
+	elif cast.failure == "early":
+		hud.show_message(tr("FISH_TOO_EARLY"))
+	else:
+		hud.show_message(tr("FISH_ESCAPED"))
+	cast = null
+	refresh_farm_visuals()
+
+
+func _build_pens() -> void:
+	var holder := Node3D.new()
+	holder.name = "Animals"
+	add_child(holder)
+	for pen in DataRegistry.get_row("livestock_config", "default")["pens"]:
+		var def := DataRegistry.get_row("animals", str(pen["species"]))
+		var node := Node3D.new()
+		node.name = str(pen["id"])
+		node.position = Vector3(float(pen["x"]), 0.0, float(pen["z"]))
+		var mesh := MeshInstance3D.new()
+		var sph := SphereMesh.new()
+		sph.radius = 0.4
+		sph.height = 0.8
+		mesh.mesh = sph
+		mesh.position.y = 0.4
+		var mat := StandardMaterial3D.new()
+		mat.albedo_color = Color(str(def["color"]))
+		mesh.material_override = mat
+		node.add_child(mesh)
+		var label := Label3D.new()
+		label.name = "Info"
+		label.pixel_size = 0.005
+		label.position = Vector3(0, 1.1, 0)
+		label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+		node.add_child(label)
+		var it := Interactable.new()
+		it.interaction_type = "animal"
+		node.add_child(it)
+		it.set_meta("animal_id", str(pen["id"]))
+		holder.add_child(node)
+		animal_nodes[str(pen["id"])] = node
+
+
+func _animal_state_key(animal_id: String) -> String:
+	var a: Animal = farming.livestock.animals[animal_id]
+	var def: Dictionary = farming.livestock.def_of(animal_id)
+	if a.is_ready(def):
+		return "ANIMAL_STATE_READY"
+	if not a.is_mature(def):
+		return "ANIMAL_STATE_YOUNG"
+	return "ANIMAL_STATE_FED" if a.fed else "ANIMAL_STATE_HUNGRY"
+
+
+func _refresh_animals() -> void:
+	for id in animal_nodes:
+		var def: Dictionary = farming.livestock.def_of(id)
+		var a: Animal = farming.livestock.animals[id]
+		var key := _animal_state_key(id)
+		if not a.is_ready(def) and not a.fed:
+			key = "ANIMAL_STATE_HUNGRY" if a.is_mature(def) else "ANIMAL_STATE_YOUNG"
+		(animal_nodes[id].get_node("Info") as Label3D).text = "UJI: %s (%s)" % [tr(str(def["name_key"])), tr(key)]
+
+
+func _animal_prompt(animal_id: String) -> String:
+	var d := farming.animal_preview(animal_id)
+	if str(d["action"]) == "":
+		return tr("FARM_NO_" + str(d["reason"]).to_upper())
+	return tr("FARM_ACT_" + str(d["action"]).to_upper())
+
+
+func _on_animal_interacted(animal_id: String) -> void:
+	var r := farming.animal_act(animal_id)
+	if bool(r["ok"]):
+		hud.show_message(tr("FARM_DONE_" + str(r["action"]).to_upper()))
+	else:
+		hud.show_message(tr("FARM_NO_" + str(r["reason"]).to_upper()))
 	refresh_farm_visuals()

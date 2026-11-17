@@ -1,0 +1,19 @@
+[
+	{
+		"id": "default",
+		"provisional": true,
+		"note": "Waktu dan efek umpan SEMENTARA (D-025 belum menetapkan).",
+		"wait_min": 2.0,
+		"wait_max": 5.0,
+		"bite_window": 1.5,
+		"bait_rarity_multiplier": 3,
+		"spots": [
+			{
+				"id": "spot_pond",
+				"habitat": "pond",
+				"x": 16.0,
+				"z": 4.0
+			}
+		]
+	}
+]

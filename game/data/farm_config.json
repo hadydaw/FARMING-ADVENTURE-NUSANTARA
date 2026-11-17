@@ -20,6 +20,18 @@
 			{
 				"item": "seed_test_b",
 				"count": 4
+			},
+			{
+				"item": "tool_fishing_rod",
+				"count": 1
+			},
+			{
+				"item": "bait_test",
+				"count": 5
+			},
+			{
+				"item": "feed_test",
+				"count": 10
 			}
 		],
 		"world_seed": 20261117

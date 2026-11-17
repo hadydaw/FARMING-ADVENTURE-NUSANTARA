@@ -1,0 +1,23 @@
+[
+	{
+		"id": "animal_a",
+		"provisional": true,
+		"note": "HEWAN UJI TEKNIS generik, bukan daftar resmi (D-024).",
+		"name_key": "ANIMAL_TEST_A",
+		"color": "#e8e8e8",
+		"feed_item": "feed_test",
+		"product_item": "product_animal_test_a",
+		"mature_days": 2,
+		"product_interval_days": 2
+	},
+	{
+		"id": "animal_b",
+		"provisional": true,
+		"name_key": "ANIMAL_TEST_B",
+		"color": "#8a6a4a",
+		"feed_item": "feed_test",
+		"product_item": "product_animal_test_b",
+		"mature_days": 3,
+		"product_interval_days": 3
+	}
+]

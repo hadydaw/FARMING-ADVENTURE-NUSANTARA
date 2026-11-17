@@ -140,6 +140,38 @@ func run() -> void:
 	await wait_frames(20)
 	check(npc_a.position.distance_to(tgt_after) < d0, "NPC bergerak menuju lokasi baru")
 
+	# Memancing lewat interaksi
+	world.farming.vitality.restore_full("stamina")
+	player.global_position = Vector3(13.6, 0, 4.0)
+	await wait_frames(2)
+	world.sensor.facing = Vector3(1, 0, 0)
+	var spot: Interactable = world.sensor.refresh()
+	check(spot != null and spot.has_meta("spot_id"), "kolam terdeteksi")
+	check(world.sensor.try_interact(), "mulai memancing")
+	check(world.cast != null, "lemparan aktif")
+	var guard := 0
+	while world.cast != null and world.cast.state == FishingCast.WAITING and guard < 200:
+		world.cast.advance(0.1)
+		guard += 1
+	check(world.cast.state == FishingCast.BITE, "gigitan datang")
+	var fish_before: int = world.farming.inventory.count("fish_test_a") + world.farming.inventory.count("fish_test_b") + world.farming.inventory.count("fish_test_c")
+	check(world.sensor.try_interact(), "tarik pancing")
+	check(world.cast == null, "lemparan selesai")
+	var fish_after: int = world.farming.inventory.count("fish_test_a") + world.farming.inventory.count("fish_test_b") + world.farming.inventory.count("fish_test_c")
+	check_eq(fish_after, fish_before + 1, "ikan masuk tas")
+
+	# Peternakan lewat interaksi
+	var pen: Node3D = world.animal_nodes["pen_01"]
+	player.global_position = pen.global_position + Vector3(0, 0, 1.2)
+	await wait_frames(2)
+	world.sensor.facing = Vector3(0, 0, -1)
+	var an_target: Interactable = world.sensor.refresh()
+	check(an_target != null and an_target.has_meta("animal_id"), "hewan terdeteksi")
+	var feed_before: int = world.farming.inventory.count("feed_test")
+	check(world.sensor.try_interact(), "beri pakan lewat interaksi")
+	check_eq(world.farming.inventory.count("feed_test"), feed_before - 1, "pakan berkurang")
+	check(world.farming.livestock.animals["pen_01"].fed, "hewan kenyang")
+
 	# Simpan / muat dan tas
 	var pm := GameTime.clock.total_minutes
 	check(world.save_game(), "simpan slot 0")

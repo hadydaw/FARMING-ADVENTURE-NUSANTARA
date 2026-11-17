@@ -5,6 +5,7 @@ Format mengikuti [Keep a Changelog](https://keepachangelog.com/id-ID/1.1.0/); ve
 ## [Belum dirilis]
 
 ### Ditambahkan
+- Memancing dasar (deterministik, umpan, kolam uji) dan peternakan dasar (pakan harian, pertumbuhan, hasil ternak); data generik sementara; 227 uji tambahan.
 - Fondasi NPC (sementara): jadwal harian menurut jam/cuaca, dialog bersyarat dan bercabang dengan UI, hubungan (friendship), 2 NPC uji generik, simpan/muat sosial; 150 uji tambahan.
 - Tidur dan pergantian hari bertahap, vitalitas dasar (HP/Stamina/Mana) dengan biaya stamina aksi pertanian, tempat tidur uji, HUD vitalitas; data sementara, 102 uji tambahan.
 - Cuaca dasar (sementara): cuaca harian deterministik per seed/hari/musim, hujan menyiram tanaman, HUD cuaca, 58 uji tambahan.

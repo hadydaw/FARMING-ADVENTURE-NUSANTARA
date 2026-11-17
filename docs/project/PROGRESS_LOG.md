@@ -521,3 +521,12 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Pemilik: "Kerjakan dan kasih Pilihan ke aku". Dibangun: ScheduleResolver (lokasi+aktivitas = fungsi murni dari jam dan cuaca; hujan = berteduh), SocialState (friendship per NPC, penanda dialog per hari, simpan/muat semua-atau-tidak), DialogRunner (syarat cuaca/musim/jam/friendship, prioritas, sekali-sehari, pilihan memengaruhi hubungan dan bercabang), UI dialog di HUD, 2 NPC uji generik yang bergerak menurut jadwal, waktu berhenti saat dialog (sementara).
 - SEMUA konten generik dan bertanda provisional; BUKAN NPC/dialog resmi (T12 terbuka). Format data dialog dan aturan prioritas bersifat sementara (terbuka di D-038). Belum ada: pencarian jalur/penanganan terjebak, LOD simulasi, interaksi antar-NPC, kebutuhan NPC, ekonomi NPC, romansa (T9).
 - Simpan/muat membawa data sosial. Uji: 18 berkas, 1350 pemeriksaan, 0 gagal; smoke test lulus.
+
+## 2026-11-17 (72) — Memancing dan peternakan dasar (D-025/D-024, teknis)
+
+- Pemilik memilih "Memancing dan peternakan dasar" dan "lanjut teknis saja".
+- Memancing: FishingModel (spesies tersedia menurut habitat/musim/cuaca/jam; hasil deterministik dari world_seed+hari+nomor lemparan, jadi muat-ulang tidak mengulang undian; umpan menaikkan peluang ikan langka), FishingCast (tunggu -> gigitan -> tarik tepat waktu = dapat / lepas), biaya stamina dan umpan, kolam uji.
+- Peternakan: Animal (umur, pakan harian, kemajuan produk, terlantar), LivestockState (beri pakan/ambil hasil), 3 hewan uji di kandang penanda. Hewan hanya tumbuh/berproduksi pada hari diberi pakan; terlantar >= batas menghapus kemajuan (aturan SEMENTARA).
+- Semua spesies/hewan/angka generik dan provisional (bukan daftar resmi). Belum ada: kualitas hasil, ikan spiritual/legendaris, alat/umpan beragam, perkembangbiakan, kandang berkembang, pembelian hewan (menunggu ekonomi).
+- Simpan/muat membawa ternak dan penghitung lemparan. Uji: 19 berkas, 1577 pemeriksaan, 0 gagal; smoke test lulus.
+- Catatan visual: kolam uji berdekatan dengan semak prop pilot sehingga kamera tertutup semak di titik itu; tata letak sementara.
