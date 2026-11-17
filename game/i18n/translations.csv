@@ -297,3 +297,13 @@ DUNGEON_NO_NOT_RUNNING,Tidak sedang di gua,Not in cave
 DUNGEON_NO_COOLDOWN,Gua masih tertutup,Cave closed
 DUNGEON_NO_RUNNING,Sudah di dalam gua,Already inside
 DUNGEON_FAINTED,Kamu pingsan di gua dan terbangun di desa,You fainted in the cave and woke up in the village
+ACH_FIRST_BLOOD,Pencapaian: kalahkan monster pertama,Achievement: first monster defeated
+ACH_HUNTER,Pencapaian: 10 monster dikalahkan,Achievement: 10 monsters defeated
+ACH_LEVEL_3,Pencapaian: mencapai level 3,Achievement: reached level 3
+ACH_RICH,Pencapaian: punya 500 uang,Achievement: owned 500 money
+ACH_GUILD_BRONZE,Pencapaian: peringkat guild Perunggu,Achievement: Bronze guild rank
+ACH_CAVE,Pencapaian: gua pertama selesai,Achievement: first cave cleared
+HINT_START,Petunjuk: ketuk Interaksi dekat objek. Cangkul tanah lalu tanam dan siram.,Hint: tap Interact near objects. Till soil then plant and water.
+HINT_FIRST_KILL,Petunjuk: monster menjatuhkan bahan; bawa ke dapur atau papan guild.,Hint: monsters drop materials; take them to the kitchen or guild board.
+HINT_RANK,Petunjuk: peringkat lebih tinggi membuka quest baru di papan guild.,Hint: higher rank unlocks new quests at the guild board.
+ACH_TITLE,Pencapaian,Achievements

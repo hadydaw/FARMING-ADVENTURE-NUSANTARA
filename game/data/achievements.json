@@ -1,0 +1,74 @@
+[
+	{
+		"id": "ach_first_blood",
+		"provisional": true,
+		"kind": "achievement",
+		"stat": "kills",
+		"value": 1,
+		"name_key": "ACH_FIRST_BLOOD"
+	},
+	{
+		"id": "ach_hunter",
+		"provisional": true,
+		"kind": "achievement",
+		"stat": "kills",
+		"value": 10,
+		"name_key": "ACH_HUNTER"
+	},
+	{
+		"id": "ach_level_3",
+		"provisional": true,
+		"kind": "achievement",
+		"stat": "level",
+		"value": 3,
+		"name_key": "ACH_LEVEL_3"
+	},
+	{
+		"id": "ach_rich",
+		"provisional": true,
+		"kind": "achievement",
+		"stat": "money",
+		"value": 500,
+		"name_key": "ACH_RICH"
+	},
+	{
+		"id": "ach_guild_bronze",
+		"provisional": true,
+		"kind": "achievement",
+		"stat": "rank",
+		"value": 1,
+		"name_key": "ACH_GUILD_BRONZE"
+	},
+	{
+		"id": "ach_cave",
+		"provisional": true,
+		"kind": "achievement",
+		"stat": "dungeons_cleared",
+		"value": 1,
+		"name_key": "ACH_CAVE"
+	},
+	{
+		"id": "hint_start",
+		"provisional": true,
+		"kind": "hint",
+		"stat": "always",
+		"value": 0,
+		"name_key": "HINT_START"
+	},
+	{
+		"id": "hint_first_kill",
+		"provisional": true,
+		"kind": "hint",
+		"stat": "kills",
+		"value": 1,
+		"name_key": "HINT_FIRST_KILL"
+	},
+	{
+		"id": "hint_rank",
+		"provisional": true,
+		"kind": "hint",
+		"stat": "rank",
+		"value": 1,
+		"name_key": "HINT_RANK"
+	}
+]

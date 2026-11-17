@@ -5,6 +5,7 @@ Format mengikuti [Keep a Changelog](https://keepachangelog.com/id-ID/1.1.0/); ve
 ## [Belum dirilis]
 
 ### Ditambahkan
+- Pencapaian dan petunjuk tutorial dasar (sementara): 6 pencapaian dan 3 petunjuk berbasis statistik, diumumkan sekali, tersimpan; 31 uji tambahan.
 - Dungeon dasar + bos (sementara): gua uji di kawasan kuno, 3 ruangan dibangkitkan deterministik dari seed+hari, bos di ruang akhir, hadiah dan penutupan beberapa hari, pingsan/keluar, simpan/muat run berjalan; 23 uji tambahan.
 - Quest dan guild dasar (sementara): papan guild uji, 4 quest (kumpul/kalahkan), batas quest aktif, peringkat dari poin, hadiah uang/EXP/item semua-atau-tidak, simpan/muat dengan rollback; 44 uji tambahan.
 - Pertarungan dasar + EXP/level (sementara): 2 monster uji dengan drop deterministik, 4 titik spawn di hutan/kawasan kuno, serangan tukar-pukul bertarif stamina, pingsan (uang -10%, HP pulih separuh, kembali ke desa), pedang uji menambah serangan, simpan/muat; 40 uji tambahan.

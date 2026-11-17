@@ -321,7 +321,7 @@ func _build_farm() -> void:
 		"economy_config": DataRegistry.get_row("economy_config", "default"), "item_prices": DataRegistry.rows("item_prices"), "shops": DataRegistry.rows("shops"),
 		"gather_nodes": DataRegistry.rows("gather_nodes"), "recipes": DataRegistry.rows("recipes"), "stations": DataRegistry.rows("crafting_stations"),
 		"monsters": DataRegistry.rows("monsters"), "monster_spawns": DataRegistry.rows("monster_spawns"), "combat_config": DataRegistry.get_row("combat_config", "default"),
-		"dungeons": DataRegistry.rows("dungeons"), "quests": DataRegistry.rows("quests"), "guild_config": DataRegistry.get_row("guild_config", "default")})
+		"achievements": DataRegistry.rows("achievements"), "dungeons": DataRegistry.rows("dungeons"), "quests": DataRegistry.rows("quests"), "guild_config": DataRegistry.get_row("guild_config", "default")})
 	farming.sleep.finished.connect(_on_woke_up)
 	_build_bed()
 	_build_pond()
@@ -374,6 +374,7 @@ func _plot_ids() -> Array:
 
 
 func refresh_farm_visuals() -> void:
+	_announce_milestones()
 	for pid in plot_nodes:
 		var plot: FarmPlot = farming.grid.plot(pid)
 		var node: Node3D = plot_nodes[pid]
@@ -1363,3 +1364,13 @@ func _on_dungeon_pressed(id: String) -> void:
 		else:
 			hud.show_message(tr("COMBAT_HIT") % int(r["dealt"]) + "  " + tr("COMBAT_TAKEN") % int(r["taken"]))
 	_refresh_dungeon()
+
+
+func _announce_milestones() -> void:
+	var fresh := farming.check_milestones()
+	if fresh.is_empty():
+		return
+	var lines: Array[String] = []
+	for r in fresh:
+		lines.append(tr(str(r["name_key"])))
+	hud.show_message("\n".join(lines))

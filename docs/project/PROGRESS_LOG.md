@@ -579,3 +579,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Gua uji di kawasan kuno (menu Mulai/Serang/Keluar). Data SEMENTARA generik; bukan dungeon/boss resmi.
 - Belum: peta ruangan 3D, jebakan/peti, boss berpola/fase, status efek, dungeon bertingkat.
 - Uji: 25 berkas, 2450 pemeriksaan, 0 gagal; smoke test lulus.
+
+## 2026-11-17 (80) — Pencapaian dan petunjuk tutorial (D-046/D-043, teknis)
+
+- AchievementState: baris berbasis statistik (kills, level, money, rank, dungeons_cleared, always), dibuka sekali, tersimpan, diumumkan lewat pesan HUD; save lama tanpa kunci direset aman, rollback bila rusak.
+- Data SEMENTARA generik; bukan daftar pencapaian/tutorial resmi.
+- Belum: layar daftar pencapaian, hadiah, ikon, tutorial interaktif bertahap, koleksi (ensiklopedia).
+- Uji: 26 berkas, 2500+ pemeriksaan, 0 gagal; smoke test lulus.
