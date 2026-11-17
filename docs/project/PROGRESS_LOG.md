@@ -231,3 +231,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - D-042 (Mount System Hybrid Lengkap, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
 - GDD §6.32 baru (v0.32); Technical Architecture §4ac ditambahkan (v0.32; catatan saja: profil kendaraan berbasis data, model makhluk bersama untuk mount hidup, tag medan untuk aturan akses, mesin keadaan dan aturan pemanggilan, integrasi gerak/kamera, penyimpanan dan cloud save). Hubungan dengan D-007, D-009, D-013, D-014, D-016, D-018, D-019, D-024, D-025, D-027, D-028, D-031 sampai D-037, D-041 dicatat tanpa mengubah isinya.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 33.
+
+
+## 2026-11-17 (33) — D-043 Sistem Tutorial dan Panduan Pemain dicatat
+
+- D-043 (Tutorial Hybrid Adaptif, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
+- GDD §6.33 baru (v0.33); Technical Architecture §4ad ditambahkan (v0.33; catatan saja: tutorial sebagai data, pemicu kontekstual berbasis event bus, penyelesaian otomatis dan throttle, sorotan UI berbasis identitas elemen, buku bantuan, penyimpanan status dan cloud save). Hubungan dengan D-007, D-013, D-014, D-016, D-017, D-019 sampai D-026, D-028, D-031, D-033 sampai D-038, D-040 sampai D-042 dicatat tanpa mengubah isinya.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 34.

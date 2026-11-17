@@ -563,6 +563,22 @@ Pilihan: **D. Mount System Hybrid Lengkap.** Ketentuan:
 Hubungan (tidak mengubah isi keputusan lain): bahasa (**D-007**), dunia dan wilayah (**D-009**), pertarungan (**D-013**), dungeon (**D-016**), perkembangan karakter (**D-018**), companion dan monster taming (**D-019**), peternakan (**D-024**), memancing dan air (**D-025**), bangunan (**D-027**), eksplorasi dan perjalanan (**D-028**), UI (**D-031**), audio (**D-032**), kamera (**D-033**), kontrol (**D-034**), interaksi (**D-035**), inventory (**D-036**), quest (**D-037**), kustomisasi (**D-041**), online dan cloud save (**D-014**, **O-003**).
 **Terbuka:** daftar jenis mount/kendaraan dan angkanya; cara memperoleh (beli, taming, quest, crafting); aturan stamina/energi dan perawatan; aturan medan (mis. darat, air, hutan, gunung, dungeon) dan larangannya; aturan pemanggilan (tempat, cooldown, biaya); kapasitas muatan dan hubungan dengan inventory; apakah mount dapat bertarung atau dipakai saat combat; penyimpanan mount (kandang/istal) dan hubungan dengan peternakan; kemampuan mount spiritual dan arti "spiritual" (belum didefinisikan, tidak ditebak); apakah ada mount kustomisasi tampilan; aturan saat mount terluka/mati; perjalanan cepat dan hubungannya. Implementasi mount belum dimulai. ID D-042 tersedia saat dicatat (tanpa bentrokan).
 
+### D-043 — Sistem Tutorial dan Panduan Pemain *(APPROVED / LOCKED, 2026-11-17, Tahap 33)*
+Pilihan: **D. Tutorial Hybrid Adaptif.** Ketentuan:
+1. Sistem tutorial menggabungkan: tutorial awal (pengenalan game dan kontrol dasar); contextual tutorial saat pemain pertama kali menemukan fitur/aktivitas; pembelajaran lewat NPC, quest, dan eksplorasi; panduan dan buku bantuan yang dapat dibuka kembali.
+2. Tutorial muncul berdasarkan konteks dan progres pemain, bukan sekadar urutan waktu.
+3. Pemain yang sudah paham tidak dipaksa mengulang tutorial yang sama.
+4. Opsi melewati atau menutup panduan yang tidak diperlukan, kecuali instruksi penting yang harus dipahami untuk melanjutkan.
+5. Tiap panduan menjelaskan tujuan, kontrol, langkah, dan hasil aktivitas dengan singkat dan mudah dipahami.
+6. Mencakup farming, livestock, fishing, crafting, alchemy, combat, dungeon, taming, Guild, NPC, ekonomi, dan eksplorasi.
+7. NPC dan quest dapat menjadi sarana belajar alami.
+8. Status tutorial yang telah dilihat/diselesaikan disimpan agar tidak muncul berulang tanpa alasan.
+9. Terintegrasi dengan quest (D-037), dialog (D-038), inventory (D-036), kontrol (D-034), dan cloud save Supabase.
+10. UI nyaman di Android landscape; Indonesia dan English.
+
+Hubungan (tidak mengubah isi keputusan lain): bahasa (**D-007**), pertarungan (**D-013**), dungeon (**D-016**), guild (**D-017**), companion/taming (**D-019**), crafting (**D-020**), ekonomi (**D-021**), NPC (**D-022**, **D-040**), pertanian/peternakan/memancing/memasak (**D-023 sampai D-026**), eksplorasi (**D-028**), UI (**D-031**), kamera (**D-033**), kontrol (**D-034**), interaksi (**D-035**), inventory (**D-036**), quest (**D-037**), dialog (**D-038**), online dan cloud save (**D-014**, **O-003**). Mount (**D-042**) dan kustomisasi (**D-041**) juga dapat memiliki panduan.
+**Terbuka:** isi dan urutan tutorial awal (termasuk apakah ada karakter/cerita pembuka); daftar topik panduan dan pemicunya; bentuk tampilan (kotak petunjuk, sorotan UI, gambar/animasi, video pendek); daftar "instruksi penting yang wajib" dan cara menandainya; isi buku bantuan dan cara membukanya; cara mendeteksi pemain yang sudah paham (mis. sudah melakukan aksi); opsi menonaktifkan semua petunjuk di pengaturan; apakah ada tutorial ulang/reset; tutorial untuk kontroler/pengaturan tombol; aksesibilitas; peran konsep "spiritual" bila ada panduan (belum didefinisikan, tidak ditebak). Implementasi tutorial belum dimulai. ID D-043 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

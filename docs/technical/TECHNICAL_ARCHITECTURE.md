@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.32 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.33 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -445,6 +445,19 @@ Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 - **Audio:** langkah/mesin/air dan suara makhluk lewat sistem audio (§4s) menurut medan.
 - **Performa:** satu mount aktif penuh dalam satu waktu; mount lain LOD/tidak disimulasikan; hindari alokasi per frame; selaras anggaran §3.
 - **Pengujian:** uji headless untuk transisi keadaan, aturan medan dan akses, pemanggilan pada titik valid, stamina, serialisasi-migrasi, dan tidak adanya mount tersangkut (simulasi jalur uji); uji perangkat nyata nanti.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4ad. Implikasi Arsitektur dari D-043 (hanya catatan; belum diimplementasikan)
+
+- **Tutorial sebagai data:** tiap panduan adalah resource (ID stabil, topik/aktivitas, pemicu, syarat, langkah, penanda wajib/opsional, tampilan, rujukan ke entri buku bantuan). Teks lewat kunci terjemahan id/en (§6) dan tidak ada teks pada gambar/aset visual; ikon kontrol mengikuti pengaturan tombol pemain (§4r, §4u) sehingga petunjuk tetap benar setelah tata letak diubah.
+- **Pemicu kontekstual berbasis event:** manajer tutorial berlangganan **event bus** (§4): pertama kali pemain bertemu objek/aktivitas (interaksi §4v, panen, memancing, crafting, combat, dungeon, taming, masuk wilayah, Guild, transaksi), membuka menu (inventory §4w), atau mencapai progres tertentu; pemicu memakai mesin kondisi/efek bersama (§4x) dan tidak polling per frame. Panduan tampil hanya bila syarat terpenuhi dan belum pernah dilihat.
+- **Tidak memaksa dan adaptif:** bila pemain sudah melakukan aksi yang diajarkan sebelum panduan muncul, panduan ditandai selesai otomatis; panduan dapat ditutup/dilewati, kecuali yang bertanda wajib (diperlukan untuk melanjutkan; dijaga seminimal mungkin dan harus dapat diselesaikan). Antrean dan **penahan (throttle/cooldown)** mencegah banyak panduan muncul bersamaan atau saat combat/dialog; prioritas dan penundaan sebagai data.
+- **Integrasi quest dan dialog:** langkah tutorial dapat dibungkus sebagai quest (§4x) atau disampaikan lewat dialog NPC (§4y, §4aa) dengan efek yang menandai topik selesai; satu sumber kebenaran status agar tidak ada duplikasi antara quest dan panduan.
+- **Sorotan UI:** lapisan *overlay* ringan menandai kontrol/area (HUD, tombol aksi, slot inventory) memakai identitas elemen UI (bukan koordinat tetap) agar tahan terhadap tata letak yang diubah dan ukuran layar; tidak memblokir input yang tidak relevan, kecuali langkah wajib.
+- **Buku bantuan:** daftar entri dari data yang sama, dibuka kembali kapan saja dari menu (§4r); entri terbuka bertambah saat topik ditemukan; pencarian/filter seperti inventory; teks berbahasa aktif.
+- **Persistence:** status per panduan (belum/terlihat/selesai/dilewati), topik buku bantuan yang terbuka, dan pengaturan petunjuk (aktif/nonaktif) masuk payload save (§5) berversi dengan ID stabil; panduan baru di versi berikut muncul sesuai syarat tanpa mengulang yang lama; cloud save Supabase lewat mekanisme save yang sama (D-014) sehingga pindah perangkat tidak mengulang tutorial. Pengaturan tampilan petunjuk murni dapat menjadi pengaturan pemain.
+- **Performa:** hanya pemicu panduan yang belum selesai yang aktif; konten tutorial dimuat sesuai kebutuhan; overlay tanpa alokasi per frame (§3).
+- **Pengujian:** uji headless untuk pemicu dan status (tidak muncul ulang), penyelesaian otomatis, throttle, kelengkapan kunci id/en, rujukan UI/kontrol valid, panduan wajib selalu dapat diselesaikan, dan serialisasi-migrasi.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres

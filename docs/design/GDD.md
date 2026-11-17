@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.32 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.33 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -504,6 +504,20 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - Terkait: D-007, D-009, D-013, D-014, D-016, D-018, D-019, D-024, D-025, D-027, D-028, D-031 sampai D-037, D-041.
 
 **[BELUM DITETAPKAN]:** daftar jenis dan angka, cara memperoleh, aturan stamina/perawatan, aturan medan, aturan pemanggilan (tempat, cooldown, biaya), kapasitas muatan, mount dalam combat, penyimpanan mount, kemampuan mount spiritual (arti "spiritual" belum didefinisikan), kustomisasi tampilan mount, aturan saat mount terluka/mati, hubungan dengan perjalanan cepat. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+### 6.33 Tutorial dan Panduan Pemain — D-043, LOCKED (Tutorial Hybrid Adaptif)
+**Ditetapkan:**
+- **Komponen:** tutorial awal (pengenalan dan kontrol dasar); **contextual tutorial** saat pertama kali bertemu fitur/aktivitas; **pembelajaran lewat NPC, quest, dan eksplorasi**; **panduan dan buku bantuan** yang dapat dibuka kembali.
+- Muncul menurut **konteks dan progres**, bukan urutan waktu semata.
+- **Tidak memaksa mengulang** bagi pemain yang sudah paham; panduan dapat **dilewati/ditutup**, kecuali instruksi penting yang wajib untuk melanjutkan.
+- Tiap panduan: **tujuan, kontrol, langkah, hasil**, singkat dan mudah dipahami.
+- Cakupan: farming, livestock, fishing, crafting, alchemy, combat, dungeon, taming, Guild, NPC, ekonomi, eksplorasi.
+- **Status tutorial disimpan** agar tidak muncul berulang tanpa alasan.
+- Terintegrasi dengan **quest D-037, dialog D-038, inventory D-036, kontrol D-034, cloud save Supabase.**
+- UI **Android landscape**, **Indonesia dan English.**
+- Terkait: D-007, D-013, D-014, D-016, D-017, D-019 sampai D-026, D-028, D-031, D-033 sampai D-038, D-040 sampai D-042.
+
+**[BELUM DITETAPKAN]:** isi dan urutan tutorial awal, daftar topik dan pemicu, bentuk tampilan, daftar instruksi wajib, isi buku bantuan, cara mendeteksi pemain yang sudah paham, opsi menonaktifkan petunjuk, tutorial ulang/reset, tutorial kontroler/pengaturan tombol, aksesibilitas, konsep "spiritual" (belum didefinisikan). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 
