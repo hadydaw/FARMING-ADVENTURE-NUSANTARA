@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.8 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.9 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -109,6 +109,16 @@ Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 - **Hubungan lintas sistem:** level karakter dibaca oleh pembukaan wilayah (D-009) dan guild (D-017) lewat layanan progres yang sama (§4d); sumber XP diterima lewat event bus.
 - **Save:** level, XP, atribut teralokasi, alokasi skill tree, class/job aktif dan riwayatnya, penguasaan senjata, serta ketersediaan elemen masuk payload save (skema berversi; perubahan struktur tree perlu migrasi yang menjaga poin pemain).
 - **Online (D-014):** progres karakter pribadi; validasi server atas level/skill baru dipertimbangkan hanya bila diputuskan.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4f. Implikasi Arsitektur dari D-019 (hanya catatan; belum diimplementasikan)
+
+- **Satu model "makhluk" bersama:** monster musuh, companion, pet, dan hewan ternak berbagi definisi data dasar (spesies, stat, skill, model 3D) dengan *komponen* berbeda (peran: musuh, pet, combat companion, pekerja). Menjinakkan = mengubah satu instance monster menjadi companion milik pemain tanpa membuat ulang data.
+- **Data-driven:** spesies, kelangkaan, jalur evolusi (graf syarat → bentuk berikut), skill monster, dan tabel peluang taming sebagai data; skill memakai sistem efek yang sama dengan combat (D-013) dan skill pemain (D-018).
+- **AI companion:** perilaku (ikut, bertarung, membantu aktivitas) sebagai state machine/perintah yang dapat dipakai ulang; kontrol otomatis vs perintah menunggu desain. Dibatasi anggaran performa §3 (jumlah makhluk aktif).
+- **Aktivitas bantuan** (mis. pekerjaan ladang) dijalankan lewat antarmuka tugas dari sistem kehidupan (D-015) dan dihitung ulang lewat layanan kalender saat pemain offline/di dungeon, tanpa simulasi penuh.
+- **Save:** koleksi companion (instance: spesies, level, evolusi, loyalitas, skill terpelajar, tugas aktif) dan daftar monster langka yang sudah dikoleksi masuk payload save (skema berversi). Simpan sumber/progres, bukan nilai turunan.
+- **Online (D-014):** koleksi bersifat pribadi; tidak ada perdagangan atau pertarungan antarpemain. Validasi server atas hasil taming/evolusi dipertimbangkan hanya bila diputuskan.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres

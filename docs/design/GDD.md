@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.8 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.9 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -162,6 +162,21 @@ Belum: jenis equipment, slot, tier, crafting, stat.
 - Memperluas D-013 (skill tree, magic/elemen); level karakter menjadi salah satu syarat pembukaan wilayah (D-009); terkait spesialisasi dan training di guild (D-017).
 
 **[BELUM DITETAPKAN]:** rumus level dan pertumbuhan atribut, daftar atribut, daftar Class dan Job (dan beda keduanya), aturan dan biaya mengganti spesialisasi, batas level/"jangka panjang" (prestise/reset?), struktur dan jumlah cabang skill tree, daftar skill aktif/pasif, aturan penguasaan senjata, daftar elemen, sumber XP (apakah kegiatan non-tempur, seperti bertani, ikut menaikkan level), keseimbangan dengan sistem kehidupan (D-015). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+### 6.11 Companion dan Monster Taming — D-019, LOCKED (Kombinasi Semua Sistem)
+**Ditetapkan:**
+- **Pet** untuk kehidupan sehari-hari.
+- **Combat Companion** untuk membantu pertarungan.
+- **Monster Taming:** menjinakkan monster dungeon.
+- **Koleksi monster langka.**
+- **Level dan evolusi monster.**
+- **Skill dan kemampuan khusus monster.**
+- **Hubungan dan loyalitas** companion.
+- **Monster dapat membantu aktivitas tertentu.**
+- Companion berfungsi berbeda sesuai jenis, kemampuan, dan karakteristiknya.
+- Terkait: sumber monster adalah dungeon (D-016), bantuan tempur mengikuti sistem pertarungan (D-013), bantuan aktivitas berkaitan dengan Sistem Kehidupan (D-015). Pemeliharaan hewan ternak (D-015) dan pet/companion adalah hal yang berbeda; batas keduanya belum ditetapkan.
+
+**[BELUM DITETAPKAN]:** daftar pet, monster, dan monster langka; cara dan syarat menjinakkan; batas jumlah companion yang dibawa/disimpan; rumus level dan syarat evolusi; daftar skill monster; mekanik hubungan/loyalitas (naik-turun, efeknya); jenis aktivitas yang dapat dibantu monster (mis. bertani, kerja ladang, penambangan) dan batasnya; tempat tinggal/perawatan companion; kontrol companion saat combat (otomatis atau diperintah); keseimbangan dengan perkembangan karakter (D-018) dan ekonomi. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

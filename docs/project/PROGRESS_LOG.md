@@ -37,7 +37,7 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 ## 2026-11-17 (3) — D-013 Sistem Pertarungan dicatat
 
 - D-013 (Kombinasi Semua Sistem, LOCKED) dicatat di Decision Log dan GDD 6.7; catatan implikasi di Technical Architecture §4a.
-- Penomoran: entri lama D-013…D-019 diubah menjadi O-001…O-007 (isi tetap) agar ID D-013 sesuai instruksi pemilik.
+- Penomoran: entri lama D-013…D-019 (ID lama, tidak berlaku lagi) diubah menjadi O-001…O-007 (isi tetap) agar ID D-013 sesuai instruksi pemilik.
 - Tidak ada perubahan kode/gameplay/CI. Implementasi combat belum dimulai.
 
 ## 2026-11-17 (4) — D-014 dan konfirmasi keputusan Tahap 1, 2
@@ -71,3 +71,9 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - D-018 (Kombinasi Semua Sistem, LOCKED) dicatat; ID tersedia, tanpa bentrokan. Hubungan dengan D-009, D-013, D-017 dicatat tanpa mengubah isi keputusan tersebut.
 - GDD §6.10 baru (v0.8) dan tautan dari §6.7; Technical Architecture §4e ditambahkan (catatan saja).
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 9.
+
+## 2026-11-17 (9) — D-019 Sistem Companion dan Monster Taming dicatat
+
+- D-019 (Kombinasi Semua Sistem, LOCKED) dicatat; ID tersedia (hanya ada sebagai ID lama pada catatan penomoran ulang, yang diberi penjelasan "tidak berlaku lagi").
+- GDD §6.11 baru (v0.9); Technical Architecture §4f ditambahkan (catatan saja). Hubungan dengan D-013, D-015, D-016, D-018 dicatat tanpa mengubah isinya.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 10.

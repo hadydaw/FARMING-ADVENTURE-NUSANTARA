@@ -1,7 +1,7 @@
 # Catatan Keputusan Desain dan Teknis
 
 Seri ID: **D-xxx** = keputusan desain game (nomor sesuai tahap desain bersama ChatGPT); **O-xxx** = persetujuan pemilik atas hal teknis/operasional; **T-xxx** = keputusan teknis rutin; **P-xxx** = menunggu pemilik.
-Catatan 2026-11-17: entri yang sebelumnya bernomor D-013…D-019 (engine, package ID, backend, kunci rilis, lisensi, uji HP, larangan fitur) dinomori ulang menjadi **O-001…O-007** agar ID **D-013** dipakai untuk sistem pertarungan sesuai instruksi pemilik. Isinya tidak berubah.
+Catatan 2026-11-17: entri yang sebelumnya bernomor D-013…D-019 (ID lama itu tidak berlaku lagi; nomor D-013 dan seterusnya kini hanya untuk keputusan desain tahap bersama ChatGPT) (engine, package ID, backend, kunci rilis, lisensi, uji HP, larangan fitur) dinomori ulang menjadi **O-001…O-007** agar ID **D-013** dipakai untuk sistem pertarungan sesuai instruksi pemilik. Isinya tidak berubah.
 
 Aturan: keputusan berstatus **Ditetapkan pemilik** tidak boleh diubah tanpa persetujuan eksplisit pemilik proyek.
 Keputusan **Teknis (rutin)** dibuat Claude secara mandiri dan boleh ditinjau/diganti dengan alasan tercatat (tambahkan entri baru yang menggantikan, jangan menghapus riwayat).
@@ -114,6 +114,22 @@ Pemain dapat mengembangkan karakter lewat berbagai jalur kemampuan dan kombinasi
 
 Hubungan dengan keputusan lain (tidak mengubah isinya): memperluas butir Skill Tree dan Magic/Elemen pada **D-013**; berkaitan dengan spesialisasi dan training pada **D-017**; level karakter adalah salah satu syarat pembukaan wilayah pada **D-009**.
 Detail (rumus level/atribut, daftar class/job, aturan ganti spesialisasi dan biayanya, batas level, struktur cabang skill tree) belum ditetapkan. Implementasi belum dimulai. ID D-018 tersedia saat dicatat (tanpa bentrokan).
+
+### D-019 — Sistem Companion dan Monster Taming *(APPROVED / LOCKED, 2026-11-17, Tahap 9)*
+Pilihan: **D. Kombinasi Semua Sistem.** Fitur yang ditetapkan:
+1. Pet untuk kehidupan sehari-hari
+2. Combat Companion untuk membantu pertarungan
+3. Monster Taming untuk menjinakkan monster dungeon
+4. Koleksi monster langka
+5. Level dan evolusi monster
+6. Skill dan kemampuan khusus monster
+7. Sistem hubungan dan loyalitas companion
+8. Monster dapat membantu aktivitas tertentu
+
+Companion memiliki fungsi berbeda sesuai jenis, kemampuan, dan karakteristiknya.
+
+Hubungan dengan keputusan lain (tidak mengubah isinya): monster berasal dari dungeon (**D-016**) dan sistem pertarungan (**D-013**); pemeliharaan hewan ternak adalah bagian **D-015** dan dibedakan dari pet/companion (batas keduanya belum ditetapkan); "membantu aktivitas tertentu" berkaitan dengan Sistem Kehidupan (D-015) dan dungeon, jenis aktivitasnya belum ditetapkan.
+Detail (daftar monster dan pet, cara menjinakkan, batas jumlah companion, rumus level/evolusi, mekanik loyalitas, aktivitas yang dibantu) belum ditetapkan. Implementasi belum dimulai. ID D-019 tersedia saat dicatat (tanpa bentrokan dengan ID yang berlaku).
 
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
