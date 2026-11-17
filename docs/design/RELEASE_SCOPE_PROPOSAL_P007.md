@@ -1,7 +1,7 @@
-# Usulan Lingkup Rilis Awal (P-007) — DRAFT PROPOSAL (rev. 2)
+# Lingkup Rilis Awal (P-007) — DISETUJUI PEMILIK (O-008), rev. 2
 
-> **Status: DRAFT PROPOSAL. BUKAN keputusan.** P-007 **tidak dikunci** sampai pemilik menyetujui secara resmi.
-> Rev. 2 memasukkan jawaban pemilik untuk Q1 sampai Q6 (diterima sebagai arahan, belum dikunci). Tidak mengubah keputusan resmi Tahap 1 sampai 60 dan D-051.
+> **Status: DISETUJUI pemilik 2026-11-17 (O-008)** untuk lingkup sistem (tabel bagian 3, jawaban Q1 sampai Q6, tafsir D-014). **TBD T1 sampai T20 (bagian 7) tetap terbuka** dan harus diputuskan lewat pembahasan berikutnya; angka 3 wilayah, 2 dungeon, 12 NPC adalah target desain yang perlu divalidasi (T13).
+> Rev. 2 memasukkan jawaban pemilik untuk Q1 sampai Q6. Tidak mengubah keputusan resmi Tahap 1 sampai 60 dan D-051.
 > Tidak ada tanggal rilis, target biaya, atau angka performa/ukuran. Induk: `RELEASE_SCOPE.md`. Roadmap: `../project/ROADMAP.md`.
 
 **Fakta yang dipegang:** APK publik via **GitHub Releases (D-005)**; Account/Login permanen (Tahap 35) **DEFERRED** (P-006); Google Play dibahas terpisah; game **online, bukan full offline** (D-014, D-044, D-051); "spiritual" masih **TBD**; target performa D-052 **belum diukur**.
@@ -148,4 +148,4 @@ Dirujuk dari dokumentasi Supabase (Anonymous Sign-Ins); detail wajib diverifikas
 
 ## 9. Langkah berikutnya
 
-Pemilik memeriksa proposal ini dan memberi persetujuan resmi atau revisi (termasuk konfirmasi tafsir D-014 dan keputusan T1 sampai T20 sebagai prioritas). P-007 baru dikunci setelah itu; lalu dilakukan putaran penguncian detail lingkup Rilis Awal/vertical slice.
+P-007 disetujui (O-008). Berikutnya: putaran penguncian detail lingkup Rilis Awal/vertical slice dan keputusan atas TBD T1 sampai T20 (prioritas T1, T2, T9, T10, T12, T13) sebelum implementasi terkait.

@@ -450,3 +450,9 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Tabel per sistem diperbarui (48 baris). Pemeriksaan konsistensi D-014, D-019, D-034, D-041, D-044, D-047, D-066, D-069 dicatat. Teks D-014 tidak diubah; tafsir "akun anonim otomatis" menunggu konfirmasi pemilik.
 - Implikasi teknis: identitas anonim hilang bila aplikasi dihapus, data dibersihkan, atau ganti perangkat sebelum ditautkan; pemulihan tidak diasumsikan. Daftar TBD T1 sampai T20 dibuat.
 - `RELEASE_SCOPE.md`, `ROADMAP.md`, `BACKEND_DESIGN.md` (§6b) disinkronkan. Tidak ada perubahan kode/gameplay/CI. Tahap 35 tetap DEFERRED; P-002, P-005, P-006, P-007 pending.
+
+## 2026-11-17 (61) — P-007 disetujui pemilik (O-008)
+
+- Pemilik menyetujui proposal P-007 rev. 2 ("Setuju"). Dicatat sebagai **O-008**; P-007 berstatus **Selesai**. Isi: lingkup Rilis Awal sesuai tabel proposal, jawaban Q1 sampai Q6 (identitas anonim Supabase, ramuan dasar, companion dasar, romansa tahap awal, target 3 wilayah/2 dungeon/12 NPC inti sebagai target desain yang perlu divalidasi, kustomisasi dasar, transaksi kosmetik ditunda), dan tafsir D-014 (teks tidak diubah).
+- **TBD T1 sampai T20 tetap terbuka**, tidak dianggap diputuskan. Keputusan D-001 sampai D-069 dan D-051 tidak berubah. Tahap 35 tetap DEFERRED; P-002, P-005, P-006 pending.
+- Dokumen disinkronkan: DESIGN_DECISIONS, RELEASE_SCOPE, proposal P-007, ROADMAP, GDD, TA, BACKEND_DESIGN, README. Tidak ada perubahan kode/gameplay/CI.

@@ -1,6 +1,6 @@
 # Release Scope — Farming Adventure Nusantara
 
-> **Status:** Prinsip rilis (bagian 1) dan aturan pembaruan (bagian 5) **terkunci** oleh D-069. Isi Rilis Awal **belum dikunci**: tabel rinci ada di `RELEASE_SCOPE_PROPOSAL_P007.md` (**DRAFT PROPOSAL**, P-007, menunggu persetujuan pemilik).
+> **Status:** Prinsip rilis (bagian 1) dan aturan pembaruan (bagian 5) **terkunci** oleh D-069. Lingkup Rilis Awal **disetujui pemilik (O-008, P-007)**: tabel rinci di `RELEASE_SCOPE_PROPOSAL_P007.md` rev. 2. **TBD T1 sampai T20 tetap terbuka.**
 > Tidak ada tanggal rilis, target biaya, atau angka performa/ukuran di dokumen ini (belum ada data dan persetujuan).
 > Dokumen terkait: `DESIGN_DECISIONS.md` (D-069, D-051, D-014, D-005), `GDD.md` (§6.58, §6.59), `../project/ROADMAP.md`, `../technical/TECHNICAL_ARCHITECTURE.md` (§4az, §4ba).
 
@@ -12,7 +12,7 @@
 4. **Setiap pembaruan** menjaga kompatibilitas save, progres pemain, dan sistem yang berjalan.
 5. Lingkup mempertimbangkan kapasitas perangkat Android, performa, ukuran unduhan, dan stabilitas.
 6. Tetap **single-player online** (D-014) dengan **Cloud Save Supabase** (D-044); **bukan** mode offline penuh. Gangguan koneksi ditangani oleh **Connection Resilience (D-051)**.
-7. **Account/Login (Tahap 35) DEFERRED** (P-006) dan **tidak otomatis menjadi syarat Rilis Awal.** Arahan pemilik (draft, belum dikunci): Cloud Save memakai **identitas anonim otomatis (Supabase Anonymous Auth)** dengan persiapan account linking dan peringatan risiko; pemulihan setelah aplikasi dihapus **tidak dijamin** sebelum identitas ditautkan (lihat proposal P-007 §5).
+7. **Account/Login (Tahap 35) DEFERRED** (P-006) dan **tidak otomatis menjadi syarat Rilis Awal.** Disetujui pemilik (O-008): Cloud Save memakai **identitas anonim otomatis (Supabase Anonymous Auth)** dengan persiapan account linking dan peringatan risiko; pemulihan setelah aplikasi dihapus **tidak dijamin** sebelum identitas ditautkan (lihat proposal P-007 §5).
 8. **Kanal APK publik Rilis Awal: GitHub Releases (D-005).** Google Play dibahas terpisah saat persiapan publikasi.
 9. Tanggal rilis dan target biaya tidak ditetapkan tanpa data dan persetujuan pemilik.
 10. Lingkup rilis hanya memilih *seberapa banyak* dari sistem terkunci yang dibuka pada tiap rilis; keputusan desain tidak berubah.
@@ -46,7 +46,7 @@ Tabel per sistem (WAJIB / UPDATE / LANJUTAN), jawaban pemilik Q1 sampai Q6, kebu
 - [ ] Cloud Save dengan identitas anonim teruji, termasuk perilaku saat sesi hilang; pemulihan lintas perangkat hanya bila identitas sudah ditautkan. Tahap 35 **tidak** disyaratkan (DEFERRED).
 - [ ] Keamanan dasar (D-050) dan kebijakan privasi.
 - [ ] Kunci production dibuat dan dicadangkan (P-002); penandatanganan teruji.
-- [ ] Persetujuan pemilik atas lingkup final Rilis Awal (P-007).
+- [x] Persetujuan pemilik atas lingkup Rilis Awal (P-007, O-008); detail T1 sampai T20 masih terbuka.
 
 ## 5. Aturan Pembaruan (terkunci oleh D-069, memakai D-044 dan D-048)
 
@@ -60,7 +60,7 @@ Tabel per sistem (WAJIB / UPDATE / LANJUTAN), jawaban pemilik Q1 sampai Q6, kebu
 
 ## 6. Belum Ditetapkan
 
-Tanggal rilis dan target biaya; tampilan penautan akun dan perlakuan saat identitas anonim hilang (T1, T2); isi final Rilis Awal (P-007); validasi target 3 wilayah, 2 dungeon, 12 NPC (T13); isi tiap pembaruan; matriks perangkat dan batas ukuran/performa; kebijakan analitik dan privasi; detail D-051 (interval, batas, tampilan status); arti "spiritual" (TBD); Google Play (terpisah).
+Tanggal rilis dan target biaya; tampilan penautan akun dan perlakuan saat identitas anonim hilang (T1, T2); detail T1 sampai T20; validasi target 3 wilayah, 2 dungeon, 12 NPC (T13); isi tiap pembaruan; matriks perangkat dan batas ukuran/performa; kebijakan analitik dan privasi; detail D-051 (interval, batas, tampilan status); arti "spiritual" (TBD); Google Play (terpisah).
 
 ## 7. Koreksi dan Ketidakselarasan (diperbarui setelah koreksi pemilik)
 
@@ -71,5 +71,5 @@ Tanggal rilis dan target biaya; tampilan penautan akun dan perlakuan saat identi
 | 3 | Kanal distribusi dianggap belum diputuskan. | **Diperbaiki:** GitHub Releases (D-005); Google Play terpisah. |
 | 4 | Login dianggap syarat rilis karena teks D-014. | **Diperbaiki:** Tahap 35 DEFERRED; bukan syarat Rilis Awal. Teks D-014 tidak diubah; tegangan dengan Cloud Save dicatat sebagai Q1. |
 | 5 | D-051 belum diterima. | **Selesai:** D-051 dicatat (§6.59, TA §4ba); detail angka terbuka. |
-| 6 | Kriteria Fase 1 menuntut GDD tanpa bagian kritis terbuka. | Terbuka: butuh putaran penguncian detail setelah P-007. |
+| 6 | Kriteria Fase 1 menuntut GDD tanpa bagian kritis terbuka. | Terbuka: butuh putaran penguncian detail setelah O-008 (P-007 disetujui). |
 | 7 | Target performa D-052 belum diukur. | Terbuka: perlu pengukuran perangkat nyata; tidak ada angka estimasi disajikan sebagai hasil uji. |

@@ -845,7 +845,7 @@ Memakai kerangka D-048 (§4ag), cloud save (§5a), keamanan (§5b), performa (§
 - **Keamanan (D-050, §5b):** penanda fitur dan konfigurasi jarak jauh tidak menjadi jalur curang; validasi server untuk operasi bernilai tinggi; kunci rilis production tidak di repo (P-002).
 - **Monetisasi (D-047):** katalog kosmetik tunduk pada jalur rilis yang sama; konten gameplay penting tidak bergantung pada pembelian.
 - **Koneksi (D-051, §4ba):** gerbang stabilitas rilis mencakup uji putus koneksi → pemulihan koneksi; rincian durasi dan masa tenggang tetap terbuka.
-- **Akun/login (Tahap 35, P-006, DEFERRED):** bukan syarat Rilis Awal via GitHub Releases (koreksi pemilik); tidak ada asumsi desain akun; identitas yang dipakai Cloud Save pada Rilis Awal tanpa Login adalah arahan draf pemilik (identitas anonim Supabase, proposal P-007 rev. 2 §5), **belum dikunci**; pemulihan setelah aplikasi dihapus tidak dijamin sebelum penautan. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§4aw; detail belum final).
+- **Akun/login (Tahap 35, P-006, DEFERRED):** bukan syarat Rilis Awal via GitHub Releases (koreksi pemilik); tidak ada asumsi desain akun; identitas yang dipakai Cloud Save pada Rilis Awal tanpa Login adalah identitas anonim Supabase (disetujui pemilik, O-008; proposal P-007 rev. 2 §5); pemulihan setelah aplikasi dihapus tidak dijamin sebelum penautan. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§4aw; detail belum final).
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ### 4ba. Implikasi Arsitektur dari D-051 (hanya catatan; belum diimplementasikan; semua angka usulan dan belum diukur)

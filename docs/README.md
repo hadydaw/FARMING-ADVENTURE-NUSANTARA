@@ -5,7 +5,7 @@
 | [design/GDD.md](design/GDD.md) | Game Design Document (hanya keputusan yang sudah ditetapkan; sisanya ditandai belum ditetapkan) |
 | [design/DESIGN_DECISIONS.md](design/DESIGN_DECISIONS.md) | Catatan seluruh keputusan (pemilik, teknis, dan yang masih menunggu) |
 | [design/RELEASE_SCOPE.md](design/RELEASE_SCOPE.md) | Lingkup rilis: prinsip (D-069), gerbang kelayakan, aturan pembaruan, koreksi dokumen |
-| [design/RELEASE_SCOPE_PROPOSAL_P007.md](design/RELEASE_SCOPE_PROPOSAL_P007.md) | **DRAFT PROPOSAL** P-007: rev. 2: tabel sistem WAJIB/UPDATE/LANJUTAN, jawaban Q1-Q6, implikasi identitas anonim Supabase, TBD T1-T20 (belum dikunci) |
+| [design/RELEASE_SCOPE_PROPOSAL_P007.md](design/RELEASE_SCOPE_PROPOSAL_P007.md) | **DISETUJUI (O-008)** P-007: rev. 2: tabel sistem WAJIB/UPDATE/LANJUTAN, jawaban Q1-Q6, implikasi identitas anonim Supabase, TBD T1-T20 (TBD T1-T20 terbuka) |
 | [technical/TECHNICAL_ARCHITECTURE.md](technical/TECHNICAL_ARCHITECTURE.md) | Pilihan engine/teknologi + alasan, arsitektur, penyimpanan, lokalisasi |
 | [technical/BACKEND_DESIGN.md](technical/BACKEND_DESIGN.md) | Rancangan backend online terpisah dan sinkronisasi |
 | [technical/BUILD_AND_RELEASE.md](technical/BUILD_AND_RELEASE.md) | Pipeline GitHub Actions, penandatanganan, distribusi APK via Releases |

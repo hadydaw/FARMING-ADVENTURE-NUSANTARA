@@ -81,7 +81,7 @@ Kunci unik `saves(player_id, slot)`. Akses dibatasi per pemain (Row Level Securi
 - Kunci/rahasia server disimpan di pengaturan penyedia dan GitHub Secrets, **tidak pernah** di repo.
 - Pembatasan laju (rate limit) dan validasi ukuran payload di server.
 
-## 6b. Identitas anonim untuk Rilis Awal (DRAFT, menunggu persetujuan P-007; rancangan saja)
+## 6b. Identitas anonim untuk Rilis Awal (disetujui pemilik, O-008; rancangan saja)
 
 - Arahan pemilik: identitas anonim otomatis lewat **Supabase Anonymous Auth** saat pertama bermain, tanpa username/kata sandi; siapkan penautan akun untuk login permanen (Tahap 35, DEFERRED).
 - Pengguna anonim memakai peran `authenticated`; RLS berbasis `auth.uid()` dan, bila perlu, klaim `is_anonymous`. Penautan (`updateUser` untuk email/telepon, `linkIdentity` untuk OAuth dengan manual linking aktif) mempertahankan ID pengguna sehingga save tetap.

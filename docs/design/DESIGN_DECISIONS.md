@@ -30,6 +30,7 @@ Keputusan **Teknis (rutin)** dibuat Claude secara mandiri dan boleh ditinjau/dig
 | O-005 | Lisensi: **proprietary / All Rights Reserved**. Source boleh dilihat, tidak boleh disalin/diubah/didistribusikan tanpa izin (berkas `LICENSE`). | 2026-11-17 |
 | O-006 | Pengujian APK di HP dilakukan pemilik; status "lulus di HP" hanya dicatat setelah pemilik melapor. | 2026-11-17 |
 | O-007 | Larangan sampai desain disepakati bersama ChatGPT: gameplay, pertarungan, farming, dungeon, multiplayer, dan fitur lain yang belum disepakati. | 2026-11-17 |
+| O-008 | **Persetujuan P-007: lingkup Rilis Awal** sesuai `docs/design/RELEASE_SCOPE_PROPOSAL_P007.md` rev. 2 (tabel WAJIB/UPDATE/LANJUTAN dan jawaban Q1 sampai Q6, termasuk identitas anonim Supabase untuk Cloud Save, target 3 wilayah, 2 dungeon, 12 NPC inti sebagai **target desain yang perlu divalidasi**). Tafsir D-014 (akun anonim otomatis memenuhi "punya akun" pada Rilis Awal; login permanen menyusul, Tahap 35 DEFERRED) dikonfirmasi; teks D-014 tidak diubah. **TBD T1 sampai T20 tetap terbuka** dan tidak dianggap diputuskan. Tidak mengubah keputusan D-001 sampai D-069 dan D-051. | 2026-11-17 |
 
 ## A2. Keputusan desain resmi dari tahap desain (LOCKED)
 
@@ -1241,7 +1242,7 @@ Pilihan: **D. Hybrid Release dan Roadmap Lengkap.** Ketentuan:
 
 Dokumen: **`docs/design/RELEASE_SCOPE.md`** (baru) memuat prinsip rilis, arti "pengalaman inti utuh", **usulan** isi Rilis Awal, gerbang kelayakan, aturan pembaruan, dan daftar konflik beserta rekomendasi; **`docs/project/ROADMAP.md`** diperbarui dengan bagian roadmap rilis dan konten.
 
-**Yang terkunci:** prinsip dan aturan di atas. **Yang BUKAN keputusan (usulan menunggu persetujuan pemilik, P-007):** isi final Rilis Awal, daftar konten per rilis, urutan gelombang pembaruan, dan kanal distribusi. Tidak ada tanggal, biaya, atau angka performa/ukuran.
+**Yang terkunci:** prinsip dan aturan di atas. **Disetujui kemudian lewat O-008 (P-007):** lingkup Rilis Awal sesuai proposal rev. 2. **Yang tetap bukan keputusan:** isi final Rilis Awal, daftar konten per rilis, urutan gelombang pembaruan, dan kanal distribusi. Tidak ada tanggal, biaya, atau angka performa/ukuran.
 
 **Koreksi pemilik setelah Tahap 60 (tanpa mengubah ketentuan D-069):**
 1. D-014 berarti Single-Player Online dan **tidak otomatis mewajibkan sistem Account/Login tersedia pada Rilis Awal**; isi D-014 tidak diubah. Tahap 35 (Account/Login) tetap **DEFERRED** sampai persiapan publikasi Google Play (P-006). Catatan sebelumnya yang menyebut "D-014 mensyaratkan akun untuk rilis" **dikoreksi**. Pertanyaan teknis yang tersisa (identitas yang dipakai Cloud Save pada Rilis Awal tanpa Login) dijawab pemilik sebagai arahan draf (identitas anonim Supabase + persiapan account linking) di proposal P-007 rev. 2; **belum dikunci** sampai P-007 disetujui. Teks D-014 tidak diubah.
@@ -1279,4 +1280,4 @@ Hubungan (tidak mengubah isi keputusan lain): dunia dan Progressive World Unlock
 | P-004 | Lisensi | Publikasi source | **Selesai** (O-005) |
 | P-005 | Hasil uji APK dev di HP (`docs/project/TESTING_APK.md`) | Menutup Fase 0 | Menunggu |
 | P-006 | Tahap 35: Sistem Akun dan Login Pemain (metode login, multi-perangkat, hapus akun, privasi) | Persiapan publikasi Google Play Store | **PENDING** (atas instruksi pemilik; dibahas saat persiapan publikasi; status tidak diubah); ditandai **DEFERRED** oleh pemilik (setelah Tahap 60): bukan syarat Rilis Awal via GitHub Releases; persiapan Google Play dibahas terpisah |
-| P-007 | Persetujuan lingkup final Rilis Awal dan urutan pembaruan (**DRAFT PROPOSAL rev. 2** di `docs/design/RELEASE_SCOPE_PROPOSAL_P007.md`; jawaban pemilik Q1 sampai Q6 dimasukkan, belum dikunci; TBD T1 sampai T20 terbuka) | Rilis Awal via GitHub Releases (D-005) dan penguncian detail vertical slice | Menunggu persetujuan pemilik |
+| P-007 | Persetujuan lingkup final Rilis Awal dan urutan pembaruan | Rilis Awal via GitHub Releases (D-005) dan penguncian detail vertical slice | **Selesai** (O-008); TBD T1 sampai T20 di proposal tetap terbuka |

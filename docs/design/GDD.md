@@ -853,7 +853,7 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - Mempertimbangkan **kapasitas perangkat Android, performa, ukuran unduhan, dan stabilitas** (D-052).
 - Tetap **single-player online** dengan **Cloud Save Supabase** (D-014, D-044).
 - **Tidak ada tanggal rilis atau target biaya.** Keputusan terkunci Tahap 1 sampai 59 tidak diubah; rilis hanya memilih seberapa banyak sistem terkunci dibuka.
-- Rincian: `RELEASE_SCOPE.md` (isi Rilis Awal berstatus **usulan**, P-007) dan `ROADMAP.md`. Terkait: seluruh D-013 sampai D-068, terutama D-014, D-044, D-045, D-047 sampai D-050, D-052, D-053, D-068.
+- Rincian: `RELEASE_SCOPE.md` (lingkup Rilis Awal **disetujui pemilik**, O-008/P-007; detail T1 sampai T20 terbuka) dan `ROADMAP.md`. Terkait: seluruh D-013 sampai D-068, terutama D-014, D-044, D-045, D-047 sampai D-050, D-052, D-053, D-068.
 
 **[BELUM DITETAPKAN]:** isi final Rilis Awal, matriks perangkat, batas ukuran/performa, urutan dan jadwal pembaruan, apakah Rilis Awal memuat busur cerita yang selesai, apakah romansa/keluarga masuk Rilis Awal, arti "spiritual" (belum didefinisikan).
 
