@@ -46,3 +46,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Visual 3D Stylized dan Progressive World Unlock sudah ada sebagai D-008 dan D-009 (nomor bebas diperiksa: D-001…D-014 terpakai); ditandai dikonfirmasi pemilik sebagai Tahap 1 dan 2. Tidak dibuat ID baru agar tidak ada duplikat.
 - Penomoran O-001…O-007 disetujui pemilik; rujukan silang diperiksa otomatis.
 - Tidak ada perubahan kode/gameplay. Menunggu keputusan Tahap 5 (Sistem Kehidupan).
+
+## 2026-11-17 (5) — D-015 Sistem Kehidupan dicatat
+
+- D-015 (Kehidupan Lengkap ala Story of Seasons, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
+- GDD §6.2–6.5 diperbarui (v0.5); Technical Architecture §4b ditambahkan.
+- Romansa, pernikahan, keluarga, anak ditandai **belum ditetapkan** di GDD dan Decision Log.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 6 (sistem dungeon).

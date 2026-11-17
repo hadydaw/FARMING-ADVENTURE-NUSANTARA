@@ -18,7 +18,7 @@ Roadmap berbasis **tahap dan hasil yang dapat diperiksa**, bukan tanggal (belum 
 ## Fase 1 — Desain Bersama (belum ada kode gameplay)
 
 Sesi desain bersama ChatGPT; hasil dituangkan ke GDD v1.0 dan `DESIGN_DECISIONS.md`.
-Selesai/terkunci: visual (D-008), dunia (D-009), pertarungan (D-013), single-player online (D-014). Sedang berjalan: Tahap 5 Sistem Kehidupan. Urutan usulan sisanya: kontrol/kamera sentuh → struktur dunia dan wilayah → siklus farming → dungeon → rank/quest/cerita → NPC → art direction.
+Selesai/terkunci: visual (D-008), dunia (D-009), pertarungan (D-013), single-player online (D-014). Sistem kehidupan (D-015) terkunci. Sedang berjalan: pemilihan sistem dungeon. Urutan usulan sisanya: kontrol/kamera sentuh → struktur dunia dan wilayah → siklus farming → dungeon → rank/quest/cerita → NPC → art direction.
 
 **Kriteria selesai:** GDD v1.0 tanpa bagian kritis bertanda [BELUM DITETAPKAN] untuk lingkup vertical slice.
 

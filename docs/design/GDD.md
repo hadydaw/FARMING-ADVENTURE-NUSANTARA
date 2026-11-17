@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.4 (+ D-013 Pertarungan, D-014 Single-Player Online) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.5 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -75,21 +75,33 @@ Untuk setiap sistem: **Ditetapkan** = sudah ada keputusan; **Belum** = menunggu 
 
 Belum: daftar wilayah, peta dunia, syarat buka tiap wilayah, ukuran wilayah, cara perpindahan antarwilayah (loading/streaming).
 
-### 6.2 Farming (ladang, tanaman, hewan)
-Ditetapkan: ada pengelolaan ladang, tanam/panen, dan pemeliharaan hewan.
-Belum: musim, cuaca, daftar tanaman/hewan, stamina, kalender, waktu tumbuh, ekonomi.
+### 6.2 Sistem Kehidupan — D-015, LOCKED (Kehidupan Lengkap ala Story of Seasons)
+**Ditetapkan:**
+- **Farming dan pertanian:** mengelola ladang, menanam, memanen.
+- **Peternakan:** memelihara hewan.
+- **Memancing.**
+- **Memasak.**
+- **Pergantian musim.**
+- **Festival dan acara desa.**
+- **Ekonomi dan perdagangan.**
+- **Pengembangan rumah** (membangun dan mengembangkan rumah).
+- **Pengembangan dan perluasan ladang.**
+
+**[BELUM DITETAPKAN]:** daftar tanaman dan hewan, jumlah dan panjang musim, kalender dan sistem waktu (termasuk acuan jam: perangkat atau server), cuaca, stamina, mekanik memancing, resep dan efek makanan (termasuk hubungannya dengan RPG/buff), harga dan keseimbangan ekonomi, jadwal dan jenis festival, tahap upgrade rumah dan ladang, dekorasi, penyimpanan, keseimbangan dengan pertarungan dan dungeon.
+
+**Di luar D-015 dan BELUM ditetapkan (jangan dianggap disetujui):** hubungan romantis, pernikahan, membangun keluarga, memiliki anak.
+
+Untuk bagian 6.3 dan 6.4 di bawah, rujuk 6.2.
 
 ### 6.3 Memancing dan Memasak
-Ditetapkan: kedua aktivitas ada.
-Belum: mekanik memancing, resep, efek makanan, hubungan dengan RPG (buff/heal).
+Ditetapkan lewat D-015 (lihat 6.2). Rincian belum ditetapkan.
 
 ### 6.4 Rumah
-Ditetapkan: membangun dan mengembangkan rumah.
-Belum: tahap upgrade, dekorasi, penyimpanan, biaya.
+Ditetapkan lewat D-015 (pengembangan rumah dan ladang; lihat 6.2). Rincian belum ditetapkan.
 
 ### 6.5 NPC dan Hubungan
 Ditetapkan: interaksi dengan NPC.
-Belum: sistem hubungan/romansa, jadwal harian, dialog, daftar NPC.
+Belum: jadwal harian, dialog, daftar NPC, tingkat hubungan/persahabatan. **Hubungan romantis, pernikahan, keluarga, dan anak belum ditetapkan** (lihat 6.2).
 
 ### 6.6 Adventurer Guild, Quest, dan Rank
 Ditetapkan: Adventurer Guild, quest, berburu monster, rank **F, E, D, C, B, A, S, SS, SSS** (direncanakan).
@@ -144,7 +156,7 @@ Urutan usulan pembahasan bersama ChatGPT (dari yang paling memengaruhi arsitektu
 1. ~~Multiplayer~~ (D-014 terkunci: Single-Player Online).
 2. ~~Pertarungan~~ (D-013 terkunci); sisanya: detail aturan combat, kamera dan kontrol sentuh.
 3. Struktur dunia dan wilayah (ukuran, loading, peta).
-4. Siklus farming (musim, waktu, stamina, ekonomi).
+4. ~~Sistem kehidupan~~ (D-015 terkunci); sisanya: detail aturan (musim, waktu, stamina, ekonomi, resep, festival).
 5. Dungeon (fixed vs prosedural), loot, boss.
 6. Rank, quest, dan progres cerita.
 7. NPC dan hubungan.

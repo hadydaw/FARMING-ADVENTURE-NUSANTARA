@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.4 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.5 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -67,6 +67,17 @@ Sistem pertarungan yang terkunci (real-time, combo, skill+cooldown, magic/elemen
 - **Save:** progres skill tree dan perlengkapan masuk payload save (skema berversi).
 - **Anggaran performa:** efek skill/magic mengikuti anggaran §3 (batas partikel dan draw call).
 - **Online:** validasi hasil combat di server hanya bila fitur online yang rawan curang diputuskan; D-014 menetapkan single-player online, sehingga tidak ada sinkronisasi real-time antarpemain.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4b. Implikasi Arsitektur dari D-015 (hanya catatan; belum diimplementasikan)
+
+Sistem Kehidupan (farming, ternak, memancing, memasak, musim, festival, ekonomi, pengembangan rumah dan ladang) menuntut saat dibangun:
+- **Layanan waktu/kalender** tunggal (hari, musim, tahun) yang menjadi sumber kebenaran bagi pertumbuhan tanaman, hewan, festival, dan jadwal; acuan jam (perangkat vs server) **belum diputuskan** dan dicatat sebagai pertanyaan terbuka. Karena akun dan internet wajib (D-014), server dapat dipakai sebagai acuan waktu bila dipilih.
+- **Data-driven:** tanaman, hewan, ikan, resep, item, harga, festival, upgrade sebagai data (Resource/JSON), bukan hardcode.
+- **Event kalender** (festival, acara desa) sebagai data terjadwal yang memicu scene/quest.
+- **Save:** keadaan ladang, hewan, inventori, uang, rumah, dan tanggal masuk payload save (skema berversi, migrasi antarversi); ukuran payload dipantau karena dunia pribadi ikut tersimpan.
+- **Ekonomi:** karena single-player online, ekonomi bersifat pribadi; validasi server untuk mencegah manipulasi save baru diputuskan bila diperlukan.
+- **Hanya yang ditetapkan:** hubungan romantis/pernikahan/keluarga/anak tidak ada dalam arsitektur sampai diputuskan.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres

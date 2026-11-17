@@ -61,6 +61,22 @@ Pilihan: **A. Single-Player Online.**
 
 Dampak: syarat "evaluasi Nakama bila multiplayer real-time" pada O-003 tidak terpicu; Nakama tidak diperlukan. Isi O-003 tidak diubah. Implementasi backend dan gameplay belum dimulai.
 
+### D-015 — Sistem Kehidupan *(APPROVED / LOCKED, 2026-11-17, Tahap 5)*
+Pilihan: **B. Kehidupan Lengkap ala Story of Seasons.** Fitur yang ditetapkan:
+1. Farming dan pertanian
+2. Peternakan dan pemeliharaan hewan
+3. Memancing
+4. Memasak
+5. Pergantian musim
+6. Festival dan acara desa
+7. Ekonomi dan perdagangan
+8. Pengembangan rumah
+9. Pengembangan dan perluasan ladang
+
+**Batasan — BELUM ditetapkan (jangan dianggap disetujui):** hubungan romantis, pernikahan, membangun keluarga, memiliki anak.
+
+Catatan: ID D-015 tersedia saat dicatat (tidak ada bentrokan). Detail aturan tiap fitur (daftar tanaman/hewan, panjang musim, resep, harga, jadwal festival, tahap upgrade) belum ditetapkan. Implementasi belum dimulai.
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |
