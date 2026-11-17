@@ -28,7 +28,7 @@ Tahapan job `build`: pasang JDK 17 → Android SDK (platform-tools, build-tools 
 ## 3. Versi dan Paket
 
 - Versi game: `config/version` di `project.godot` (SemVer).
-- **Rilis:** tag `vX.Y.Z` **wajib sama** dengan `config/version` (CI menolak bila beda). `versionCode = X*1.000.000 + Y*1.000 + Z`. Paket: `com.hadydaw.farmingadventurenusantara` (**resmi, disetujui D-014; tidak boleh diubah tanpa persetujuan pemilik**).
+- **Rilis:** tag `vX.Y.Z` **wajib sama** dengan `config/version` (CI menolak bila beda). `versionCode = X*1.000.000 + Y*1.000 + Z`. Paket: `com.hadydaw.farmingadventurenusantara` (**resmi, disetujui O-002; tidak boleh diubah tanpa persetujuan pemilik**).
 - **Dev:** versi `X.Y.Z-dev.<nomor_run>`, `versionCode = nomor_run`, paket `…nusantara.dev`, nama aplikasi "FAN Dev" → bisa terpasang berdampingan dengan rilis.
 
 ## 4. Penandatanganan (Kunci Rilis)

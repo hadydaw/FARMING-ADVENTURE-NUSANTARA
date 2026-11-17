@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.2 (fondasi + keputusan 2026-11-17) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.3 (+ D-013 Sistem Pertarungan) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -49,7 +49,7 @@ Rincian mekanik tiap aktivitas ada di bagian 6 dan **belum ditetapkan**.
 **Ditetapkan:** Android, landscape, layar sentuh (touchscreen).
 
 **[BELUM DITETAPKAN]:**
-- Skema kontrol (joystick virtual, tap-to-move, tombol aksi, gestur).
+- Skema kontrol (joystick virtual, tap-to-move, tombol aksi, gestur) — harus mampu menampung seluruh aksi pertarungan D-013 (serang/combo, skill, dodge, block, parry).
 - Sudut dan perilaku kamera (follow, orbit, tetap).
 - Dukungan kontroler eksternal.
 
@@ -95,9 +95,21 @@ Belum: sistem hubungan/romansa, jadwal harian, dialog, daftar NPC.
 Ditetapkan: Adventurer Guild, quest, berburu monster, rank **F, E, D, C, B, A, S, SS, SSS** (direncanakan).
 Belum: syarat naik rank, jenis quest, hadiah, hubungan rank dengan pembukaan wilayah.
 
-### 6.7 Pertarungan (Action RPG)
-Ditetapkan: genre Action RPG; ada monster dan boss.
-Belum: seluruh sistem pertarungan (gerak, serangan, skill, pertahanan, pertumbuhan karakter, kelas).
+### 6.7 Pertarungan (Action RPG) — D-013, LOCKED
+**Ditetapkan (Kombinasi Semua Sistem):**
+- Real-time Action Combat
+- Normal Attack dan Combo Attack
+- Active Skills dengan Cooldown
+- Magic dan Elemental Skills
+- Berbagai jenis senjata
+- Dodge dan Evasion
+- Block dan Defense
+- Parry dan Counter Attack
+- Skill Tree dan perkembangan kemampuan karakter
+
+Juga berlaku: ada monster dan boss (6.8).
+
+**[BELUM DITETAPKAN]:** aturan damage dan stat, daftar elemen dan interaksinya, daftar jenis senjata, sumber daya skill (mana/stamina), jendela waktu parry/dodge, struktur skill tree, kontrol sentuh untuk semua aksi di atas, penargetan/kamera saat bertarung, bentuk AI musuh, keseimbangan dengan kehidupan bertani. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ### 6.8 Dungeon dan Boss
 Ditetapkan: dungeon exploration, boss, setiap wilayah dapat punya dungeon.
@@ -126,7 +138,7 @@ GitHub **bukan** server game (hanya kode dan distribusi APK).
 Urutan usulan pembahasan bersama ChatGPT (dari yang paling memengaruhi arsitektur):
 
 1. Multiplayer: ada/tidak, bentuknya.
-2. Pertarungan dan kamera/kontrol sentuh.
+2. ~~Pertarungan~~ (D-013 terkunci); sisanya: detail aturan combat, kamera dan kontrol sentuh.
 3. Struktur dunia dan wilayah (ukuran, loading, peta).
 4. Siklus farming (musim, waktu, stamina, ekonomi).
 5. Dungeon (fixed vs prosedural), loot, boss.

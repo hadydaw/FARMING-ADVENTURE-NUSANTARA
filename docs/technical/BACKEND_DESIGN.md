@@ -1,6 +1,6 @@
 # Rancangan Backend — Farming Adventure Nusantara
 
-> **Versi:** 0.2 · **Status:** RANCANGAN. Supabase disetujui sebagai pilihan awal (D-015); belum ada kode server dan belum ada akun yang dibuat. Nakama ditunda. Implementasi baru setelah desain sistem online disepakati.
+> **Versi:** 0.2 · **Status:** RANCANGAN. Supabase disetujui sebagai pilihan awal (O-003); belum ada kode server dan belum ada akun yang dibuat. Nakama ditunda. Implementasi baru setelah desain sistem online disepakati.
 > Prinsip tetap (D-006): **GitHub bukan server game.** Backend adalah layanan terpisah.
 
 ## 1. Tujuan
@@ -20,7 +20,7 @@ Di luar cakupan sekarang: multiplayer real-time (belum diputuskan), pembayaran, 
 | **Nakama** (server game open source, self-host) | Multiplayer, matchmaking, leaderboard, obrolan | Fitur game lengkap, SDK Godot | Perlu VPS (biaya) dan perawatan |
 | Server sendiri (Go/Node + Postgres) | Kontrol penuh | Fleksibel | Biaya + perawatan terbesar; dibangun dari nol |
 
-**Usulan (T-007):** mulai dengan **Supabase** untuk fase online pertama (akun + sinkronisasi save). Bila tahap desain memutuskan multiplayer real-time, tambahkan/migrasi ke Nakama; data inti tetap di Postgres sehingga portabel. **Disetujui pemilik (D-015).** Pembuatan akun dilakukan saat fase online dimulai.
+**Usulan (T-007):** mulai dengan **Supabase** untuk fase online pertama (akun + sinkronisasi save). Bila tahap desain memutuskan multiplayer real-time, tambahkan/migrasi ke Nakama; data inti tetap di Postgres sehingga portabel. **Disetujui pemilik (O-003).** Pembuatan akun dilakukan saat fase online dimulai.
 
 ## 3. Batas Klien–Server
 

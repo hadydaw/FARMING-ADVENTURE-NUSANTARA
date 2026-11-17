@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.2 · Engine dan arsitektur disetujui pemilik (D-013) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.3 · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -12,7 +12,7 @@
 | Tanpa lisensi berbayar; biaya sekecil mungkin | Konteks proyek |
 | Dunia besar bertahap (banyak wilayah), RPG aksi, banyak sistem data | D-009, GDD |
 
-"Android Native" (dikonfirmasi pemilik, D-013) = **aplikasi APK sungguhan yang dipasang langsung di HP, kode mesin arm64, bukan WebView, game browser, atau PWA.** Godot memenuhi ini.
+"Android Native" (dikonfirmasi pemilik, O-001) = **aplikasi APK sungguhan yang dipasang langsung di HP, kode mesin arm64, bukan WebView, game browser, atau PWA.** Godot memenuhi ini.
 
 ## 2. Pemilihan Engine
 
@@ -57,6 +57,18 @@ Prinsip arsitektur (berlaku saat gameplay mulai dibangun):
 5. **Semua akses jaringan lewat `BackendClient`**; gameplay tidak memanggil HTTP langsung.
 6. **Semua teks lewat kunci terjemahan.**
 
+### 4a. Implikasi Arsitektur dari D-013 (hanya catatan; belum diimplementasikan)
+
+Sistem pertarungan yang terkunci (real-time, combo, skill+cooldown, magic/elemen, banyak senjata, dodge/block/parry, skill tree) menuntut, saat nanti dibangun:
+- **Data-driven:** senjata, skill, elemen, dan skill tree sebagai data (Resource/JSON), bukan hardcode.
+- **Logika tick tetap:** perhitungan combat terpisah dari tampilan (deterministik, dapat diuji headless); jendela waktu parry/dodge dihitung dalam waktu, bukan frame.
+- **Input sentuh:** skema kontrol harus menampung semua aksi dengan latensi rendah; dipetakan lewat Input Action agar bisa diuji dengan kontroler/keyboard.
+- **State machine** karakter/musuh (serang, combo, skill, dodge, block, parry, stagger).
+- **Save:** progres skill tree dan perlengkapan masuk payload save (skema berversi).
+- **Anggaran performa:** efek skill/magic mengikuti anggaran §3 (batas partikel dan draw call).
+- **Online:** validasi hasil combat di server hanya bila fitur online yang rawan curang diputuskan; belum ada keputusan multiplayer.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
 ## 5. Penyimpanan Progres
 
 Implementasi awal: `game/core/save_service.gd` (autoload `SaveService`).
@@ -85,7 +97,7 @@ Implementasi awal: `game/core/save_service.gd` (autoload `SaveService`).
 
 Ringkasan; rincian di [`BACKEND_DESIGN.md`](BACKEND_DESIGN.md).
 
-- Backend awal: **Supabase** (D-015). Nakama ditunda sampai keputusan multiplayer. Tidak ada kode backend sebelum desain sistem online disepakati.
+- Backend awal: **Supabase** (O-003). Nakama ditunda sampai keputusan multiplayer. Tidak ada kode backend sebelum desain sistem online disepakati.
 - Backend **terpisah** dari GitHub. GitHub hanya menyimpan kode dan APK.
 - Klien memakai antarmuka `BackendClient` (`game/core/backend_client.gd`); default = mode offline (belum ada jaringan).
 - Pola: **offline-first dengan sinkronisasi** — pemain tetap bisa memuat progres lokal, server menjadi sumber kebenaran untuk akun dan data yang butuh validasi.

@@ -29,7 +29,13 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 
 ## 2026-11-17 (2) — Keputusan pemilik dicatat
 
-- D-013…D-019 dicatat; GDD, Technical Architecture, Backend Design, Build & Release diperbarui.
+- O-001…O-007 dicatat; GDD, Technical Architecture, Backend Design, Build & Release diperbarui.
 - Ditambah: `LICENSE` (All Rights Reserved), `SIGNING_GUIDE.md`, `TESTING_APK.md`.
 - CI: build rilis ditolak bila APK bertanda tangan kunci dev; catatan `dev-latest` memuat petunjuk pasang.
 - Tidak ada perubahan gameplay/fitur. Uji HP: **belum dilaporkan pemilik**.
+
+## 2026-11-17 (3) — D-013 Sistem Pertarungan dicatat
+
+- D-013 (Kombinasi Semua Sistem, LOCKED) dicatat di Decision Log dan GDD 6.7; catatan implikasi di Technical Architecture §4a.
+- Penomoran: entri lama D-013…D-019 diubah menjadi O-001…O-007 (isi tetap) agar ID D-013 sesuai instruksi pemilik.
+- Tidak ada perubahan kode/gameplay/CI. Implementasi combat belum dimulai.
