@@ -253,6 +253,28 @@ Hubungan dengan keputusan lain (tidak mengubah isinya): merinci butir memancing 
 **Terbuka:** "ikan spiritual" dan "makhluk air fantasi" belum didefinisikan (sama seperti tanaman dan hewan spiritual di D-023, D-024); apakah makhluk air dapat menjadi companion/monster (D-019) belum ditetapkan; apakah ada pertarungan dengan makhluk air (D-013) belum ditetapkan.
 Detail (daftar spesies dan lokasi, mekanik memancing, jenis alat/umpan, aturan kelangkaan, daftar ikan legendaris) belum ditetapkan. Implementasi belum dimulai. ID D-025 tersedia saat dicatat (tanpa bentrokan).
 
+### D-026 — Sistem Memasak dan Alkimia *(APPROVED / LOCKED, 2026-11-17, Tahap 16)*
+Pilihan: **D. Kombinasi Semua Sistem.** Ruang lingkup:
+1. Sistem memasak lengkap dengan banyak resep
+2. Kualitas bahan dan kemampuan memasak
+3. Makanan dengan efek pemulihan dan buff
+4. Sistem alkimia dan pembuatan ramuan
+5. Herbal, tanaman spiritual, dan material monster
+6. Resep langka dan penemuan resep baru
+7. Pengembangan dapur dan laboratorium alkimia
+8. Integrasi dengan pertanian, peternakan, memancing, dungeon, dan ekonomi
+
+Ketentuan desain:
+- Bahan punya kualitas dan kegunaan berbeda.
+- Resep dapat ditemukan, dipelajari, dan dikembangkan.
+- Makanan dan ramuan punya efek yang jelas.
+- Material dari berbagai aktivitas dunia dapat menjadi bahan masakan atau alkimia.
+- Dapur dan laboratorium dapat dikembangkan seiring progres pemain.
+
+Hubungan dengan keputusan lain (tidak mengubah isinya): merinci butir **memasak** pada **D-015** dan "pembuatan potion dan makanan" serta profesi Alchemist pada **D-020** (D-026 menjadi sistem rinci untuk makanan dan ramuan; batas dengan profesi Alchemist dan crafting equipment di D-020 belum ditetapkan); bahan dari pertanian (**D-023**, termasuk herbal dan tanaman spiritual), peternakan (**D-024**), memancing (**D-025**), dungeon/monster (**D-016, D-013**); efek buff/pemulihan terhubung dengan pertarungan (**D-013**) dan perkembangan karakter (**D-018**); resep sebagai barang dagang/ekonomi (**D-021**); pengembangan dapur/laboratorium berkaitan dengan pengembangan rumah (**D-015**).
+**Terbuka:** "tanaman spiritual" masih belum didefinisikan (D-023); rumus efek, daftar resep, dan cara resep ditemukan/dipelajari/dikembangkan belum ditetapkan; apakah memasak/alkimia berupa keterampilan pemain, profesi NPC, atau keduanya belum ditetapkan.
+Implementasi belum dimulai. ID D-026 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

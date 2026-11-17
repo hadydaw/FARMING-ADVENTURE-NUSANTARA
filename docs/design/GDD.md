@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.15 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.16 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -95,7 +95,7 @@ Perincian pertanian dan pertumbuhan tanaman: lihat 6.13 (D-023); peternakan dan 
 
 ### 6.3 Memancing dan Memasak
 - **Memancing:** ditetapkan lewat D-015 dan dirinci di 6.15 (D-025).
-- **Memasak:** ditetapkan lewat D-015; rincian belum ditetapkan.
+- **Memasak:** ditetapkan lewat D-015 dan dirinci di 6.16 (D-026, Memasak dan Alkimia).
 
 ### 6.4 Rumah
 Ditetapkan lewat D-015 (pengembangan rumah dan ladang; lihat 6.2). Rincian belum ditetapkan.
@@ -261,6 +261,21 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - Terkait: memancing (D-015), musim/cuaca (D-015, D-023), perdagangan (D-021), crafting dan item (D-020), wilayah (D-009), guild/prestasi (D-017).
 
 **[BELUM DITETAPKAN]:** daftar spesies, habitat, dan lokasi memancing; mekanik memancing (kontrol sentuh, minigame); jenis alat pancing dan umpan; tingkat kelangkaan dan rumus kualitas; **arti "ikan spiritual" dan "makhluk air fantasi"**; daftar ikan legendaris dan caranya ditangkap; format koleksi (buku koleksi/prestasi); apakah makhluk air dapat menjadi companion/monster (D-019) atau menjadi musuh (D-013); hubungan dengan quest/prestasi guild (D-017). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+### 6.16 Memasak dan Alkimia — D-026, LOCKED (Kombinasi Semua Sistem)
+**Ditetapkan:**
+- **Memasak lengkap** dengan banyak resep.
+- **Kualitas bahan** dan **kemampuan memasak.**
+- **Makanan** dengan efek **pemulihan dan buff.**
+- **Alkimia** dan pembuatan **ramuan.**
+- **Herbal, tanaman spiritual, dan material monster** sebagai bahan.
+- **Resep langka** dan **penemuan resep baru.**
+- **Pengembangan dapur dan laboratorium alkimia.**
+- **Integrasi** dengan pertanian, peternakan, memancing, dungeon, dan ekonomi.
+- Ketentuan: bahan punya kualitas dan kegunaan berbeda; resep dapat **ditemukan, dipelajari, dan dikembangkan**; makanan dan ramuan punya **efek yang jelas**; material dari berbagai aktivitas dunia dapat menjadi bahan masakan atau alkimia; dapur dan laboratorium **berkembang seiring progres**.
+- Terkait: memasak (D-015), pembuatan potion/makanan dan Alchemist (D-020), pertanian (D-023), peternakan (D-024), memancing (D-025), dungeon/monster (D-016, D-013), buff dan karakter (D-013, D-018), ekonomi (D-021), rumah (D-015).
+
+**[BELUM DITETAPKAN]:** daftar resep dan ramuan; jenis dan besar efek (pemulihan, buff) serta durasi/penumpukan; rumus kualitas bahan dan pengaruh kemampuan memasak; cara resep ditemukan, dipelajari, dan dikembangkan (dari NPC, buku, dungeon, eksperimen?); jenis dan tahap upgrade dapur dan laboratorium; apakah memasak/alkimia keterampilan pemain, profesi NPC, atau keduanya; **batas dengan profesi Alchemist dan crafting equipment (D-020)**; arti **"tanaman spiritual"** (D-023); mekanik memasak (minigame atau otomatis). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

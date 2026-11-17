@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.15 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.16 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -200,6 +200,19 @@ Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 - **Save:** koleksi ikan (spesies, rekor/kualitas terbaik), alat dan umpan, serta progres tantangan legendaris masuk payload save (skema berversi).
 - **Anggaran performa:** air dan efek perairan menggunakan shader sederhana sesuai §3 (renderer Compatibility).
 - **Online (D-014):** progres pribadi; tidak ada peringkat antarpemain.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4m. Implikasi Arsitektur dari D-026 (hanya catatan; belum diimplementasikan)
+
+- **Satu mesin resep** (§4g) melayani makanan, ramuan, dan crafting lain: resep = data (bahan, syarat bahan/kualitas, stasiun, profesi/level, hasil); dapur dan laboratorium adalah *stasiun* dengan tingkat upgrade (data).
+- **Bahan dari semua aktivitas:** hasil panen/herbal (§4j), produk ternak (§4k), ikan (§4l), dan material monster/dungeon (§4g) adalah item di satu sistem item; bahan dicocokkan lewat **tag/kategori** ("sayur", "herbal", "daging") selain item spesifik, sehingga resep fleksibel dan konten baru otomatis kompatibel.
+- **Kualitas:** kualitas hasil = fungsi dari kualitas bahan dan kemampuan pemain (modifier, bukan hardcode); modifier masuk ke instance item (§4g).
+- **Efek makanan dan ramuan** memakai sistem *efek* yang sama dengan combat dan perkembangan karakter (D-013, D-018, §4e): pemulihan sesaat dan buff berdurasi sebagai data (jenis, besar, durasi, aturan penumpukan); stat akhir tetap lewat satu *stat pipeline*. Efek buff berdurasi dan sisa waktunya masuk save.
+- **Penemuan dan pembelajaran resep:** keadaan resep (belum dikenal, dikenal, dikuasai/dikembangkan) sebagai data di save; sumber penemuan (NPC, buku, dungeon, eksperimen) memakai sistem kondisi/efek yang sama (§4d); versi resep yang dikembangkan disimpan sebagai sumber pengubah, bukan salinan resep.
+- **Acak ber-seed** untuk hasil kualitas/eksperimen yang dapat diuji dan dikunci di save (§4g).
+- **Ekonomi:** resep langka dan hasil olahan masuk layanan harga (§4h).
+- **Save:** resep yang dikenal beserta tingkat penguasaan, tingkat dapur/laboratorium, efek aktif, dan stok bahan masuk payload save (skema berversi).
+- **Online (D-014):** progres pribadi.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres
