@@ -140,3 +140,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - GDD §6.18 baru (v0.18) dan tautan dari §6.1; Technical Architecture §4o ditambahkan (catatan saja; fokus dunia luas di HP dan kemudahan menambah wilayah). Hubungan dengan D-009, D-013, D-014, D-016, D-017, D-018, D-019, D-020, D-023, D-025 dicatat tanpa mengubah isinya.
 - Ditandai terbuka: arti "wilayah spiritual"; jenis transportasi khusus dan hubungannya dengan companion; aturan fast travel; apakah perjalanan memakan waktu kalender.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 19.
+
+## 2026-11-17 (19) — D-029 Sistem Event Dunia dan Kejadian Dinamis dicatat
+
+- D-029 (Kombinasi Semua Sistem, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
+- GDD §6.19 baru (v0.19); Technical Architecture §4p ditambahkan (catatan saja; fokus determinisme event dan anti save-scumming untuk single-player online). Hubungan dengan D-009, D-013, D-014, D-015, D-016, D-017, D-020, D-021, D-022, D-023, D-024, D-025, D-027, D-028 dicatat tanpa mengubah isinya.
+- Ditandai terbuka: arti "fenomena spiritual"; event saat offline; aturan waktu perangkat/muat ulang save; tingkat konsekuensi. World boss/invasi dicatat sebagai pengalaman pemain tunggal (konsisten D-014).
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 20.

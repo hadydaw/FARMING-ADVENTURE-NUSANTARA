@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.18 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.19 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -306,6 +306,22 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - Terkait: Progressive World Unlock (D-009, 6.1), dungeon (D-016), guild/rank/quest (D-017), level (D-018), monster (D-013), sumber daya (D-020, D-023, D-025), progres dunia pribadi (D-014).
 
 **[BELUM DITETAPKAN]:** daftar dan jumlah wilayah, ukuran dunia, peta dunia; syarat buka tiap wilayah; **arti "wilayah spiritual"**; jenis transportasi khusus (kendaraan/tunggangan/kapal) dan hubungannya dengan companion (D-019); aturan fast travel (syarat, biaya, batas); apakah perjalanan memakan waktu kalender; cara penandaan peta (otomatis atau manual); isi tiap wilayah (monster, sumber daya, lokasi unik, rahasia); cara perpindahan antarwilayah (loading/streaming). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+### 6.19 Event Dunia dan Kejadian Dinamis — D-029, LOCKED (Kombinasi Semua Sistem)
+**Ditetapkan:**
+- **Event terjadwal** berdasarkan kalender permainan.
+- **Kejadian acak dan dinamis.**
+- **Serangan monster dan invasi wilayah.**
+- **World boss dan monster legendaris.**
+- **Bencana alam dan fenomena spiritual.**
+- **Pedagang misterius** dan **penemuan langka.**
+- **Dampak event** terhadap NPC, ekonomi, dan wilayah.
+- **Hadiah, quest khusus, dan perubahan dunia.**
+- Ketentuan: event dipicu oleh **kalender, kondisi wilayah, progres pemain, atau peluang**; punya **kondisi awal, durasi, dampak, penyelesaian, dan konsekuensi** yang jelas; memengaruhi **NPC, perdagangan, sumber daya, dan keamanan wilayah**; event besar dan langka punya **pemberitahuan dan waktu persiapan**; sistem memperhitungkan game **single-player online dengan progres di cloud**.
+- Berlaku bersama D-014: world boss dan invasi adalah pengalaman **pemain tunggal dalam dunia pribadi**, bukan multiplayer.
+- Terkait: kalender/festival (D-015), NPC (D-022), ekonomi (D-021), wilayah (D-009, D-028), monster/boss/dungeon (D-013, D-016), quest (D-017), pertanian/peternakan/memancing (D-023, D-024, D-025), bangunan (D-027).
+
+**[BELUM DITETAPKAN]:** daftar event dan jadwalnya; bobot dan syarat peluang kejadian acak; bentuk dan bobot dampak (harga, stok, keamanan, perilaku NPC); daftar world boss dan monster legendaris; **arti "fenomena spiritual"**; bentuk pemberitahuan dan persiapan; apakah event berjalan saat pemain offline; aturan bila pemain mengubah waktu perangkat atau memuat ulang save; tingkat konsekuensi (apakah ada kerugian permanen); cara event dapat dilewatkan atau gagal. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

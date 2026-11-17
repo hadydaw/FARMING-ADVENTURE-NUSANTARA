@@ -320,6 +320,29 @@ Hubungan dengan keputusan lain (tidak mengubah isinya): merinci **Progressive Wo
 **Terbuka:** arti "wilayah spiritual" belum didefinisikan (sama seperti elemen "spiritual" lain); jenis "transportasi khusus" (kendaraan, tunggangan, kapal), apakah tunggangan terkait companion/monster (D-019); aturan fast travel (syarat, biaya, batasan); ukuran dunia dan jumlah wilayah; apakah perjalanan memakan waktu permainan (kalender).
 Detail (daftar wilayah, peta dunia, syarat buka tiap wilayah, rute, lokasi unik) belum ditetapkan. Implementasi belum dimulai. ID D-028 tersedia saat dicatat (tanpa bentrokan).
 
+### D-029 — Sistem Event Dunia dan Kejadian Dinamis *(APPROVED / LOCKED, 2026-11-17, Tahap 19)*
+Pilihan: **D. Kombinasi Semua Sistem.** Ruang lingkup:
+1. Event terjadwal berdasarkan kalender permainan
+2. Kejadian acak dan dinamis
+3. Serangan monster dan invasi wilayah
+4. World boss dan monster legendaris
+5. Bencana alam dan fenomena spiritual
+6. Pedagang misterius serta penemuan langka
+7. Dampak event terhadap NPC, ekonomi, dan wilayah
+8. Hadiah, quest khusus, dan perubahan dunia
+
+Ketentuan desain:
+- Event dapat dipicu oleh kalender, kondisi wilayah, progres pemain, atau peluang kejadian.
+- Event punya kondisi awal, durasi, dampak, penyelesaian, dan konsekuensi yang jelas.
+- Kejadian dunia memengaruhi aktivitas NPC, perdagangan, sumber daya, dan keamanan wilayah.
+- Event besar dan langka punya pemberitahuan serta persiapan yang sesuai.
+- Sistem mempertimbangkan bahwa game ini **single-player online dengan progres tersimpan di cloud** (D-014).
+
+Hubungan dengan keputusan lain (tidak mengubah isinya): kalender, musim, festival, dan acara desa (**D-015**, event terjadwal); NPC dan event desa (**D-022**); ekonomi dan pedagang (**D-021**, dampak harga dan "pedagang misterius"); wilayah dan keamanan (**D-009, D-028**); monster, boss, dan dungeon (**D-013, D-016**); quest dan hadiah (**D-017**); material (**D-020**); bencana memengaruhi pertanian/peternakan/memancing (**D-023, D-024, D-025**) dan bangunan (**D-027**).
+**Penegasan konsistensi dengan D-014:** "world boss" dan "invasi wilayah" dicatat sebagai **pengalaman pemain tunggal dalam dunia pribadi**; bukan multiplayer, tidak ada co-op atau dunia bersama. Penafsiran lain tidak boleh diasumsikan.
+**Terbuka:** arti "fenomena spiritual" belum didefinisikan (elemen "spiritual" lain, D-023 sampai D-028); apakah event dapat berlangsung saat pemain tidak bermain atau offline; bagaimana event diperlakukan bila waktu perangkat berubah atau pemain memuat ulang save (aturan keadilan); frekuensi dan keparahan konsekuensi (apakah ada kerugian permanen/kehilangan item atau bangunan).
+Detail (daftar event, jadwal, bobot peluang, dampak, hadiah) belum ditetapkan. Implementasi belum dimulai. ID D-029 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

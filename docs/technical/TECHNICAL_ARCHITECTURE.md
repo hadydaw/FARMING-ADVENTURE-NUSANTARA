@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.18 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.19 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -242,6 +242,21 @@ Syarat utama: **dunia luas di HP** tanpa melampaui memori, dan **wilayah/lokasi 
 - **Save:** wilayah terbuka, lokasi ditemukan, penanda peta, titik fast travel terbuka, dan keadaan objek dunia unik (sudah diambil/dibuka) masuk payload save (skema berversi). Simpan sebagai perbedaan dari keadaan awal untuk menjaga ukuran.
 - **Online (D-014):** dunia dan progres penjelajahan adalah pribadi; tidak ada sinkronisasi real-time.
 - **Pengujian:** validator data otomatis untuk rujukan wilayah/lokasi yang rusak dan wilayah yang tidak dapat dicapai.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4p. Implikasi Arsitektur dari D-029 (hanya catatan; belum diimplementasikan)
+
+Syarat utama: event harus **konsisten dan adil** pada game **single-player online dengan progres di cloud** (D-014).
+- **Event sebagai data:** definisi event (pemicu, kondisi awal, durasi, tahap, dampak, penyelesaian, konsekuensi, hadiah) berbasis data memakai sistem *kondisi/efek* yang sama dengan quest dan NPC (§4d, §4i). Event baru = data baru.
+- **Penjadwal event** (satu layanan) yang mendengarkan kalender (§4b), kondisi wilayah, progres pemain (event bus, §4), dan peluang. Event terjadwal diturunkan dari kalender (stateless); event acak/dinamis dari generator ber-seed.
+- **Determinisme dan anti-curang (kunci):** karena save dapat dimuat ulang dan waktu perangkat dapat diubah, hasil acak event (apa, kapan, di mana) diturunkan dari **seed tersimpan + tanggal permainan**, sehingga memuat ulang tidak mengubah hasil (cegah *save-scumming*). Acuan waktu (perangkat vs server) harus diputuskan bersama aturan keadilan; karena akun/internet wajib (D-014), server **dapat** menjadi acuan waktu dan perekam event bila dipilih (opsi, bukan keputusan).
+- **Event saat pemain jauh/offline:** dihitung ulang dari selisih hari (seperti §4j, §4k), bukan disimulasikan; aturan apakah event berjalan tanpa pemain menunggu desain.
+- **Dampak melalui "variabel dunia"** (§4i): event mengubah flag/pengali yang dibaca layanan lain (harga §4h, stok, spawn/keamanan wilayah §4o, jadwal NPC §4i, pertumbuhan §4j) alih-alih memanggil sistem lain secara langsung; dampak punya durasi dan dikembalikan otomatis saat event selesai.
+- **Invasi dan world boss:** memakai spawn monster per wilayah (§4o), sistem combat (D-013) dan boss (D-016); world boss adalah encounter pemain tunggal, tanpa jaringan real-time.
+- **Pemberitahuan/persiapan:** event besar memancarkan sinyal peringatan sebelum mulai (data: jeda, bentuk), ditampilkan UI/NPC; mendukung notifikasi di dalam game (tanpa push notifikasi sampai diputuskan).
+- **Pedagang misterius/penemuan langka:** merchant/lokasi sementara berbasis data (§4h, §4o) dengan masa tampil; hasil langka dikunci di save (§4g).
+- **Save:** event aktif (tahap, sisa durasi), riwayat event yang sudah terjadi, seed event, dan dampak yang sedang berlaku masuk payload save (skema berversi); simpan ringkas.
+- **Pengujian:** simulasi headless deterministik (seed + kalender → urutan event) dan validator data event.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres
