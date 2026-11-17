@@ -1002,6 +1002,39 @@ Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), sistem kehidupa
 
 **Terbuka (tidak diputuskan):** skala dan tingkat reputasi (angka atau tahap), ambang, rumus perubahan; daftar faksi (bergantung D-061); hasil politik; hubungan skala D-062 dengan reputasi komunitas D-039 dan rank D-017; aturan peluruhan dan perbaikan hubungan; jenis hubungan antarorganisasi dan bagaimana dunia memunculkannya; bentuk konflik dan penyelesaiannya; seberapa besar pengaruh pemain; cara menampilkan di UI; arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
 
+### D-063 — Sistem Perang dan Konflik Antarfaksi *(APPROVED / LOCKED, 2026-11-17, Tahap 54)*
+Pilihan: **D. World Conflict Hybrid Lengkap.** Ruang lingkup:
+1. Konflik politik antarorganisasi.
+2. Perang kerajaan dan kekaisaran.
+3. Sengketa dan perebutan wilayah.
+4. Perang sekte dan klan (**arti "spiritual" pada sekte belum didefinisikan**).
+5. Serangan monster terhadap wilayah dan kota.
+6. Pertahanan kota dan pertahanan regional.
+7. Keterlibatan pemain dalam konflik dunia.
+8. Dampak konflik terhadap NPC, ekonomi, perdagangan, reputasi, dan kondisi wilayah.
+
+Ketentuan:
+- **Tidak ada daftar perang, faksi terlibat, korban, aturan perebutan wilayah, atau hasil konflik final** tanpa desain lanjutan.
+- **Konflik konsisten dengan hubungan diplomasi dan reputasi faksi** (D-062).
+- **Pemain tidak dipaksa mengikuti setiap konflik.**
+- **Konflik dunia tidak boleh merusak progres utama pemain atau data save.**
+- Selaras dengan D-029, D-028, D-053, D-060, D-061, dan D-062.
+- Penguncian desain; implementasi belum dimulai.
+
+**Prinsip (dasar, tanpa isi lore):**
+- Konflik adalah **keadaan dunia berdata** yang muncul dari hubungan antarorganisasi (D-062) dan organisasi dunia (D-061); tidak berdiri sendiri dan tidak bertentangan dengan keadaan diplomasi saat itu.
+- **Keterlibatan pemain bersifat pilihan:** pemain dapat ikut, mendukung pihak tertentu, membantu pertahanan, atau mengabaikan; mengabaikan tidak menutup progres utama dan tidak membuat pemain buntu. Konsekuensi (reputasi, akses, harga) hanya lewat aturan eksplisit yang konsisten.
+- **Progres dan save terlindungi:** konflik tidak boleh menghapus atau merusak data save, progres cerita utama, atau akses ke fungsi inti (misalnya rumah, ladang, penyimpanan) di luar aturan eksplisit yang kelak ditetapkan; keadaan konflik tersimpan per-save dan dapat dipulihkan/dimigrasi.
+- **Dampak ke dunia berskala:** NPC, ekonomi, perdagangan, reputasi, dan kondisi wilayah dapat berubah karena konflik lewat efek data eksplisit; perubahan harus dapat dijelaskan kepada pemain dan dapat berakhir (ada jalur pemulihan/penyelesaian).
+- **Serangan monster dan pertahanan** memakai sistem pertarungan, event dunia (D-029), dan status wilayah yang sama; tidak menambah sistem terpisah.
+- **Wilayah dan eksplorasi:** konflik tidak mengubah aturan Progressive World Unlock (D-009) dan eksplorasi (D-028); transisi ke area terdampak memakai Loading/streaming normal (D-053); fast travel ke area berbahaya mengikuti aturan hambatan data.
+- **Tanpa diskriminasi tersembunyi:** pengaruh ras/suku (D-060) hanya lewat aturan eksplisit; penggambaran kelompok hormat, bukan karikatur.
+- Dunia pribadi per pemain (single-player online, D-014); tidak ada perang antarpemain.
+
+Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), pertarungan (**D-013**), sistem kehidupan (**D-015**), dungeon (**D-016**), guild (**D-017**), companion/monster (**D-019**), ekonomi dan perdagangan (**D-021**), NPC dan sosial (**D-022**), eksplorasi (**D-028**), event dunia (**D-029**), musim dan cuaca (**D-030**), UI/HUD (**D-031**), audio (**D-032**), quest (**D-037**), hubungan sosial (**D-039**), NPC hidup (**D-040**), save/cloud (**D-044**), update konten (**D-048**), QA (**D-049**), keamanan (**D-050**), performa (**D-052**), loading (**D-053**), peta (**D-054**), waktu (**D-055**), tidur (**D-056**), kekalahan (**D-058**), status effect (**D-059**), ras (**D-060**), organisasi (**D-061**), diplomasi (**D-062**). **D-051** isinya belum diterima.
+
+**Terbuka (tidak diputuskan):** daftar konflik/perang, faksi terlibat, korban, aturan perebutan wilayah, hasil; apakah dan bagaimana kota/wilayah berubah kepemilikan; peran pemain (pilihan, hadiah, risiko); bentuk pertahanan kota dan skala serangan monster; dampak mekanik pada NPC/ekonomi/harga/akses; apakah NPC dapat terluka/hilang (dan aturan perlindungan NPC penting); apakah konflik berlangsung saat offline (terbuka di D-029) dan aturan catch-up; lamanya konflik; arti "spiritual"; romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

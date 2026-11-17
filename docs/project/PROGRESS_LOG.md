@@ -377,3 +377,11 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
 - GDD §6.51 baru (v0.51); Technical Architecture §4as ditambahkan (v0.51); catatan saja: dua lapisan terpisah (`PlayerStanding` dan `OrgRelation`), skala sebagai data, perubahan lewat efek data dengan jejak sebab, deterministik, tanpa keadaan buntu, tanpa kebocoran data tersembunyi. D-039 dan D-017 tidak diubah; kaitan skala masih terbuka. Skala, ambang, daftar faksi, dan hasil politik sengaja tidak ditetapkan.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.
+
+## 2026-11-17 (52) — D-063 Sistem Perang dan Konflik Antarfaksi dicatat
+
+- D-063 (World Conflict Hybrid Lengkap, LOCKED) dicatat sebagai **Tahap 54**; ID tersedia, tanpa bentrokan. **D-051 (Tahap 42) tetap dicadangkan**, isinya belum diterima; tidak ada isi yang dikarang. Arti "spiritual" (sekte) **tetap tidak didefinisikan**.
+- Tidak ada dokumen worldbuilding terpisah di `docs/`; dunia dicatat di GDD (§6.52 baru). Tidak dibuat dokumen baru.
+- **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
+- GDD §6.52 baru (v0.52); Technical Architecture §4at ditambahkan (v0.52); catatan saja: `Conflict` sebagai data dan mesin keadaan, konsisten dengan relasi diplomasi, keterlibatan pemain opsional, perlindungan progres utama dan save, dampak lewat efek data yang dapat berakhir, deterministik. Daftar perang, faksi, korban, aturan perebutan, dan hasil sengaja tidak ditetapkan.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.

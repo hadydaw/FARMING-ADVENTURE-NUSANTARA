@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.51 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.52 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -717,6 +717,25 @@ Memperluas organisasi (§4ar), hubungan sosial dan reputasi komunitas (§4z, §4
 - **UI/lokalisasi (D-031, D-045):** indikator hubungan mudah dipahami (tahap/ikon, bukan sekadar angka) sebagai tampilan atas event bus; teks lewat kunci Indonesia/English; aksesibilitas (bentuk ikon selain warna); tidak membocorkan organisasi rahasia atau relasi yang belum diketahui (§4ak).
 - **Update konten (D-048):** organisasi, relasi, tingkat, dan aturan efek baru ditambah sebagai data; validator memastikan referensi valid, terjemahan lengkap, dan tidak ada aturan yang menimbulkan keadaan buntu.
 - **Pengujian (D-049):** uji headless untuk pemisahan standing vs relasi, determinisme dan idempotensi efek, jejak sebab, tidak ada kebocoran data tersembunyi, tidak ada keadaan buntu, konsistensi dengan D-039/D-017 (tidak berubah), dan migrasi save.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4at. Implikasi Arsitektur dari D-063 (hanya catatan; belum diimplementasikan; tidak ada angka)
+
+Memperluas event dunia (§4p), hubungan faksi (§4as), organisasi (§4ar), NPC hidup (§4aa), ekonomi (§4h), pertarungan (§4a), wilayah (§4o, §4ak), loading (§4aj), `GameClock` (§4al), pipeline hari (§4am), kekalahan (§4ao), status effect (§4ap), cloud save (§5a). Hanya rancangan; tidak ada daftar konflik, aturan perebutan, atau angka.
+- **`Conflict` sebagai data dan mesin keadaan:** tiap konflik berupa definisi ber-ID stabil (§4ag): jenis (tag: politik, perang, sengketa wilayah, perang sekte/klan, serangan monster, pertahanan), pihak (ID organisasi §4ar), wilayah terdampak (ID §4o), syarat pemicu (kondisi data terhadap `OrgRelation` §4as dan progres), tahap, dan syarat akhir. Instance per-save menyimpan tahap, pihak aktif, dan hasil. Tipe konflik tidak dikodekan keras. Kategori "spiritual" hanya tag; **tidak ada logika untuk "spiritual"**.
+- **Konsistensi diplomasi:** pemicu dan kelanjutan konflik membaca `OrgRelation` (§4as); perubahan konflik (mis. berakhir) memengaruhi hubungan hanya lewat efek data eksplisit; validator menolak definisi yang kontradiktif dengan relasi sah (mis. konflik antar pihak yang berstatus aliansi tanpa jalur transisi).
+- **Event dunia (§4p):** konflik adalah jenis event bertahap yang memakai penjadwal yang sama; waktu dari `GameClock` (§4al), bukan jam perangkat; tahap berjalan lewat sinyal hari/fase dan pipeline hari-selisih (§4am), deterministik (seed+tanggal), sehingga muat ulang save tidak mengubah hasil; apakah berlangsung saat offline terbuka (D-029).
+- **Keterlibatan pemain bersifat opsional:** konflik menyediakan *kait* (quest §4x, tugas pertahanan, pilihan dialog §4y) sebagai data; tidak ada konflik yang mengunci quest utama atau fungsi inti; validator memastikan semua progres utama dapat diselesaikan tanpa mengikuti konflik, dan setiap konflik punya syarat akhir yang dapat dicapai tanpa pemain.
+- **Serangan monster dan pertahanan:** memakai spawn/perilaku monster data (§4a, §4f) dan pertarungan yang ada; kota/wilayah memiliki status kondisi data (aman, terancam, terdampak, pulih) sebagai tag yang dibaca NPC (§4aa), toko (§4h), dan peta (§4ak); NPC jauh disimulasikan agregat/LOD, bukan simulasi tempur penuh; pemrosesan dibagi per frame dalam pipeline (§4am, §4ai).
+- **Dampak ke ekonomi/NPC/reputasi/wilayah:** efek data pada harga, ketersediaan barang (§4h), jadwal dan lokasi NPC (§4aa), standing/relasi (§4as), dan kondisi wilayah; setiap efek tercatat sebab dan dapat berakhir (kembali ke keadaan normal atau keadaan baru yang valid); dapat dijelaskan di UI.
+- **Perlindungan progres dan save:** keadaan konflik hanya mengubah data konflik/kondisi wilayah melalui aturan data; kode konflik **tidak menulis** ke inventori, uang, quest utama, rumah, atau ladang kecuali lewat efek data eksplisit; komit atomik idempoten dengan revisi (§5, §5a); interupsi saat konflik dilanjutkan tanpa dobel proses; bagian save konflik berversi (`section_version`) dengan migrasi; save lama tanpa konflik tetap valid; ID di-deprecate tetap dikenali.
+- **Keamanan penyimpanan (D-050, §5b):** keadaan konflik pribadi per akun; hadiah/ekonomi bernilai tinggi divalidasi urutan server; checksum bukan anti-cheat; tidak ada perang antarpemain.
+- **Wilayah dan transisi (D-053, §4aj):** area terdampak tetap dimuat lewat streaming/Loading normal; variasi visual konflik (kerusakan, penjaga) berupa varian aset/layer data, bukan adegan terpisah; fast travel ke area berbahaya memakai larangan konteks data (§4ak).
+- **UI/lokalisasi (D-031, D-045):** peta/HUD menampilkan status konflik hanya untuk informasi yang sudah diketahui pemain (§4ak, tanpa kebocoran organisasi rahasia); teks lewat kunci Indonesia/English; aksesibilitas (ikon selain warna, opsi pengurangan efek); indikator tidak memaksa pemain.
+- **Performa (D-052):** kondisi konflik dihitung per hari/ per kejadian, bukan per frame; varian visual di-LOD dan dikurangi pada perangkat lemah tanpa mengubah hasil; angka belum diukur.
+- **Update konten (D-048):** konflik baru ditambah sebagai data baru; validator memeriksa referensi, jalur akhir, dan tidak adanya keadaan buntu.
+- **Pengujian (D-049):** uji headless untuk konsistensi dengan relasi, determinisme dan idempotensi tahap, konflik dapat berakhir, progres utama tetap dapat diselesaikan tanpa ikut konflik, save/migrasi aman, tidak ada penulisan ke data inti di luar efek data, serta ketahanan terhadap interupsi dan perubahan jam perangkat.
 - **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
