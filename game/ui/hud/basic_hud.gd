@@ -243,7 +243,10 @@ func set_prompt(text: String) -> void:
 
 func show_message(text: String, seconds: float = 2.0) -> void:
 	_message_label.text = text
-	_message_timer = seconds
+	var factor := 1.0
+	if seconds >= 1.0 and GameSettings.has_setting("message_duration"):
+		factor = float(GameSettings.get_value("message_duration"))
+	_message_timer = seconds * factor
 
 
 func joystick() -> TouchJoystick:

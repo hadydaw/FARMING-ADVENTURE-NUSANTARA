@@ -36,3 +36,18 @@ func run() -> void:
 	await wait_frames(1)
 	check_eq(safe.get_theme_constant("margin_left"), 10, "padding tambahan diterapkan")
 	safe.queue_free()
+
+	# Aksesibilitas: kontras tinggi dan skala teks pada tema
+	var normal_theme := UiTheme.build(1.0, false)
+	var contrast_theme := UiTheme.build(1.0, true)
+	var nb := normal_theme.get_stylebox("normal", "Button") as StyleBoxFlat
+	var cb := contrast_theme.get_stylebox("normal", "Button") as StyleBoxFlat
+	check(nb.bg_color != cb.bg_color, "tema kontras tinggi beda dari normal")
+	check_eq(cb.border_width_left, 3, "tombol kontras tinggi berbingkai putih")
+	check_eq(nb.border_width_left, 0, "tombol normal tanpa bingkai")
+	check(contrast_theme.get_color("font_color", "Label").is_equal_approx(Color(1, 1, 1)), "teks putih murni di kontras tinggi")
+	check_eq(UiTheme.build(1.5, false).default_font_size, 36, "skala teks 1.5x")
+	for id in ["high_contrast", "message_duration", "show_hints", "text_scale"]:
+		check(GameSettings.has_setting(id) and str(GameSettings.get_row(id)["category"]) == "accessibility", "pengaturan aksesibilitas: %s" % id)
+		check(tr(str(GameSettings.get_row(id)["label_key"])) != str(GameSettings.get_row(id)["label_key"]), "terjemahan %s" % id)
+	check(not bool(GameSettings.default_value("high_contrast")) and bool(GameSettings.default_value("show_hints")), "bawaan: kontras mati, petunjuk hidup")

@@ -345,3 +345,6 @@ COMPANION_NO_NO_MONEY,Uang kurang,Not enough money
 COMPANION_NO_OWNED,Sudah direkrut,Already recruited
 COMPANION_NO_NOT_OWNED,Belum direkrut,Not recruited
 COMPANION_NO_UNKNOWN,Teman tidak dikenal,Unknown companion
+SET_HIGH_CONTRAST,Kontras tinggi,High contrast
+SET_MESSAGE_DURATION,Lama pesan di layar,Message duration
+SET_SHOW_HINTS,Tampilkan petunjuk,Show hints

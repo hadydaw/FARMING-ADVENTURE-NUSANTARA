@@ -9,6 +9,7 @@ extends Node
 signal safe_area_changed
 
 var _theme_scale := -1.0
+var _theme_contrast := false
 
 
 func _ready() -> void:
@@ -21,14 +22,16 @@ func apply_theme() -> void:
 	var scale := 1.0
 	if GameSettings.has_setting("text_scale"):
 		scale = float(GameSettings.get_value("text_scale"))
-	if is_equal_approx(scale, _theme_scale):
+	var contrast := GameSettings.has_setting("high_contrast") and bool(GameSettings.get_value("high_contrast"))
+	if is_equal_approx(scale, _theme_scale) and contrast == _theme_contrast:
 		return
 	_theme_scale = scale
-	get_tree().root.theme = UiTheme.build(scale)
+	_theme_contrast = contrast
+	get_tree().root.theme = UiTheme.build(scale, contrast)
 
 
 func _on_setting_changed(id: String, _value: Variant) -> void:
-	if id == "text_scale":
+	if id == "text_scale" or id == "high_contrast":
 		apply_theme()
 
 

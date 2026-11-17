@@ -614,3 +614,9 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Kemah teman uji di desa (menu daftar), pengikut berupa bola berwarna yang mengikuti pemain. Data SEMENTARA generik; bukan companion resmi (kepribadian, cerita, kemampuan khusus belum ada, D-019 detail terbuka).
 - Belum: companion bertarung sendiri/AI, tingkat kedekatan, perintah, bantuan pertanian, ikut ke wilayah lain secara fisik saat travel (visual menyusul lewat lerp).
 - Uji: 29 berkas, 2805 pemeriksaan, 0 gagal; smoke test lulus.
+
+## 2026-11-18 (85) — Pengaturan aksesibilitas tambahan (D-045, teknis)
+
+- Pengaturan baru kategori Aksesibilitas: high_contrast (UiTheme.build(scale, kontras)), message_duration (pengali durasi pesan HUD; pesan sangat singkat tidak diubah), show_hints (petunjuk tutorial dibisukan tapi tetap tercatat dilihat). text_scale sudah ada sebelumnya. GameDisplay membangun ulang tema saat skala atau kontras berubah.
+- Belum: mode buta warna (palet/bentuk penanda peta), target sentuh lebih besar, kurangi gerak kamera, getar, teks-ke-suara, remap kontrol (D-045 detail terbuka).
+- Uji: 29 berkas, 2834 pemeriksaan, 0 gagal; smoke test lulus.

@@ -1405,8 +1405,13 @@ func _announce_milestones() -> void:
 	if fresh.is_empty():
 		return
 	var lines: Array[String] = []
+	var hints_on := not GameSettings.has_setting("show_hints") or bool(GameSettings.get_value("show_hints"))
 	for r in fresh:
+		if str(r["kind"]) == "hint" and not hints_on:
+			continue
 		lines.append(tr(str(r["name_key"])))
+	if lines.is_empty():
+		return
 	hud.show_message("\n".join(lines))
 
 
