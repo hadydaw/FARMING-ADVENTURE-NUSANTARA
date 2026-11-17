@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.7 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.8 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -131,6 +131,8 @@ Belum: jadwal harian, dialog, daftar NPC, tingkat hubungan/persahabatan. **Hubun
 
 Juga berlaku: ada monster dan boss (6.8).
 
+Perkembangan kemampuan karakter: lihat 6.10 (D-018).
+
 **[BELUM DITETAPKAN]:** aturan damage dan stat, daftar elemen dan interaksinya, daftar jenis senjata, sumber daya skill (mana/stamina), jendela waktu parry/dodge, struktur skill tree, kontrol sentuh untuk semua aksi di atas, penargetan/kamera saat bertarung, bentuk AI musuh, keseimbangan dengan kehidupan bertani. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ### 6.8 Dungeon dan Boss — D-016, LOCKED (Kombinasi Dungeon Tetap dan Acak)
@@ -145,6 +147,21 @@ Juga berlaku: ada monster dan boss (6.8).
 ### 6.9 Material dan Equipment
 Ditetapkan: mengumpulkan material dan membuat equipment.
 Belum: jenis equipment, slot, tier, crafting, stat.
+
+### 6.10 Perkembangan Karakter — D-018, LOCKED (Kombinasi Semua Sistem)
+**Ditetapkan:**
+- **Level dan atribut karakter.**
+- **Skill Tree bercabang.**
+- **Skill aktif dan pasif.**
+- **Sistem Class dan Job.**
+- **Perubahan spesialisasi karakter.**
+- **Perkembangan penguasaan senjata.**
+- **Kemampuan sihir dan elemen.**
+- **Perkembangan karakter jangka panjang.**
+- Pemain dapat mengembangkan karakter lewat berbagai jalur kemampuan dan kombinasi spesialisasi.
+- Memperluas D-013 (skill tree, magic/elemen); level karakter menjadi salah satu syarat pembukaan wilayah (D-009); terkait spesialisasi dan training di guild (D-017).
+
+**[BELUM DITETAPKAN]:** rumus level dan pertumbuhan atribut, daftar atribut, daftar Class dan Job (dan beda keduanya), aturan dan biaya mengganti spesialisasi, batas level/"jangka panjang" (prestise/reset?), struktur dan jumlah cabang skill tree, daftar skill aktif/pasif, aturan penguasaan senjata, daftar elemen, sumber XP (apakah kegiatan non-tempur, seperti bertani, ikut menaikkan level), keseimbangan dengan sistem kehidupan (D-015). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

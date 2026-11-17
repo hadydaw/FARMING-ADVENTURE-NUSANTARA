@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.7 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.8 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -99,6 +99,16 @@ Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 - **Save:** rank, reputasi, prestasi, gelar, spesialisasi, status quest, dan hasil ujian masuk payload save (skema berversi).
 - **Online (D-014):** progres guild bersifat pribadi; tidak ada papan peringkat/real-time kecuali diputuskan. Validasi server atas hadiah/rank baru dipertimbangkan hanya bila diputuskan.
 - **NPC pengurus:** memakai kerangka NPC umum (belum didesain).
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4e. Implikasi Arsitektur dari D-018 (hanya catatan; belum diimplementasikan)
+
+- **Model karakter berlapis dan data-driven:** atribut dasar (level) + modifier dari class/job, spesialisasi, skill pasif, penguasaan senjata, dan perlengkapan. Stat akhir dihitung dari satu *stat pipeline* yang sama dipakai combat, quest, dan UI; hindari menyimpan stat turunan di save (simpan sumbernya, hitung ulang).
+- **Skill tree sebagai graf data** (node, syarat, efek) sehingga cabang baru ditambah tanpa mengubah kode; skill aktif/pasif/sihir/elemen mendaftar ke sistem efek yang sama dengan combat (D-013).
+- **Ganti spesialisasi (respec)** memerlukan operasi yang dapat dibatalkan/diulang aman: simpan alokasi poin, bukan hasil akhir, supaya reset dan kombinasi konsisten.
+- **Hubungan lintas sistem:** level karakter dibaca oleh pembukaan wilayah (D-009) dan guild (D-017) lewat layanan progres yang sama (§4d); sumber XP diterima lewat event bus.
+- **Save:** level, XP, atribut teralokasi, alokasi skill tree, class/job aktif dan riwayatnya, penguasaan senjata, serta ketersediaan elemen masuk payload save (skema berversi; perubahan struktur tree perlu migrasi yang menjaga poin pemain).
+- **Online (D-014):** progres karakter pribadi; validasi server atas level/skill baru dipertimbangkan hanya bila diputuskan.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres

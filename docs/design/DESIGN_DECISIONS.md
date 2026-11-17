@@ -99,6 +99,22 @@ Pilihan: **D. Guild Petualang Lengkap.** Fitur yang ditetapkan:
 
 Detail (syarat tiap rank, isi ujian, jenis spesialisasi, daftar quest/gelar/hadiah, rumus reputasi, nama dan karakter NPC) belum ditetapkan. Implementasi belum dimulai. ID D-017 tersedia saat dicatat (tanpa bentrokan).
 
+### D-018 — Sistem Perkembangan Karakter *(APPROVED / LOCKED, 2026-11-17, Tahap 8)*
+Pilihan: **D. Kombinasi Semua Sistem.** Fitur yang ditetapkan:
+1. Level dan atribut karakter
+2. Skill Tree bercabang
+3. Skill aktif dan pasif
+4. Sistem Class dan Job
+5. Perubahan spesialisasi karakter
+6. Perkembangan penguasaan senjata
+7. Kemampuan sihir dan elemen
+8. Perkembangan karakter jangka panjang
+
+Pemain dapat mengembangkan karakter lewat berbagai jalur kemampuan dan kombinasi spesialisasi.
+
+Hubungan dengan keputusan lain (tidak mengubah isinya): memperluas butir Skill Tree dan Magic/Elemen pada **D-013**; berkaitan dengan spesialisasi dan training pada **D-017**; level karakter adalah salah satu syarat pembukaan wilayah pada **D-009**.
+Detail (rumus level/atribut, daftar class/job, aturan ganti spesialisasi dan biayanya, batas level, struktur cabang skill tree) belum ditetapkan. Implementasi belum dimulai. ID D-018 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

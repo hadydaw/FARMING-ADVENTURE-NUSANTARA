@@ -65,3 +65,9 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - D-017 (Guild Petualang Lengkap, LOCKED) dicatat; ID tersedia, tanpa bentrokan. D-011 diberi catatan dikukuhkan oleh D-017 (isi tidak berubah).
 - GDD §6.6 diperbarui (v0.7); Technical Architecture §4d ditambahkan (catatan saja).
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 8.
+
+## 2026-11-17 (8) — D-018 Sistem Perkembangan Karakter dicatat
+
+- D-018 (Kombinasi Semua Sistem, LOCKED) dicatat; ID tersedia, tanpa bentrokan. Hubungan dengan D-009, D-013, D-017 dicatat tanpa mengubah isi keputusan tersebut.
+- GDD §6.10 baru (v0.8) dan tautan dari §6.7; Technical Architecture §4e ditambahkan (catatan saja).
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 9.
