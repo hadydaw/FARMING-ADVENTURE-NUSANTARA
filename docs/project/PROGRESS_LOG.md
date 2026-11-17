@@ -369,3 +369,11 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
 - GDD §6.50 baru (v0.50); Technical Architecture §4ar ditambahkan (v0.50); catatan saja: `Organization` sebagai data ber-ID, guild D-017 tidak diubah, wilayah pengaruh sebagai relasi data, hubungan antarorganisasi sebagai graf data, keadaan per-save yang deterministik, organisasi rahasia tanpa kebocoran, struktur additive agar berkembang seiring progres. Nama, jumlah, pemimpin, peta politik, sejarah, dan hubungan sengaja tidak ditetapkan.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.
+
+## 2026-11-17 (51) — D-062 Sistem Reputasi, Hubungan Faksi, dan Diplomasi dicatat
+
+- D-062 (Faction Relations Hybrid Lengkap, LOCKED) dicatat sebagai **Tahap 53**; ID tersedia, tanpa bentrokan. **D-051 (Tahap 42) tetap dicadangkan**, isinya belum diterima; tidak ada isi yang dikarang. Arti "spiritual" **tetap tidak didefinisikan**.
+- Tidak ada dokumen worldbuilding terpisah di `docs/`; dunia dicatat di GDD (§6.51 baru). Tidak dibuat dokumen baru.
+- **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
+- GDD §6.51 baru (v0.51); Technical Architecture §4as ditambahkan (v0.51); catatan saja: dua lapisan terpisah (`PlayerStanding` dan `OrgRelation`), skala sebagai data, perubahan lewat efek data dengan jejak sebab, deterministik, tanpa keadaan buntu, tanpa kebocoran data tersembunyi. D-039 dan D-017 tidak diubah; kaitan skala masih terbuka. Skala, ambang, daftar faksi, dan hasil politik sengaja tidak ditetapkan.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.

@@ -971,6 +971,37 @@ Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), sistem kehidupa
 
 **Terbuka (tidak diputuskan):** nama, jumlah, pemimpin, peta politik, sejarah, dan hubungan antarorganisasi; arti "spiritual" dan isi sekte (tidak ditebak); aturan dan cara perubahan kondisi organisasi seiring progres; efek mekanik (reputasi per organisasi, akses, dagang, quest); hubungan dengan guild petualang selain D-017; jenis dan cara menemukan organisasi rahasia; apakah ada konflik/perang dan bagaimana ditampilkan; romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan (termasuk dalam konteks klan). Tahap 35 (akun/login) tetap PENDING (P-006).
 
+### D-062 — Sistem Reputasi, Hubungan Faksi, dan Diplomasi *(APPROVED / LOCKED, 2026-11-17, Tahap 53)*
+Pilihan: **D. Faction Relations Hybrid Lengkap.** Ruang lingkup:
+1. Reputasi pemain terhadap organisasi.
+2. Diplomasi antarorganisasi.
+3. Persahabatan dan hubungan baik.
+4. Persaingan (rivalry).
+5. Permusuhan (hostility).
+6. Aliansi dan kerja sama.
+7. Konflik antarfaksi.
+8. Pengaruh pemain terhadap hubungan dan keadaan organisasi dunia.
+
+Ketentuan:
+- **Reputasi pribadi pemain dibedakan dari hubungan antarorganisasi.**
+- **Tidak ada skala angka, ambang (threshold), daftar faksi, atau hasil politik final** tanpa desain lanjutan.
+- **Pilihan dan tindakan pemain dapat memiliki konsekuensi yang konsisten.**
+- Selaras dengan D-017, D-022, D-029, D-039, D-060, dan D-061.
+- Tidak mengubah keputusan terdahulu. Penguncian desain; implementasi belum dimulai.
+
+**Prinsip (dasar, tanpa angka):**
+- Ada **dua hal yang berbeda**: (a) **reputasi pemain** terhadap suatu organisasi (pribadi, per save) dan (b) **hubungan antarorganisasi** (persahabatan, persaingan, permusuhan, aliansi, konflik) sebagai keadaan dunia. Keduanya tidak disamakan; tindakan pemain dapat memengaruhi keduanya hanya lewat aturan yang eksplisit.
+- Reputasi terhadap organisasi **membedakan diri** dari hubungan individu dengan NPC (D-039, D-022): hubungan baik dengan satu NPC tidak otomatis mengubah reputasi atau hubungan faksi, dan sebaliknya. Reputasi komunitas/Guild di D-039 dan rank/reputasi D-017 **tetap berlaku**; D-062 tidak mengubah isinya dan hubungan skalanya masih terbuka.
+- **Konsekuensi konsisten:** tindakan yang sama dalam keadaan yang sama menghasilkan dampak yang sama dan dapat dijelaskan kepada pemain; tidak ada perubahan tanpa sebab yang terlihat. Hasil acak (bila ada) deterministik dari seed (D-055).
+- **Adil:** perubahan hubungan tidak boleh menjebak pemain tanpa jalan keluar atau menghilangkan progres secara tidak wajar (selaras D-058); cara memperbaiki hubungan harus dimungkinkan (aturan menyusul).
+- **Tanpa diskriminasi tersembunyi:** pengaruh ras/suku (D-060) terhadap hubungan hanya lewat aturan desain eksplisit.
+- Pengaruh pemain berlangsung dalam **dunia pribadi** (single-player online, D-014); tidak ada politik antarpemain.
+- Indikator hubungan mudah dipahami dan tidak mengubah semua interaksi menjadi sekadar mengejar angka (selaras D-039).
+
+Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), sistem kehidupan (**D-015**), guild (**D-017**), perkembangan karakter (**D-018**), ekonomi (**D-021**), NPC dan sosial (**D-022**), eksplorasi (**D-028**), event dunia (**D-029**), UI/HUD (**D-031**), quest dan cerita (**D-037**), dialog (**D-038**), hubungan sosial (**D-039**), NPC hidup (**D-040**), save/cloud (**D-044**), pengaturan (**D-045**), update konten (**D-048**), keamanan (**D-050**), peta (**D-054**), waktu (**D-055**), status effect (**D-059**), ras dan suku (**D-060**), organisasi dunia (**D-061**). **D-051** isinya belum diterima.
+
+**Terbuka (tidak diputuskan):** skala dan tingkat reputasi (angka atau tahap), ambang, rumus perubahan; daftar faksi (bergantung D-061); hasil politik; hubungan skala D-062 dengan reputasi komunitas D-039 dan rank D-017; aturan peluruhan dan perbaikan hubungan; jenis hubungan antarorganisasi dan bagaimana dunia memunculkannya; bentuk konflik dan penyelesaiannya; seberapa besar pengaruh pemain; cara menampilkan di UI; arti "spiritual" (belum didefinisikan); romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

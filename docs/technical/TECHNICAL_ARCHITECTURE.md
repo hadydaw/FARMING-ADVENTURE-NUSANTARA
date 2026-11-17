@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.50 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.51 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -699,6 +699,24 @@ Memperluas guild (§4d), kelompok/identitas (§4aq), data dunia dan wilayah (§4
 - **Lokalisasi dan aset:** teks lewat kunci Indonesia/English (D-045); lambang/ikon sebagai aset data (atlas ikon bersama) tanpa teks tertanam; pemuatan sesuai kebutuhan (§4aj, §4ai).
 - **Keamanan (D-050, §5b):** keadaan organisasi bersifat pribadi per akun; operasi bernilai tinggi (ekonomi/hadiah) divalidasi urutan server; checksum bukan anti-cheat.
 - **Pengujian (D-049):** uji headless untuk validitas referensi (wilayah, kelompok, hubungan), tidak ada kebocoran data tersembunyi, aturan perubahan deterministik dan idempoten, migrasi save, kelengkapan terjemahan, dan guild D-017 tidak berubah perilakunya.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4as. Implikasi Arsitektur dari D-062 (hanya catatan; belum diimplementasikan; tidak ada angka)
+
+Memperluas organisasi (§4ar), hubungan sosial dan reputasi komunitas (§4z, §4i), guild (§4d), event (§4p), quest (§4x), dialog (§4y), NPC hidup (§4aa), peta (§4ak), cloud save (§5a). Hanya rancangan; tidak ada skala, ambang, daftar faksi, atau hasil politik.
+- **Dua lapisan data terpisah:** (1) **`PlayerStanding`**: reputasi pemain per organisasi (pribadi, bagian save); (2) **`OrgRelation`**: hubungan antar-ID organisasi (§4ar) sebagai keadaan dunia (per-save). Keduanya tidak dicampur; hubungan individu NPC (§4z) tetap lapisan sendiri. Tidak ada kolom skala atau jenis yang dikodekan keras; jenis hubungan (friendship, rivalry, hostility, alliance, conflict) berupa tag/ID data.
+- **Skala sebagai data:** definisi tingkat/ambang (angka atau tahap) berupa resource yang dapat diganti tanpa kode (§4ag); nilainya belum ditetapkan dan hubungan dengan reputasi D-039/rank D-017 masih terbuka; antarmuka `get_standing(org)` dan `get_relation(org_a, org_b)` menyembunyikan representasi.
+- **Perubahan lewat efek data:** tindakan pemain (quest §4x, dialog §4y, hadiah, event §4p, transaksi ekonomi §4h, pertarungan §4a, penemuan) mengirim event bus; aturan data memetakan event ke perubahan standing/relasi (`apply_effect`) dengan sumber, sebab, dan bobot tercatat (kolom nilai belum ditetapkan). Tidak ada perubahan tanpa sebab yang tercatat; log sebab terbatas (ukuran dipantau) untuk UI penjelasan.
+- **Konsistensi dan penjelasan:** aturan deterministik (input sama, hasil sama); hasil acak dari seed (+tanggal, D-055) sehingga tidak bisa diulang lewat muat ulang save; setiap perubahan dapat ditelusuri ke satu efek data (untuk teks penjelasan di UI).
+- **Pemisahan dari hubungan NPC:** hubungan individu (§4z) tidak otomatis memodifikasi standing/relasi; hubungan antara keduanya hanya lewat aturan data eksplisit; sama untuk pengaruh ras/suku (§4aq), yang hanya masuk lewat aturan terdaftar dan dapat diaudit.
+- **Dampak ke sistem lain:** akses layanan, harga (§4h), dialog (§4y), quest/syarat (§4x), akses area (§4ak, tanpa mengubah Progressive World Unlock D-009), dan perilaku NPC (§4aa) membaca standing/relasi lewat kondisi data (§4x); tidak ada percabangan tersembunyi.
+- **Pengaruh pemain terhadap dunia:** perubahan keadaan organisasi (§4ar) diterapkan lewat efek data berstatus per-save; perkembangan monoton atau terikat revisi sesuai aturan data; tidak ada keadaan buntu: validator memastikan tiap kondisi buruk punya jalur pemulihan data (selaras D-058).
+- **Konflik:** keadaan konflik antarfaksi sebagai data dengan siklus hidup yang digerakkan event/`GameClock` (§4al); jadwal hari-selisih deterministik; penyelesaian lewat efek data; tidak ada simulasi politik berat per frame (ditutup dalam pipeline pergantian hari §4am dengan anggaran per frame).
+- **Save/cloud (D-044, §5a):** `PlayerStanding`, `OrgRelation`, dan log sebab ringkas disimpan dengan `section_version` dan migrasi; ID di-deprecate tetap dikenali; sinkronisasi memakai revisi, bukan jam perangkat; checksum bukan anti-cheat (D-050); operasi bernilai tinggi divalidasi urutan server (§5b).
+- **UI/lokalisasi (D-031, D-045):** indikator hubungan mudah dipahami (tahap/ikon, bukan sekadar angka) sebagai tampilan atas event bus; teks lewat kunci Indonesia/English; aksesibilitas (bentuk ikon selain warna); tidak membocorkan organisasi rahasia atau relasi yang belum diketahui (§4ak).
+- **Update konten (D-048):** organisasi, relasi, tingkat, dan aturan efek baru ditambah sebagai data; validator memastikan referensi valid, terjemahan lengkap, dan tidak ada aturan yang menimbulkan keadaan buntu.
+- **Pengujian (D-049):** uji headless untuk pemisahan standing vs relasi, determinisme dan idempotensi efek, jejak sebab, tidak ada kebocoran data tersembunyi, tidak ada keadaan buntu, konsistensi dengan D-039/D-017 (tidak berubah), dan migrasi save.
 - **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 

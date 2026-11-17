@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.50 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement, D-047 Monetisasi, D-048 Live Ops, D-049 QA, D-050 Keamanan, D-052 Performa, D-053 Loading, D-054 Peta, D-055 Waktu, D-056 Tidur, D-057 Vitalitas, D-058 Kekalahan, D-059 Status Effect, D-060 Ras & Suku, D-061 Organisasi Dunia) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.51 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement, D-047 Monetisasi, D-048 Live Ops, D-049 QA, D-050 Keamanan, D-052 Performa, D-053 Loading, D-054 Peta, D-055 Waktu, D-056 Tidur, D-057 Vitalitas, D-058 Kekalahan, D-059 Status Effect, D-060 Ras & Suku, D-061 Organisasi Dunia, D-062 Hubungan Faksi) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -762,6 +762,17 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - Selaras dengan D-028, D-060, D-017, D-029. Terkait: D-009, D-021, D-022, D-037 sampai D-040, D-044, D-048, D-050, D-054, D-055.
 
 **[BELUM DITETAPKAN]:** nama, jumlah, pemimpin, peta politik, sejarah, hubungan antarorganisasi, arti "spiritual" (belum didefinisikan), aturan perubahan kondisi, efek mekanik, organisasi rahasia dan penemuannya, konflik. **Tidak ada** model romansa/pernikahan/keluarga/anak (belum diputuskan).
+
+### 6.51 Reputasi, Hubungan Faksi, dan Diplomasi — D-062, LOCKED (Faction Relations Hybrid Lengkap)
+**Ditetapkan:**
+- **Reputasi pemain terhadap organisasi** dibedakan dari **hubungan antarorganisasi** (diplomasi, persahabatan, persaingan, permusuhan, aliansi, konflik).
+- **Pengaruh pemain** terhadap hubungan dan keadaan organisasi dunia, dengan konsekuensi yang konsisten dan dapat dijelaskan.
+- Berbeda dari hubungan individu dengan NPC (D-039, D-022); reputasi komunitas D-039 dan rank D-017 tetap berlaku.
+- **Adil dan ada jalan keluar** (selaras D-058); tanpa diskriminasi tersembunyi (D-060); dunia pribadi per pemain (single-player online).
+- **Tanpa angka:** tidak ada skala, ambang, daftar faksi, atau hasil politik final.
+- Selaras dengan D-017, D-022, D-029, D-039, D-060, D-061. Terkait: D-009, D-028, D-031, D-037, D-038, D-040, D-044, D-045, D-048, D-050, D-054, D-055, D-059.
+
+**[BELUM DITETAPKAN]:** skala dan ambang reputasi, daftar faksi, hasil politik, kaitan dengan D-039/D-017, aturan peluruhan dan perbaikan, bentuk konflik, besar pengaruh pemain, tampilan UI, arti "spiritual" (belum didefinisikan). **Tidak ada** model romansa/pernikahan/keluarga/anak (belum diputuskan).
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 
