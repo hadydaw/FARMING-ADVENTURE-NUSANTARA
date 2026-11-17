@@ -169,6 +169,28 @@ Hubungan dengan keputusan lain (tidak mengubah isinya): merinci butir "ekonomi d
 **Catatan konsistensi dengan D-014 (Single-Player Online):** D-014 menetapkan dunia sebagai progres pribadi dan tanpa multiplayer. D-021 tidak menyebut ekonomi bersama antarpemain, sehingga "ekonomi dinamis" dicatat sebagai **ekonomi pribadi per pemain**. Apakah harga dihitung di klien atau di server, dan apakah ada ekonomi bersama, **belum ditetapkan** dan tidak boleh diasumsikan.
 Detail (daftar barang dan harga dasar, rumus permintaan/penawaran, daftar merchant dan spesialisasinya, rute dan aturan perdagangan antarwilayah, bentuk "usaha" pemain, mata uang) belum ditetapkan. Implementasi belum dimulai. ID D-021 tersedia saat dicatat (tanpa bentrokan).
 
+### D-022 — Sistem NPC dan Kehidupan Sosial *(APPROVED / LOCKED, 2026-11-17, Tahap 12)*
+Pilihan: **D. Kombinasi Semua Sistem.** Ruang lingkup:
+1. NPC memiliki jadwal harian dan rutinitas
+2. NPC mempunyai pekerjaan dan aktivitas mandiri
+3. Sistem hubungan pertemanan dan kepercayaan
+4. Cerita pribadi NPC dan quest bercabang
+5. NPC bereaksi terhadap tindakan pemain
+6. Interaksi sosial dan event desa
+7. Perubahan perilaku NPC berdasarkan perkembangan dunia
+
+Ketentuan desain:
+- NPC harus memiliki identitas, pekerjaan, karakter, dan rutinitas yang konsisten.
+- Aktivitas NPC mempertimbangkan waktu dan kondisi dunia.
+- Hubungan sosial berkembang berdasarkan interaksi pemain.
+- Dialog, quest, dan event dapat berubah sesuai hubungan dan perkembangan cerita.
+- Sistem dirancang agar **jumlah NPC yang besar tetap dapat dikelola dengan baik**.
+
+**Batasan (tetap berlaku dari D-015):** hubungan **romantis, pernikahan, membangun keluarga, dan memiliki anak BELUM ditetapkan**. D-022 hanya menyebut hubungan **pertemanan dan kepercayaan**; jangan diartikan mencakup romansa.
+
+Hubungan dengan keputusan lain (tidak mengubah isinya): jadwal dan kondisi dunia memakai kalender/musim/festival (**D-015**); NPC pengurus guild dan quest (**D-017**); merchant dengan spesialisasi (**D-021**); perkembangan dunia dan wilayah (**D-009**); dunia dan NPC adalah progres pribadi pemain (**D-014**).
+Detail (daftar NPC, kepribadian, tingkat hubungan, bentuk reaksi, struktur quest bercabang, jumlah NPC target) belum ditetapkan. Implementasi belum dimulai. ID D-022 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

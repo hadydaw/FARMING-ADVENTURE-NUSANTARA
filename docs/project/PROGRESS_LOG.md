@@ -91,3 +91,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Catatan konsistensi dengan D-014: ekonomi dinamis dicatat sebagai ekonomi pribadi; lokasi perhitungan harga dan kemungkinan ekonomi bersama ditandai belum ditetapkan.
 - Pemeriksaan otomatis: ID keputusan tanpa duplikat; semua rujukan ID di dokumen menunjuk entri yang ada.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 12.
+
+## 2026-11-17 (12) — D-022 Sistem NPC dan Kehidupan Sosial dicatat
+
+- D-022 (Kombinasi Semua Sistem, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
+- GDD §6.5 diganti menjadi "NPC dan Kehidupan Sosial" (v0.12); Technical Architecture §4i ditambahkan (catatan saja; fokus skala NPC besar). Hubungan dengan D-009, D-014, D-015, D-017, D-021 dicatat tanpa mengubah isinya.
+- Batasan D-015 ditegaskan ulang: romansa, pernikahan, keluarga, anak tetap belum ditetapkan (D-022 hanya pertemanan dan kepercayaan).
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 13.

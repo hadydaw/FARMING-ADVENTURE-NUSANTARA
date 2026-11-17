@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.11 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.12 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -99,9 +99,20 @@ Ditetapkan lewat D-015 (lihat 6.2). Rincian belum ditetapkan.
 ### 6.4 Rumah
 Ditetapkan lewat D-015 (pengembangan rumah dan ladang; lihat 6.2). Rincian belum ditetapkan.
 
-### 6.5 NPC dan Hubungan
-Ditetapkan: interaksi dengan NPC.
-Belum: jadwal harian, dialog, daftar NPC, tingkat hubungan/persahabatan. **Hubungan romantis, pernikahan, keluarga, dan anak belum ditetapkan** (lihat 6.2).
+### 6.5 NPC dan Kehidupan Sosial — D-022, LOCKED (Kombinasi Semua Sistem)
+**Ditetapkan:**
+- NPC memiliki **jadwal harian dan rutinitas**.
+- NPC punya **pekerjaan dan aktivitas mandiri**.
+- **Hubungan pertemanan dan kepercayaan.**
+- **Cerita pribadi NPC dan quest bercabang.**
+- NPC **bereaksi terhadap tindakan pemain.**
+- **Interaksi sosial dan event desa.**
+- **Perilaku NPC berubah** sesuai perkembangan dunia.
+- Ketentuan: NPC punya identitas, pekerjaan, karakter, dan rutinitas yang **konsisten**; aktivitas mempertimbangkan **waktu dan kondisi dunia**; hubungan berkembang dari **interaksi pemain**; dialog, quest, dan event dapat berubah sesuai **hubungan dan perkembangan cerita**; sistem harus mampu mengelola **jumlah NPC yang besar**.
+- Terkait: kalender/musim/festival (D-015), NPC guild (D-017), merchant (D-021), wilayah (D-009), NPC sebagai progres pribadi (D-014).
+
+**[BELUM DITETAPKAN]:** daftar NPC dan karakter, jumlah NPC target, tingkat/tahap hubungan dan cara mengukurnya, bentuk reaksi terhadap tindakan pemain, struktur quest bercabang dan cerita pribadi, bentuk dialog, jenis event sosial, bagaimana NPC "bekerja" saat pemain jauh.
+**Tetap BELUM ditetapkan (D-015):** hubungan romantis, pernikahan, membangun keluarga, dan memiliki anak. D-022 hanya mencakup pertemanan dan kepercayaan. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ### 6.6 Adventurer Guild — D-017, LOCKED (Guild Petualang Lengkap)
 **Ditetapkan:**
@@ -234,7 +245,7 @@ Urutan usulan pembahasan bersama ChatGPT (dari yang paling memengaruhi arsitektu
 4. ~~Sistem kehidupan~~ (D-015 terkunci); sisanya: detail aturan (musim, waktu, stamina, ekonomi, resep, festival).
 5. ~~Dungeon~~ (D-016 terkunci: tetap + acak); sisanya: detail loot, boss, kesulitan.
 6. ~~Guild, rank, quest~~ (D-017 terkunci); sisanya: progres cerita dan detail quest.
-7. NPC dan hubungan.
+7. ~~NPC dan hubungan~~ (D-022 terkunci); sisanya: daftar NPC, romansa/keluarga (belum ditetapkan).
 8. Art direction 3D Stylized dan sumber aset.
 9. Monetisasi (belum disebut; default: tidak ada sampai diputuskan).
 

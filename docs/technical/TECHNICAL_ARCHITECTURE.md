@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.11 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.12 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -142,6 +142,21 @@ Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 - **Perdagangan antarwilayah** mengandalkan wilayah sebagai unit data (§4) dan selisih harga antarwilayah; aturan transportasi menunggu desain.
 - **Save:** uang, keadaan pasar (atau seed + riwayat yang cukup untuk merekonstruksinya), stok merchant, dan status usaha pemain masuk payload save (skema berversi). Karena ekonomi dinamis dapat dimanipulasi lewat save lokal, lokasi perhitungan (klien/server) harus diputuskan bersama aturan keadilan sebelum implementasi.
 - **Online (D-014):** dengan akun dan internet wajib, server **dapat** menjadi acuan waktu dan penghitung pasar pribadi; ini dicatat sebagai opsi, **bukan keputusan**. Tidak ada ekonomi bersama atau perdagangan antarpemain.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4i. Implikasi Arsitektur dari D-022 (hanya catatan; belum diimplementasikan)
+
+Syarat utama: **jumlah NPC besar tetap terkelola** (kinerja di HP dan beban penulisan konten).
+- **NPC sepenuhnya data-driven:** identitas, pekerjaan, kepribadian, jadwal, dan dialog sebagai data (Resource/JSON) dengan **templat** (mis. petani, pedagang, penjaga) agar NPC baru dibuat tanpa kode.
+- **Simulasi berjenjang (level of detail):** hanya NPC di dekat pemain yang disimulasikan penuh (bergerak, animasi, AI); NPC jauh atau di wilayah lain cukup dihitung **posisi/aktivitas dari jadwal + waktu** (stateless dari kalender, §4b) dan dihidupkan saat pemain mendekat. Ini kunci skala NPC besar.
+- **Jadwal dan aktivitas** sebagai data yang dievaluasi terhadap waktu, musim, cuaca, dan kondisi dunia (kondisi sebagai flag/variabel dunia); perubahan perilaku akibat perkembangan dunia = jadwal/templat alternatif yang dipilih oleh syarat.
+- **Variabel dunia dan hubungan:** satu penyimpan keadaan (flag, hubungan per NPC, fakta cerita) yang dibaca dialog, quest, dan event; **quest bercabang dan dialog bersyarat** memakai sistem *kondisi* dan *efek* yang sama dengan quest guild (§4d).
+- **Reaksi pemain** lewat event bus (§4): tindakan dipancarkan sebagai event, NPC/hubungan mendengarkan; tidak ada pemanggilan langsung antarsistem.
+- **Sistem dialog:** teks lewat kunci terjemahan (id/en, §6), dialog bersyarat per hubungan/cerita; konten yang besar dipisah per NPC agar mudah dikelola dan diuji (validator data otomatis untuk kunci yang hilang, rujukan rusak).
+- **Pencarian jalan dan pengaturan beban:** jumlah NPC aktif dibatasi oleh anggaran performa §3; navigasi memakai navigation mesh per area.
+- **Save:** hubungan, flag cerita, kemajuan quest NPC, dan keadaan khusus NPC masuk payload save (skema berversi); jadwal tidak disimpan (diturunkan dari data + waktu).
+- **Online (D-014):** NPC adalah progres pribadi; tidak ada sinkronisasi real-time.
+- **Cakupan:** hanya pertemanan/kepercayaan; model hubungan dibuat dapat diperluas, tetapi romansa/keluarga tidak dimodelkan sampai diputuskan.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres
