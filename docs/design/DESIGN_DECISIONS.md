@@ -1200,6 +1200,27 @@ Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), pertarungan (**
 
 **Terbuka (tidak diputuskan):** apa yang berubah di dunia setelah cerita selesai; daftar dan bentuk tantangan endgame; tingkat kesulitan dan skala (angka); boss legendaris dan monster langka (daftar, aturan); tantangan Guild tingkat tinggi dan hubungan dengan rank D-017; wilayah dan dungeon rahasia; daftar koleksi dan hadiah langka; sumber penghasil (sink) dan aturan ekonomi endgame; aturan pengulangan dan reset tantangan; apakah ada mode kesulitan tambahan atau new-game-plus; kelanjutan hubungan, pasangan, dan keluarga (detail terbuka di D-066); perilaku offline dan catch-up; arti "spiritual" (belum didefinisikan). Tahap 35 (akun/login) tetap PENDING (P-006).
 
+### D-069 — Prioritas Konten, Versi Rilis, dan Roadmap Pengembangan *(APPROVED / LOCKED, 2026-11-17, Tahap 60)*
+Pilihan: **D. Hybrid Release dan Roadmap Lengkap.** Ketentuan:
+1. Versi awal harus memiliki **pengalaman inti yang utuh, stabil, dan layak dimainkan.**
+2. **Tidak memaksakan** seluruh fitur, wilayah, cerita, dungeon, monster, dan konten endgame masuk rilis pertama.
+3. Menyusun **roadmap pengembangan konten secara bertahap.**
+4. Merencanakan penambahan wilayah, cerita, dungeon, boss, monster, aktivitas, dan fitur lewat **pembaruan terencana.**
+5. Setiap pembaruan **mempertahankan kompatibilitas save, progres pemain, dan sistem yang berjalan.**
+6. Mempertimbangkan **kapasitas perangkat Android, performa, ukuran unduhan, dan stabilitas.**
+7. Mempertahankan **single-player online** dan **Cloud Save Supabase** (D-014, D-044).
+8. **Tidak menetapkan tanggal rilis atau target biaya** tanpa data dan persetujuan yang diperlukan.
+
+Dokumen: **`docs/design/RELEASE_SCOPE.md`** (baru) memuat prinsip rilis, arti "pengalaman inti utuh", **usulan** isi Rilis Awal, gerbang kelayakan, aturan pembaruan, dan daftar konflik beserta rekomendasi; **`docs/project/ROADMAP.md`** diperbarui dengan bagian roadmap rilis dan konten.
+
+**Yang terkunci:** prinsip dan aturan di atas. **Yang BUKAN keputusan (usulan menunggu persetujuan pemilik, P-007):** isi final Rilis Awal, daftar konten per rilis, urutan gelombang pembaruan, dan kanal distribusi. Tidak ada tanggal, biaya, atau angka performa/ukuran.
+
+**Catatan konflik (tidak diselesaikan diam-diam; lihat `RELEASE_SCOPE.md` §7):** (1) urutan Fase 5 (ekspansi) sebelum Fase 6 (Rilis 1.0) di ROADMAP lama bertentangan dengan D-069; (2) "uji offline→online" di Fase 4 tidak selaras dengan D-014/D-044; (3) kanal distribusi publik belum diputuskan (GitHub Releases vs toko) dan terkait Tahap 35 (P-006); (4) kriteria Fase 1 perlu penguncian detail lingkup Rilis Awal; (5) D-051 belum diterima; (6) Tahap 35 PENDING sementara D-014 mensyaratkan akun; (7) target performa D-052 belum diukur. Keputusan terkunci Tahap 1 sampai 59 **tidak diubah**.
+
+Hubungan (tidak mengubah isi keputusan lain): dunia dan Progressive World Unlock (**D-009**), single-player online (**D-014**), seluruh sistem permainan **D-013** sampai **D-068** (D-069 hanya memilih seberapa banyak dibuka pada tiap rilis), save/cloud (**D-044**), pengaturan (**D-045**), monetisasi kosmetik (**D-047**), live ops dan update konten (**D-048**), QA (**D-049**), keamanan (**D-050**), performa (**D-052**), loading (**D-053**), endgame (**D-068**). **D-051** isinya belum diterima.
+
+**Terbuka (tidak diputuskan):** isi final Rilis Awal (P-007); apakah Rilis Awal memuat busur cerita yang selesai (D-067) atau cerita berlanjut lewat pembaruan; apakah romansa/keluarga (D-066) masuk Rilis Awal; kanal distribusi; matriks perangkat sasaran dan batas ukuran/performa; mekanisme pengiriman aset tambahan; urutan dan jadwal gelombang pembaruan; kebijakan analitik/privasi; arti "spiritual" (belum didefinisikan). Tahap 35 (akun/login) tetap PENDING (P-006).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |
@@ -1224,4 +1245,5 @@ Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), pertarungan (**
 | P-004 | Lisensi | Publikasi source | **Selesai** (O-005) |
 | P-005 | Hasil uji APK dev di HP (`docs/project/TESTING_APK.md`) | Menutup Fase 0 | Menunggu |
 | P-006 | Tahap 35: Sistem Akun dan Login Pemain (metode login, multi-perangkat, hapus akun, privasi) | Persiapan publikasi Google Play Store | **PENDING** (atas instruksi pemilik; dibahas saat persiapan publikasi; status tidak diubah) |
+| P-007 | Persetujuan lingkup final Rilis Awal (Release 1), urutan gelombang pembaruan, dan kanal distribusi publik (usulan di `docs/design/RELEASE_SCOPE.md`, D-069) | Rilis publik pertama dan penguncian detail vertical slice | Menunggu |
 | D-051 | **ID dicadangkan** untuk keputusan Tahap 42 (belum diterima dari pemilik; pada Tahap 46 pemilik menyebutnya "Connection Resilience", hanya judul, isi tidak diterima dan tidak dikarang). Tidak diisi dan tidak dipakai ulang. | Penomoran berurutan | **Dicadangkan** (menunggu keputusan Tahap 42) |

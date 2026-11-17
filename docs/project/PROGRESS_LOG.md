@@ -426,3 +426,12 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
 - GDD §6.57 baru (v0.57); Technical Architecture §4ay ditambahkan (v0.57); catatan saja: cerita selesai hanya menjadi flag/fase data di save yang sama (tanpa mode terpisah), `EndgameChallenge` berdata di atas dungeon/guild/boss/koleksi yang ada, siklus dan reset dari `GameClock`, hadiah idempoten, tanpa leaderboard antarpemain, selaras monetisasi kosmetik. Hadiah, angka kesulitan, dan daftar tantangan sengaja tidak ditetapkan.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.
+
+## 2026-11-17 (58) — D-069 Prioritas Konten, Versi Rilis, dan Roadmap dicatat
+
+- D-069 (Hybrid Release dan Roadmap Lengkap, LOCKED) dicatat sebagai **Tahap 60**; ID tersedia, tanpa bentrokan. **D-051 (Tahap 42) tetap dicadangkan**, isinya belum diterima; tidak ada isi yang dikarang. Arti "spiritual" **tetap tidak didefinisikan**.
+- **Dokumen baru:** `docs/design/RELEASE_SCOPE.md` (prinsip rilis terkunci; isi Rilis Awal sebagai **usulan** menunggu P-007; gerbang kelayakan; aturan pembaruan; tujuh konflik dokumen beserta rekomendasi). `ROADMAP.md` diperbarui dengan bagian roadmap rilis dan konten, serta catatan konflik pada Fase 4, 5, dan 6 (urutan fase lama **tidak dihapus**). `docs/README.md` ditambah indeks.
+- **Item pending baru:** P-007 (persetujuan lingkup final Rilis Awal, urutan pembaruan, kanal distribusi). Tidak ada tanggal rilis, target biaya, atau angka performa/ukuran yang ditetapkan.
+- **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
+- GDD §6.58 baru (v0.58); Technical Architecture §4az ditambahkan (v0.58); catatan saja: lingkup rilis sebagai penanda fitur data, save aditif untuk sistem yang belum rilis, cerita aditif lintas rilis, anggaran perangkat ditetapkan setelah diukur, uji fixture save tiap rilis.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan), P-007, dan berikutnya.

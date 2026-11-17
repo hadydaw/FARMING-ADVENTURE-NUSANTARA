@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.57 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.58 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -830,6 +830,22 @@ Memperluas `StoryState` (§4ax), dungeon (§4c), guild (§4d), monster/companion
 - **Update konten (D-048):** tantangan, boss, wilayah, dan hadiah baru ditambah sebagai data baru; validator memeriksa referensi, tidak ada keadaan buntu atau hadiah ganda; terjemahan Indonesia/English lengkap.
 - **Pengujian (D-049):** uji headless untuk transisi fase pascacerita, idempotensi hadiah, siklus/reset terhadap `GameClock`, determinisme, tidak ada keadaan buntu, migrasi save lama, perlindungan data inti, serta ketahanan terhadap interupsi dan perubahan jam perangkat.
 - **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§4aw; detail belum final).
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4az. Implikasi Arsitektur dari D-069 (hanya catatan; belum diimplementasikan; tidak ada angka)
+
+Memakai kerangka D-048 (§4ag), cloud save (§5a), keamanan (§5b), performa (§4ai), loading (§4aj), dan arsitektur data. Hanya rancangan; tidak ada tanggal, ukuran, atau target.
+- **Lingkup rilis sebagai data:** sistem dan konten yang belum dirilis tidak dihapus dari desain tetapi **diaktifkan lewat penanda fitur data** (§4ag) dan daftar konten per `content_version`; build Rilis Awal hanya memuat konten yang disetujui (P-007). Penanda tidak berisi rahasia dan memiliki nilai bawaan aman.
+- **Save yang siap untuk sistem yang belum rilis:** bagian save bagi sistem lanjutan (mis. keluarga §4aw, organisasi §4ar, endgame §4ay) bersifat **opsional dan aditif**; save Rilis Awal harus dapat dimuat dan dimigrasikan oleh versi berikut tanpa kehilangan data; tidak ada kolom yang dikodekan keras untuk fitur yang belum diputuskan.
+- **Cerita dan percabangan lintas rilis (§4ax):** pilihan yang diambil di Rilis Awal tidak boleh menjadi tidak valid ketika bab baru ditambahkan; graf cerita bersifat aditif; ending hanya dibuka ketika konten terkait dirilis; apakah Rilis Awal memuat busur selesai belum diputuskan.
+- **Wilayah dan dunia:** wilayah tambahan dibuka lewat Progressive World Unlock (D-009) sebagai data; wilayah belum dirilis tidak terlihat di peta/UI (§4ak) dan tidak memengaruhi performa/ukuran build.
+- **Anggaran perangkat:** matriks perangkat sasaran, batas ukuran unduhan, memori, dan target performa **ditetapkan setelah diukur** (§4ai, D-052); sampai itu tidak ada angka. Mekanisme pengiriman aset tambahan (di luar paket dasar, pemuatan sesuai kebutuhan §4aj, atau paket aset toko) **belum diteliti dan belum diputuskan**.
+- **Jalur rilis dan pembaruan (§4ag, BUILD_AND_RELEASE):** pembaruan lewat tag bertanda tangan; jalur dev → staging → prod; pemeriksaan kompatibilitas versi klien–konten–skema–API saat start dan sinkron; kanal distribusi publik (GitHub Releases atau toko) belum diputuskan (P-007) dan memengaruhi mekanisme pembaruan serta Tahap 35 (P-006).
+- **Uji kompatibilitas rilis (D-049):** kumpulan save fixture dari **setiap versi rilis** dimigrasikan dan diverifikasi di CI; uji regresi performa dan ukuran per rilis; uji bahwa konten yang disembunyikan tidak bocor; uji bahwa pembaruan tidak mengubah save lama secara destruktif.
+- **Keamanan (D-050, §5b):** penanda fitur dan konfigurasi jarak jauh tidak menjadi jalur curang; validasi server untuk operasi bernilai tinggi; kunci rilis production tidak di repo (P-002).
+- **Monetisasi (D-047):** katalog kosmetik tunduk pada jalur rilis yang sama; konten gameplay penting tidak bergantung pada pembelian.
+- **Koneksi (D-051):** gerbang stabilitas rilis bergantung pada isi D-051 yang **belum diterima** (tidak dikarang).
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun; akun dibutuhkan oleh D-014 sebelum rilis publik. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§4aw; detail belum final).
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres
