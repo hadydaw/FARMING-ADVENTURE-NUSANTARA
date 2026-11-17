@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.28 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.29 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -444,6 +444,20 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - Terkait: D-007, D-014, D-015, D-017, D-021, D-022, D-023, D-029 sampai D-033, D-035, D-037.
 
 **[BELUM DITETAPKAN]:** daftar NPC dan isi dialog, format data dan kondisi, tampilan UI dialog, suara pengisi, kamera saat bicara, prioritas bila banyak dialog memenuhi syarat, batas pilihan, aturan pilihan terkunci, cara mencegah pengulangan, cakupan reputasi, kata ganti/nama di dua bahasa, aksesibilitas, konsep "spiritual" (belum didefinisikan), romansa/pernikahan/keluarga (belum diputuskan). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+### 6.29 Hubungan Sosial dan Persahabatan — D-039, LOCKED (Social System Hybrid Lengkap)
+**Ditetapkan:**
+- **Komponen:** friendship tiap NPC; **trust**; **reputasi** pada komunitas, desa, kota, dan Guild; personal story dan perkembangan NPC; friendship events dan interaksi khusus; konsekuensi tindakan pemain.
+- **Hubungan individu dibedakan dari reputasi komunitas**; hubungan baik dengan satu NPC tidak otomatis menaikkan reputasi semua komunitas.
+- Hubungan berkembang lewat **percakapan, bantuan, quest, hadiah, tindakan, event.**
+- Tiap NPC boleh punya **preferensi, batas kepercayaan, kepribadian, dan reaksi berbeda.**
+- Kemajuan membuka **dialog, cerita pribadi, quest, bantuan, hadiah, interaksi khusus**; reputasi memengaruhi **akses layanan, respons NPC, dan kesempatan.**
+- **Indikator hubungan mudah dipahami** tanpa menjadikan interaksi sekadar mengejar angka.
+- Terintegrasi dengan **jadwal NPC, dialog D-038, quest D-037, event dunia, cloud save Supabase**; UI **Android landscape**, **Indonesia dan English.**
+- **Tidak boleh ada kenaikan yang tidak masuk akal** atau konsekuensi yang tidak konsisten.
+- Terkait: D-007, D-014, D-015, D-017, D-021, D-022, D-029, D-031, D-035, D-037, D-038.
+
+**[BELUM DITETAPKAN]:** skala dan nama tingkat friendship/trust, daftar komunitas dan ambang reputasi, rumus dan batas perubahan, preferensi hadiah, peluruhan/pemulihan, daftar friendship event, bentuk indikator UI, cara tindakan terlihat oleh komunitas, detail terkait Guild, konsep "spiritual" (belum didefinisikan). **Romansa, pernikahan, keluarga, dan anak BELUM diputuskan; tidak dimodelkan.** **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

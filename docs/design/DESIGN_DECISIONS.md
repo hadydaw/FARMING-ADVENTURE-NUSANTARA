@@ -499,6 +499,22 @@ Pilihan: **D. Dialog Hybrid Lengkap.** Ketentuan:
 Hubungan (tidak mengubah isi keputusan lain): bahasa (**D-007**), guild (**D-017**), ekonomi/perdagangan (**D-021**), NPC dan hubungan sosial (**D-022**), pertanian/kehidupan desa (**D-015**, **D-023**), event dunia (**D-029**), musim/cuaca/kalender (**D-030**), UI (**D-031**), audio (**D-032**), kamera (**D-033**), interaksi (**D-035**), quest (**D-037**), online dan cloud save (**D-014**, **O-003**).
 **Terbuka:** daftar NPC dan penulisan dialog; format data dialog dan bahasa kondisi; tampilan UI (kotak teks, potret, kecepatan teks, lewati, riwayat percakapan); suara pengisi dan efek suara dialog; kamera saat percakapan; aturan prioritas bila beberapa dialog memenuhi syarat; batas jumlah pilihan; aturan pilihan terkunci (apakah alasan ditampilkan); cara menghindari pengulangan (penanda sudah dibicarakan, variasi); cakupan "reputasi" yang memengaruhi dialog; penanganan kata ganti/nama pemain di dua bahasa; aksesibilitas (ukuran teks); peran konsep "spiritual" (belum didefinisikan, tidak ditebak); romansa, pernikahan, keluarga (belum diputuskan, tidak dimodelkan). Implementasi dialog belum dimulai. ID D-038 tersedia saat dicatat (tanpa bentrokan).
 
+### D-039 — Sistem Hubungan Sosial dan Persahabatan *(APPROVED / LOCKED, 2026-11-17, Tahap 29)*
+Pilihan: **D. Social System Hybrid Lengkap.** Ketentuan:
+1. Sistem sosial menggabungkan: friendship tiap NPC; trust/kepercayaan; reputasi pemain pada komunitas, desa, kota, dan Guild; personal story dan perkembangan karakter NPC; friendship events dan interaksi khusus; konsekuensi tindakan pemain terhadap hubungan sosial.
+2. Hubungan individu dibedakan dari reputasi komunitas; hubungan baik dengan satu NPC tidak otomatis menaikkan reputasi di semua komunitas.
+3. Hubungan berkembang lewat percakapan, bantuan, quest, hadiah, tindakan pemain, dan event.
+4. Tiap NPC boleh punya preferensi, batas kepercayaan, kepribadian, dan reaksi berbeda.
+5. Perkembangan hubungan dapat membuka dialog, cerita pribadi, quest, bantuan, hadiah, dan akses interaksi khusus.
+6. Reputasi komunitas dapat memengaruhi akses layanan, respons NPC, dan kesempatan tertentu.
+7. Indikator hubungan mudah dipahami tanpa menjadikan semua interaksi sekadar mengejar angka.
+8. Terintegrasi dengan jadwal harian NPC, dialog (D-038), quest (D-037), event dunia, dan cloud save Supabase.
+9. UI mendukung Android landscape, Indonesia dan English.
+10. Hindari hubungan yang naik tidak masuk akal atau konsekuensi yang tidak konsisten.
+
+Hubungan (tidak mengubah isi keputusan lain): bahasa (**D-007**), kehidupan (**D-015**), guild dan rank/reputasi (**D-017**), ekonomi (**D-021**), NPC dan hubungan (**D-022**; cakupan hubungan yang di sana hanya pertemanan/kepercayaan tetap berlaku), event dunia (**D-029**), UI (**D-031**), interaksi (**D-035**), quest (**D-037**), dialog (**D-038**), online dan cloud save (**D-014**, **O-003**).
+**Terbuka:** skala dan tingkat friendship/trust (angka atau tahap) dan nama tingkatnya; daftar komunitas/tingkat reputasi (desa, kota, Guild, lainnya) dan ambangnya; rumus dan batas kenaikan/penurunan harian; preferensi hadiah dan cara menyampaikannya; aturan peluruhan atau pemulihan hubungan; cara memperbaiki hubungan setelah konsekuensi buruk; daftar friendship event dan pemicunya; bentuk indikator UI; bagaimana tindakan terlihat oleh NPC/komunitas (saksi, gosip); hubungan dengan rank dan reputasi Guild secara rinci; peran konsep "spiritual" (belum didefinisikan). **Romansa, pernikahan, keluarga, dan anak tetap BELUM diputuskan dan tidak dimodelkan;** friendship tidak boleh dianggap mencakupnya. Implementasi sosial belum dimulai. ID D-039 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.28 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.29 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -380,6 +380,22 @@ Memperluas catatan dialog di §4i dan memakai mesin kondisi/efek yang sama denga
 - **Performa:** hanya graf NPC yang sedang dibicarakan dimuat; evaluasi kondisi per interaksi, bukan per frame (§3).
 - **Validasi konten:** alat/uji headless memeriksa graf tanpa node mati, semua pilihan dapat dicapai atau punya jalan keluar, rujukan ke quest/flag/NPC valid, dan tidak ada dialog yang tak mungkin dipicu.
 - **Cakupan hubungan:** hanya pertemanan/kepercayaan; romansa/keluarga tidak dimodelkan sampai diputuskan.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4z. Implikasi Arsitektur dari D-039 (hanya catatan; belum diimplementasikan)
+
+Memperluas penyimpan hubungan di §4i; dibaca dialog (§4y) dan quest (§4x).
+- **Dua lapisan terpisah:** (1) **hubungan individu** per NPC (friendship, trust, flag personal story, daftar friendship event yang sudah terjadi, hadiah/interaksi terakhir) dan (2) **reputasi per cakupan** (scope: desa, kota, Guild, komunitas lain) sebagai ruang nama terpisah `reputasi[scope_id]`. Keduanya tidak otomatis saling menambah; hubungan dengan NPC hanya memengaruhi reputasi lewat aturan efek yang ditulis eksplisit dalam data. Reputasi/rank Guild memakai penyimpan yang sama dengan §4d.
+- **Data per NPC:** preferensi (hadiah, topik), ambang trust, kepribadian/reaksi sebagai data templat dan override per NPC (§4i); tingkat hubungan didefinisikan sebagai ambang data sehingga skala dan nama dapat diubah tanpa mengubah kode.
+- **Perubahan lewat event bus (§4):** tindakan pemain (bantuan, hadiah, quest, percakapan, kejahatan, event dunia) dipancarkan sebagai event; aturan data menerjemahkannya menjadi delta hubungan/reputasi dengan **batas harian, penurunan hasil (diminishing returns), dan pembatas laju** agar tidak naik tak masuk akal atau dapat dieksploitasi (mis. spam hadiah); aturan memakai tanggal game (§4b), bukan jam perangkat.
+- **Konsekuensi konsisten:** satu penanganan efek (mesin kondisi/efek bersama §4x) menerapkan perubahan dan mencatat penyebab (log ringkas) sehingga dapat diaudit dan diuji; pemulihan/perbaikan hubungan sebagai aturan data nanti.
+- **Pemicu:** friendship event dan personal story dipicu oleh kondisi (ambang hubungan, waktu, lokasi, musim/cuaca §4q, event §4p, status quest) lewat pengevaluasi yang sama dengan quest/dialog, dijalankan saat peristiwa relevan, bukan polling per frame; jadwal NPC (§4i) menentukan kapan/di mana NPC tersedia.
+- **Dampak ke sistem lain:** akses layanan/toko (§4h), harga, kesempatan quest (§4x), dan opsi dialog (§4y) membaca nilai lewat API kueri tunggal (`get_relationship`, `get_reputation(scope)`), tanpa menyalin angka.
+- **Indikator UI:** UI membaca tingkat/ambang (bukan angka mentah) untuk tampilan yang mudah dipahami; panel di manajer konteks UI (§4r); teks lewat kunci terjemahan id/en (§6).
+- **Persistence:** hubungan, reputasi per scope, flag dan event yang telah terjadi masuk payload save (§5) berversi; ID NPC dan scope stabil, dengan migrasi saat NPC/komunitas diubah; cloud save Supabase lewat mekanisme save yang sama (D-014), sebagai progres pribadi tanpa sinkronisasi real-time; konflik ditangani sesuai desain online.
+- **Performa:** hanya NPC aktif/terdekat dievaluasi; nilai disimpan dalam tabel kompak, evaluasi per event (§3).
+- **Pengujian:** uji headless untuk batas harian dan diminishing returns, pemisahan hubungan vs reputasi, penerapan efek konsisten, pemicu event, serialisasi-migrasi.
+- **Cakupan:** hanya pertemanan/kepercayaan/reputasi; model dapat diperluas, tetapi romansa/pernikahan/keluarga/anak tidak dimodelkan sampai diputuskan.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres

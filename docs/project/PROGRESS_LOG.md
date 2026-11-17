@@ -203,3 +203,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - D-038 (Dialog Hybrid Lengkap, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
 - GDD §6.28 baru (v0.28); Technical Architecture §4y ditambahkan (v0.28; catatan saja: dialog sebagai graf data, pemilih dialog berprioritas, mesin kondisi/efek bersama quest, pencegah pengulangan, lokalisasi tanpa teks di aset visual, penyimpanan dan cloud save). Hubungan dengan D-007, D-014, D-015, D-017, D-021 sampai D-023, D-029 sampai D-033, D-035, D-037 dicatat tanpa mengubah isinya.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 29.
+
+
+## 2026-11-17 (29) — D-039 Sistem Hubungan Sosial dan Persahabatan dicatat
+
+- D-039 (Social System Hybrid Lengkap, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
+- GDD §6.29 baru (v0.29); Technical Architecture §4z ditambahkan (v0.29; catatan saja: hubungan individu dipisah dari reputasi per cakupan, perubahan lewat event dengan batas harian dan diminishing returns, pemicu event berbasis kondisi, API kueri tunggal, penyimpanan dan cloud save). Hubungan dengan D-007, D-014, D-015, D-017, D-021, D-022, D-029, D-031, D-035, D-037, D-038 dicatat tanpa mengubah isinya. Romansa/pernikahan/keluarga/anak tetap belum diputuskan.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 30.
