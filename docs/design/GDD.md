@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.27 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.28 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -430,6 +430,20 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 - Terkait: D-007, D-009, D-013 sampai D-018, D-021, D-022, D-023, D-028 sampai D-031, D-036, D-014.
 
 **[BELUM DITETAPKAN]:** isi cerita dan daftar quest, format data quest, tipe objektif dan pemicu, prasyarat dan aturan gagal/batal, aturan quest harian/berulang, sistem pilihan dan konsekuensi, hadiah, detail rank/reputasi Guild, mekanisme pencegah quest buntu, quest musim/event, perilaku saat waktu perangkat diubah, peran konsep "spiritual" (belum didefinisikan). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
+### 6.28 Dialog dan Percakapan NPC — D-038, LOCKED (Dialog Hybrid Lengkap)
+**Ditetapkan:**
+- **Jenis dialog:** cerita utama dan side quest; percakapan sehari-hari; pilihan jawaban pemain; dialog bercabang dengan beberapa hasil; berdasarkan hubungan, kepercayaan, dan reputasi; **dinamis** menurut waktu, lokasi, musim, cuaca, event, dan perkembangan dunia; khusus Guild, dungeon, perdagangan, dan kehidupan desa.
+- NPC punya **identitas, kepribadian, konteks sosial, dan aturan respons yang konsisten.**
+- Pilihan pemain dapat memengaruhi **hubungan NPC, akses quest, informasi, dan hasil cerita** jika relevan.
+- Mendukung **percakapan berurutan, kondisi pembuka, pilihan terkunci, dan konsekuensi.**
+- UI dialog **mudah dibaca**, nyaman di **Android landscape**.
+- **Indonesia utama, English kedua**; teks bahasa **tidak ditanam di aset visual.**
+- Terintegrasi dengan **NPC, quest D-037, hubungan sosial, kalender, dan cloud save Supabase.**
+- **Tidak ada dialog berulang** yang tidak sesuai keadaan/progres NPC.
+- Terkait: D-007, D-014, D-015, D-017, D-021, D-022, D-023, D-029 sampai D-033, D-035, D-037.
+
+**[BELUM DITETAPKAN]:** daftar NPC dan isi dialog, format data dan kondisi, tampilan UI dialog, suara pengisi, kamera saat bicara, prioritas bila banyak dialog memenuhi syarat, batas pilihan, aturan pilihan terkunci, cara mencegah pengulangan, cakupan reputasi, kata ganti/nama di dua bahasa, aksesibilitas, konsep "spiritual" (belum didefinisikan), romansa/pernikahan/keluarga (belum diputuskan). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

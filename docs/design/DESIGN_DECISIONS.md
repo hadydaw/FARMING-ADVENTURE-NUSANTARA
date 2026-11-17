@@ -485,6 +485,20 @@ Pilihan: **D. Quest Hybrid Lengkap.** Ketentuan:
 Hubungan (tidak mengubah isi keputusan lain): bahasa (**D-007**), cerita dan dunia (**D-009**), pertarungan dan dungeon (**D-013**, **D-016**), guild (**D-017**), perkembangan karakter (**D-018**), ekonomi (**D-021**), NPC dan hubungan (**D-022**), pertanian dan kehidupan desa (**D-023**, **D-015**), eksplorasi dan akses wilayah (**D-009**, **D-028**), event dunia (**D-029**), kalender (**D-030**), UI (**D-031**), inventory/item quest (**D-036**), online dan cloud save (**D-014**, **O-003**).
 **Terbuka:** isi cerita utama dan daftar quest; format data quest dan bahasa kondisi/objektif; daftar tipe objektif dan pemicu; aturan pembukaan, prasyarat, dan pembatalan/gagal; aturan quest harian/berulang (reset, jumlah, penolakan); sistem pilihan dan konsekuensi (cabang permanen atau tidak); cara memberi hadiah dan batas; hubungan dengan rank/reputasi Guild secara rinci; cara menjamin quest tak buntu (mis. perbaikan otomatis); quest antarmusim/event; dukungan melewatkan/melanjutkan quest ketika waktu perangkat diubah; konsep "spiritual" bila dipakai di quest (belum didefinisikan, tidak ditebak). Implementasi quest belum dimulai. ID D-037 tersedia saat dicatat (tanpa bentrokan).
 
+### D-038 — Sistem Dialog dan Percakapan NPC *(APPROVED / LOCKED, 2026-11-17, Tahap 28)*
+Pilihan: **D. Dialog Hybrid Lengkap.** Ketentuan:
+1. Dialog mendukung: cerita utama dan side quest; percakapan sehari-hari; pilihan jawaban pemain; dialog bercabang dengan beberapa hasil; dialog berdasarkan hubungan, kepercayaan, dan reputasi; dialog dinamis berdasarkan waktu, lokasi, musim, cuaca, event, dan perkembangan dunia; dialog khusus Guild, dungeon, perdagangan, dan kehidupan desa.
+2. NPC punya identitas, kepribadian, konteks sosial, dan aturan respons yang konsisten.
+3. Pilihan pemain dapat memengaruhi hubungan NPC, akses quest, informasi, dan hasil cerita jika relevan.
+4. Mendukung percakapan berurutan, kondisi pembuka, pilihan terkunci, dan konsekuensi.
+5. UI dialog mudah dibaca dan nyaman di Android landscape.
+6. Wajib Indonesia (utama) dan English (kedua); teks bahasa tidak ditanam ke dalam aset visual.
+7. Terintegrasi dengan sistem NPC, quest (D-037), hubungan sosial, kalender, dan cloud save Supabase.
+8. Hindari dialog berulang yang tidak sesuai keadaan atau progres NPC.
+
+Hubungan (tidak mengubah isi keputusan lain): bahasa (**D-007**), guild (**D-017**), ekonomi/perdagangan (**D-021**), NPC dan hubungan sosial (**D-022**), pertanian/kehidupan desa (**D-015**, **D-023**), event dunia (**D-029**), musim/cuaca/kalender (**D-030**), UI (**D-031**), audio (**D-032**), kamera (**D-033**), interaksi (**D-035**), quest (**D-037**), online dan cloud save (**D-014**, **O-003**).
+**Terbuka:** daftar NPC dan penulisan dialog; format data dialog dan bahasa kondisi; tampilan UI (kotak teks, potret, kecepatan teks, lewati, riwayat percakapan); suara pengisi dan efek suara dialog; kamera saat percakapan; aturan prioritas bila beberapa dialog memenuhi syarat; batas jumlah pilihan; aturan pilihan terkunci (apakah alasan ditampilkan); cara menghindari pengulangan (penanda sudah dibicarakan, variasi); cakupan "reputasi" yang memengaruhi dialog; penanganan kata ganti/nama pemain di dua bahasa; aksesibilitas (ukuran teks); peran konsep "spiritual" (belum didefinisikan, tidak ditebak); romansa, pernikahan, keluarga (belum diputuskan, tidak dimodelkan). Implementasi dialog belum dimulai. ID D-038 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

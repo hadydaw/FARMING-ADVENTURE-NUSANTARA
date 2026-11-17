@@ -197,3 +197,9 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - D-037 (Quest Hybrid Lengkap, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
 - GDD §6.27 baru (v0.27); Technical Architecture §4x ditambahkan (v0.27; catatan saja: quest dari data, mesin status, objektif berbasis event bus, kondisi/cabang bersama sistem lain, quest harian deterministik, validasi anti-buntu, penyimpanan dan sinkronisasi cloud). Hubungan dengan D-007, D-009, D-013 sampai D-018, D-021 sampai D-023, D-028 sampai D-031, D-036 dicatat tanpa mengubah isinya.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 28.
+
+## 2026-11-17 (28) — D-038 Sistem Dialog dan Percakapan NPC dicatat
+
+- D-038 (Dialog Hybrid Lengkap, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
+- GDD §6.28 baru (v0.28); Technical Architecture §4y ditambahkan (v0.28; catatan saja: dialog sebagai graf data, pemilih dialog berprioritas, mesin kondisi/efek bersama quest, pencegah pengulangan, lokalisasi tanpa teks di aset visual, penyimpanan dan cloud save). Hubungan dengan D-007, D-014, D-015, D-017, D-021 sampai D-023, D-029 sampai D-033, D-035, D-037 dicatat tanpa mengubah isinya.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 29.

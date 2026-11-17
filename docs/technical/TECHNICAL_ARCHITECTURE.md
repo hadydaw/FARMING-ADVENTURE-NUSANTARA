@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.27 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.28 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -365,6 +365,21 @@ Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 - **UI:** journal, pelacak objektif aktif di HUD, penanda lokasi di peta/dunia, notifikasi, riwayat; memakai manajer konteks UI (§4r) dan daftar tervirtualisasi.
 - **Performa:** hanya quest aktif dan terdekat diproses; indeks prasyarat untuk pembukaan quest; tanpa alokasi per frame (§3).
 - **Pengujian:** uji headless untuk transisi status, objektif paralel/berurutan, cabang, reset harian, serialisasi-migrasi, dan validasi keterselesaian semua quest.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4y. Implikasi Arsitektur dari D-038 (hanya catatan; belum diimplementasikan)
+
+Memperluas catatan dialog di §4i dan memakai mesin kondisi/efek yang sama dengan quest (§4x).
+- **Dialog sebagai graf data:** tiap percakapan adalah resource berisi *node* (ucapan, pilihan, cabang, aksi/efek, akhir) dan *edge* bersyarat; ID stabil per node. Dipisah per NPC/topik agar mudah dikelola.
+- **Pemilih dialog:** saat interaksi (§4v), pemilih mengevaluasi dialog kandidat NPC (cerita, quest, harian, khusus) dan memilih satu berdasarkan **prioritas dan syarat** yang deterministik; kandidat tak memenuhi syarat disaring (kondisi pembuka). Pilihan terkunci dapat ditampilkan abu-abu dengan alasan (belum diputuskan) atau disembunyikan.
+- **Kondisi dan efek:** memakai bahasa kondisi/efek bersama (§4x): hubungan/kepercayaan NPC (§4i), reputasi/rank Guild (§4d), flag cerita, status quest, waktu/musim/cuaca (§4b, §4q), lokasi/wilayah (§4o), event dunia (§4p), item (§4w). Efek: ubah hubungan, mulai/majukan quest, beri item/uang, set flag, buka toko, pindah adegan.
+- **Hindari pengulangan:** penyimpan keadaan percakapan per NPC (node/topik yang sudah dilihat, pencacah, waktu terakhir bicara dalam hari game) dibaca pemilih; ucapan harian memakai kumpulan variasi dengan pemilihan deterministik (seed + tanggal, §4b) dan penanda "sudah dibicarakan" per topik.
+- **Lokalisasi:** semua teks lewat kunci terjemahan (id/en, §6); tidak ada teks di kode maupun tertanam di gambar/aset visual (potret, balon, ikon tanpa teks); teks panjang dipisah per berkas dialog; placeholder (nama pemain, angka, item) memakai format bernama agar urutan kata bebas per bahasa; layout menoleransi teks panjang; skrip uji headless memeriksa kunci id dan en lengkap dan placeholder sama.
+- **Persistence:** keadaan dialog (flag, hubungan, topik terlihat, pilihan yang diambil) masuk payload save (§5) dengan versi skema; ID node stabil agar migrasi dapat memetakan ulang; cloud save Supabase lewat mekanisme save yang sama (D-014).
+- **UI dialog:** panel di manajer konteks UI (§4r): kotak teks, nama dan potret, daftar pilihan berukuran target sentuh nyaman, lewati/percepat, riwayat; kontrol lewat Input Action (§4u); transisi kamera lewat profil percakapan (§4t); audio dialog lewat bus Efek/Musik (§4s).
+- **Performa:** hanya graf NPC yang sedang dibicarakan dimuat; evaluasi kondisi per interaksi, bukan per frame (§3).
+- **Validasi konten:** alat/uji headless memeriksa graf tanpa node mati, semua pilihan dapat dicapai atau punya jalan keluar, rujukan ke quest/flag/NPC valid, dan tidak ada dialog yang tak mungkin dipicu.
+- **Cakupan hubungan:** hanya pertemanan/kepercayaan; romansa/keluarga tidak dimodelkan sampai diputuskan.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres
