@@ -17,6 +17,10 @@ const TABLES := {
 	"interaction_types": "res://game/data/interaction_types.json",
 	"world_props": "res://game/data/world_props.json",
 	"world_start_layout": "res://game/data/world_start_layout.json",
+	"items": "res://game/data/items.json",
+	"crops": "res://game/data/crops.json",
+	"farm_config": "res://game/data/farm_config.json",
+	"farm_plots": "res://game/data/farm_plots.json",
 }
 
 var load_errors: Array[String] = []

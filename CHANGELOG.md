@@ -5,6 +5,7 @@ Format mengikuti [Keep a Changelog](https://keepachangelog.com/id-ID/1.1.0/); ve
 ## [Belum dirilis]
 
 ### Ditambahkan
+- Milestone 3 teknis (sementara): inventaris slot, petak lahan, olah/tanam/siram/tumbuh/panen per hari permainan, simpan/muat status pertanian, 12 petak uji di dunia awal dengan penanda berlabel, data uji bertanda provisional, 230 uji tambahan.
 - Dunia awal uji (Milestone 2, sementara): menu "Mulai (uji dunia awal)", dunia 60x60 m dari data, 64 props pilot, PlayerController (gerak relatif kamera, tabrakan), kamera mengikuti, interaksi "Periksa", HUD teks (waktu, musim, fase, prompt). Aset visual sementara dan berlabel; 77 uji tambahan.
 - Pilot mesh Opsi A (O-011): MeshBuilder (mesh kustom lewat kode, ekspor .glb), 7 props pilot B-003 (bukan aset final), layar Pilot Mesh, 98 uji tambahan, laporan `docs/assets/PILOT_MESH_OPSI_A.md`.
 - Milestone 2 (sebagian, teknis): GameClock/GameTime (jam, kalender, musim, fase, jeda, simpan/muat, seed harian), CameraRig adaptif (3 profil konteks, zoom/rotasi berbatas), MovementMath, Interactable/InteractionSensor, tabel data waktu/kamera/interaksi, layar Uji Sistem, 207 uji tambahan. Menunggu aset visual dari ChatGPT.

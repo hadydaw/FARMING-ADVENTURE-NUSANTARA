@@ -1,0 +1,4 @@
+[
+	{"id": "crop_test_a", "provisional": true, "note": "TANAMAN UJI TEKNIS, bukan konten resmi (daftar tanaman belum diputuskan).", "seed_item": "seed_test_a", "harvest_item": "produce_test_a", "harvest_amount": 1, "stage_days": [1, 2, 2], "seasons": ["season_1", "season_2"], "marker_color": "#e8c84a"},
+	{"id": "crop_test_b", "provisional": true, "note": "TANAMAN UJI TEKNIS, bukan konten resmi.", "seed_item": "seed_test_b", "harvest_item": "produce_test_b", "harvest_amount": 2, "stage_days": [2, 3, 3, 3], "seasons": ["season_1", "season_2", "season_3", "season_4"], "marker_color": "#d86a3a"}
+]

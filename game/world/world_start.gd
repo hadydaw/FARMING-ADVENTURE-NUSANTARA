@@ -11,6 +11,8 @@ var rig: CameraRig
 var sensor: InteractionSensor
 var hud: BasicHud
 var prop_count := 0
+var farming: FarmingSession
+var plot_nodes: Dictionary = {}  # id petak -> Node3D
 var _inspect_count := 0
 var _models: Dictionary = {}  # prop id -> PackedScene
 
@@ -22,6 +24,7 @@ func _ready() -> void:
 	_build_player()
 	_build_camera()
 	_build_ui()
+	_build_farm()
 	Events.interaction_performed.connect(_on_interacted)
 
 
@@ -35,6 +38,8 @@ func _process(_delta: float) -> void:
 func _prompt_text() -> String:
 	if sensor.current == null:
 		return ""
+	if sensor.current.has_meta("plot_id"):
+		return _plot_prompt(str(sensor.current.get_meta("plot_id")))
 	return tr(sensor.current.resolved_prompt_key()) + ": " + tr(str(sensor.current.get_meta("label_key", "")))
 
 
@@ -43,6 +48,9 @@ func inspect_count() -> int:
 
 
 func _on_interacted(target: Node, _actor: Node) -> void:
+	if target.has_meta("plot_id"):
+		_on_plot_interacted(str(target.get_meta("plot_id")))
+		return
 	_inspect_count += 1
 	hud.show_message(tr("WORLD_INSPECTED") % tr(str(target.get_meta("label_key", ""))))
 
@@ -203,3 +211,96 @@ func _build_camera() -> void:
 func _build_ui() -> void:
 	hud = BasicHud.new()
 	add_child(hud)
+
+
+# --- Pertanian (Milestone 3, UJI TEKNIS: visual petak = kotak penanda sementara) ---
+
+func _build_farm() -> void:
+	farming = FarmingSession.new(GameTime.clock, DataRegistry.rows("items"), DataRegistry.rows("crops"),
+		_plot_ids(), DataRegistry.get_row("farm_config", "default"))
+	var holder := Node3D.new()
+	holder.name = "FarmPlots"
+	add_child(holder)
+	for row in DataRegistry.rows("farm_plots"):
+		var node := Node3D.new()
+		node.name = str(row["id"])
+		node.position = Vector3(float(row["x"]), 0.0, float(row["z"]))
+		var mesh := MeshInstance3D.new()
+		var box := BoxMesh.new()
+		box.size = Vector3(1.6, 0.06, 1.6)
+		mesh.mesh = box
+		mesh.position.y = 0.03
+		mesh.material_override = StandardMaterial3D.new()
+		node.add_child(mesh)
+		var crop := MeshInstance3D.new()
+		crop.name = "CropMarker"
+		var cm := BoxMesh.new()
+		cm.size = Vector3(0.3, 0.3, 0.3)
+		crop.mesh = cm
+		crop.material_override = StandardMaterial3D.new()
+		node.add_child(crop)
+		var label := Label3D.new()
+		label.name = "Info"
+		label.pixel_size = 0.005
+		label.position = Vector3(0, 1.3, 0)
+		label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+		node.add_child(label)
+		var it := Interactable.new()
+		it.interaction_type = "farm_plot"
+		node.add_child(it)
+		it.set_meta("plot_id", str(row["id"]))
+		holder.add_child(node)
+		plot_nodes[str(row["id"])] = node
+	Events.day_changed.connect(func(_d): refresh_farm_visuals())
+	refresh_farm_visuals()
+
+
+func _plot_ids() -> Array:
+	var ids: Array = []
+	for row in DataRegistry.rows("farm_plots"):
+		ids.append(str(row["id"]))
+	return ids
+
+
+func refresh_farm_visuals() -> void:
+	for pid in plot_nodes:
+		var plot: FarmPlot = farming.grid.plot(pid)
+		var node: Node3D = plot_nodes[pid]
+		var soil := (node.get_child(0) as MeshInstance3D).material_override as StandardMaterial3D
+		soil.albedo_color = Color(0.25, 0.16, 0.10) if plot.watered else (Color(0.40, 0.27, 0.16) if plot.tilled else Color(0.45, 0.55, 0.30))
+		var marker := node.get_node("CropMarker") as MeshInstance3D
+		marker.visible = plot.has_crop()
+		if plot.has_crop():
+			var def: Dictionary = farming.crop_defs[plot.crop_id]
+			var total := (def["stage_days"] as Array).size()
+			var grown := clampf(float(plot.stage) / float(total), 0.0, 1.0)
+			marker.scale = Vector3.ONE * (0.4 + 2.2 * grown)
+			marker.position.y = 0.06 + 0.15 * marker.scale.y
+			(marker.material_override as StandardMaterial3D).albedo_color = Color(str(def["marker_color"]))
+		var info := node.get_node("Info") as Label3D
+		info.text = "UJI: " + (tr("FARM_STATE_READY") if plot.is_ready(farming.crop_defs) else (tr("FARM_STATE_GROWING") if plot.has_crop() else (tr("FARM_STATE_TILLED") if plot.tilled else tr("FARM_STATE_RAW"))))
+	hud.set_inventory_text(inventory_text())
+
+
+func inventory_text() -> String:
+	var parts: Array[String] = []
+	for s in farming.inventory.slots():
+		if not (s as Dictionary).is_empty():
+			parts.append("%s x%d" % [tr(str(farming.item_defs[s["item"]]["name_key"])), int(s["count"])])
+	return tr("FARM_BAG") + ": " + (", ".join(parts) if not parts.is_empty() else "-")
+
+
+func _plot_prompt(plot_id: String) -> String:
+	var d := farming.preview(plot_id)
+	if str(d["action"]) == "":
+		return tr("FARM_NO_" + str(d["reason"]).to_upper())
+	return tr("FARM_ACT_" + str(d["action"]).to_upper())
+
+
+func _on_plot_interacted(plot_id: String) -> void:
+	var r := farming.act_on(plot_id)
+	if bool(r["ok"]):
+		hud.show_message(tr("FARM_DONE_" + str(r["action"]).to_upper()))
+	else:
+		hud.show_message(tr("FARM_NO_" + str(r["reason"]).to_upper()))
+	refresh_farm_visuals()

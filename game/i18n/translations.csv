@@ -81,3 +81,37 @@ PROP_TUFT,Rumput,Grass
 WORLD_INSPECTED,Memeriksa: %s (belum ada aksi),Inspecting: %s (no action yet)
 HUD_DATE,Hari %d  %s,Day %d  %s
 HUD_PAUSED,(waktu berhenti),(time paused)
+ITEM_TOOL_HOE,Cangkul (uji),Hoe (test)
+ITEM_TOOL_WATERING_CAN,Penyiram (uji),Watering can (test)
+ITEM_SEED_TEST_A,Benih uji A,Test seed A
+ITEM_SEED_TEST_B,Benih uji B,Test seed B
+ITEM_PRODUCE_TEST_A,Hasil uji A,Test produce A
+ITEM_PRODUCE_TEST_B,Hasil uji B,Test produce B
+FARM_BAG,Tas,Bag
+FARM_STATE_RAW,belum diolah,untilled
+FARM_STATE_TILLED,tergemburkan,tilled
+FARM_STATE_GROWING,tumbuh,growing
+FARM_STATE_READY,siap panen,ready
+FARM_ACT_TILL,Cangkul,Till
+FARM_ACT_PLANT,Tanam,Plant
+FARM_ACT_WATER,Siram,Water
+FARM_ACT_HARVEST,Panen,Harvest
+FARM_DONE_TILL,Tanah dicangkul,Soil tilled
+FARM_DONE_PLANT,Benih ditanam,Seed planted
+FARM_DONE_WATER,Tanaman disiram,Crop watered
+FARM_DONE_HARVEST,Panen berhasil,Harvested
+FARM_NO_NEED_HOE,Butuh cangkul,Need a hoe
+FARM_NO_NEED_WATERING_CAN,Butuh penyiram,Need a watering can
+FARM_NO_NEED_SEED,Tidak punya benih,No seeds
+FARM_NO_WRONG_SEASON,Bukan musim yang cocok,Wrong season
+FARM_NO_ALREADY_WATERED,Sudah disiram hari ini,Already watered today
+FARM_NO_INVENTORY_FULL,Tas penuh,Bag is full
+FARM_NO_UNKNOWN_PLOT,Petak tidak dikenal,Unknown plot
+FARM_NO_OCCUPIED,Petak terisi,Plot occupied
+FARM_NO_NOT_TILLED,Belum dicangkul,Not tilled
+FARM_NO_NOT_READY,Belum siap,Not ready
+FARM_NO_NO_CROP,Tidak ada tanaman,No crop
+FARM_NO_ALREADY_READY,Sudah siap panen,Already ready
+FARM_NO_ALREADY_TILLED,Sudah dicangkul,Already tilled
+FARM_NO_UNKNOWN_CROP,Tanaman tidak dikenal,Unknown crop
+FARM_NO_UNKNOWN_ACTION,Aksi tidak dikenal,Unknown action

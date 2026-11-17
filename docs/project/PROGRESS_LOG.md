@@ -488,3 +488,11 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Pemilik: "Pengerjaan seperti ini dulu" (mengacu hasil pilot). Dicatat O-012: props pilot dipakai sementara; bukan aset final; acuan ChatGPT tetap diminta (prompt B-003 disusun, acuan pohon A/B sudah dikirim pemilik dan dinilai layak).
 - Dibangun: dunia uji 60x60 m dari data (`world_props.json`, `world_start_layout.json`, bertanda provisional), PlayerController, kamera mengikuti, interaksi "Periksa", BasicHud, tombol menu "Mulai (uji dunia awal)". Pemain = penanda berlabel PLACEHOLDER.
 - Uji: 14 berkas, 765 pemeriksaan, 0 gagal (termasuk tabrakan pohon, batas dunia, interaksi, tata letak HUD).
+
+## 2026-11-17 (67) — Milestone 3 bagian teknis: inti pertanian
+
+- Pemilik: "Kerjakan". Dibangun tanpa visual final dan tanpa konten resmi: Inventory (slot grid, tumpukan dari data, tambah/kurang semua-atau-tidak), FarmPlot (olah, tanam, siram, tumbuh per hari, panen), FarmGrid, FarmActions (aksi kontekstual sementara), FarmingSession (mendengar pergantian hari GameClock, simpan/muat via SaveService, muat semua-atau-tidak).
+- Data uji bertanda `provisional`: 6 item, 2 tanaman uji, 24 slot, 12 petak (`items`, `crops`, `farm_config`, `farm_plots`). BUKAN daftar resmi (D-023/D-036 terbuka). Cuaca/hujan, kualitas tanah, pupuk, irigasi belum diimplementasikan.
+- Dunia uji: 12 petak berupa kotak penanda berlabel "UJI", penanda tanaman tumbuh menurut tahap, HUD tas, prompt aksi, terjemahan id/en.
+- Uji: 15 berkas, 995 pemeriksaan, 0 gagal. Perilaku tas penuh menahan panen tanpa kehilangan tanaman; save rusak ditolak tanpa mengubah status.
+- Belum: menu/tombol simpan di UI, pemilihan alat manual (D-034), visual C-001..C-006.

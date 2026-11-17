@@ -7,6 +7,7 @@ extends CanvasLayer
 var _time_label: Label
 var _prompt_label: Label
 var _message_label: Label
+var _inventory_label: Label
 var _joystick: TouchJoystick
 var _interact_button: ActionButton
 var _message_timer := 0.0
@@ -33,6 +34,11 @@ func _ready() -> void:
 	root.add_child(_message_label)
 	_message_label.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP, Control.PRESET_MODE_MINSIZE, 24)
 	_message_label.position.y += 120
+
+	_inventory_label = Label.new()
+	root.add_child(_inventory_label)
+	_inventory_label.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT, Control.PRESET_MODE_MINSIZE, 0)
+	_inventory_label.position.y += 110
 
 	var back := Button.new()
 	back.text = tr("COMMON_BACK")
@@ -86,3 +92,7 @@ func joystick() -> TouchJoystick:
 
 func interact_button() -> ActionButton:
 	return _interact_button
+
+
+func set_inventory_text(text: String) -> void:
+	_inventory_label.text = text

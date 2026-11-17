@@ -1,0 +1,8 @@
+[
+	{"id": "tool_hoe", "provisional": true, "category": "tool", "name_key": "ITEM_TOOL_HOE", "stack_max": 1},
+	{"id": "tool_watering_can", "provisional": true, "category": "tool", "name_key": "ITEM_TOOL_WATERING_CAN", "stack_max": 1},
+	{"id": "seed_test_a", "provisional": true, "category": "seed", "name_key": "ITEM_SEED_TEST_A", "stack_max": 20},
+	{"id": "seed_test_b", "provisional": true, "category": "seed", "name_key": "ITEM_SEED_TEST_B", "stack_max": 20},
+	{"id": "produce_test_a", "provisional": true, "category": "produce", "name_key": "ITEM_PRODUCE_TEST_A", "stack_max": 20},
+	{"id": "produce_test_b", "provisional": true, "category": "produce", "name_key": "ITEM_PRODUCE_TEST_B", "stack_max": 20}
+]

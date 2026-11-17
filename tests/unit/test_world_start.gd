@@ -71,6 +71,21 @@ func run() -> void:
 	check(world.sensor.try_interact(), "interaksi dengan pohon")
 	check_eq(world.inspect_count(), 1, "interaksi tercatat")
 
+	# Pertanian: petak di dunia, aksi lewat sensor interaksi
+	check_eq(world.plot_nodes.size(), 12, "12 petak lahan terpasang")
+	var plot_node: Node3D = world.plot_nodes["plot_01"]
+	player.global_position = plot_node.global_position + Vector3(0, 0, 1.2)
+	await wait_frames(2)
+	world.sensor.facing = Vector3(0, 0, -1)
+	var target: Interactable = world.sensor.refresh()
+	check(target != null and target.has_meta("plot_id"), "petak terdeteksi sebagai target")
+	check(world.sensor.try_interact(), "cangkul petak lewat interaksi")
+	check(world.farming.grid.plot("plot_01").tilled, "petak tergemburkan")
+	check(world.sensor.try_interact(), "tanam lewat interaksi")
+	check(world.farming.grid.plot("plot_01").has_crop(), "tanaman tertanam")
+	check(world.inventory_text().contains("x5"), "HUD tas menampilkan benih berkurang")
+	check(world.get_node("FarmPlots/plot_01/CropMarker").visible, "penanda tanaman tampil")
+
 	# Batas dunia
 	player.global_position = Vector3(28, 0, 0)
 	player.input_override = Vector2(1, 0)  # kanan relatif yaw 0 = +X (menuju batas)
