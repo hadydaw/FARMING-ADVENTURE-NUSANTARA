@@ -626,3 +626,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Pemilik meminta lanjut; dipilih merapikan utang teknis. Semua titik interaksi buatan baru (stasiun crafting, titik kumpul, monster, papan guild, gua, tukang upgrade, kemah teman + pengikut) dipindah ke WorldSites (node anak "Sites"); world_start.gd tetap memegang HUD, sesi, pemain, NPC, wilayah, simpan/muat, dan pengumuman. class_name WorldStart ditambahkan agar akses bertipe.
 - Perilaku sama: 29 berkas, 2834 pemeriksaan, 0 gagal; smoke lulus; screenshot papan guild/kemah/tukang diperiksa.
 - Masih besar: world_start.gd ~1060 baris (pertanian, NPC, wilayah, memancing/ternak, toko masih di dalamnya) — bisa dipecah lagi bertahap.
+
+## 2026-11-18 (87) — Kustomisasi karakter dasar + perapian posisi (D-041, teknis)
+
+- CharacterState: grup pilihan dari data (warna kulit, warna pakaian), putar/atur, simpan/muat opsional (save lama = bawaan) dengan rollback; diterapkan ke penanda pemain (kapsul = pakaian, kepala+hidung = kulit). Cermin uji di desa (menu daftar, ketuk untuk ganti).
+- Perapian: dapur uji digeser (z 0.5 -> 3.0) dan papan guild (z -8 -> -6) agar tidak menumpuk dengan semak/pagar.
+- Belum: nama karakter (butuh input teks), rambut/wajah/aksesori, pakaian terbuka lewat progres, pratinjau berputar; semua menunggu model B-001 dan keputusan D-041 yang terbuka.
+- Uji: 30 berkas, 2888 pemeriksaan, 0 gagal; smoke test lulus.

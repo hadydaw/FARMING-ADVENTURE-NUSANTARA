@@ -348,3 +348,8 @@ COMPANION_NO_UNKNOWN,Teman tidak dikenal,Unknown companion
 SET_HIGH_CONTRAST,Kontras tinggi,High contrast
 SET_MESSAGE_DURATION,Lama pesan di layar,Message duration
 SET_SHOW_HINTS,Tampilkan petunjuk,Show hints
+FARM_ACT_MIRROR,Cermin,Mirror
+CHAR_MIRROR,Cermin Uji,Test Mirror
+CHAR_SKIN,Warna kulit,Skin tone
+CHAR_OUTFIT,Warna pakaian,Outfit color
+CHAR_CHOICE,Pilihan,Choice

@@ -33,6 +33,8 @@ const TABLES := {
 	"upgrade_config": "res://game/data/upgrade_config.json",
 	"companions": "res://game/data/companions.json",
 	"companion_config": "res://game/data/companion_config.json",
+	"character_options": "res://game/data/character_options.json",
+	"character_config": "res://game/data/character_config.json",
 	"regions": "res://game/data/regions.json",
 	"region_links": "res://game/data/region_links.json",
 	"economy_config": "res://game/data/economy_config.json",

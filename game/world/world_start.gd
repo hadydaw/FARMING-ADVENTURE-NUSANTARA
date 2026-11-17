@@ -26,6 +26,8 @@ var plot_nodes: Dictionary = {}  # id petak -> Node3D
 var _inspect_count := 0
 var _models: Dictionary = {}  # prop id -> PackedScene
 var sites: WorldSites
+var player_outfit_material: StandardMaterial3D
+var player_skin_material: StandardMaterial3D
 
 
 func _ready() -> void:
@@ -76,6 +78,8 @@ func _prompt_text() -> String:
 		return ""
 	if sensor.current.has_meta("station_id"):
 		return tr("FARM_ACT_CRAFT") + ": " + tr(str(sensor.current.get_meta("label_key", "")))
+	if sensor.current.has_meta("is_mirror"):
+		return tr("FARM_ACT_MIRROR")
 	if sensor.current.has_meta("is_camp"):
 		return tr("FARM_ACT_CAMP")
 	if sensor.current.has_meta("is_upgrade"):
@@ -118,6 +122,9 @@ func _on_interacted(target: Node, _actor: Node) -> void:
 		return
 	if target.has_meta("station_id"):
 		sites._open_station(str(target.get_meta("station_id")))
+		return
+	if target.has_meta("is_mirror"):
+		sites._open_mirror()
 		return
 	if target.has_meta("is_camp"):
 		sites._open_camp()
@@ -290,13 +297,25 @@ func _build_player() -> void:
 	var material := StandardMaterial3D.new()
 	material.albedo_color = Color(0.9, 0.3, 0.7)
 	capsule.material = material
+	player_outfit_material = material
 	marker.mesh = capsule
 	marker.position = Vector3(0, 0.75, 0)
 	player.add_child(marker)
 	var nose := MeshInstance3D.new()
 	var nose_mesh := BoxMesh.new()
 	nose_mesh.size = Vector3(0.12, 0.12, 0.3)
-	nose_mesh.material = material
+	var skin_material := StandardMaterial3D.new()
+	skin_material.albedo_color = Color(0.95, 0.8, 0.65)
+	player_skin_material = skin_material
+	nose_mesh.material = skin_material
+	var head := MeshInstance3D.new()
+	var head_mesh := SphereMesh.new()
+	head_mesh.radius = 0.26
+	head_mesh.height = 0.52
+	head_mesh.material = skin_material
+	head.mesh = head_mesh
+	head.position = Vector3(0, 1.62, 0)
+	player.add_child(head)
 	nose.mesh = nose_mesh
 	nose.position = Vector3(0, 1.0, -0.35)
 	player.add_child(nose)
@@ -338,7 +357,7 @@ func _build_farm() -> void:
 		"economy_config": DataRegistry.get_row("economy_config", "default"), "item_prices": DataRegistry.rows("item_prices"), "shops": DataRegistry.rows("shops"),
 		"gather_nodes": DataRegistry.rows("gather_nodes"), "recipes": DataRegistry.rows("recipes"), "stations": DataRegistry.rows("crafting_stations"),
 		"monsters": DataRegistry.rows("monsters"), "monster_spawns": DataRegistry.rows("monster_spawns"), "combat_config": DataRegistry.get_row("combat_config", "default"),
-		"companions": DataRegistry.rows("companions"), "upgrades": DataRegistry.rows("upgrades"), "festivals": DataRegistry.rows("festivals"), "achievements": DataRegistry.rows("achievements"), "dungeons": DataRegistry.rows("dungeons"), "quests": DataRegistry.rows("quests"), "guild_config": DataRegistry.get_row("guild_config", "default")})
+		"character_options": DataRegistry.rows("character_options"), "companions": DataRegistry.rows("companions"), "upgrades": DataRegistry.rows("upgrades"), "festivals": DataRegistry.rows("festivals"), "achievements": DataRegistry.rows("achievements"), "dungeons": DataRegistry.rows("dungeons"), "quests": DataRegistry.rows("quests"), "guild_config": DataRegistry.get_row("guild_config", "default")})
 	farming.sleep.finished.connect(_on_woke_up)
 	_build_bed()
 	_build_pond()
@@ -393,6 +412,7 @@ func _plot_ids() -> Array:
 func refresh_farm_visuals() -> void:
 	_announce_milestones()
 	sites._update_companion_visual()
+	_apply_character_look()
 	for pid in plot_nodes:
 		var plot: FarmPlot = farming.grid.plot(pid)
 		var node: Node3D = plot_nodes[pid]
@@ -1037,6 +1057,13 @@ func travel(link_id: String) -> bool:
 	_place_player(str(link["to"]), float(link["to_x"]), float(link["to_z"]))
 	hud.show_message(tr("MAP_ENTERED") % tr(str(dest["name_key"])))
 	return true
+
+
+func _apply_character_look() -> void:
+	if player_outfit_material == null or farming == null:
+		return
+	player_outfit_material.albedo_color = farming.character.color("outfit")
+	player_skin_material.albedo_color = farming.character.color("skin")
 
 
 func _announce_festival() -> void:

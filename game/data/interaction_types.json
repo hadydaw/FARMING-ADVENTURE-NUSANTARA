@@ -94,5 +94,11 @@
 		"prompt_key": "FARM_ACT_CAMP",
 		"max_distance": 2.4,
 		"min_facing_dot": 0.0
+	},
+	{
+		"id": "mirror",
+		"prompt_key": "FARM_ACT_MIRROR",
+		"max_distance": 2.4,
+		"min_facing_dot": 0.0
 	}
 ]

@@ -15,6 +15,7 @@ func build_all() -> void:
 	_build_board()
 	_build_upgrade_site()
 	_build_camp()
+	_build_mirror()
 	_build_dungeon_entrance()
 
 
@@ -80,6 +81,9 @@ func _refresh_station_menu() -> void:
 func _on_menu_pressed(id: String) -> void:
 	if _open_station_id == "__board__":
 		_on_board_pressed(id)
+		return
+	if _open_station_id == "__mirror__":
+		_on_mirror_pressed(id)
 		return
 	if _open_station_id == "__camp__":
 		_on_camp_pressed(id)
@@ -522,3 +526,54 @@ func _follow_companion(delta: float) -> void:
 	if companion_node.global_position.distance_to(target) > 8.0:
 		companion_node.global_position = target   # pindah wilayah: langsung menyusul
 	companion_node.global_position = companion_node.global_position.lerp(target, clampf(delta * 4.0, 0.0, 1.0))
+
+
+# --- Cermin kustomisasi karakter (SEMENTARA) ---
+
+func _build_mirror() -> void:
+	var cfg: Dictionary = DataRegistry.get_row("character_config", "default")
+	var node := Node3D.new()
+	node.name = "Mirror"
+	node.position = Vector3(float(cfg["x"]), 0.0, float(cfg["z"]))
+	var mesh := MeshInstance3D.new()
+	var box := BoxMesh.new()
+	box.size = Vector3(1.0, 1.8, 0.15)
+	mesh.mesh = box
+	mesh.position.y = 0.9
+	var mat := StandardMaterial3D.new()
+	mat.albedo_color = Color(0.7, 0.85, 0.95)
+	mesh.material_override = mat
+	node.add_child(mesh)
+	var label := Label3D.new()
+	label.text = "UJI: " + tr(str(cfg["name_key"]))
+	label.pixel_size = 0.005
+	label.position = Vector3(0, 2.3, 0)
+	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	node.add_child(label)
+	var it := Interactable.new()
+	it.interaction_type = "mirror"
+	node.add_child(it)
+	it.set_meta("is_mirror", true)
+	w.add_child(node)
+	w._markers.append({"node": node, "kind": "npc", "region": "region_village"})
+
+
+func _open_mirror() -> void:
+	_open_station_id = "__mirror__"
+	GameTime.clock.pause("menu")
+	w.player.set_physics_process(false)
+	_refresh_mirror()
+
+
+func _refresh_mirror() -> void:
+	var rows: Array = []
+	for g in w.farming.character.groups():
+		var gid := str(g["id"])
+		rows.append({"id": gid, "text": "%s: #%d / %d  (%s)" % [tr(str(g["label_key"])), w.farming.character.choice_index(gid) + 1, (g["choices"] as Array).size(), str(g["choices"][w.farming.character.choice_index(gid)])], "enabled": true})
+	w.hud.show_menu(tr("CHAR_MIRROR"), rows)
+	w.refresh_farm_visuals()
+
+
+func _on_mirror_pressed(id: String) -> void:
+	w.farming.character.cycle(id)
+	_refresh_mirror()

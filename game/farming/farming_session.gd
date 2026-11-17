@@ -32,6 +32,7 @@ var achievements: AchievementState
 var festivals: FestivalCalendar
 var upgrades: UpgradeState
 var companions: CompanionState
+var character: CharacterState
 var _base_slots := 0
 var recipes: Array = []
 var stations: Array = []
@@ -57,6 +58,7 @@ func _init(clock: GameClock, items: Array, crops: Array, plot_ids: Array, config
 	festivals = FestivalCalendar.new(extras.get("festivals", []))
 	upgrades = UpgradeState.new(extras.get("upgrades", []))
 	companions = CompanionState.new(extras.get("companions", []))
+	character = CharacterState.new(extras.get("character_options", []))
 	recipes = extras.get("recipes", [])
 	stations = extras.get("stations", [])
 	for sh in extras.get("shops", []):
@@ -101,6 +103,7 @@ func reset() -> void:
 	festivals.reset()
 	upgrades.reset()
 	companions.reset()
+	character.reset()
 	_apply_upgrades()
 	for id in vitality.ids():
 		vitality.restore_full(id)
@@ -160,7 +163,7 @@ func preview(plot_id: String) -> Dictionary:
 
 
 func to_dict() -> Dictionary:
-	return {"v": SAVE_VERSION, "world_seed": world_seed, "vitality": vitality.to_dict(), "livestock": livestock.to_dict(), "fishing_casts": fishing_casts_today, "economy": economy.to_dict(), "gather": gather.to_dict(), "combat": combat.to_dict(), "quests": quests.to_dict(), "dungeon": dungeon.to_dict(), "achievements": achievements.to_dict(), "festivals": festivals.to_dict(), "upgrades": upgrades.to_dict(), "companions": companions.to_dict(), "inventory": inventory.to_dict(), "grid": grid.to_dict()}
+	return {"v": SAVE_VERSION, "world_seed": world_seed, "vitality": vitality.to_dict(), "livestock": livestock.to_dict(), "fishing_casts": fishing_casts_today, "economy": economy.to_dict(), "gather": gather.to_dict(), "combat": combat.to_dict(), "quests": quests.to_dict(), "dungeon": dungeon.to_dict(), "achievements": achievements.to_dict(), "festivals": festivals.to_dict(), "upgrades": upgrades.to_dict(), "companions": companions.to_dict(), "character": character.to_dict(), "inventory": inventory.to_dict(), "grid": grid.to_dict()}
 
 
 ## Terapkan efek upgrade (slot tas, meter maksimum) dari himpunan upgrade yang dimiliki.
@@ -174,17 +177,24 @@ func _apply_upgrades() -> void:
 
 ## Semua-atau-tidak, termasuk upgrade (ukuran tas/meter bergantung padanya, jadi diterapkan dulu).
 func from_dict(data: Dictionary) -> bool:
-	if typeof(data.get("upgrades", {})) != TYPE_DICTIONARY or typeof(data.get("companions", {})) != TYPE_DICTIONARY:
+	if typeof(data.get("upgrades", {})) != TYPE_DICTIONARY or typeof(data.get("companions", {})) != TYPE_DICTIONARY or typeof(data.get("character", {})) != TYPE_DICTIONARY:
 		return false
 	var backup := to_dict()
+	if data.has("character"):
+		if not character.from_dict(data["character"]):
+			return false
+	else:
+		character.reset()
 	if data.has("companions"):
 		if not companions.from_dict(data["companions"]):
+			character.from_dict(backup["character"])
 			return false
 	else:
 		companions.reset()
 	if data.has("upgrades"):
 		if not upgrades.from_dict(data["upgrades"]):
 			companions.from_dict(backup["companions"])
+			character.from_dict(backup["character"])
 			return false
 	else:
 		upgrades.reset()
@@ -193,6 +203,7 @@ func from_dict(data: Dictionary) -> bool:
 		return true
 	upgrades.from_dict(backup["upgrades"])
 	companions.from_dict(backup["companions"])
+	character.from_dict(backup["character"])
 	_apply_upgrades()
 	inventory.from_dict(backup["inventory"])
 	vitality.from_dict(backup["vitality"])
