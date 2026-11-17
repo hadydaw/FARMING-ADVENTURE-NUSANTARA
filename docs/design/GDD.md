@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.23 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.24 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -49,7 +49,7 @@ Rincian mekanik tiap aktivitas ada di bagian 6 dan **belum ditetapkan**.
 **Ditetapkan:** Android, landscape, layar sentuh (touchscreen).
 
 **[BELUM DITETAPKAN]:**
-- Skema kontrol (joystick virtual, tap-to-move, tombol aksi, gestur) — harus mampu menampung seluruh aksi pertarungan D-013 (serang/combo, skill, dodge, block, parry) dan memenuhi standar UI D-031 (nyaman untuk sentuhan; ukuran dan posisi tombol dapat disesuaikan pemain; lihat 6.21).
+- Kontrol: arah sudah ditetapkan **Kontrol Hybrid** (D-034, lihat 6.24); jumlah/jenis tombol, gestur kamera, lock-on, dan dukungan kontroler belum. Harus memenuhi standar UI D-031 dan menampung seluruh aksi pertarungan D-013 (serang/combo, skill, dodge, block, parry).
 - Kamera: arah sudah ditetapkan **Kamera Adaptif** (D-033, lihat 6.23); sudut, jarak, batas, dan skema kontrol kamera rinci belum.
 - Dukungan kontroler eksternal.
 
@@ -377,6 +377,19 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 
 **[BELUM DITETAPKAN]:** sudut dan jarak tiap konteks, batas zoom/rotasi, skema kontrol sentuh kamera, penargetan/lock-on, kamera di ruang sempit (bangunan, dungeon), tabrakan kamera dengan objek, mode rumah/dekorasi, aksesibilitas, efek guncangan dan sinematik, dukungan kontroler. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
+### 6.24 Metode Kontrol Karakter Android — D-034, LOCKED (Kontrol Hybrid)
+**Ditetapkan:**
+- **Virtual joystick** sebagai kontrol gerakan utama.
+- **Tombol aksi kontekstual** sesuai aktivitas (farming, interaksi, eksplorasi, combat).
+- **Tap-to-move** sebagai opsi untuk aktivitas/situasi yang sesuai.
+- Ketiga metode **tidak saling mengganggu**.
+- Tata letak nyaman di **Android landscape** dan **berbagai ukuran layar**.
+- Pengaturan **ukuran, posisi, dan sensitivitas** kontrol jika memungkinkan (selaras D-031).
+- **Terintegrasi dengan Kamera Adaptif** (D-033); perhatikan performa (Godot 4.7.2, GL Compatibility).
+- Terkait: D-004, D-013, D-023, D-028, D-031, D-033.
+
+**[BELUM DITETAPKAN]:** jumlah/jenis/ikon tombol aksi, situasi tap-to-move dan cara beralih, jenis joystick, kontrol kamera bersama joystick, penargetan/lock-on, gestur tambahan, kontroler/keyboard, rentang sensitivitas, aksesibilitas (satu tangan, tahan vs ketuk), getaran. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 
 **Ditetapkan (D-014, Single-Player Online):**
@@ -400,7 +413,7 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 Urutan usulan pembahasan bersama ChatGPT (dari yang paling memengaruhi arsitektur):
 
 1. ~~Multiplayer~~ (D-014 terkunci: Single-Player Online).
-2. ~~Pertarungan~~ (D-013 terkunci); sisanya: detail aturan combat dan kontrol sentuh (kamera: D-033 terkunci).
+2. ~~Pertarungan~~ (D-013 terkunci); sisanya: detail aturan combat (kamera D-033 dan kontrol D-034 terkunci).
 3. Struktur dunia dan wilayah (ukuran, loading, peta).
 4. ~~Sistem kehidupan~~ (D-015 terkunci); sisanya: detail aturan (musim, waktu, stamina, ekonomi, resep, festival).
 5. ~~Dungeon~~ (D-016 terkunci: tetap + acak); sisanya: detail loot, boss, kesulitan.

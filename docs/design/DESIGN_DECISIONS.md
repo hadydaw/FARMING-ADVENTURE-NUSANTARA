@@ -424,6 +424,20 @@ Pilihan: **D. Kamera Adaptif.** Ketentuan:
 Hubungan (tidak mengubah isi keputusan lain): platform dan orientasi (**D-004**), gaya visual (**D-008**), pertarungan (**D-013**; penargetan/kamera saat bertarung yang terbuka di sana kini mengikuti keputusan ini), dungeon (**D-016**), pertanian (**D-023**), rumah/bangunan (**D-027**), eksplorasi (**D-028**), cuaca/waktu (**D-030**), UI dan kontrol sentuh (**D-031**), audio posisional (**D-032**).
 **Terbuka:** sudut dan jarak kamera tiap konteks, rentang batas zoom dan rotasi, skema kontrol sentuh konkret untuk kamera (gestur/tombol/stik), penargetan dan lock-on saat combat, perilaku kamera di dalam bangunan/dungeon sempit, penanganan tabrakan kamera dengan objek, mode kamera rumah/dekorasi, aksesibilitas (mis. kurangi guncangan), efek guncangan/sinematik cerita dan boss, dukungan kontroler. Implementasi kamera belum dimulai. ID D-033 tersedia saat dicatat (tanpa bentrokan).
 
+### D-034 — Metode Kontrol Karakter Android *(APPROVED / LOCKED, 2026-11-17, Tahap 24)*
+Pilihan: **D. Kontrol Hybrid.** Ketentuan:
+1. Virtual joystick sebagai kontrol gerakan utama.
+2. Tombol aksi kontekstual yang menyesuaikan aktivitas (farming, interaksi, eksplorasi, combat).
+3. Opsi tap-to-move untuk aktivitas atau situasi yang sesuai.
+4. Ketiga metode tidak saling mengganggu.
+5. Tata letak nyaman di Android landscape dan mendukung berbagai ukuran layar.
+6. Pengaturan ukuran, posisi, dan sensitivitas kontrol jika memungkinkan.
+7. Terintegrasi dengan Kamera Adaptif (D-033).
+8. Mempertimbangkan performa Godot 4.7.2 dan GL Compatibility.
+
+Hubungan (tidak mengubah isi keputusan lain): platform dan orientasi (**D-004**), pertarungan (**D-013**; kontrol sentuh untuk aksi combat yang terbuka di sana kini mengikuti keputusan ini), pertanian (**D-023**), eksplorasi (**D-028**), UI dan pengaturan tombol (**D-031**), kamera (**D-033**).
+**Terbuka:** jumlah, jenis, dan ikon tombol aksi tiap konteks; daftar situasi tap-to-move dan cara beralih/mengaktifkannya; jenis joystick (tetap/mengambang); cara mengontrol kamera bersama joystick (gestur/stik/tombol); kontrol penargetan dan lock-on; gestur tambahan; dukungan kontroler/keyboard; rentang sensitivitas; aksesibilitas (mode satu tangan, tahan vs ketuk); getaran (haptic). Implementasi kontrol belum dimulai. ID D-034 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

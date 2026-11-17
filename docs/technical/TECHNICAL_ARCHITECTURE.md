@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.23 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.24 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -315,6 +315,17 @@ Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 - **Pengujian:** uji headless untuk batas clamp zoom/rotasi dan kelengkapan profil per konteks; uji perangkat nyata untuk kenyamanan dan FPS dilakukan nanti.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
+### 4u. Implikasi Arsitektur dari D-034 (hanya catatan; belum diimplementasikan)
+
+- **Satu lapisan input terpadu:** joystick virtual, tombol aksi, dan tap-to-move semuanya menghasilkan **Input Action / perintah gerak** yang sama (§7) ke pengontrol karakter; logika game tidak tahu sumber input. Ini juga mendasari dukungan kontroler/keyboard dan uji otomatis.
+- **Pemisahan area sentuh:** tiap sentuhan dilacak per *touch index* dan dimiliki satu kontrol sejak awal sampai lepas (joystick, tombol, atau dunia/tap-to-move), sehingga multi-touch tidak saling mengganggu; zona joystick/tombol menjadi prioritas di atas area tap dunia, dan ketukan dibedakan dari seretan kamera dengan ambang jarak/waktu.
+- **Tap-to-move:** ketukan di dunia memicu pencarian jalur ke titik (navigasi/NavigationServer, ringan); input joystick langsung **membatalkan** gerak otomatis; hanya aktif pada konteks yang mengizinkan (data per konteks).
+- **Tombol aksi kontekstual:** set tombol per konteks (jelajah, farming, interaksi, combat, dll.) sebagai data, memakai manajer konteks UI (§4r); aksi yang ditampilkan mengikuti objek/target terdekat. Tata letak default per konteks dengan pengaturan ukuran/posisi/transparansi dan sensitivitas sebagai **pengaturan pemain**, bukan save game (selaras D-031, D-032, D-033).
+- **Integrasi kamera:** input kamera (zoom/rotasi) memakai Input Action terpisah dan tidak bentrok dengan joystick; arah gerak joystick relatif terhadap kamera adaptif (§4t) dan tetap konsisten saat kamera beralih agar orientasi tidak hilang.
+- **Performa:** pemrosesan input ringan, tanpa alokasi per frame; kontrol digambar sebagai Control sederhana (sedikit draw call, §3); *dead zone* dan kurva sensitivitas dapat diatur.
+- **Pengujian:** uji headless untuk pemetaan Input Action, pembatalan tap-to-move oleh joystick, dan kepemilikan sentuhan multi-touch; kenyamanan diuji di perangkat nyata nanti.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
 ## 5. Penyimpanan Progres
 
 Implementasi awal: `game/core/save_service.gd` (autoload `SaveService`).
@@ -337,7 +348,7 @@ Implementasi awal: `game/core/save_service.gd` (autoload `SaveService`).
 
 - `emulate_mouse_from_touch` aktif agar kontrol UI standar berfungsi dengan sentuhan.
 - Orientasi: `sensor_landscape` (landscape normal dan terbalik mengikuti sensor).
-- Skema kontrol gameplay (joystick virtual, aksi, gestur kamera) **menunggu keputusan desain** (kamera adaptif sudah diputuskan, D-033, lihat §4t); akan dibangun sebagai scene UI terpisah dan dipetakan ke Input Action, sehingga mendukung kontroler/keyboard untuk uji.
+- Skema kontrol gameplay: **Kontrol Hybrid** sudah diputuskan (D-034, lihat §4u); detail tombol dan gestur kamera menunggu desain (kamera adaptif: D-033, §4t); akan dibangun sebagai scene UI terpisah dan dipetakan ke Input Action, sehingga mendukung kontroler/keyboard untuk uji.
 
 ## 8. Backend dan Online
 

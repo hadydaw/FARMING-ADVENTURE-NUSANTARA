@@ -173,3 +173,9 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - D-033 (Kamera Adaptif, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
 - GDD §6.23 baru dan bagian kamera di §4 diperbarui (v0.23); Technical Architecture §4t ditambahkan dan §7 diberi rujukan (v0.23; catatan saja: camera rig berbasis profil per konteks, transisi halus, zoom/rotasi terbatas sebagai pengaturan pemain, batas performa GL Compatibility). Hubungan dengan D-004, D-008, D-013, D-016, D-023, D-027 sampai D-032 dicatat tanpa mengubah isinya.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 24.
+
+## 2026-11-17 (24) — D-034 Metode Kontrol Karakter Android dicatat
+
+- D-034 (Kontrol Hybrid, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
+- GDD §6.24 baru dan bagian kontrol di §4 diperbarui (v0.24); Technical Architecture §4u ditambahkan dan §7 diperbarui (v0.24; catatan saja: lapisan input terpadu, kepemilikan sentuhan multi-touch, pembatalan tap-to-move oleh joystick, tombol kontekstual per konteks, integrasi kamera). Hubungan dengan D-004, D-013, D-023, D-028, D-031, D-033 dicatat tanpa mengubah isinya.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 25.
