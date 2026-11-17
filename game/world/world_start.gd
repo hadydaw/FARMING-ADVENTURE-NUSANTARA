@@ -40,6 +40,7 @@ func _ready() -> void:
 	_build_stations()
 	_build_gather_nodes()
 	_build_monsters()
+	_build_board()
 	Events.interaction_performed.connect(_on_interacted)
 
 
@@ -67,6 +68,8 @@ func _prompt_text() -> String:
 		return ""
 	if sensor.current.has_meta("station_id"):
 		return tr("FARM_ACT_CRAFT") + ": " + tr(str(sensor.current.get_meta("label_key", "")))
+	if sensor.current.has_meta("is_board"):
+		return tr("FARM_ACT_BOARD")
 	if sensor.current.has_meta("spawn_id"):
 		return tr("FARM_ACT_ATTACK") + ": " + tr(str(sensor.current.get_meta("label_key", "")))
 	if sensor.current.has_meta("gather_id"):
@@ -101,6 +104,9 @@ func _on_interacted(target: Node, _actor: Node) -> void:
 		return
 	if target.has_meta("station_id"):
 		_open_station(str(target.get_meta("station_id")))
+		return
+	if target.has_meta("is_board"):
+		_open_board()
 		return
 	if target.has_meta("spawn_id"):
 		_attack(str(target.get_meta("spawn_id")))
@@ -308,7 +314,8 @@ func _build_farm() -> void:
 		"animals": DataRegistry.rows("animals"), "livestock_config": DataRegistry.get_row("livestock_config", "default"),
 		"economy_config": DataRegistry.get_row("economy_config", "default"), "item_prices": DataRegistry.rows("item_prices"), "shops": DataRegistry.rows("shops"),
 		"gather_nodes": DataRegistry.rows("gather_nodes"), "recipes": DataRegistry.rows("recipes"), "stations": DataRegistry.rows("crafting_stations"),
-		"monsters": DataRegistry.rows("monsters"), "monster_spawns": DataRegistry.rows("monster_spawns"), "combat_config": DataRegistry.get_row("combat_config", "default")})
+		"monsters": DataRegistry.rows("monsters"), "monster_spawns": DataRegistry.rows("monster_spawns"), "combat_config": DataRegistry.get_row("combat_config", "default"),
+		"quests": DataRegistry.rows("quests"), "guild_config": DataRegistry.get_row("guild_config", "default")})
 	farming.sleep.finished.connect(_on_woke_up)
 	_build_bed()
 	_build_pond()
@@ -1065,6 +1072,9 @@ func _refresh_station_menu() -> void:
 
 
 func _on_menu_pressed(id: String) -> void:
+	if _open_station_id == "__board__":
+		_on_board_pressed(id)
+		return
 	if _open_station_id == "":
 		return
 	var r := farming.craft(id)
@@ -1195,4 +1205,67 @@ func _attack(spawn_id: String) -> void:
 		_place_player("region_village", 0.0, 4.0)
 	hud.show_message(msg)
 	_refresh_monsters()
+	refresh_farm_visuals()
+
+
+# --- Papan guild + quest (SEMENTARA) ---
+
+func _build_board() -> void:
+	var b: Dictionary = DataRegistry.get_row("guild_config", "default")["board"]
+	var node := Node3D.new()
+	node.name = "GuildBoard"
+	node.position = Vector3(float(b["x"]), 0.0, float(b["z"]))
+	var mesh := MeshInstance3D.new()
+	var box := BoxMesh.new()
+	box.size = Vector3(1.8, 1.6, 0.2)
+	mesh.mesh = box
+	mesh.position.y = 1.0
+	var mat := StandardMaterial3D.new()
+	mat.albedo_color = Color(0.55, 0.4, 0.2)
+	mesh.material_override = mat
+	node.add_child(mesh)
+	var label := Label3D.new()
+	label.text = "UJI: " + tr("BOARD_TITLE")
+	label.pixel_size = 0.005
+	label.position = Vector3(0, 2.2, 0)
+	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	node.add_child(label)
+	var it := Interactable.new()
+	it.interaction_type = "board"
+	node.add_child(it)
+	it.set_meta("is_board", true)
+	add_child(node)
+	_markers.append({"node": node, "kind": "shop", "region": "region_village"})
+
+
+func _open_board() -> void:
+	_open_station_id = "__board__"
+	GameTime.clock.pause("menu")
+	player.set_physics_process(false)
+	_refresh_board()
+
+
+func _refresh_board() -> void:
+	var rows: Array = []
+	var q := farming.quests
+	for id in q.ids():
+		var st := q.status(str(id), farming.inventory)
+		var def := q.quest(str(id))
+		var prog := ""
+		if st == "active" or st == "ready":
+			prog = "  %d/%d" % [q.progress(str(id), farming.inventory), int(def["count"])]
+		rows.append({"id": str(id), "text": "%s  [%s]%s" % [tr(str(def["name_key"])), tr("QUEST_STATE_" + st.to_upper()), prog], "enabled": st == "new" or st == "ready"})
+	hud.show_menu("%s - %s" % [tr("BOARD_TITLE"), tr(str(q.cfg["ranks"][q.rank()]["name_key"]))], rows)
+
+
+func _on_board_pressed(id: String) -> void:
+	var q := farming.quests
+	var r: Dictionary
+	if q.status(id, farming.inventory) == "ready":
+		r = farming.quest_turn_in(id)
+		hud.show_message(tr("QUEST_COMPLETED") if bool(r["ok"]) else tr("QUEST_NO_" + str(r["reason"]).to_upper()))
+	else:
+		r = farming.quest_accept(id)
+		hud.show_message(tr("QUEST_ACCEPTED") if bool(r["ok"]) else tr("QUEST_NO_" + str(r["reason"]).to_upper()))
+	_refresh_board()
 	refresh_farm_visuals()

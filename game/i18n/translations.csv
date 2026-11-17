@@ -258,3 +258,25 @@ COMBAT_NO_NO_HEALTH,HP habis,No health
 COMBAT_NO_NOT_HERE,Monster tidak ada,No monster here
 COMBAT_NO_UNKNOWN,Tidak bisa menyerang,Cannot attack
 VIT_LEVEL,Lv,Lv
+FARM_ACT_BOARD,Papan Guild,Guild Board
+BOARD_TITLE,Papan Guild Uji,Test Guild Board
+QUEST_COLLECT_HERB,Kumpulkan Herbal Uji,Collect Test Herbs
+QUEST_DEFEAT_SLIME,Kalahkan Slime Uji,Defeat Test Slimes
+QUEST_COLLECT_GOO,Kumpulkan Lendir Uji,Collect Test Goo
+QUEST_DEFEAT_BOAR,Kalahkan Babi Hutan Uji,Defeat Test Boar
+RANK_0,Pemula,Novice
+RANK_1,Perunggu,Bronze
+RANK_2,Perak,Silver
+QUEST_STATE_NEW,Terima,Accept
+QUEST_STATE_ACTIVE,Berjalan,In progress
+QUEST_STATE_READY,Selesaikan,Turn in
+QUEST_STATE_DONE,Selesai,Done
+QUEST_STATE_LOCKED,Butuh peringkat lebih tinggi,Needs higher rank
+QUEST_ACCEPTED,Quest diterima,Quest accepted
+QUEST_COMPLETED,Quest selesai! Hadiah diterima,Quest complete! Reward received
+QUEST_NO_FULL,Quest aktif sudah penuh,Too many active quests
+QUEST_NO_LOCKED,Peringkat belum cukup,Rank too low
+QUEST_NO_NOT_READY,Belum memenuhi syarat,Not done yet
+QUEST_NO_INVENTORY_FULL,Tas penuh,Inventory full
+QUEST_NO_UNKNOWN,Quest tidak dikenal,Unknown quest
+QUEST_NO_TAKEN,Quest sudah diambil,Quest already taken

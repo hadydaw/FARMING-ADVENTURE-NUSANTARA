@@ -1,0 +1,25 @@
+[
+	{
+		"id": "default",
+		"provisional": true,
+		"max_active": 2,
+		"ranks": [
+			{
+				"points": 0,
+				"name_key": "RANK_0"
+			},
+			{
+				"points": 3,
+				"name_key": "RANK_1"
+			},
+			{
+				"points": 8,
+				"name_key": "RANK_2"
+			}
+		],
+		"board": {
+			"x": -3.0,
+			"z": -8.0
+		}
+	}
+]

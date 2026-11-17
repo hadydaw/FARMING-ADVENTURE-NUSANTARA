@@ -565,3 +565,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Simpan/muat: kunci "combat" opsional (save lama tetap termuat), rollback bila rusak.
 - Belum: animasi/serangan waktu-nyata, AI monster mengejar, status efek (D-059), equip senjata/armor, skill, boss, dungeon.
 - Uji: 23 berkas, 2208 pemeriksaan, 0 gagal; smoke test lulus. Uji perangkat fisik belum dilakukan.
+
+## 2026-11-17 (78) — Quest + papan guild + peringkat (D-037/D-017, teknis)
+
+- QuestState: jenis collect/defeat, progres defeat hanya setelah quest diterima, batas aktif, peringkat dari poin, hadiah semua-atau-tidak (tas penuh membatalkan serah), simpan/muat opsional (save lama tetap termuat) + rollback.
+- Papan guild uji di desa memakai menu daftar serbaguna di HUD. Data SEMENTARA generik; bukan quest/rank resmi (T-terkait tetap terbuka).
+- Belum: quest harian/berulang, penanda quest di peta, quest cerita, pemberi quest NPC, batas waktu.
+- Uji: 24 berkas, 2300+ pemeriksaan, 0 gagal; smoke test lulus.

@@ -24,6 +24,8 @@ const TABLES := {
 	"monsters": "res://game/data/monsters.json",
 	"monster_spawns": "res://game/data/monster_spawns.json",
 	"combat_config": "res://game/data/combat_config.json",
+	"quests": "res://game/data/quests.json",
+	"guild_config": "res://game/data/guild_config.json",
 	"regions": "res://game/data/regions.json",
 	"region_links": "res://game/data/region_links.json",
 	"economy_config": "res://game/data/economy_config.json",

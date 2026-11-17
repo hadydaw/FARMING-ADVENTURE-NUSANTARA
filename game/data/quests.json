@@ -1,0 +1,64 @@
+[
+	{
+		"id": "quest_collect_herb",
+		"provisional": true,
+		"name_key": "QUEST_COLLECT_HERB",
+		"type": "collect",
+		"target": "herb_test",
+		"count": 3,
+		"min_rank": 0,
+		"reward": {
+			"money": 40,
+			"exp": 6,
+			"points": 1
+		}
+	},
+	{
+		"id": "quest_defeat_slime",
+		"provisional": true,
+		"name_key": "QUEST_DEFEAT_SLIME",
+		"type": "defeat",
+		"target": "monster_slime_test",
+		"count": 2,
+		"min_rank": 0,
+		"reward": {
+			"money": 60,
+			"exp": 10,
+			"points": 2
+		}
+	},
+	{
+		"id": "quest_collect_goo",
+		"provisional": true,
+		"name_key": "QUEST_COLLECT_GOO",
+		"type": "collect",
+		"target": "drop_test_goo",
+		"count": 2,
+		"min_rank": 1,
+		"reward": {
+			"money": 50,
+			"exp": 8,
+			"points": 2,
+			"items": [
+				{
+					"item": "potion_test_health",
+					"count": 1
+				}
+			]
+		}
+	},
+	{
+		"id": "quest_defeat_boar",
+		"provisional": true,
+		"name_key": "QUEST_DEFEAT_BOAR",
+		"type": "defeat",
+		"target": "monster_boar_test",
+		"count": 1,
+		"min_rank": 1,
+		"reward": {
+			"money": 120,
+			"exp": 20,
+			"points": 4
+		}
+	}
+]

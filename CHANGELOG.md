@@ -5,6 +5,7 @@ Format mengikuti [Keep a Changelog](https://keepachangelog.com/id-ID/1.1.0/); ve
 ## [Belum dirilis]
 
 ### Ditambahkan
+- Quest dan guild dasar (sementara): papan guild uji, 4 quest (kumpul/kalahkan), batas quest aktif, peringkat dari poin, hadiah uang/EXP/item semua-atau-tidak, simpan/muat dengan rollback; 44 uji tambahan.
 - Pertarungan dasar + EXP/level (sementara): 2 monster uji dengan drop deterministik, 4 titik spawn di hutan/kawasan kuno, serangan tukar-pukul bertarif stamina, pingsan (uang -10%, HP pulih separuh, kembali ke desa), pedang uji menambah serangan, simpan/muat; 40 uji tambahan.
 - Crafting/memasak/ramuan dan pengumpulan (sementara): 3 stasiun uji, 5 resep, node herbal/batu per wilayah dengan respawn harian, pakai item dari Tas (makanan/ramuan memulihkan meter), menu daftar serbaguna di HUD; 45 uji tambahan.
 - Peta dan wilayah (sementara): 3 wilayah uji dengan gerbang, penguncian wilayah, minimap + peta penuh, wilayah ditemukan, simpan membawa wilayah/posisi; 129 uji tambahan.
