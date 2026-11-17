@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.56 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.57 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -809,6 +809,26 @@ Memperluas quest dan bahasa kondisi/efek (§4x), dialog (§4y), hubungan sosial 
 - **Update konten (D-048):** bab, cabang, dan lore baru ditambah sebagai data baru dengan ID stabil; save lama tetap valid (konten baru tidak mengubah cabang yang sudah diambil); validator memeriksa referensi, jalur maju, dan kelengkapan terjemahan.
 - **Performa (D-052):** pemuatan konten cerita sesuai kebutuhan (streaming §4aj, anggaran §4ai); evaluasi syarat berbasis kejadian, bukan per frame.
 - **Pengujian (D-049):** uji headless untuk validitas graf (tanpa simpul yatim atau buntu), setiap ending dapat dicapai (bila ditetapkan), pilihan tersimpan dan terpulihkan, determinisme, idempotensi, migrasi save, konsistensi konsekuensi lintas sistem, serta ketahanan terhadap interupsi dan perubahan jam perangkat.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§4aw; detail belum final).
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4ay. Implikasi Arsitektur dari D-068 (hanya catatan; belum diimplementasikan; tidak ada angka)
+
+Memperluas `StoryState` (§4ax), dungeon (§4c), guild (§4d), monster/companion (§4f), equipment (§4g), ekonomi (§4h), eksplorasi (§4o, §4ak), event (§4p), achievement dan koleksi (§4ae), `GameClock` (§4al), pipeline hari (§4am), cloud save (§5a), live ops dan versi konten (§4ag). Hanya rancangan; tidak ada daftar tantangan, hadiah, atau angka.
+- **Status "cerita selesai" sebagai data:** penyelesaian cerita (§4ax) hanya menandai flag/bab di `StoryState` dan membuka tag *fase* dunia (mis. `fase_pascacerita`) lewat efek data; **tidak ada pemisahan save atau mode permainan terpisah**; semua sistem tetap berjalan di save yang sama. Perubahan dunia setelah ending (bila ada) adalah efek data yang belum ditetapkan.
+- **`EndgameChallenge` sebagai data:** tantangan berkelanjutan (dungeon lanjutan, boss legendaris, monster langka, tantangan Guild, penjelajahan rahasia, koleksi) berupa definisi ber-ID stabil (§4ag) dengan jenis (tag), syarat buka (kondisi data §4x, progres, rank §4d), siklus (sekali, berulang, reset menurut `GameClock`), dan hasil (efek data). Tidak ada tantangan yang dikodekan keras; penambahan lewat update konten (D-048).
+- **Dungeon dan kesulitan lanjutan (§4c):** tingkat kesulitan sebagai parameter data (modifier musuh/aturan) di atas dungeon yang ada; pembangkitan prosedural, bila dipakai, deterministik dari seed (tanggal) sehingga muat ulang save tidak mengubah hasil; nilai tidak ditetapkan.
+- **Boss legendaris dan monster langka:** definisi spawn/perilaku sebagai data (§4f, §4a) dengan syarat waktu/wilayah/event; ketersediaan dihitung dari `GameClock` dan sinyal hari; reset dan cooldown sebagai data.
+- **Wilayah tersembunyi dan rahasia:** memakai status penemuan monoton (§4ak) tanpa kebocoran; reruntuhan kuno dan dungeon rahasia sebagai objek dunia data (§4o) dengan lore berasal dari §4ax/§4aq.
+- **Koleksi dan hadiah langka:** memakai koleksi/achievement (§4ae) dan inventori (§4w); hadiah lewat tabel hadiah data dengan transaksi idempoten (ID transaksi) agar tidak digandakan; nilai tidak ditetapkan; bukan sarana menjual keunggulan (D-047).
+- **Hubungan dan keluarga pascacerita:** `Relationship` dan `FamilyState` (§4aw) tetap berjalan; endgame hanya menambah kait data (event/quest), tidak mengubah modelnya.
+- **Ekonomi (§4h):** tujuan baru dapat menimbulkan sumber dan penyerap (sink) dalam ekonomi; mekanisme sebagai data; validasi server untuk operasi bernilai tinggi (§5b); angka tidak ditetapkan.
+- **Single-player online (D-014, §5a, §5b):** tantangan dihitung dan dicatat per akun; tidak ada leaderboard/kompetisi antarpemain yang diasumsikan; bila kelak diputuskan, harus selaras D-014 dan keamanan D-050.
+- **Waktu dan koneksi:** siklus dan reset memakai `GameClock` (bukan jam perangkat), dihitung per hari-selisih deterministik; muat ulang tidak mengulang hadiah; perilaku offline dan catch-up terbuka (D-029); gangguan koneksi menunggu **D-051** (isi belum diterima, tidak dikarang).
+- **Save/cloud (D-044):** keadaan tantangan, koleksi, dan flag pascacerita disimpan sebagai bagian save berversi (`section_version`), additive dan termigrasi; save sebelum cerita selesai tetap valid; ID di-deprecate tetap dikenali; komit atomik idempoten.
+- **Performa (D-052):** konten endgame dimuat sesuai kebutuhan (streaming §4aj); evaluasi syarat berbasis kejadian dan sinyal hari; pemrosesan berat dibagi per frame (§4am).
+- **Update konten (D-048):** tantangan, boss, wilayah, dan hadiah baru ditambah sebagai data baru; validator memeriksa referensi, tidak ada keadaan buntu atau hadiah ganda; terjemahan Indonesia/English lengkap.
+- **Pengujian (D-049):** uji headless untuk transisi fase pascacerita, idempotensi hadiah, siklus/reset terhadap `GameClock`, determinisme, tidak ada keadaan buntu, migrasi save lama, perlindungan data inti, serta ketahanan terhadap interupsi dan perubahan jam perangkat.
 - **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§4aw; detail belum final).
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 

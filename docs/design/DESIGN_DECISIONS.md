@@ -1169,6 +1169,37 @@ Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), sistem kehidupa
 
 **Terbuka (tidak diputuskan):** plot, tema, dan nada cerita; karakter utama; struktur dan jumlah bab; titik percabangan, jumlah dan syarat ending; isi lore peradaban kuno dan rahasia dunia; tempo cerita terhadap kehidupan harian; apakah ada batas waktu cerita dan cara menghindari tekanan; cara pemain meninjau pilihan dan kemungkinan mengulang/menyesuaikan; cerita setelah ending (lanjut bermain); cara menyampaikan (adegan, kamera D-033, audio D-032); arti "spiritual" (belum didefinisikan); detail romansa dan keluarga (terbuka di D-066). Tahap 35 (akun/login) tetap PENDING (P-006).
 
+### D-068 — Sistem Endgame dan Aktivitas Setelah Cerita Utama *(APPROVED / LOCKED, 2026-11-17, Tahap 59)*
+Pilihan: **D. Endless Adventure Hybrid Lengkap.** Sistem endgame memungkinkan pemain **melanjutkan petualangan setelah cerita utama selesai.** Ruang lingkup:
+1. Free play berkelanjutan: farming, beternak, memancing, memasak, berdagang, dan aktivitas kehidupan.
+2. Dungeon endgame dengan tantangan dan tingkat kesulitan lanjutan.
+3. Boss legendaris, monster langka, dan tantangan Guild tingkat tinggi.
+4. Eksplorasi wilayah tersembunyi, reruntuhan kuno, dan dungeon rahasia.
+5. Koleksi item, monster, perlengkapan, dan hadiah langka.
+6. Perkembangan hubungan, pasangan, dan keluarga setelah cerita utama.
+7. Tantangan dunia berkelanjutan yang memberi tujuan baru.
+8. Integrasi dengan sistem dunia, kalender, NPC, ekonomi, Guild, dungeon, dan narasi yang sudah diputuskan.
+
+Ketentuan:
+- **Tidak mengubah keputusan resmi Tahap 1 sampai Tahap 58.**
+- **Tidak bertentangan dengan sistem single-player online** (D-014).
+- **Tidak ada detail cerita, hadiah, angka keseimbangan, atau mekanik final** tanpa desain lanjutan.
+- Penguncian desain; implementasi belum dimulai.
+
+**Prinsip (dasar, tanpa isi final):**
+- **Dunia tetap berlanjut setelah cerita utama:** menyelesaikan cerita (D-067) tidak mengakhiri permainan; pemain dapat terus bermain di save yang sama dengan semua aktivitas kehidupan dan petualangan tetap tersedia. Bagaimana kondisi dunia setelah ending berbeda dari sebelumnya belum ditetapkan.
+- **Endgame memakai sistem yang sudah ada:** dungeon (D-016), guild (D-017), companion/monster (D-019), equipment (D-020), ekonomi (D-021), eksplorasi (D-028), event dunia (D-029), achievement dan koleksi (D-046), dan lainnya; tidak membuat sistem paralel.
+- **Tujuan baru, bukan pemaksaan:** tantangan lanjutan memberi tujuan, tetapi pemain bebas memilih (tidak dipaksa mengikuti semua tantangan); aktivitas kehidupan tetap bermakna tanpa harus mengejar tantangan tertinggi.
+- **Progres dan save aman:** endgame tidak boleh merusak progres atau save; status penyelesaian cerita dan pilihan tetap tersimpan dan konsisten (D-044, D-067); tidak ada keadaan buntu.
+- **Adil dan kosmetik:** hadiah langka tidak boleh menjadi cara membeli keunggulan (monetisasi hanya kosmetik, D-047); keamanan dan fitur dasar tetap gratis (D-050).
+- **Waktu dan konsistensi:** semua tantangan berkelanjutan mengikuti waktu permainan internal dan kalender (D-055), tidak jam perangkat; hasil acak deterministik dari seed; perilaku koneksi terganggu mengikuti D-051 (**isi belum diterima**, tidak dikarang).
+- **Tetap single-player online:** tidak ada leaderboard antarpemain atau kompetisi langsung yang ditetapkan di sini; bila kelak diinginkan, itu keputusan terpisah dan harus selaras dengan D-014.
+- **Konten bertambah lewat live ops** (D-048) tanpa merusak save lama.
+
+Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), pertarungan (**D-013**), single-player online (**D-014**), sistem kehidupan (**D-015**), dungeon (**D-016**), guild (**D-017**), perkembangan karakter (**D-018**), companion/monster (**D-019**), equipment (**D-020**), ekonomi (**D-021**), NPC (**D-022**), pertanian sampai alkimia (**D-023** sampai **D-026**), rumah (**D-027**), eksplorasi (**D-028**), event dunia (**D-029**), musim/cuaca (**D-030**), UI/HUD (**D-031**), quest (**D-037**), hubungan sosial (**D-039**), NPC hidup (**D-040**), save/cloud (**D-044**), achievement (**D-046**), monetisasi (**D-047**), live ops (**D-048**), QA (**D-049**), keamanan (**D-050**), peta (**D-054**), waktu (**D-055**), kekalahan (**D-058**), status effect (**D-059**), ras (**D-060**), organisasi dan faksi (**D-061**, **D-062**, **D-063**), hukum (**D-064**), fenomena (**D-065**), romansa dan keluarga (**D-066**), cerita (**D-067**). **D-051** isinya belum diterima.
+
+**Terbuka (tidak diputuskan):** apa yang berubah di dunia setelah cerita selesai; daftar dan bentuk tantangan endgame; tingkat kesulitan dan skala (angka); boss legendaris dan monster langka (daftar, aturan); tantangan Guild tingkat tinggi dan hubungan dengan rank D-017; wilayah dan dungeon rahasia; daftar koleksi dan hadiah langka; sumber penghasil (sink) dan aturan ekonomi endgame; aturan pengulangan dan reset tantangan; apakah ada mode kesulitan tambahan atau new-game-plus; kelanjutan hubungan, pasangan, dan keluarga (detail terbuka di D-066); perilaku offline dan catch-up; arti "spiritual" (belum didefinisikan). Tahap 35 (akun/login) tetap PENDING (P-006).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

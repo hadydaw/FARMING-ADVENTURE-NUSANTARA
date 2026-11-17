@@ -418,3 +418,11 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
 - GDD §6.56 baru (v0.56); Technical Architecture §4ax ditambahkan (v0.56); catatan saja: `NarrativeGraph` sebagai data di atas quest/dialog/sosial yang ada, `StoryState` per-save yang deterministik, pilihan dan konsekuensi tercatat dan konsisten lintas sistem, jalur maju selalu ada, cerita berdampingan dengan kehidupan harian, rahasia tanpa kebocoran. Plot, karakter, bab, ending, dan percabangan sengaja tidak ditetapkan.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.
+
+## 2026-11-17 (57) — D-068 Sistem Endgame dan Aktivitas Setelah Cerita Utama dicatat
+
+- D-068 (Endless Adventure Hybrid Lengkap, LOCKED) dicatat sebagai **Tahap 59**; ID tersedia, tanpa bentrokan. **D-051 (Tahap 42) tetap dicadangkan**, isinya belum diterima; tidak ada isi yang dikarang. Arti "spiritual" **tetap tidak didefinisikan**.
+- Tidak ada dokumen desain dunia terpisah di `docs/`; dunia dicatat di GDD (§6.57 baru). Tidak dibuat dokumen baru. Keputusan Tahap 1 sampai 58 tidak diubah.
+- **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
+- GDD §6.57 baru (v0.57); Technical Architecture §4ay ditambahkan (v0.57); catatan saja: cerita selesai hanya menjadi flag/fase data di save yang sama (tanpa mode terpisah), `EndgameChallenge` berdata di atas dungeon/guild/boss/koleksi yang ada, siklus dan reset dari `GameClock`, hadiah idempoten, tanpa leaderboard antarpemain, selaras monetisasi kosmetik. Hadiah, angka kesulitan, dan daftar tantangan sengaja tidak ditetapkan.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.
