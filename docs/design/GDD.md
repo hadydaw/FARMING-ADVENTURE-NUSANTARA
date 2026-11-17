@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.39 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement, D-047 Monetisasi, D-048 Live Ops, D-049 QA) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.40 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement, D-047 Monetisasi, D-048 Live Ops, D-049 QA, D-050 Keamanan) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -617,6 +617,15 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - Terkait: O-001, O-004, P-005, D-013 sampai D-048 (sistem yang diuji), terutama D-031, D-034, D-044, D-045, D-047, D-048.
 
 **[BELUM DITETAPKAN]:** daftar perangkat uji dan versi Android minimum, tester dan pengumpulan laporan, target performa per kelas perangkat, definisi keparahan bug dan kriteria gate rinci, alat pelacak, cakupan otomatis wajib, uji emulator/perangkat dari CI, pelaporan crash dan telemetri, beta tertutup, konsep "spiritual" (belum didefinisikan). **Tidak ada implementasi sistem QA lengkap sebelum seluruh tahap desain selesai.**
+
+### 6.40 Keamanan dan Perlindungan Data Pemain — D-050, LOCKED (Security Hybrid Lengkap)
+**Ditetapkan:**
+- **Lima lapisan:** server-side validation (aktivitas dan data penting); perlindungan database dan data pemain; **anti-cheat** (manipulasi inventory, mata uang, atribut, transaksi, progres); **audit log** aktivitas penting; **security monitoring** untuk aktivitas mencurigakan.
+- **Fitur dasar untuk semua pemain**: **tanpa langganan atau biaya keamanan**; **biaya server dan database ditanggung pengelola game.**
+- **Monetisasi kosmetik (D-047) tidak berubah**; game tetap **single-player online** (D-014).
+- Terkait: D-014, D-018, D-021, D-036, D-037, D-039, D-044 sampai D-049, O-003, O-004.
+
+**[BELUM DITETAPKAN]:** tingkat validasi/otoritas server, tingkat penegakan terhadap kecurangan pribadi, daftar aksi wajib validasi, aturan deteksi dan ambang, tindakan dan banding, audit log (isi, retensi, akses), alat monitoring, anggaran operasional, enkripsi dan cadangan, kebijakan privasi dan hak data, hubungan dengan akun/login (Tahap 35 PENDING, P-006), pelaporan celah, konsep "spiritual" (belum didefinisikan). **Tidak ada implementasi keamanan sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

@@ -683,6 +683,24 @@ Pilihan: **D. QA Hybrid Lengkap.** Ketentuan:
 Hubungan (tidak mengubah isi keputusan lain): engine dan platform (**O-001**, **D-004**, **T-001** sampai **T-009**), aturan bukti dan definisi "selesai" di `DEVELOPMENT_RULES.md` (keputusan ini memperkuat, tidak mengubahnya), rilis dan penandatanganan (**O-004**, `BUILD_AND_RELEASE.md`, `SIGNING_GUIDE.md`), uji APK dev di HP (**P-005**, `TESTING_APK.md`), semua sistem game yang diuji (**D-013 sampai D-048**), terutama save dan cloud (**D-044**), update dan migrasi (**D-048**), kontrol dan UI (**D-031**, **D-034**, **D-045**), monetisasi (**D-047**).
 **Terbuka:** daftar perangkat uji fisik minimum dan matriks (kelas RAM/GPU, versi Android minimum yang didukung, rasio layar); siapa tester dan cara mengumpulkan laporan; target performa konkret (FPS, RAM, suhu, waktu muat) per kelas perangkat; definisi tingkat keparahan bug (kritis/tinggi/sedang/rendah) dan kriteria release gate rinci; alat pelacak bug dan test case (mis. GitHub Issues); cakupan otomatis yang wajib per sistem; cara menjalankan uji di emulator/perangkat dari CI (layanan farm perangkat atau tidak); pelaporan crash dan telemetri (privasi, akun P-006); kebijakan uji beta tertutup sebelum rilis publik; peran konsep "spiritual" (belum didefinisikan). Hasil uji perangkat fisik **P-005 tetap menunggu laporan pengguna** dan tidak dianggap lulus. Implementasi sistem QA lengkap belum dimulai (uji fondasi yang sudah ada di CI tidak diubah). ID D-049 tersedia saat dicatat (tanpa bentrokan). Tahap 35 (akun dan login, P-006) tetap PENDING.
 
+### D-050 — Sistem Keamanan dan Perlindungan Data Pemain *(APPROVED / LOCKED, 2026-11-17, Tahap 41)*
+Pilihan: **D. Security Hybrid Lengkap.** Ruang lingkup:
+1. **Server-side validation** untuk aktivitas dan data penting pemain.
+2. **Perlindungan database** dan data pemain.
+3. **Anti-cheat** untuk mendeteksi manipulasi inventory, mata uang, atribut karakter, transaksi, dan progres.
+4. **Audit log** untuk aktivitas penting.
+5. **Security monitoring** untuk mendeteksi aktivitas mencurigakan.
+
+Ketentuan penting:
+- Keamanan adalah **fitur dasar untuk semua pemain**.
+- **Tidak ada langganan bulanan atau biaya keamanan** yang dibayar pemain.
+- **Biaya operasional server dan layanan database ditanggung pengelola game.**
+- **Keputusan monetisasi kosmetik (D-047) tidak diubah.**
+- Game tetap **single-player online** (D-014).
+
+Hubungan (tidak mengubah isi keputusan lain): single-player online dan Cloud Save (**D-014**; tanpa multiplayer, kunjungan, co-op), Supabase (**O-003**), ekonomi (**D-021**), inventory (**D-036**), perkembangan karakter (**D-018**), quest (**D-037**), sosial (**D-039**), monetisasi kosmetik (**D-047**), save, konflik, dan idempotensi transaksi (**D-044**; keputusan ini menambah lapisan validasi/deteksi di atasnya), update dan migrasi (**D-048**), QA (**D-049**), pengaturan (**D-045**), achievement (**D-046**), serta aturan keamanan kredensial **O-004** (private keystore, rahasia di Secrets). Pernyataan lama bahwa checksum "bukan anti-curang" dan data klien tidak dipercaya untuk fitur ekonomi/rank (TECHNICAL_ARCHITECTURE §5, BACKEND_DESIGN §5) kini memiliki dasar keputusan.
+**Terbuka:** seberapa jauh simulasi dijalankan atau divalidasi di server (validasi masuk akal/batas dan invarian vs. otoritas penuh sisi server untuk operasi tertentu) — karena game single-player online, kecurangan murni pribadi tidak merugikan pemain lain, sehingga tingkat penegakan terhadap pemain yang hanya mengubah progres pribadi belum diputuskan (fokus awal: melindungi akun, transaksi/pembelian, integritas save, dan data apa pun yang dibagikan lewat server); daftar data dan aksi yang wajib divalidasi server; aturan deteksi dan ambang (mis. lonjakan mata uang, item mustahil, atribut di luar rentang, kecepatan progres tak wajar); tindakan terhadap pelanggaran (peringatan, pembatasan fitur tertentu, pemulihan data, penangguhan) dan proses banding agar tidak merugikan pemain jujur (false positive); isi, retensi, dan akses audit log serta kepatuhan privasi (data pribadi minimum); alat monitoring dan peringatan, serta siapa yang menanggapi; anggaran operasional (batas paket layanan, biaya validasi dan log yang bertambah seiring pemain — tanggung jawab pengelola; belum dihitung); enkripsi data saat disimpan, kebijakan cadangan dan pemulihan bencana; kebijakan privasi, persetujuan, hak pemain atas data (akses, hapus), dan proteksi usia; hubungan dengan akun/login (**Tahap 35, P-006, tetap PENDING**; tidak ada desain akun dibuat di sini); pelaporan celah keamanan; peran konsep "spiritual" (belum didefinisikan). Implementasi keamanan belum dimulai. ID D-050 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

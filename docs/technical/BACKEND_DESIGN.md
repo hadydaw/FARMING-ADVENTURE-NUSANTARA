@@ -1,6 +1,6 @@
 # Rancangan Backend — Farming Adventure Nusantara
 
-> **Versi:** 0.4 (+ D-014 Single-Player Online, D-044 Cloud Save) · **Status:** RANCANGAN. Supabase disetujui sebagai pilihan awal (O-003); belum ada kode server dan belum ada akun yang dibuat. Nakama ditunda. Implementasi baru setelah desain sistem online disepakati.
+> **Versi:** 0.5 (+ D-014 Single-Player Online, D-044 Cloud Save, D-050 Keamanan) · **Status:** RANCANGAN. Supabase disetujui sebagai pilihan awal (O-003); belum ada kode server dan belum ada akun yang dibuat. Nakama ditunda. Implementasi baru setelah desain sistem online disepakati.
 > Prinsip tetap (D-006): **GitHub bukan server game.** Backend adalah layanan terpisah.
 
 ## 1. Tujuan
@@ -72,6 +72,16 @@ Kunci unik `saves(player_id, slot)`. Akses dibatasi per pemain (Row Level Securi
 - Data pribadi minimum. Perlu kebijakan privasi sebelum rilis publik yang mengumpulkan akun.
 - Kunci/rahasia server disimpan di pengaturan penyedia dan GitHub Secrets, **tidak pernah** di repo.
 - Pembatasan laju (rate limit) dan validasi ukuran payload di server.
+
+## 6a. Konsekuensi D-050 (Keamanan dan Perlindungan Data; rancangan saja)
+
+- **Prinsip:** klien tidak dipercaya; validasi, audit, dan pemantauan di server; keamanan adalah fitur dasar untuk semua pemain, **tanpa biaya bagi pemain**; biaya layanan ditanggung pengelola. Tidak mengubah D-014 (single-player online) maupun D-047 (monetisasi kosmetik).
+- **Validasi di server:** tiap `push_save` dan permintaan memeriksa skema, ukuran, rentang, ID valid, dan **kewajaran perubahan** terhadap revisi sebelumnya memakai data konten berversi (`content_version`); operasi bernilai tinggi lewat **Edge Function** yang menerima niat dan menghitung hasil di server; penolakan tidak menimpa data sah.
+- **Database:** RLS pada semua tabel; peran terpisah (klien/fungsi server/admin) dengan hak minimum; constraint dan fungsi di database; tanpa SQL dinamis dari klien; enkripsi saat disimpan (penyedia) dan TLS saat transit; cadangan dan uji pemulihan; rotasi kunci; lingkungan dev/staging/prod terpisah dan **tanpa data produksi di lingkungan uji**.
+- **Audit log:** tabel append-only (waktu server, `user_id` pseudonim, jenis aksi, hasil, ID transaksi, versi, kode alasan) tanpa isi save penuh dan tanpa data pribadi berlebih; akses terbatas peran; klien tidak dapat menulis atau mengubahnya; retensi menunggu keputusan.
+- **Anti-cheat dan monitoring:** penanda anomali (invarian, laju, transaksi ganda, versi/tanda tangan ganjil, anomali waktu) disimpan sebagai sinyal untuk ditinjau dengan jalur pemulihan dan banding; metrik dan peringatan (penolakan validasi, lonjakan permintaan, penolakan RLS) ke pengelola; rate limit dan batas payload.
+- **Biaya:** validasi ringan di setiap push dan pemeriksaan berat hanya untuk operasi bernilai tinggi atau anomali; estimasi biaya dan batas paket layanan dihitung saat implementasi.
+- **Menunggu:** desain akun/login (Tahap 35, P-006, PENDING), kebijakan privasi dan hak data, ambang deteksi, tindakan terhadap pelanggaran, retensi log. Belum ada kode server, akun, atau proyek Supabase; tidak ada rahasia di repositori.
 
 ## 7. Lingkungan
 

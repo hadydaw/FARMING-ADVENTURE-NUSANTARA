@@ -285,3 +285,11 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). **P-005 (uji APK dev di HP) tetap menunggu laporan pengguna**; tidak dianggap lulus.
 - GDD §6.39 baru (v0.39); Technical Architecture §10a ditambahkan (v0.39; catatan saja: struktur uji headless, desain agar dapat diuji, uji otomatis dan integrasi per sistem, regresi, profiling CI dan perangkat fisik, pembedaan sumber bukti CI/emulator/perangkat fisik, format test case dan bug dengan tingkat keparahan, rancangan release gate, rencana integrasi GitHub Actions). Hubungan dengan O-001, O-004, P-005, D-013 sampai D-048 dicatat tanpa mengubah isinya.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 41 (Tahap 35 tetap PENDING).
+
+
+## 2026-11-17 (40) — D-050 Sistem Keamanan dan Perlindungan Data Pemain dicatat
+
+- D-050 (Security Hybrid Lengkap, LOCKED) dicatat sebagai **Tahap 41**; ID tersedia, tanpa bentrokan.
+- **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna.
+- GDD §6.40 baru (v0.40); Technical Architecture §5b ditambahkan (v0.40) dan `BACKEND_DESIGN.md` §6a (v0.5); catatan saja: model ancaman, validasi server berlapis (struktur/rentang, invarian dan kewajaran, operasi bernilai tinggi otoritatif lewat fungsi server), deteksi anti-cheat tanpa hukuman otomatis dengan jalur pemulihan dan banding, perlindungan database (RLS, hak minimum, lingkungan terpisah, enkripsi, cadangan, tanpa rahasia di repo), audit log append-only minim data pribadi, monitoring dan peringatan, pendekatan hemat biaya. Keamanan tanpa biaya bagi pemain; biaya operasional ditanggung pengelola. D-047 dan D-014 tidak diubah.
+- Tidak ada perubahan kode/gameplay/CI; tidak ada implementasi keamanan, akun, atau proyek Supabase. Menunggu keputusan Tahap 42 (Tahap 35 tetap PENDING).
