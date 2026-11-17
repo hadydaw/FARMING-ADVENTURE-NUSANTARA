@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.55 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.56 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -792,6 +792,24 @@ Memperluas model hubungan sosial (§4z), NPC dan kehidupan harian (§4i, §4aa),
 - **Update konten (D-048):** tahap, adegan, dan peristiwa baru sebagai data baru; validator memeriksa referensi, jalur transisi valid (tidak ada keadaan buntu), dan terjemahan lengkap.
 - **Pengujian (D-049):** uji headless untuk transisi tahap valid, perkembangan tersimpan dan terpulihkan, idempotensi peristiwa, konsistensi dengan jadwal/kalender, migrasi save lama (tanpa data hubungan romantis), dan ketahanan terhadap interupsi dan perubahan jam perangkat.
 - **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4ax. Implikasi Arsitektur dari D-067 (hanya catatan; belum diimplementasikan; tidak ada angka)
+
+Memperluas quest dan bahasa kondisi/efek (§4x), dialog (§4y), hubungan sosial (§4z), NPC hidup (§4aa), eksplorasi dan wilayah (§4o, §4ak), event (§4p), organisasi dan faksi (§4ar, §4as, §4at), hubungan romantis/keluarga (§4aw), `GameClock` (§4al), cloud save (§5a), versi konten (§4ag). Hanya rancangan; tidak ada plot, bab, atau ending.
+- **`NarrativeGraph` sebagai data:** cerita utama, bab, dan cabang berupa resource ber-ID stabil (§4ag): simpul (adegan/quest/event), tepi (syarat transisi sebagai kondisi data §4x), dan hasil (efek data). Tidak ada alur cerita yang dikodekan keras; bab dan ending adalah tag/simpul data sehingga jumlah dan bentuknya dapat berubah tanpa kode. Kategori "spiritual" tidak dibuat logikanya (belum didefinisikan).
+- **Satu sistem alur, bukan sistem terpisah:** quest utama memakai mesin quest yang sama (§4x), dialog memakai bahasa dialog (§4y), cerita NPC dan hubungan memakai model sosial (§4z, §4aw); narasi hanya menambahkan lapisan koordinasi dan penanda progres cerita.
+- **`StoryState` per-save:** flag, penanda bab, pilihan pemain, dan hasilnya disimpan sebagai bagian save berversi (`section_version`) dengan migrasi (§5a, D-044); pilihan dicatat dengan ID stabil, sumber, dan waktu permainan (bukan jam perangkat); pemuatan ulang tidak mengubah hasil (deterministik, seed+tanggal bila ada unsur acak); ID di-deprecate tetap dikenali.
+- **Konsekuensi konsisten dan terlacak:** setiap pilihan mendaftarkan efek data (hubungan §4z, standing/relasi §4as, kondisi wilayah §4at/§4o, hukum §4au, event §4p, quest §4x, keluarga §4aw); log pilihan ringkas (ukuran dibatasi) memungkinkan UI meninjau pilihan dan validator memeriksa konsistensi; konsekuensi tak dapat dibalik ditandai dengan data agar UI dapat memperingatkan (aturan belum ditetapkan).
+- **Berdampingan dengan kehidupan:** syarat kemajuan cerita dinyatakan sebagai data dan tidak memaksa menghentikan aktivitas harian; tidak ada penghitung waktu cerita yang mengunci/menghapus ladang, rumah, atau progres kehidupan; validator memastikan setiap simpul punya jalur maju yang dapat dicapai dan tidak ada keadaan buntu atau bergantung pada kegagalan pemain; kait cerita di tempo bermain adalah parameter data (belum ditetapkan).
+- **Rahasia dan lore:** rahasia dunia dan lore kuno berstatus penemuan monoton (seperti §4ak) tanpa kebocoran ke peta/UI/pencarian sebelum ditemukan; lore sebagai data konten (bukan save) dengan referensi ke kelompok (§4aq) dan organisasi (§4ar).
+- **Penyampaian:** adegan/sinematik memakai kamera (§4t), audio (§4s), dialog (§4y), dan UI (§4r) yang ada; teks lewat kunci Indonesia/English (D-045) tanpa teks tertanam; opsi lewati/riwayat sebagai data; transisi memakai Loading/streaming (§4aj).
+- **Waktu dan event:** pemicu cerita mengikuti `GameClock` (§4al) dan event kalender (§4p) bukan jam perangkat; apakah cerita berjalan saat offline terbuka; perilaku koneksi putus menunggu **D-051** (isi belum diterima, tidak dikarang).
+- **Keamanan save (D-050, §5b):** penulisan atomik idempoten dengan revisi (§5, §5a); interupsi saat adegan/percabangan dilanjutkan tanpa dobel proses atau hadiah ganda; checksum bukan anti-cheat; operasi bernilai tinggi divalidasi urutan server; narasi pribadi per akun.
+- **Update konten (D-048):** bab, cabang, dan lore baru ditambah sebagai data baru dengan ID stabil; save lama tetap valid (konten baru tidak mengubah cabang yang sudah diambil); validator memeriksa referensi, jalur maju, dan kelengkapan terjemahan.
+- **Performa (D-052):** pemuatan konten cerita sesuai kebutuhan (streaming §4aj, anggaran §4ai); evaluasi syarat berbasis kejadian, bukan per frame.
+- **Pengujian (D-049):** uji headless untuk validitas graf (tanpa simpul yatim atau buntu), setiap ending dapat dicapai (bila ditetapkan), pilihan tersimpan dan terpulihkan, determinisme, idempotensi, migrasi save, konsistensi konsekuensi lintas sistem, serta ketahanan terhadap interupsi dan perubahan jam perangkat.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Romansa/pernikahan/keluarga/anak ditetapkan terpisah oleh D-066 (§4aw; detail belum final).
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres

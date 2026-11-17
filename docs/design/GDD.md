@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.55 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement, D-047 Monetisasi, D-048 Live Ops, D-049 QA, D-050 Keamanan, D-052 Performa, D-053 Loading, D-054 Peta, D-055 Waktu, D-056 Tidur, D-057 Vitalitas, D-058 Kekalahan, D-059 Status Effect, D-060 Ras & Suku, D-061 Organisasi Dunia, D-062 Hubungan Faksi, D-063 Konflik Dunia, D-064 Hukum, D-065 Fenomena Dunia, D-066 Romansa & Keluarga) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.56 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement, D-047 Monetisasi, D-048 Live Ops, D-049 QA, D-050 Keamanan, D-052 Performa, D-053 Loading, D-054 Peta, D-055 Waktu, D-056 Tidur, D-057 Vitalitas, D-058 Kekalahan, D-059 Status Effect, D-060 Ras & Suku, D-061 Organisasi Dunia, D-062 Hubungan Faksi, D-063 Konflik Dunia, D-064 Hukum, D-065 Fenomena Dunia, D-066 Romansa & Keluarga, D-067 Cerita Utama) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -819,6 +819,17 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - Selaras dengan D-015, D-022, D-038, D-039, D-040, D-045, D-055. Terkait: D-014, D-031, D-032, D-041, D-046, D-048 sampai D-050, D-056, D-058 sampai D-062, D-064.
 
 **[BELUM DITETAPKAN]:** kandidat pasangan, aturan kelayakan, kecepatan/tahapan hubungan, mekanisme pertunangan dan pernikahan, kehidupan/rumah bersama, sistem anak dan detail keluarga, apakah wajib atau opsional, peringkat usia dan batas konten, pengaturan terkait, arti "spiritual" (belum didefinisikan).
+
+### 6.56 Cerita Utama dan Alur Narasi Dunia — D-067, LOCKED (Narrative World Hybrid Lengkap)
+**Ditetapkan:**
+- **Cerita utama**, **bab petualangan**, **narasi bercabang**, **cerita pribadi NPC**, **rahasia dunia dan lore peradaban kuno**, **pilihan pemain dan konsekuensinya**, serta **beragam kemungkinan ending.**
+- **Terintegrasi** dengan quest (D-037), dialog (D-038), hubungan sosial (D-039), eksplorasi (D-028), faksi/diplomasi/konflik (D-061 sampai D-063), romansa dan keluarga (D-066), dan event dunia (D-029).
+- **Cerita berdampingan dengan kehidupan:** tidak memaksa pemain meninggalkan farming dan kehidupan harian secara permanen; kehidupan harian tidak menutup akses ke cerita.
+- **Pilihan punya konsekuensi konsisten dan tercatat dalam progres** (D-044); tidak buntu dan tidak menghilangkan progres secara tidak wajar.
+- Waktu cerita mengikuti waktu permainan internal (D-055). Tetap **single-player online.**
+- Selaras dengan D-037, D-038, D-039, D-060, D-061, D-062, D-063, D-066. Terkait: D-009, D-015, D-028 sampai D-033, D-040, D-041, D-043 sampai D-046, D-048 sampai D-050, D-054, D-058, D-064, D-065.
+
+**[BELUM DITETAPKAN]:** plot, karakter utama, bab, percabangan, jumlah dan syarat ending, lore peradaban kuno dan rahasia, tempo cerita, cara meninjau pilihan, cerita setelah ending, cara penyampaian, arti "spiritual" (belum didefinisikan). Detail romansa dan keluarga terbuka di D-066.
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

@@ -1134,6 +1134,41 @@ Hubungan (tidak mengubah isi keputusan lain): sistem kehidupan (**D-015**), NPC 
 
 **Terbuka (tidak diputuskan):** kandidat pasangan dan aturan kelayakan (termasuk pilihan pasangan); apakah dan bagaimana pemain dapat memilih untuk tidak mengikuti jalur ini (wajib/opsional) dan dampak ke progres; kecepatan dan tahapan hubungan; mekanisme pertunangan dan pernikahan; bentuk kehidupan bersama dan rumah bersama (D-027); sistem anak (cara, jumlah, usia, perkembangan) dan detail keluarga; peran keluarga dalam permainan; peringkat usia dan batas konten (mengikuti kebijakan toko, belum dirinci); pengaturan terkait (D-045); apakah ada perpisahan/kehilangan dan konsekuensinya; hubungan dengan ras/suku (D-060); arti "spiritual" (belum didefinisikan). Tahap 35 (akun/login) tetap PENDING (P-006).
 
+### D-067 — Sistem Cerita Utama dan Alur Narasi Dunia *(APPROVED / LOCKED, 2026-11-17, Tahap 58)*
+Pilihan: **D. Narrative World Hybrid Lengkap.** Ruang lingkup:
+1. Cerita utama (main story).
+2. Bab petualangan (adventure chapters).
+3. Narasi bercabang (branching narratives).
+4. Cerita pribadi NPC.
+5. Rahasia dunia dan lore peradaban kuno.
+6. Pilihan pemain dan konsekuensinya.
+7. Beragam kemungkinan ending.
+8. Integrasi narasi dengan quest, eksplorasi, faksi, diplomasi, romansa, dan event dunia.
+
+Ketentuan:
+- **Tidak ada plot final, daftar karakter utama, bab cerita, ending, atau detail percabangan** tanpa desain lanjutan.
+- **Cerita utama berjalan berdampingan dengan kebebasan aktivitas farming dan kehidupan pemain.**
+- **Pilihan pemain punya konsekuensi yang konsisten dan tercatat dalam progres.**
+- **Cerita tidak memaksa pemain meninggalkan aktivitas kehidupan sehari-hari secara permanen.**
+- Selaras dengan D-037, D-038, D-039, D-060, D-061, D-062, D-063, dan D-066.
+- Penguncian desain; implementasi belum dimulai.
+
+**Prinsip (dasar, tanpa isi cerita):**
+- Narasi adalah **lapisan di atas sistem yang sudah ada**: quest (D-037), dialog (D-038), hubungan sosial (D-039), eksplorasi (D-028), event dunia (D-029), organisasi dan faksi (D-061, D-062), konflik (D-063), ras dan lore (D-060), romansa dan keluarga (D-066). Narasi tidak membuat sistem terpisah.
+- **Kehidupan dan cerita berdampingan:** pemain dapat menjalani farming, kehidupan sehari-hari, dan cerita dengan ritme sendiri; cerita utama tidak mengharuskan meninggalkan kehidupan harian secara permanen, dan kehidupan harian tidak menutup akses ke cerita. Bagaimana tempo cerita diatur (mis. menunggu tindakan pemain) adalah detail yang belum ditetapkan.
+- **Pilihan dan konsekuensi konsisten dan tercatat:** keputusan pemain tersimpan sebagai bagian progres (D-044) sehingga dapat dipulihkan, tidak berubah karena memuat ulang save, dan konsisten di seluruh sistem terkait; konsekuensi yang tidak dapat dibalik harus jelas bagi pemain.
+- **Adil dan tidak buntu:** cerita tidak membuat progres hilang secara tidak wajar atau pemain terjebak tanpa jalan maju (selaras D-058, D-063); konten penting dapat dilanjutkan.
+- **Beragam ending dan percabangan** dimungkinkan; jumlah, bentuk, dan syaratnya belum ditetapkan.
+- **Cerita pribadi NPC dan rahasia dunia** dapat ditemukan lewat eksplorasi dan hubungan (D-039, D-028); rahasia tidak bocor sebelum ditemukan.
+- **Lore peradaban kuno** dan identitas kelompok konsisten dengan D-060/D-061; tanpa diskriminasi tersembunyi.
+- Waktu cerita mengikuti **waktu permainan internal** (D-055); koneksi terganggu mengikuti D-051 (**isi belum diterima**, tidak dikarang).
+- Tetap **single-player online** (D-014); narasi bersifat pribadi per pemain.
+- Teks mendukung Indonesia dan English (D-045); konten ditambah lewat update (D-048) tanpa merusak save lama.
+
+Hubungan (tidak mengubah isi keputusan lain): dunia (**D-009**), sistem kehidupan (**D-015**), dungeon (**D-016**), guild (**D-017**), perkembangan karakter (**D-018**), NPC (**D-022**), eksplorasi (**D-028**), event dunia (**D-029**), musim dan cuaca (**D-030**), UI/HUD (**D-031**), audio (**D-032**), kamera (**D-033**), quest (**D-037**), dialog (**D-038**), hubungan sosial (**D-039**), NPC hidup (**D-040**), kustomisasi (**D-041**), tutorial (**D-043**), save/cloud (**D-044**), pengaturan (**D-045**), achievement (**D-046**), update konten (**D-048**), QA (**D-049**), keamanan (**D-050**), peta (**D-054**), waktu (**D-055**), kekalahan (**D-058**), ras (**D-060**), organisasi (**D-061**), diplomasi (**D-062**), konflik (**D-063**), hukum (**D-064**), fenomena (**D-065**), romansa dan keluarga (**D-066**). **D-051** isinya belum diterima.
+
+**Terbuka (tidak diputuskan):** plot, tema, dan nada cerita; karakter utama; struktur dan jumlah bab; titik percabangan, jumlah dan syarat ending; isi lore peradaban kuno dan rahasia dunia; tempo cerita terhadap kehidupan harian; apakah ada batas waktu cerita dan cara menghindari tekanan; cara pemain meninjau pilihan dan kemungkinan mengulang/menyesuaikan; cerita setelah ending (lanjut bermain); cara menyampaikan (adegan, kamera D-033, audio D-032); arti "spiritual" (belum didefinisikan); detail romansa dan keluarga (terbuka di D-066). Tahap 35 (akun/login) tetap PENDING (P-006).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |
