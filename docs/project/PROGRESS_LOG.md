@@ -253,3 +253,11 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - **Status Tahap 35 (Sistem Akun dan Login Pemain): PENDING**, atas instruksi pemilik; dibahas saat persiapan publikasi Google Play Store; dicatat sebagai P-006 tanpa keputusan apa pun. Catatan pada entri (34) yang menulis "Menunggu keputusan Tahap 35" kini digantikan oleh status ini.
 - GDD §6.35 baru (v0.35); Technical Architecture §6a ditambahkan (v0.35; catatan saja: layanan pengaturan berbasis skema dengan cakupan per pengaturan, penyimpanan terpisah dari progres, profil konfigurasi, preset grafis GL Compatibility, editor tata letak kontrol/HUD, aksesibilitas lewat Theme). Hubungan dengan D-004, D-007, D-008, D-014, D-031 sampai D-034, D-043, D-044 dicatat tanpa mengubah isinya.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 37 (Tahap 35 tetap PENDING).
+
+
+## 2026-11-17 (36) — D-046 Sistem Achievement, Title, dan Koleksi dicatat
+
+- D-046 (Achievement Hybrid Lengkap, LOCKED) dicatat sebagai **Tahap 37**; ID tersedia, tanpa bentrokan.
+- **Tahap 35 (Akun dan Login) tetap PENDING** (P-006); tidak diubah.
+- GDD §6.36 baru (v0.36); Technical Architecture §4ae ditambahkan (v0.36; catatan saja: definisi dari data, pelacakan berbasis event bus dengan pencacah unik anti-pengulangan, penyelesaian idempoten dan hadiah tertahan saat inventory penuh, Collection Book sebagai sumber kebenaran penemuan, Journey Record berbatas ukuran, penyimpanan dan cloud save). Hubungan dengan D-007, D-013 sampai D-029, D-031, D-032, D-036, D-037, D-039 sampai D-045, D-014 dicatat tanpa mengubah isinya.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 38 (Tahap 35 tetap PENDING).

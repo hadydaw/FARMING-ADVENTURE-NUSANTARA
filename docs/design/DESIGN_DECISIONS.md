@@ -616,6 +616,22 @@ Hubungan (tidak mengubah isi keputusan lain): platform dan performa (**D-004**, 
 
 **Catatan status (instruksi pemilik):** Tahap 35 "Sistem Akun dan Login Pemain" berstatus **PENDING** dan baru dibahas saat persiapan publikasi Google Play Store (dicatat sebagai **P-006**). Tidak ada keputusan akun/login yang dibuat di sini; metode login tetap terbuka (D-014). Nomor keputusan D-045 dipakai untuk Tahap 36; tidak ada ID yang dicadangkan untuk Tahap 35.
 
+### D-046 — Sistem Achievement, Title, dan Koleksi *(APPROVED / LOCKED, 2026-11-17, Tahap 37)*
+Pilihan: **D. Achievement Hybrid Lengkap.** Ketentuan:
+1. Sistem penghargaan menggabungkan: Achievement; Character Title; Collection Book dan Encyclopedia; Milestone progression; Exclusive achievement rewards; Player Journey Record.
+2. Achievement mencakup: farming dan hasil panen; livestock dan peternakan; fishing dan aquatic collection; crafting dan alchemy; combat dan dungeon; monster taming dan companion; Adventurer Guild dan rank; eksplorasi, penemuan rahasia, dan event; hubungan sosial dan kehidupan desa.
+3. Title dibuka lewat pencapaian tertentu dan dapat dipasang pada profil atau karakter pemain.
+4. Collection Book mencatat penemuan tanaman, ikan, hewan, monster, material, lokasi, dan objek penting lainnya.
+5. Milestone mendukung perkembangan jangka pendek dan jangka panjang.
+6. Hadiah achievement dapat berupa item, kosmetik, title, material langka, atau akses khusus sesuai desain hadiah.
+7. Indikator progres, status terkunci/terbuka, detail persyaratan, dan riwayat penyelesaian.
+8. Hindari achievement yang hanya mendorong pengulangan aktivitas berlebihan tanpa nilai permainan.
+9. Terintegrasi dengan progression, quest, inventory, Guild, monster collection, eksplorasi, dan cloud save Supabase.
+10. UI mendukung Android landscape, Indonesia, dan English.
+
+Hubungan (tidak mengubah isi keputusan lain): bahasa (**D-007**), pertarungan dan dungeon (**D-013**, **D-016**), guild (**D-017**), perkembangan karakter (**D-018**), companion dan monster (**D-019**), crafting (**D-020**), ekonomi (**D-021**), NPC dan sosial (**D-022**, **D-039**, **D-040**), pertanian/peternakan/memancing/memasak (**D-023 sampai D-026**), eksplorasi (**D-028**), event dunia (**D-029**), UI (**D-031**), audio (**D-032**), inventory (**D-036**), quest (**D-037**), kustomisasi dan kosmetik (**D-041**), mount (**D-042**), tutorial (**D-043**), save dan cloud (**D-044**), pengaturan (**D-045**), online (**D-014**).
+**Terbuka:** daftar achievement, title, dan entri koleksi; kategori, tingkat (mis. perunggu/perak/emas), dan poin bila ada; apakah ada achievement tersembunyi dan cara menampilkannya; aturan pencegahan pengulangan tanpa nilai (ambang bermakna, tanpa "grinding" murni); hadiah rinci dan keseimbangannya (terutama "akses khusus" dan material langka); apakah penemuan di Collection Book memberi bonus (mis. penyelesaian set); bentuk Player Journey Record (linimasa, statistik, album); profil pemain dan tempat title ditampilkan; hubungan dengan platform pihak ketiga (mis. Google Play Games) — tidak diputuskan; achievement yang dapat dilewatkan permanen atau tidak (anti-buntu); tampilan notifikasi; peran konsep "spiritual" (belum didefinisikan). Implementasi belum dimulai. ID D-046 tersedia saat dicatat (tanpa bentrokan). Tahap 35 (akun dan login, P-006) tetap PENDING.
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

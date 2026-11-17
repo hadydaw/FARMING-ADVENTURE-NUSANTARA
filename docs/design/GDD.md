@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.35 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.36 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -552,6 +552,21 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 **[BELUM DITETAPKAN]:** opsi grafis rinci dan tingkatnya, deteksi tingkat perangkat, isi aksesibilitas rinci, profil konfigurasi, pembagian pengaturan lokal vs cloud, kontroler/keyboard, pengaturan baterai/data, tata letak layar Pengaturan, perubahan saat bermain, konsep "spiritual" (belum didefinisikan). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 > **Catatan:** Tahap 35 (Sistem Akun dan Login Pemain) berstatus **PENDING** dan dibahas saat persiapan publikasi Google Play Store (P-006); tidak diubah oleh keputusan ini.
+
+### 6.36 Achievement, Title, dan Koleksi — D-046, LOCKED (Achievement Hybrid Lengkap)
+**Ditetapkan:**
+- **Komponen:** Achievement; **Character Title**; **Collection Book dan Encyclopedia**; **Milestone progression**; **Exclusive achievement rewards**; **Player Journey Record.**
+- **Cakupan achievement:** farming dan panen; peternakan; fishing dan aquatic collection; crafting dan alchemy; combat dan dungeon; taming dan companion; Guild dan rank; eksplorasi, rahasia, dan event; hubungan sosial dan kehidupan desa.
+- **Title** dibuka lewat pencapaian dan dapat **dipasang** pada profil atau karakter.
+- **Collection Book** mencatat tanaman, ikan, hewan, monster, material, lokasi, dan objek penting.
+- **Milestone** jangka pendek dan panjang.
+- **Hadiah:** item, kosmetik, title, material langka, atau akses khusus sesuai desain hadiah.
+- **Indikator progres, status terkunci/terbuka, detail persyaratan, riwayat penyelesaian.**
+- **Hindari achievement yang mendorong pengulangan berlebihan tanpa nilai permainan.**
+- Terintegrasi dengan **progression, quest, inventory, Guild, koleksi monster, eksplorasi, cloud save Supabase**; UI **Android landscape**, **Indonesia dan English.**
+- Terkait: D-007, D-013 sampai D-029, D-031, D-032, D-036, D-037, D-039 sampai D-045, D-014.
+
+**[BELUM DITETAPKAN]:** daftar achievement/title/entri koleksi, tingkat dan poin, achievement tersembunyi, aturan anti-grinding, hadiah rinci dan keseimbangan, bonus koleksi, bentuk Player Journey Record, tempat title ditampilkan, hubungan dengan platform pihak ketiga, achievement yang dapat terlewat, notifikasi, konsep "spiritual" (belum didefinisikan). **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 

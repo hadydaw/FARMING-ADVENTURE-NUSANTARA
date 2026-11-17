@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.35 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.36 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -458,6 +458,25 @@ Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 - **Persistence:** status per panduan (belum/terlihat/selesai/dilewati), topik buku bantuan yang terbuka, dan pengaturan petunjuk (aktif/nonaktif) masuk payload save (§5) berversi dengan ID stabil; panduan baru di versi berikut muncul sesuai syarat tanpa mengulang yang lama; cloud save Supabase lewat mekanisme save yang sama (D-014) sehingga pindah perangkat tidak mengulang tutorial. Pengaturan tampilan petunjuk murni dapat menjadi pengaturan pemain.
 - **Performa:** hanya pemicu panduan yang belum selesai yang aktif; konten tutorial dimuat sesuai kebutuhan; overlay tanpa alokasi per frame (§3).
 - **Pengujian:** uji headless untuk pemicu dan status (tidak muncul ulang), penyelesaian otomatis, throttle, kelengkapan kunci id/en, rujukan UI/kontrol valid, panduan wajib selalu dapat diselesaikan, dan serialisasi-migrasi.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4ae. Implikasi Arsitektur dari D-046 (hanya catatan; belum diimplementasikan)
+
+- **Definisi dari data:** achievement, title, milestone, dan entri koleksi adalah resource (ID stabil, kategori, syarat, hadiah, kunci terjemahan id/en §6, ikon tanpa teks tertanam, penanda tersembunyi/terkunci). Penambahan konten tidak butuh perubahan kode.
+- **Pelacakan berbasis event:** satu **Layanan Pencapaian** berlangganan **event bus** (§4) untuk peristiwa yang sudah ada (panen §4j, ternak §4k, ikan §4l, crafting/alkimia §4m, bunuh monster §4c, taming §4f, rank Guild §4d, penemuan lokasi §4o, event §4p, hubungan §4z, quest §4x), tanpa polling per frame; hanya achievement yang belum selesai yang mendengarkan. Syarat memakai **mesin kondisi/efek bersama** (§4x) dengan pencacah (progres kumulatif), ambang, dan syarat komposit.
+- **Anti-pengulangan tanpa nilai:** syarat memakai ambang bermakna dan pencacah **unik** (mis. jenis berbeda, wilayah berbeda, kualitas tertentu), bukan hitungan mentah; kejadian yang bisa dimanipulasi berulang (jual-beli bolak-balik, spam hadiah) tidak dihitung atau dibatasi oleh aturan data (selaras pembatas §4z dan idempotensi §5a).
+- **Status per entri:** terkunci/terlihat, progres, terbuka (waktu game dan waktu server), hadiah diklaim atau belum; **penyelesaian idempoten** (satu kali) sehingga muat ulang atau sinkron ulang tidak memberi hadiah ganda.
+- **Hadiah:** diberikan lewat API inventory (§4w), sistem kosmetik (§4ab), title, dan flag akses (kondisi dunia §4x); bila inventory penuh hadiah ditahan (kotak klaim) dan tidak hilang. "Akses khusus" hanya lewat flag/kondisi data yang sah (tidak membuat jalur kode khusus) dan tidak boleh membuat konten esensial tak dapat dicapai.
+- **Title:** daftar title yang terbuka dan satu title terpasang (atau beberapa slot, belum diputuskan) disimpan sebagai preferensi karakter; ditampilkan di profil/UI lewat kunci terjemahan; title tidak memengaruhi atribut kecuali ditetapkan di desain hadiah.
+- **Collection Book / Encyclopedia:** catatan **penemuan** per entri (ID item/makhluk/lokasi/objek dari data §4g, §4o) dengan status (belum ditemui, terlihat, terkumpul), jumlah, kualitas/varian terbaik, waktu pertama ditemui; diisi oleh event penemuan yang sama; entri belum ditemui disembunyikan atau siluet sesuai desain; teks ensiklopedia dari data terjemahan (§6) dan dapat membuka lebih banyak info seiring penemuan. Sumber kebenaran tunggal sehingga tidak ada duplikasi dengan sistem lain.
+- **Milestone:** tingkat bertahap yang membaca pencacah yang sama (pendek dan panjang); mendukung penutup rantai tanpa menyimpan data ganda.
+- **Player Journey Record:** log ringkas peristiwa penting (tanggal game, peristiwa utama, statistik kumulatif) dengan batas ukuran (ringkas/agregasi peristiwa lama) agar payload save tetap kecil; ditampilkan sebagai linimasa/statistik.
+- **Pembekuan konten:** achievement yang dihapus/diubah di versi baru ditangani migrasi (ID stabil; yang telah terbuka tetap tercatat); achievement baru dihitung mundur dari data yang memang tersimpan (retroaktif hanya bila datanya ada), selainnya mulai dari sekarang.
+- **Persistence dan cloud:** semua status masuk payload save (§5, §5a) sebagai bagian modular berversi dengan serializer sendiri; pencacah dan pencapaian bersifat progres pribadi (D-014), disinkron lewat jalur save yang sama; tidak ada penghargaan yang ditentukan semata oleh klien bila nanti memengaruhi ekonomi/rank (validasi server menunggu desain). Hubungan dengan platform pihak ketiga tidak diputuskan.
+- **UI:** panel Achievement, Title, Collection Book, dan Journey di manajer konteks UI (§4r): daftar tervirtualisasi dengan filter/kategori seperti inventory, indikator progres, status, detail persyaratan, riwayat; notifikasi ringan (tidak mengganggu combat/dialog, memakai penahan seperti §4ad); kunci terjemahan id/en; kontrol sentuh nyaman (§4u).
+- **Audio:** efek dan musik singkat pencapaian lewat sistem audio (§4s).
+- **Performa:** pencacah ringan dan diperbarui per event; indeks syarat per jenis event; tanpa alokasi per frame (§3).
+- **Pengujian:** uji headless untuk pemicu dan pencacah, penyelesaian idempoten, hadiah tidak ganda saat muat/sinkron ulang, hadiah tertahan saat inventory penuh, kelengkapan terjemahan id/en, validasi konten (semua syarat dapat dicapai, tidak ada achievement yang mustahil), batas ukuran Journey, serta serialisasi-migrasi.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
 ## 5. Penyimpanan Progres
