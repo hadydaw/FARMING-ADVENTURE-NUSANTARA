@@ -353,3 +353,11 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
 - GDD §6.48 baru (v0.48); Technical Architecture §4ap ditambahkan (v0.48); catatan saja: satu sistem efek bersama (`StatusEffectDef` berdata dengan lima bagian wajib: definisi, sumber, target, durasi, aturan penghapusan), komponen per entitas, penerapan lewat satu pintu, kategori sebagai tag, durasi dari `GameClock`, probabilitas deterministik, validator kelengkapan, tampilan atas event bus. Katalog, durasi, stacking, probabilitas, dan angka sengaja tidak ditetapkan.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.
+
+## 2026-11-17 (49) — D-060 Sistem Ras, Suku, dan Asal-Usul Karakter dicatat
+
+- D-060 (Racial World Hybrid Lengkap, LOCKED) dicatat sebagai **Tahap 51**; ID tersedia, tanpa bentrokan. **D-051 (Tahap 42) tetap dicadangkan**, isinya belum diterima; tidak ada isi yang dikarang. "Garis keturunan spiritual" dicatat sebagai disebut pemilik; arti "spiritual" **tetap tidak didefinisikan**.
+- Tidak ada dokumen worldbuilding terpisah di `docs/`; dunia dicatat di GDD (bagian dunia D-009 dan §6.49 baru). Tidak dibuat dokumen baru.
+- **Tahap 35 (Akun dan Login) tetap PENDING** (P-006). P-005 tetap menunggu laporan pengguna. Tidak ada klaim performa atau uji perangkat fisik.
+- GDD §6.49 baru (v0.49); Technical Architecture §4aq ditambahkan (v0.49); catatan saja: kelompok/ras/suku sebagai data ber-ID, referensi bukan salinan, perlakuan berbeda hanya lewat aturan data eksplisit (anti diskriminasi tersembunyi) dengan audit validator, lokalisasi dua bahasa. Daftar ras, lore, kemampuan, populasi, dan hubungan antarbangsa sengaja tidak ditetapkan.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 42 (D-051 dicadangkan) dan berikutnya.

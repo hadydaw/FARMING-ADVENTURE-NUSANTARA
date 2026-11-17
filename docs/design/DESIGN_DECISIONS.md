@@ -914,6 +914,34 @@ Hubungan (tidak mengubah isi keputusan lain): pertarungan (**D-013**), sistem ke
 
 **Terbuka (tidak diputuskan):** katalog efek; durasi; aturan stacking/penggantian/prioritas; probabilitas dan resistensi; semua angka; arti "spiritual" (belum didefinisikan, tidak ditebak); daftar elemen dan penyakit; cara menyembuhkan/menghapus tiap efek; apakah efek bertahan setelah kekalahan/tidur/perpindahan wilayah (aturan lanjutan, selaras D-056/D-058); efek lingkungan/cuaca (D-030); romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
 
+### D-060 — Sistem Ras, Suku, dan Asal-Usul Karakter *(APPROVED / LOCKED, 2026-11-17, Tahap 51)*
+Pilihan: **D. Racial World Hybrid Lengkap.** Ruang lingkup:
+1. Beragam ras fantasi.
+2. Beragam suku dan bangsa.
+3. Keturunan atau garis keturunan spiritual (**arti "spiritual" belum didefinisikan**; hanya dicatat sebagai hal yang disebut pemilik).
+4. Peradaban dan bangsa kuno.
+5. Identitas, penampilan, budaya, dan tradisi yang berbeda.
+6. Integrasi ras dan suku dengan NPC, wilayah, kota, desa, guild, perdagangan, dan cerita dunia.
+
+Ketentuan:
+- **Tidak ada daftar ras final, lore, kemampuan ras, populasi, atau hubungan antarbangsa** tanpa desain lanjutan.
+- **Perbedaan ras tidak dijadikan alasan bagi sistem diskriminasi yang tidak dirancang secara sadar** (prinsip di bawah).
+- **Setiap kelompok punya identitas dan budaya yang konsisten.**
+- **Tidak mengubah keputusan gameplay atau eksplorasi dunia sebelumnya.**
+- Penguncian desain, bukan instruksi implementasi.
+
+**Prinsip (dasar, tanpa isi lore):**
+- Ras, suku, dan bangsa adalah **identitas dunia** (penampilan, budaya, tradisi, peradaban), bukan alat untuk memberi perlakuan berbeda secara tersembunyi. Setiap perbedaan perlakuan antar kelompok (harga, akses, dialog, reputasi, quest) **harus berupa keputusan desain yang eksplisit dan disengaja**, bukan efek samping.
+- **Identitas konsisten:** satu kelompok punya satu rangkaian identitas (nama, penampilan, budaya, tradisi, peradaban) yang dipakai sama oleh NPC, wilayah, bahasa, dan cerita; tidak saling bertentangan antar dokumen atau aset.
+- Penggambaran harus **hormat dan tidak berupa karikatur**; bila kelompok fantasi terinspirasi budaya nyata Nusantara atau lainnya, hal itu keputusan lanjutan yang harus eksplisit (belum diputuskan).
+- Cerita dan konten melibatkan banyak kelompok secara **setara dalam kualitas**; tidak ada kelompok yang hanya dijadikan musuh atau latar tanpa identitas, kecuali ditetapkan sengaja dalam desain cerita.
+- Tidak mengunci mekanik pemain (apakah ras bisa dipilih, apakah memengaruhi statistik); itu tetap terbuka (lihat D-041 dan D-018).
+- Tetap **single-player online** (D-014).
+
+Hubungan (tidak mengubah isi keputusan lain): dunia dan Progressive World Unlock (**D-009**), sistem kehidupan (**D-015**), guild (**D-017**), perkembangan karakter (**D-018**), companion dan monster (**D-019**), ekonomi dan perdagangan (**D-021**), NPC dan sosial (**D-022**), eksplorasi (**D-028**), event dunia (**D-029**), quest dan cerita (**D-037**), dialog (**D-038**), hubungan sosial (**D-039**), NPC hidup (**D-040**), kustomisasi karakter (**D-041**), status effect (**D-059**), update konten (**D-048**), pengaturan/lokalisasi (**D-045**). **D-051** isinya belum diterima.
+
+**Terbuka (tidak diputuskan):** daftar ras/suku/bangsa; lore dan sejarah; kemampuan/bonus ras (bila ada); populasi dan persebaran; hubungan antarbangsa; apakah pemain memilih ras/suku/asal-usul dan apa dampaknya (D-041, D-018); arti "spiritual" dan "garis keturunan spiritual" (belum didefinisikan, tidak ditebak); daftar peradaban kuno; hubungan dengan budaya nyata; bahasa dan sistem penamaan; romansa/pernikahan/keluarga/anak belum diputuskan dan tidak dimodelkan. Tahap 35 (akun/login) tetap PENDING (P-006).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

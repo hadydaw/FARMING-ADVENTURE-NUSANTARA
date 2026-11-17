@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.48 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.49 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -668,6 +668,21 @@ Mengonsolidasikan mesin kondisi/efek bersama (§4x, §4d) dan `VitalityComponent
 - **Performa (D-052):** modifier agregat di-cache dan dihitung ulang hanya saat efek berubah; batas efek aktif per entitas dan pembaruan LOD untuk monster jauh sebagai parameter data (belum diukur); efek visual dikurangi pada perangkat lemah tanpa mengubah hasil.
 - **Update konten (D-048):** efek baru ditambah sebagai data; validator memastikan referensi valid, aturan penghapusan ada, dan tidak ada efek yang tidak dapat dihapus tanpa jalan keluar; kompatibel dengan save lama.
 - **Pengujian (D-049):** uji headless untuk kelengkapan definisi, apply/remove idempoten, perilaku durasi terhadap `GameClock`, tidak bergantung jam perangkat, determinisme probabilitas, hasil sama setelah tidur/perjalanan dibanding simulasi per hari, migrasi save, dan tidak ada efek yang menyisakan keadaan buntu.
+- **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
+### 4aq. Implikasi Arsitektur dari D-060 (hanya catatan; belum diimplementasikan; tidak ada angka)
+
+Terkait data dunia (§4o, §4ak), NPC (§4i, §4aa), guild (§4d), ekonomi (§4h), kustomisasi (§4ab), dialog/sosial (§4y, §4z), quest/cerita (§4x), status effect (§4ap), versi konten (§4ag). Hanya rancangan; tidak ada daftar ras, lore, atau kemampuan.
+- **`Faction/Group` sebagai data:** ras, suku, bangsa, dan peradaban berupa resource ber-ID stabil (§4ag) dengan tag atribut (nama dan kunci terjemahan, deskripsi budaya, tradisi, referensi penampilan/aset, hubungan ke wilayah). Jenis kelompok adalah tag data agar struktur (ras vs suku vs bangsa vs garis keturunan) dapat berubah tanpa kode. Kategori "spiritual" hanya tag; **tidak ada logika yang dibuat untuk "spiritual"** karena belum didefinisikan.
+- **Referensi, bukan salinan:** NPC (§4i), lokasi/wilayah (§4o), guild (§4d), toko (§4h), dan quest (§4x) merujuk ID kelompok, bukan menyalin atribut, sehingga identitas konsisten di semua tempat dan satu perubahan data berlaku di mana-mana.
+- **Perlakuan berbeda harus eksplisit:** setiap mekanik yang membedakan perlakuan antar kelompok (harga, akses, dialog, reputasi, quest, akses area) hanya lewat aturan data eksplisit dan terdaftar; tidak ada percabangan tersembunyi di kode. Validator konten dan laporan audit mencantumkan semua aturan yang memakai ID kelompok sehingga dampak tidak disengaja dapat dilihat (bagian dari D-049/D-048).
+- **Bahasa dan terjemahan:** semua teks (nama, budaya, tradisi) lewat kunci lokalisasi Indonesia/English (D-045); tanpa teks tertanam di aset; peninjauan konsistensi istilah antar kelompok sebagai bagian proses konten.
+- **Aset dan penampilan:** referensi tampilan kelompok berupa data aset (model/tekstur/palet) yang dapat dimuat sesuai kebutuhan (streaming §4aj, anggaran §4ai); penambahan kelompok tidak mengubah sistem inti.
+- **Pemain:** apakah pemain memilih ras/asal-usul dan dampaknya belum diputuskan (D-041, D-018); bila kelak ada, disimpan sebagai ID di save berversi (§5a) dan dipakai lewat aturan data; sampai saat itu tidak ada kolom yang diasumsikan.
+- **Save/cloud (D-044, §5a):** hanya ID kelompok yang relevan masuk save (mis. reputasi per kelompok bila ada), dengan `section_version` dan migrasi; ID yang di-deprecate tetap dikenali.
+- **Update konten (D-048):** kelompok, budaya, dan peradaban baru ditambah sebagai data baru; validator memastikan semua referensi valid dan kunci terjemahan lengkap di kedua bahasa.
+- **Pengujian (D-049):** uji headless untuk referensi ID valid, kelengkapan terjemahan, tidak ada aturan perlakuan berbeda di luar data yang terdaftar, konsistensi atribut antar NPC/wilayah, dan migrasi save.
 - **Akun/login (Tahap 35, P-006, PENDING):** tidak ada asumsi desain akun. Tidak ada model romansa/pernikahan/keluarga/anak.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 

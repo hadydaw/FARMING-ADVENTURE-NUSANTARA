@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.48 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement, D-047 Monetisasi, D-048 Live Ops, D-049 QA, D-050 Keamanan, D-052 Performa, D-053 Loading, D-054 Peta, D-055 Waktu, D-056 Tidur, D-057 Vitalitas, D-058 Kekalahan, D-059 Status Effect) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.49 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera, D-034 Kontrol, D-035 Interaksi, D-036 Inventory, D-037 Quest, D-038 Dialog, D-039 Sosial, D-040 NPC Hidup, D-041 Kustomisasi, D-042 Mount, D-043 Tutorial, D-044 Cloud Save, D-045 Pengaturan, D-046 Achievement, D-047 Monetisasi, D-048 Live Ops, D-049 QA, D-050 Keamanan, D-052 Performa, D-053 Loading, D-054 Peta, D-055 Waktu, D-056 Tidur, D-057 Vitalitas, D-058 Kekalahan, D-059 Status Effect, D-060 Ras & Suku) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -737,6 +737,19 @@ Urutan dan isi pasca-peluncuran belum dijadwalkan. Jalur yang ditetapkan D-048 m
 - Terkait: D-013, D-016, D-019, D-020, D-023, D-024, D-029 sampai D-032, D-036, D-043 sampai D-045, D-048 sampai D-050, D-052, D-053, D-055, D-056.
 
 **[BELUM DITETAPKAN]:** katalog efek, durasi, stacking, probabilitas, angka balance, arti "spiritual", daftar elemen/penyakit, cara menyembuhkan, persistensi setelah kekalahan/tidur/perpindahan wilayah. **Tidak ada** model romansa/pernikahan/keluarga/anak (belum diputuskan).
+
+### 6.49 Ras, Suku, dan Asal-Usul Karakter — D-060, LOCKED (Racial World Hybrid Lengkap)
+**Ditetapkan:**
+- **Beragam ras fantasi** dan **beragam suku dan bangsa.**
+- **Garis keturunan spiritual** disebut pemilik, tetapi **arti "spiritual" belum didefinisikan.**
+- **Peradaban dan bangsa kuno.**
+- **Identitas, penampilan, budaya, dan tradisi** yang berbeda; tiap kelompok punya identitas dan budaya yang **konsisten.**
+- Terintegrasi dengan **NPC, wilayah, kota, desa, guild, perdagangan, dan cerita dunia.**
+- **Tanpa diskriminasi tersembunyi:** perbedaan perlakuan antar kelompok hanya lewat keputusan desain yang eksplisit dan sadar; penggambaran hormat, bukan karikatur.
+- Tidak mengubah keputusan gameplay atau eksplorasi sebelumnya (D-009, D-028). Tetap **single-player online.**
+- Terkait: D-009, D-015, D-017 sampai D-019, D-021, D-022, D-028, D-029, D-037 sampai D-041, D-045, D-048, D-059.
+
+**[BELUM DITETAPKAN]:** daftar ras/suku/bangsa, lore, kemampuan ras, populasi, hubungan antarbangsa, apakah pemain memilih ras/asal-usul dan dampaknya, arti "spiritual", daftar peradaban kuno, kaitan dengan budaya nyata. **Tidak ada** model romansa/pernikahan/keluarga/anak (belum diputuskan).
 
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 
