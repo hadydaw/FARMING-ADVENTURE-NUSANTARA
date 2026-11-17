@@ -1,0 +1,86 @@
+[
+	{
+		"id": "gn_herb_1",
+		"provisional": true,
+		"region": "region_forest",
+		"x": -10.0,
+		"z": 3.0,
+		"item": "herb_test",
+		"count": 2,
+		"respawn_days": 2,
+		"name_key": "GATHER_HERB",
+		"color": "#5ac86a"
+	},
+	{
+		"id": "gn_herb_2",
+		"provisional": true,
+		"region": "region_forest",
+		"x": 8.0,
+		"z": -12.0,
+		"item": "herb_test",
+		"count": 2,
+		"respawn_days": 2,
+		"name_key": "GATHER_HERB",
+		"color": "#5ac86a"
+	},
+	{
+		"id": "gn_herb_3",
+		"provisional": true,
+		"region": "region_forest",
+		"x": 15.0,
+		"z": 10.0,
+		"item": "herb_test",
+		"count": 2,
+		"respawn_days": 2,
+		"name_key": "GATHER_HERB",
+		"color": "#5ac86a"
+	},
+	{
+		"id": "gn_herb_4",
+		"provisional": true,
+		"region": "region_village",
+		"x": -20.0,
+		"z": -14.0,
+		"item": "herb_test",
+		"count": 1,
+		"respawn_days": 2,
+		"name_key": "GATHER_HERB",
+		"color": "#5ac86a"
+	},
+	{
+		"id": "gn_stone_1",
+		"provisional": true,
+		"region": "region_ancient",
+		"x": -8.0,
+		"z": 5.0,
+		"item": "material_stone_test",
+		"count": 3,
+		"respawn_days": 3,
+		"name_key": "GATHER_STONE",
+		"color": "#9a9a9a"
+	},
+	{
+		"id": "gn_stone_2",
+		"provisional": true,
+		"region": "region_ancient",
+		"x": 10.0,
+		"z": -9.0,
+		"item": "material_stone_test",
+		"count": 3,
+		"respawn_days": 3,
+		"name_key": "GATHER_STONE",
+		"color": "#9a9a9a"
+	},
+	{
+		"id": "gn_stone_3",
+		"provisional": true,
+		"region": "region_ancient",
+		"x": 15.0,
+		"z": 12.0,
+		"item": "material_stone_test",
+		"count": 3,
+		"respawn_days": 3,
+		"name_key": "GATHER_STONE",
+		"color": "#9a9a9a"
+	}
+]

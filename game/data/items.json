@@ -96,5 +96,67 @@
 		"category": "animal_product",
 		"name_key": "ITEM_PRODUCT_ANIMAL_TEST_B",
 		"stack_max": 20
+	},
+	{
+		"id": "herb_test",
+		"provisional": true,
+		"category": "herb",
+		"name_key": "ITEM_HERB_TEST",
+		"stack_max": 20
+	},
+	{
+		"id": "material_stone_test",
+		"provisional": true,
+		"category": "material",
+		"name_key": "ITEM_MATERIAL_STONE_TEST",
+		"stack_max": 20
+	},
+	{
+		"id": "meal_test_a",
+		"provisional": true,
+		"category": "food",
+		"name_key": "ITEM_MEAL_TEST_A",
+		"stack_max": 20,
+		"use": {
+			"stamina": 8
+		}
+	},
+	{
+		"id": "meal_test_b",
+		"provisional": true,
+		"category": "food",
+		"name_key": "ITEM_MEAL_TEST_B",
+		"stack_max": 20,
+		"use": {
+			"stamina": 15
+		}
+	},
+	{
+		"id": "potion_test_health",
+		"provisional": true,
+		"category": "potion",
+		"name_key": "ITEM_POTION_TEST_HEALTH",
+		"stack_max": 20,
+		"use": {
+			"health": 40
+		}
+	},
+	{
+		"id": "potion_test_stamina",
+		"provisional": true,
+		"category": "potion",
+		"name_key": "ITEM_POTION_TEST_STAMINA",
+		"stack_max": 20,
+		"use": {
+			"stamina": 12,
+			"mana": 5
+		}
+	},
+	{
+		"id": "decor_test_stone",
+		"provisional": true,
+		"category": "decor",
+		"name_key": "ITEM_DECOR_TEST_STONE",
+		"stack_max": 20
 	}
 ]

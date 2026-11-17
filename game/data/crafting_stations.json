@@ -1,0 +1,26 @@
+[
+	{
+		"id": "station_kitchen",
+		"provisional": true,
+		"name_key": "STATION_KITCHEN",
+		"x": -6.0,
+		"z": 0.5,
+		"color": "#d9a066"
+	},
+	{
+		"id": "station_alchemy",
+		"provisional": true,
+		"name_key": "STATION_ALCHEMY",
+		"x": -9.0,
+		"z": 0.5,
+		"color": "#7a5ac8"
+	},
+	{
+		"id": "station_workbench",
+		"provisional": true,
+		"name_key": "STATION_WORKBENCH",
+		"x": -12.0,
+		"z": 0.5,
+		"color": "#8a8a8a"
+	}
+]

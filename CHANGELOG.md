@@ -5,6 +5,7 @@ Format mengikuti [Keep a Changelog](https://keepachangelog.com/id-ID/1.1.0/); ve
 ## [Belum dirilis]
 
 ### Ditambahkan
+- Crafting/memasak/ramuan dan pengumpulan (sementara): 3 stasiun uji, 5 resep, node herbal/batu per wilayah dengan respawn harian, pakai item dari Tas (makanan/ramuan memulihkan meter), menu daftar serbaguna di HUD; 45 uji tambahan.
 - Peta dan wilayah (sementara): 3 wilayah uji dengan gerbang, penguncian wilayah, minimap + peta penuh, wilayah ditemukan, simpan membawa wilayah/posisi; 129 uji tambahan.
 - Ekonomi dan toko dasar (sementara): uang, harga musiman dengan penurunan permintaan, beli/jual, kios uji dengan panel Beli/Jual, simpan/muat uang; 151 uji tambahan.
 - Memancing dasar (deterministik, umpan, kolam uji) dan peternakan dasar (pakan harian, pertumbuhan, hasil ternak); data generik sementara; 227 uji tambahan.

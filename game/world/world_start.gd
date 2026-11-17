@@ -37,6 +37,8 @@ func _ready() -> void:
 	_build_npcs()
 	_build_regions()
 	_register_village_markers()
+	_build_stations()
+	_build_gather_nodes()
 	Events.interaction_performed.connect(_on_interacted)
 
 
@@ -60,8 +62,12 @@ func _prompt_text() -> String:
 		return ""
 	if dialog != null and dialog.is_active():
 		return ""
-	if hud.shop_visible():
+	if hud.shop_visible() or hud.menu_visible():
 		return ""
+	if sensor.current.has_meta("station_id"):
+		return tr("FARM_ACT_CRAFT") + ": " + tr(str(sensor.current.get_meta("label_key", "")))
+	if sensor.current.has_meta("gather_id"):
+		return tr("FARM_ACT_GATHER") + ": " + tr(str(sensor.current.get_meta("label_key", "")))
 	if sensor.current.has_meta("link_id"):
 		return tr("FARM_ACT_TRAVEL") + ": " + tr(str(sensor.current.get_meta("label_key", "")))
 	if sensor.current.has_meta("shop_id"):
@@ -88,7 +94,13 @@ func inspect_count() -> int:
 func _on_interacted(target: Node, _actor: Node) -> void:
 	if dialog != null and dialog.is_active():
 		return
-	if hud.shop_visible():
+	if hud.shop_visible() or hud.menu_visible():
+		return
+	if target.has_meta("station_id"):
+		_open_station(str(target.get_meta("station_id")))
+		return
+	if target.has_meta("gather_id"):
+		_gather(str(target.get_meta("gather_id")))
 		return
 	if target.has_meta("link_id"):
 		travel(str(target.get_meta("link_id")))
@@ -288,7 +300,8 @@ func _build_farm() -> void:
 		int(cfg.get("world_seed", 0)), DataRegistry.rows("vitality_meters"), DataRegistry.get_row("rest_config", "default"),
 		{"fish_species": DataRegistry.rows("fish_species"), "fishing_config": DataRegistry.get_row("fishing_config", "default"),
 		"animals": DataRegistry.rows("animals"), "livestock_config": DataRegistry.get_row("livestock_config", "default"),
-		"economy_config": DataRegistry.get_row("economy_config", "default"), "item_prices": DataRegistry.rows("item_prices"), "shops": DataRegistry.rows("shops")})
+		"economy_config": DataRegistry.get_row("economy_config", "default"), "item_prices": DataRegistry.rows("item_prices"), "shops": DataRegistry.rows("shops"),
+		"gather_nodes": DataRegistry.rows("gather_nodes"), "recipes": DataRegistry.rows("recipes"), "stations": DataRegistry.rows("crafting_stations")})
 	farming.sleep.finished.connect(_on_woke_up)
 	_build_bed()
 	_build_pond()
@@ -364,7 +377,11 @@ func refresh_farm_visuals() -> void:
 	_apply_weather_look(farming.is_raining_today())
 	var lines: Array = []
 	for sl in farming.inventory.slots():
-		lines.append("-" if (sl as Dictionary).is_empty() else "%s\nx%d" % [tr(str(farming.item_defs[sl["item"]]["name_key"])), int(sl["count"])])
+		if (sl as Dictionary).is_empty():
+			lines.append({"item": "", "text": "-", "usable": false})
+		else:
+			var def: Dictionary = farming.item_defs[sl["item"]]
+			lines.append({"item": str(sl["item"]), "text": "%s\nx%d" % [tr(str(def["name_key"])), int(sl["count"])], "usable": not ItemUse.effects(def).is_empty()})
 	hud.set_bag_slots(lines)
 
 
@@ -732,6 +749,7 @@ var _open_shop_id := ""
 
 
 func _build_shop() -> void:
+	hud.bag_use.connect(_on_bag_use)
 	for sh in DataRegistry.rows("shops"):
 		var node := Node3D.new()
 		node.name = str(sh["id"])
@@ -977,3 +995,124 @@ func travel(link_id: String) -> bool:
 	_place_player(str(link["to"]), float(link["to_x"]), float(link["to_z"]))
 	hud.show_message(tr("MAP_ENTERED") % tr(str(dest["name_key"])))
 	return true
+
+
+# --- Stasiun crafting, pengumpulan, pakai item (SEMENTARA) ---
+
+var _open_station_id := ""
+var gather_nodes: Dictionary = {}   # id -> Node3D
+
+
+func _build_stations() -> void:
+	for st in DataRegistry.rows("crafting_stations"):
+		var node := Node3D.new()
+		node.name = str(st["id"])
+		node.position = Vector3(float(st["x"]), 0.0, float(st["z"]))
+		var mesh := MeshInstance3D.new()
+		var box := BoxMesh.new()
+		box.size = Vector3(1.4, 1.0, 0.9)
+		mesh.mesh = box
+		mesh.position.y = 0.5
+		var mat := StandardMaterial3D.new()
+		mat.albedo_color = Color(str(st["color"]))
+		mesh.material_override = mat
+		node.add_child(mesh)
+		var label := Label3D.new()
+		label.text = "UJI: " + tr(str(st["name_key"]))
+		label.pixel_size = 0.005
+		label.position = Vector3(0, 1.5, 0)
+		label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+		node.add_child(label)
+		var it := Interactable.new()
+		it.interaction_type = "station"
+		node.add_child(it)
+		it.set_meta("station_id", str(st["id"]))
+		it.set_meta("label_key", str(st["name_key"]))
+		add_child(node)
+	hud.menu_pressed.connect(_on_menu_pressed)
+	hud.menu_closed.connect(_close_menu)
+
+
+func _open_station(station_id: String) -> void:
+	_open_station_id = station_id
+	GameTime.clock.pause("menu")
+	player.set_physics_process(false)
+	_refresh_station_menu()
+
+
+func _recipe_text(r: Dictionary) -> String:
+	var needs: Array[String] = []
+	for i in r["inputs"]:
+		needs.append("%s x%d" % [tr(str(farming.item_defs[i["item"]]["name_key"])), int(i["count"])])
+	return "%s  (%s)" % [tr(str(r["name_key"])), ", ".join(needs)]
+
+
+func _refresh_station_menu() -> void:
+	var rows: Array = []
+	for r in Crafting.recipes_for(_open_station_id, farming.recipes):
+		rows.append({"id": str(r["id"]), "text": _recipe_text(r), "enabled": Crafting.missing(r, farming.inventory).is_empty()})
+	var st := DataRegistry.get_row("crafting_stations", _open_station_id)
+	hud.show_menu(tr(str(st["name_key"])), rows)
+	refresh_farm_visuals()
+
+
+func _on_menu_pressed(id: String) -> void:
+	if _open_station_id == "":
+		return
+	var r := farming.craft(id)
+	hud.show_message(tr("CRAFT_DONE") if bool(r["ok"]) else tr("CRAFT_NO_" + str(r["reason"]).to_upper()))
+	_refresh_station_menu()
+
+
+func _close_menu() -> void:
+	hud.hide_menu()
+	_open_station_id = ""
+	GameTime.clock.resume("menu")
+	player.set_physics_process(true)
+
+
+func _on_bag_use(item: String) -> void:
+	var r := farming.use_item(item)
+	hud.show_message(tr("USE_DONE") if bool(r["ok"]) else tr("USE_NO_" + str(r["reason"]).to_upper()))
+	refresh_farm_visuals()
+
+
+func _build_gather_nodes() -> void:
+	for g in DataRegistry.rows("gather_nodes"):
+		var node := Node3D.new()
+		node.name = str(g["id"])
+		node.position = _region_origin(str(g["region"])) + Vector3(float(g["x"]), 0.0, float(g["z"]))
+		var mesh := MeshInstance3D.new()
+		var cone := CylinderMesh.new()
+		cone.top_radius = 0.05
+		cone.bottom_radius = 0.45
+		cone.height = 0.7
+		mesh.mesh = cone
+		mesh.position.y = 0.35
+		var mat := StandardMaterial3D.new()
+		mat.albedo_color = Color(str(g["color"]))
+		mesh.material_override = mat
+		mesh.name = "Mesh"
+		node.add_child(mesh)
+		var it := Interactable.new()
+		it.interaction_type = "gather"
+		node.add_child(it)
+		it.set_meta("gather_id", str(g["id"]))
+		it.set_meta("label_key", str(g["name_key"]))
+		add_child(node)
+		gather_nodes[str(g["id"])] = node
+		_markers.append({"node": node, "kind": "resource", "region": str(g["region"])})
+	Events.day_changed.connect(func(_d): _refresh_gather_visuals())
+	_refresh_gather_visuals()
+
+
+func _refresh_gather_visuals() -> void:
+	for id in gather_nodes:
+		(gather_nodes[id].get_node("Mesh") as MeshInstance3D).visible = farming.gather.is_ready(id, GameTime.clock.day_index())
+
+
+func _gather(node_id: String) -> void:
+	var r := farming.gather_at(node_id)
+	hud.show_message(tr("GATHER_DONE") + " +%d" % int(r["count"]) if bool(r["ok"]) else tr("GATHER_NO_" + str(r["reason"]).to_upper()))
+	_refresh_gather_visuals()
+	refresh_farm_visuals()

@@ -209,3 +209,35 @@ HUD_MAP,Peta,Map
 MAP_LEGEND,"Pemain, gerbang, toko, tidur, kolam, hewan, warga","Player, gate, shop, bed, pond, animals, villagers"
 MAP_DISCOVERED,Wilayah terbuka,Discovered regions
 MAP_UNKNOWN,Belum dikenal,Unknown
+ITEM_HERB_TEST,Herbal uji,Test herb
+ITEM_MATERIAL_STONE_TEST,Batu uji,Test stone
+ITEM_MEAL_TEST_A,Makanan uji A,Test meal A
+ITEM_MEAL_TEST_B,Makanan uji B,Test meal B
+ITEM_POTION_TEST_HEALTH,Ramuan HP uji,Test health potion
+ITEM_POTION_TEST_STAMINA,Ramuan stamina uji,Test stamina potion
+ITEM_DECOR_TEST_STONE,Dekorasi batu uji,Test stone decor
+STATION_KITCHEN,Dapur uji,Test kitchen
+STATION_ALCHEMY,Meja ramuan uji,Test alchemy table
+STATION_WORKBENCH,Meja kerja uji,Test workbench
+RECIPE_MEAL_A,Masak makanan A,Cook meal A
+RECIPE_MEAL_B,Masak makanan B,Cook meal B
+RECIPE_POTION_HEALTH,Racik ramuan HP,Brew health potion
+RECIPE_POTION_STAMINA,Racik ramuan stamina,Brew stamina potion
+RECIPE_DECOR_STONE,Buat dekorasi batu,Craft stone decor
+FARM_ACT_CRAFT,Gunakan,Use
+FARM_ACT_GATHER,Kumpulkan,Gather
+GATHER_HERB,Herbal uji,Test herb patch
+GATHER_STONE,Batu uji,Test stone
+CRAFT_DONE,Berhasil dibuat,Crafted
+CRAFT_NO_NO_MATERIAL,Bahan tidak cukup,Missing materials
+CRAFT_NO_INVENTORY_FULL,Tas penuh,Bag is full
+CRAFT_NO_UNKNOWN,Resep tidak dikenal,Unknown recipe
+USE_DONE,Dipakai,Used
+USE_NO_ALREADY_FULL,Sudah penuh,Already full
+USE_NO_NOT_USABLE,Tidak bisa dipakai,Cannot be used
+USE_NO_NO_ITEM,Barang tidak ada,You don't have it
+GATHER_DONE,Terkumpul,Gathered
+GATHER_NO_NOT_READY,Belum tumbuh lagi,Not regrown yet
+GATHER_NO_INVENTORY_FULL,Tas penuh,Bag is full
+GATHER_NO_UNKNOWN,Tidak dikenal,Unknown
+MENU_CLOSE,Tutup,Close

@@ -1,0 +1,90 @@
+[
+	{
+		"id": "recipe_meal_a",
+		"provisional": true,
+		"station": "station_kitchen",
+		"inputs": [
+			{
+				"item": "produce_test_a",
+				"count": 1
+			},
+			{
+				"item": "fish_test_a",
+				"count": 1
+			}
+		],
+		"output": {
+			"item": "meal_test_a",
+			"count": 1
+		},
+		"name_key": "RECIPE_MEAL_A"
+	},
+	{
+		"id": "recipe_meal_b",
+		"provisional": true,
+		"station": "station_kitchen",
+		"inputs": [
+			{
+				"item": "produce_test_b",
+				"count": 1
+			}
+		],
+		"output": {
+			"item": "meal_test_b",
+			"count": 1
+		},
+		"name_key": "RECIPE_MEAL_B"
+	},
+	{
+		"id": "recipe_potion_health",
+		"provisional": true,
+		"station": "station_alchemy",
+		"inputs": [
+			{
+				"item": "herb_test",
+				"count": 2
+			}
+		],
+		"output": {
+			"item": "potion_test_health",
+			"count": 1
+		},
+		"name_key": "RECIPE_POTION_HEALTH"
+	},
+	{
+		"id": "recipe_potion_stamina",
+		"provisional": true,
+		"station": "station_alchemy",
+		"inputs": [
+			{
+				"item": "herb_test",
+				"count": 1
+			},
+			{
+				"item": "produce_test_a",
+				"count": 1
+			}
+		],
+		"output": {
+			"item": "potion_test_stamina",
+			"count": 1
+		},
+		"name_key": "RECIPE_POTION_STAMINA"
+	},
+	{
+		"id": "recipe_decor_stone",
+		"provisional": true,
+		"station": "station_workbench",
+		"inputs": [
+			{
+				"item": "material_stone_test",
+				"count": 3
+			}
+		],
+		"output": {
+			"item": "decor_test_stone",
+			"count": 1
+		},
+		"name_key": "RECIPE_DECOR_STONE"
+	}
+]

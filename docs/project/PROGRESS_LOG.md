@@ -549,3 +549,11 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 ## 2026-11-17 (75) — Instruksi pemilik: kerjakan semua tahap sendiri
 
 - Pemilik tidur dan meminta seluruh tahap dikerjakan sampai game siap dites saat bangun. Dikerjakan berurutan dengan data uji sementara; tidak ada konten resmi yang dikarang; klaim uji perangkat fisik tetap tidak dibuat.
+
+## 2026-11-17 (76) — Crafting, memasak, ramuan, pengumpulan (D-020/D-026, teknis)
+
+- Crafting semua-atau-tidak (rollback bila tas penuh), ItemUse (menolak item tak bisa dipakai / meter penuh tanpa mengonsumsi), GatherState (respawn per hari, tersimpan).
+- Data SEMENTARA generik: 3 stasiun (dapur, alkimia, bengkel), 5 resep, node kumpul di hutan/desa/kawasan kuno. Bukan resep/bahan resmi.
+- HUD: menu daftar serbaguna (dipakai lagi untuk quest/papan guild nanti); slot Tas jadi tombol "Pakai".
+- Belum: ikon item, animasi memasak, kualitas/bintang hasil, resep terbuka bertahap, tingkat keahlian.
+- Uji: 22 berkas, 2074 pemeriksaan, 0 gagal; smoke test lulus. Uji perangkat fisik belum dilakukan.

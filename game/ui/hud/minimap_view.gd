@@ -5,7 +5,7 @@ extends Control
 
 const KIND_COLORS := {
 	"portal": Color(0.75, 0.4, 0.95), "shop": Color(0.95, 0.75, 0.2), "bed": Color(0.65, 0.45, 0.8),
-	"pond": Color(0.3, 0.6, 0.95), "animal": Color(1, 1, 1), "npc": Color(0.3, 0.8, 1.0),
+	"pond": Color(0.3, 0.6, 0.95), "resource": Color(0.4, 0.9, 0.4), "animal": Color(1, 1, 1), "npc": Color(0.3, 0.8, 1.0),
 }
 
 var region_size := 60.0

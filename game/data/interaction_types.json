@@ -52,5 +52,17 @@
 		"prompt_key": "FARM_ACT_TRAVEL",
 		"max_distance": 2.6,
 		"min_facing_dot": 0.0
+	},
+	{
+		"id": "station",
+		"prompt_key": "FARM_ACT_CRAFT",
+		"max_distance": 2.6,
+		"min_facing_dot": 0.0
+	},
+	{
+		"id": "gather",
+		"prompt_key": "FARM_ACT_GATHER",
+		"max_distance": 2.4,
+		"min_facing_dot": 0.0
 	}
 ]

@@ -23,6 +23,9 @@ var _shop_panel: PanelContainer
 var _shop_title: Label
 var _shop_buy: VBoxContainer
 var _shop_sell: VBoxContainer
+var _menu_panel: PanelContainer
+var _menu_title: Label
+var _menu_list: VBoxContainer
 var _minimap: MinimapView
 var _map_panel: PanelContainer
 var _map_big: MinimapView
@@ -34,6 +37,9 @@ signal dialog_choice(index: int)
 signal shop_buy(item: String)
 signal shop_sell(item: String)
 signal shop_close
+signal menu_pressed(id: String)
+signal menu_closed
+signal bag_use(item: String)
 signal save_pressed
 signal load_pressed
 
@@ -155,6 +161,26 @@ func _ready() -> void:
 	close.pressed.connect(func(): shop_close.emit())
 	sbox.add_child(close)
 
+	_menu_panel = PanelContainer.new()
+	_menu_panel.visible = false
+	root.add_child(_menu_panel)
+	_menu_panel.set_anchors_and_offsets_preset(Control.PRESET_CENTER, Control.PRESET_MODE_MINSIZE, 0)
+	_menu_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	_menu_panel.grow_vertical = Control.GROW_DIRECTION_BOTH
+	var menu_box := VBoxContainer.new()
+	menu_box.custom_minimum_size = Vector2(700, 0)
+	_menu_panel.add_child(menu_box)
+	_menu_title = Label.new()
+	_menu_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	menu_box.add_child(_menu_title)
+	_menu_list = VBoxContainer.new()
+	menu_box.add_child(_menu_list)
+	var menu_close := Button.new()
+	menu_close.text = tr("MENU_CLOSE")
+	menu_close.custom_minimum_size = Vector2(0, UiTheme.MIN_TOUCH_HEIGHT)
+	menu_close.pressed.connect(func(): menu_closed.emit())
+	menu_box.add_child(menu_close)
+
 	_minimap = MinimapView.new()
 	_minimap.custom_minimum_size = Vector2(170, 170)
 	_minimap.size = Vector2(170, 170)
@@ -240,18 +266,19 @@ func toggle_bag() -> void:
 	_bag_panel.visible = not _bag_panel.visible
 
 
-## Menggambar ulang kisi tas: tiap slot satu kotak teks (ikon item menunggu aset C-00x).
-func set_bag_slots(lines: Array) -> void:
+## Menggambar ulang kisi tas: tiap slot satu tombol; slot berisi item yang bisa dipakai
+## memancarkan bag_use. Ikon item menunggu aset C-00x. Baris: {item, text, usable}.
+func set_bag_slots(rows: Array) -> void:
 	for c in _bag_grid.get_children():
 		c.queue_free()
-	for t in lines:
-		var l := Label.new()
-		l.text = str(t)
-		l.custom_minimum_size = Vector2(150, 70)
-		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		l.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-		l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		_bag_grid.add_child(l)
+	for r in rows:
+		var b := Button.new()
+		b.text = str(r["text"])
+		b.custom_minimum_size = Vector2(150, 70)
+		b.disabled = not bool(r["usable"])
+		var item := str(r["item"])
+		b.pressed.connect(func(): bag_use.emit(item))
+		_bag_grid.add_child(b)
 
 
 func set_weather_text(text: String) -> void:
@@ -337,3 +364,27 @@ func update_map(size: float, color: Color, player: Vector2, facing: Vector2, mar
 	_minimap.set_data(size, color, player, facing, markers)
 	if _map_panel.visible:
 		_map_big.set_data(size, color, player, facing, markers)
+
+
+func menu_visible() -> bool:
+	return _menu_panel.visible
+
+
+## Menu daftar serbaguna (stasiun crafting, papan quest, dsb). Baris: {id, text, enabled}.
+func show_menu(title: String, rows: Array) -> void:
+	_menu_panel.visible = true
+	_menu_title.text = title
+	for c in _menu_list.get_children():
+		c.queue_free()
+	for r in rows:
+		var b := Button.new()
+		b.text = str(r["text"])
+		b.disabled = not bool(r["enabled"])
+		b.custom_minimum_size = Vector2(0, UiTheme.MIN_TOUCH_HEIGHT)
+		var id := str(r["id"])
+		b.pressed.connect(func(): menu_pressed.emit(id))
+		_menu_list.add_child(b)
+
+
+func hide_menu() -> void:
+	_menu_panel.visible = false

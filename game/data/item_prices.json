@@ -75,5 +75,54 @@
 		"buy": 0,
 		"sell": 40,
 		"id": "product_animal_test_b"
+	},
+	{
+		"id": "herb_test",
+		"item": "herb_test",
+		"provisional": true,
+		"buy": 0,
+		"sell": 6
+	},
+	{
+		"id": "material_stone_test",
+		"item": "material_stone_test",
+		"provisional": true,
+		"buy": 0,
+		"sell": 4
+	},
+	{
+		"id": "meal_test_a",
+		"item": "meal_test_a",
+		"provisional": true,
+		"buy": 0,
+		"sell": 22
+	},
+	{
+		"id": "meal_test_b",
+		"item": "meal_test_b",
+		"provisional": true,
+		"buy": 0,
+		"sell": 40
+	},
+	{
+		"id": "potion_test_health",
+		"item": "potion_test_health",
+		"provisional": true,
+		"buy": 0,
+		"sell": 30
+	},
+	{
+		"id": "potion_test_stamina",
+		"item": "potion_test_stamina",
+		"provisional": true,
+		"buy": 0,
+		"sell": 28
+	},
+	{
+		"id": "decor_test_stone",
+		"item": "decor_test_stone",
+		"provisional": true,
+		"buy": 0,
+		"sell": 15
 	}
 ]
