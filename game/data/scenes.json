@@ -1,0 +1,6 @@
+[
+	{"id": "boot", "path": "res://game/boot/boot.tscn"},
+	{"id": "main_menu", "path": "res://game/ui/main_menu/main_menu.tscn"},
+	{"id": "settings", "path": "res://game/ui/settings/settings_screen.tscn"},
+	{"id": "foundation_test", "path": "res://game/diagnostics/foundation_test.tscn"}
+]

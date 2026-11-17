@@ -1,0 +1,11 @@
+[
+	{"id": "move_left", "events": [{"type": "key", "key": "A"}, {"type": "key", "key": "Left"}, {"type": "joy_axis", "axis": 0, "value": -1.0}]},
+	{"id": "move_right", "events": [{"type": "key", "key": "D"}, {"type": "key", "key": "Right"}, {"type": "joy_axis", "axis": 0, "value": 1.0}]},
+	{"id": "move_up", "events": [{"type": "key", "key": "W"}, {"type": "key", "key": "Up"}, {"type": "joy_axis", "axis": 1, "value": -1.0}]},
+	{"id": "move_down", "events": [{"type": "key", "key": "S"}, {"type": "key", "key": "Down"}, {"type": "joy_axis", "axis": 1, "value": 1.0}]},
+	{"id": "interact", "events": [{"type": "key", "key": "E"}, {"type": "joy_button", "index": 0}]},
+	{"id": "action_primary", "events": [{"type": "key", "key": "Space"}, {"type": "joy_button", "index": 2}]},
+	{"id": "action_secondary", "events": [{"type": "key", "key": "Q"}, {"type": "joy_button", "index": 3}]},
+	{"id": "cancel", "events": [{"type": "key", "key": "Escape"}, {"type": "joy_button", "index": 1}]},
+	{"id": "menu_open", "events": [{"type": "key", "key": "Tab"}, {"type": "joy_button", "index": 6}]}
+]

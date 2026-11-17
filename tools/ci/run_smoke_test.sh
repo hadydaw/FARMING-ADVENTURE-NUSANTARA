@@ -16,5 +16,6 @@ run() {
 }
 
 run "Smoke test"        godot --headless --path . --script res://tools/ci/smoke_test.gd
+run "Uji unit (tests/)" godot --headless --path . --script res://tests/run_all.gd
 run "Scene utama 90 frame" godot --headless --path . --quit-after 90
 exit $fail

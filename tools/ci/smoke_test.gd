@@ -67,9 +67,10 @@ func _test_backend_client() -> void:
 
 func _test_translations() -> void:
 	TranslationServer.set_locale("id")
-	_check(tr("BOOT_SUBTITLE").begins_with("Fondasi"), "terjemahan id harus termuat")
+	_check(tr("MENU_SETTINGS") == "Pengaturan", "terjemahan id harus termuat")
 	TranslationServer.set_locale("en")
-	_check(tr("BOOT_SUBTITLE").begins_with("Project foundation"), "terjemahan en harus termuat")
+	_check(tr("MENU_SETTINGS") == "Settings", "terjemahan en harus termuat")
+	TranslationServer.set_locale("id")
 
 
 func _test_main_scene() -> void:

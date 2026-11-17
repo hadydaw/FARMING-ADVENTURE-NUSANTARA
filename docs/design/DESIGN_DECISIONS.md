@@ -31,6 +31,7 @@ Keputusan **Teknis (rutin)** dibuat Claude secara mandiri dan boleh ditinjau/dig
 | O-006 | Pengujian APK di HP dilakukan pemilik; status "lulus di HP" hanya dicatat setelah pemilik melapor. | 2026-11-17 |
 | O-007 | Larangan sampai desain disepakati bersama ChatGPT: gameplay, pertarungan, farming, dungeon, multiplayer, dan fitur lain yang belum disepakati. | 2026-11-17 |
 | O-008 | **Persetujuan P-007: lingkup Rilis Awal** sesuai `docs/design/RELEASE_SCOPE_PROPOSAL_P007.md` rev. 2 (tabel WAJIB/UPDATE/LANJUTAN dan jawaban Q1 sampai Q6, termasuk identitas anonim Supabase untuk Cloud Save, target 3 wilayah, 2 dungeon, 12 NPC inti sebagai **target desain yang perlu divalidasi**). Tafsir D-014 (akun anonim otomatis memenuhi "punya akun" pada Rilis Awal; login permanen menyusul, Tahap 35 DEFERRED) dikonfirmasi; teks D-014 tidak diubah. **TBD T1 sampai T20 tetap terbuka** dan tidak dianggap diputuskan. Tidak mengubah keputusan D-001 sampai D-069 dan D-051. | 2026-11-17 |
+| O-009 | **Workflow produksi: ChatGPT = seluruh desain visual dan aset gambar; Claude = arsitektur teknis, programming, integrasi, uji, build.** Claude tidak membuat aset visual final, tidak memakai placeholder yang diklaim final, tidak mengubah desain visual yang disetujui. Rincian di `docs/project/PRODUCTION_WORKFLOW.md`. Tidak mengubah D-001 sampai D-069; ketegangan D-008 (3D) dengan istilah sprite dicatat sebagai risiko terbuka, bukan perubahan keputusan. | 2026-11-17 |
 
 ## A2. Keputusan desain resmi dari tahap desain (LOCKED)
 

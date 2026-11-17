@@ -456,3 +456,10 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Pemilik menyetujui proposal P-007 rev. 2 ("Setuju"). Dicatat sebagai **O-008**; P-007 berstatus **Selesai**. Isi: lingkup Rilis Awal sesuai tabel proposal, jawaban Q1 sampai Q6 (identitas anonim Supabase, ramuan dasar, companion dasar, romansa tahap awal, target 3 wilayah/2 dungeon/12 NPC inti sebagai target desain yang perlu divalidasi, kustomisasi dasar, transaksi kosmetik ditunda), dan tafsir D-014 (teks tidak diubah).
 - **TBD T1 sampai T20 tetap terbuka**, tidak dianggap diputuskan. Keputusan D-001 sampai D-069 dan D-051 tidak berubah. Tahap 35 tetap DEFERRED; P-002, P-005, P-006 pending.
 - Dokumen disinkronkan: DESIGN_DECISIONS, RELEASE_SCOPE, proposal P-007, ROADMAP, GDD, TA, BACKEND_DESIGN, README. Tidak ada perubahan kode/gameplay/CI.
+
+## 2026-11-17 (62) — Milestone 1 Project Foundation + workflow produksi (O-009)
+
+- Pemilik memerintahkan mulai pembuatan game dan menetapkan aturan produksi: ChatGPT membuat semua aset visual, Claude mengerjakan teknis. Dicatat sebagai **O-009**; dokumen: `PRODUCTION_WORKFLOW.md`, `IMPLEMENTATION_PLAN.md`, `docs/assets/*`.
+- M1 dibangun: DataRegistry, Events, GameSettings, GameDisplay, InputService, SceneManager, UiTheme, kontrol sentuh, boot/menu/pengaturan/diagnostik, lokalisasi id/en. Bug layout ditemukan lewat screenshot dan diperbaiki (`set_anchors_and_offsets_preset`), dikunci dengan uji tata letak.
+- Uji: 8 berkas, 383 pemeriksaan, 0 gagal; smoke test lulus.
+- Risiko terbuka: D-008 (3D) vs sprite; sumber model 3D; identitas T1/T2 belum diimplementasi; uji perangkat fisik oleh pemilik.

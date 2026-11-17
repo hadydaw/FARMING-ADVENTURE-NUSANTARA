@@ -1,7 +1,46 @@
 keys,id,en
 BOOT_TITLE,Farming Adventure Nusantara,Farming Adventure Nusantara
-BOOT_SUBTITLE,Fondasi proyek siap. Gameplay belum dimulai.,Project foundation ready. Gameplay has not started.
-BOOT_VERSION,Versi %s,Version %s
-BOOT_RENDERER,Renderer: %s,Renderer: %s
-BOOT_FPS,FPS: %d,FPS: %d
-BOOT_LANGUAGE,Bahasa: Indonesia,Language: English
+BOOT_LOADING,Memuat…,Loading…
+MENU_NOTICE,"Milestone 1: fondasi teknis. Gameplay belum tersedia.","Milestone 1: technical foundation. Gameplay is not available yet."
+MENU_SETTINGS,Pengaturan,Settings
+MENU_FOUNDATION_TEST,Uji Fondasi (diagnostik),Foundation Test (diagnostics)
+MENU_VERSION,Versi %s,Version %s
+COMMON_BACK,Kembali,Back
+COMMON_RESET_ALL,Reset Semua,Reset All
+SET_TITLE,Pengaturan,Settings
+SET_CAT_GENERAL,Umum,General
+SET_CAT_AUDIO,Audio,Audio
+SET_CAT_CONTROLS,Kontrol,Controls
+SET_CAT_ACCESSIBILITY,Aksesibilitas,Accessibility
+SET_LANGUAGE,Bahasa,Language
+SET_LANG_ID,Bahasa Indonesia,Bahasa Indonesia
+SET_LANG_EN,English,English
+SET_MUSIC_VOLUME,Volume musik,Music volume
+SET_SFX_VOLUME,Volume efek suara,Sound effects volume
+SET_AMBIENCE_VOLUME,Volume suasana,Ambience volume
+SET_JOYSTICK_MODE,Jenis joystick,Joystick type
+SET_JOYSTICK_FIXED,Tetap,Fixed
+SET_JOYSTICK_FLOATING,Mengambang,Floating
+SET_JOYSTICK_SIZE,Ukuran joystick,Joystick size
+SET_JOYSTICK_DEADZONE,Zona mati joystick,Joystick dead zone
+SET_TEXT_SCALE,Ukuran teks,Text size
+SET_RESET_CONFIRM,"Kembalikan semua pengaturan ke bawaan? Progres game tidak terpengaruh.","Reset all settings to defaults? Game progress is not affected."
+SET_RESET_OK,Reset,Reset
+SET_CANCEL,Batal,Cancel
+FT_TITLE,Uji Fondasi (diagnostik),Foundation Test (diagnostics)
+FT_NOTICE,Layar uji teknis. Bukan aset atau gameplay final.,Technical test screen. Not final assets or gameplay.
+FT_RENDER_NOTE,Kubus berputar = uji render 3D (bukan aset).,Spinning cube = 3D render test (not an asset).
+FT_RENDERER,Renderer: %s,Renderer: %s
+FT_FPS,FPS: %d,FPS: %d
+FT_SCREEN,Layar: %s | viewport: %s,Screen: %s | viewport: %s
+FT_SAFE,Area aman (L/T/R/B): %d / %d / %d / %d,Safe area (L/T/R/B): %d / %d / %d / %d
+FT_ORIENT,Orientasi: %s,Orientation: %s
+FT_LOCALE,Bahasa aktif: %s,Active language: %s
+FT_TOUCH,Layar sentuh: %s,Touchscreen: %s
+FT_YES,ya,yes
+FT_NO,tidak,no
+FT_NONE,-,-
+FT_MOVE,"Gerak: %.2f, %.2f","Move: %.2f, %.2f"
+FT_ACTIONS,Aksi aktif: %s,Active actions: %s
+ACT_INTERACT,Interaksi,Interact
+ACT_PRIMARY,Aksi 1,Action 1

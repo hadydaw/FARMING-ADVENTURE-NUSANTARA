@@ -41,6 +41,7 @@
 - Semua aset harus **asli, berlisensi jelas, atau buatan sendiri**; catat sumber dan lisensi di `docs/project/ASSET_CREDITS.md` (dibuat saat aset pertama masuk). Aset dari proyek lama dilarang.
 - Patuhi anggaran performa (`TECHNICAL_ARCHITECTURE.md` §3). Ukuran APK dipantau tiap rilis.
 - Gaya visual **3D Stylized yang konsisten** (D-008); art direction rinci menyusul.
+- **Semua aset visual dibuat lewat ChatGPT** (O-009); Claude hanya mengintegrasikan. Tidak ada placeholder yang diklaim final; placeholder berlabel "PLACEHOLDER" dan tercatat di `docs/assets/ASSET_MASTER_LIST.md`. Lihat `docs/project/PRODUCTION_WORKFLOW.md`.
 
 ## 6. Dokumentasi
 
