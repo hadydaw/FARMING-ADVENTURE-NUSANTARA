@@ -167,3 +167,9 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - D-032 (Kombinasi Semua Sistem, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
 - GDD §6.22 baru (v0.22); Technical Architecture §4s ditambahkan (v0.22; catatan saja: bus musik/SFX/ambience terpisah, musik adaptif berbasis konteks, ambience dari cuaca/musim/wilayah, SFX data-driven). Hubungan dengan D-009, D-013, D-016, D-019, D-022 sampai D-031 dicatat tanpa mengubah isinya.
 - Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 23.
+
+## 2026-11-17 (23) — D-033 Sistem Kamera dan Kontrol Karakter dicatat
+
+- D-033 (Kamera Adaptif, LOCKED) dicatat; ID tersedia, tanpa bentrokan.
+- GDD §6.23 baru dan bagian kamera di §4 diperbarui (v0.23); Technical Architecture §4t ditambahkan dan §7 diberi rujukan (v0.23; catatan saja: camera rig berbasis profil per konteks, transisi halus, zoom/rotasi terbatas sebagai pengaturan pemain, batas performa GL Compatibility). Hubungan dengan D-004, D-008, D-013, D-016, D-023, D-027 sampai D-032 dicatat tanpa mengubah isinya.
+- Tidak ada perubahan kode/gameplay/CI. Menunggu keputusan Tahap 24.

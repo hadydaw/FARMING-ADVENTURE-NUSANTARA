@@ -1,6 +1,6 @@
 # Game Design Document (GDD) — Farming Adventure Nusantara
 
-> **Versi dokumen:** 0.22 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
+> **Versi dokumen:** 0.23 (+ D-013 Pertarungan, D-014 Single-Player Online, D-015 Sistem Kehidupan, D-016 Dungeon, D-017 Guild, D-018 Perkembangan Karakter, D-019 Companion, D-020 Equipment & Crafting, D-021 Ekonomi, D-022 NPC & Sosial, D-023 Pertanian, D-024 Peternakan, D-025 Memancing, D-026 Memasak & Alkimia, D-027 Rumah & Bangunan, D-028 Eksplorasi, D-029 Event Dunia, D-030 Musim & Cuaca, D-031 UI & HUD, D-032 Audio, D-033 Kamera) · **Status:** Draf awal. Hanya memuat keputusan yang sudah ditetapkan pemilik proyek.
 > Setiap bagian yang belum diputuskan ditandai **[BELUM DITETAPKAN]** dan akan diisi melalui tahap desain bersama ChatGPT sebelum implementasi.
 > Daftar keputusan resmi: [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md).
 
@@ -50,7 +50,7 @@ Rincian mekanik tiap aktivitas ada di bagian 6 dan **belum ditetapkan**.
 
 **[BELUM DITETAPKAN]:**
 - Skema kontrol (joystick virtual, tap-to-move, tombol aksi, gestur) — harus mampu menampung seluruh aksi pertarungan D-013 (serang/combo, skill, dodge, block, parry) dan memenuhi standar UI D-031 (nyaman untuk sentuhan; ukuran dan posisi tombol dapat disesuaikan pemain; lihat 6.21).
-- Sudut dan perilaku kamera (follow, orbit, tetap).
+- Kamera: arah sudah ditetapkan **Kamera Adaptif** (D-033, lihat 6.23); sudut, jarak, batas, dan skema kontrol kamera rinci belum.
 - Dukungan kontroler eksternal.
 
 ## 5. Visual: 3D Stylized
@@ -365,6 +365,18 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 
 **[BELUM DITETAPKAN]:** gaya musik tiap wilayah, daftar lagu, sumber/lisensi aset audio, suara pengisi, arti audio "fenomena spiritual", format/ukuran aset dan batas ukuran APK, perilaku saat di latar belakang/panggilan masuk, aksesibilitas audio. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
 
+### 6.23 Kamera dan Kontrol Karakter — D-033, LOCKED (Kamera Adaptif)
+**Ditetapkan:**
+- Kamera **menyesuaikan konteks** aktivitas.
+- **Farming dan eksplorasi:** framing lebih luas (area sekitar, lahan, objek, jalur terlihat jelas).
+- **Interaksi dan combat:** kamera boleh **mendekat** agar karakter dan aksi mudah diamati.
+- Pemain dapat mengatur **zoom dan rotasi** dalam **batas terkontrol**.
+- Peralihan **halus dan konsisten**, tidak membuat pemain kehilangan orientasi.
+- Prioritas **kenyamanan kontrol Android landscape** dan **performa** (Godot 4.7.2, GL Compatibility).
+- Terkait: D-004, D-008, D-013, D-016, D-023, D-027, D-028, D-030, D-031, D-032.
+
+**[BELUM DITETAPKAN]:** sudut dan jarak tiap konteks, batas zoom/rotasi, skema kontrol sentuh kamera, penargetan/lock-on, kamera di ruang sempit (bangunan, dungeon), tabrakan kamera dengan objek, mode rumah/dekorasi, aksesibilitas, efek guncangan dan sinematik, dukungan kontroler. **Tidak ada implementasi sebelum seluruh tahap desain selesai.**
+
 ## 7. Online (Single-Player Online) — D-014, LOCKED
 
 **Ditetapkan (D-014, Single-Player Online):**
@@ -388,7 +400,7 @@ Perkembangan kemampuan karakter: lihat 6.10 (D-018).
 Urutan usulan pembahasan bersama ChatGPT (dari yang paling memengaruhi arsitektur):
 
 1. ~~Multiplayer~~ (D-014 terkunci: Single-Player Online).
-2. ~~Pertarungan~~ (D-013 terkunci); sisanya: detail aturan combat, kamera dan kontrol sentuh.
+2. ~~Pertarungan~~ (D-013 terkunci); sisanya: detail aturan combat dan kontrol sentuh (kamera: D-033 terkunci).
 3. Struktur dunia dan wilayah (ukuran, loading, peta).
 4. ~~Sistem kehidupan~~ (D-015 terkunci); sisanya: detail aturan (musim, waktu, stamina, ekonomi, resep, festival).
 5. ~~Dungeon~~ (D-016 terkunci: tetap + acak); sisanya: detail loot, boss, kesulitan.

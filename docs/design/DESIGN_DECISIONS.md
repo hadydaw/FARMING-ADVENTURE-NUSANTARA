@@ -411,6 +411,19 @@ Ketentuan:
 Hubungan (tidak mengubah isi keputusan lain): wilayah dan eksplorasi (**D-009**, **D-028**), pertarungan dan dungeon (**D-013**, **D-016**), NPC (**D-022**), pertanian/peternakan/memancing/memasak (**D-023 sampai D-026**), event dunia (**D-029**), musim dan cuaca (**D-030**; "tampilan audio tiap musim/cuaca" yang terbuka di sana kini ditangani di sini), UI/pengaturan (**D-031**), dan monster/companion (**D-019**).
 **Terbuka:** gaya dan genre musik tiap wilayah, daftar lagu dan aturan transisi, sumber dan lisensi aset audio, suara pengisi (voice) dan bahasanya, arti audio "fenomena spiritual" (konsep spiritual belum didefinisikan, tidak ditebak), format dan ukuran aset, batas ukuran APK, perilaku saat aplikasi di latar belakang atau ada panggilan masuk, dukungan headphone/mono, subtitle/aksesibilitas audio. Implementasi audio belum dimulai. ID D-032 tersedia saat dicatat (tanpa bentrokan).
 
+### D-033 — Sistem Kamera dan Kontrol Karakter *(APPROVED / LOCKED, 2026-11-17, Tahap 23)*
+Pilihan: **D. Kamera Adaptif.** Ketentuan:
+1. Kamera menyesuaikan konteks aktivitas pemain.
+2. Saat farming dan eksplorasi: framing lebih luas agar area sekitar, lahan, objek, dan jalur terlihat jelas.
+3. Saat interaksi dan combat: kamera boleh mendekat agar karakter dan aksi mudah diamati.
+4. Tersedia pengaturan zoom dan rotasi kamera dengan batas terkontrol.
+5. Peralihan kamera halus, konsisten, dan tidak membuat pemain kehilangan orientasi.
+6. Prioritas: kenyamanan kontrol di Android landscape dan performa Godot 4.7.2 dengan GL Compatibility.
+7. Tidak mengubah keputusan desain lain yang terkunci.
+
+Hubungan (tidak mengubah isi keputusan lain): platform dan orientasi (**D-004**), gaya visual (**D-008**), pertarungan (**D-013**; penargetan/kamera saat bertarung yang terbuka di sana kini mengikuti keputusan ini), dungeon (**D-016**), pertanian (**D-023**), rumah/bangunan (**D-027**), eksplorasi (**D-028**), cuaca/waktu (**D-030**), UI dan kontrol sentuh (**D-031**), audio posisional (**D-032**).
+**Terbuka:** sudut dan jarak kamera tiap konteks, rentang batas zoom dan rotasi, skema kontrol sentuh konkret untuk kamera (gestur/tombol/stik), penargetan dan lock-on saat combat, perilaku kamera di dalam bangunan/dungeon sempit, penanganan tabrakan kamera dengan objek, mode kamera rumah/dekorasi, aksesibilitas (mis. kurangi guncangan), efek guncangan/sinematik cerita dan boss, dukungan kontroler. Implementasi kamera belum dimulai. ID D-033 tersedia saat dicatat (tanpa bentrokan).
+
 ## B. Keputusan teknis rutin (diputuskan Claude, dapat ditinjau)
 
 | ID | Keputusan | Alasan singkat | Dokumen |

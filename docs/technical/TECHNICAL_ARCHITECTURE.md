@@ -1,6 +1,6 @@
 # Technical Architecture — Farming Adventure Nusantara
 
-> **Versi:** 0.22 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
+> **Versi:** 0.23 (+ D-014 Single-Player Online) · Engine dan arsitektur disetujui pemilik (O-001) · Berlaku untuk keputusan teknis T-001 s.d. T-009 di `DESIGN_DECISIONS.md`.
 
 ## 1. Kebutuhan yang Menentukan Pilihan
 
@@ -303,6 +303,18 @@ Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 - **Pengujian:** uji headless untuk kelengkapan pemetaan ID ke aset dan keberadaan bus; fokus waktu loading, bukan kualitas dengar.
 Tidak ada perubahan kode atau pipeline akibat keputusan ini.
 
+### 4t. Implikasi Arsitektur dari D-033 (hanya catatan; belum diimplementasikan)
+
+- **Camera Rig terpusat** (satu `Camera3D` di bawah rig pengontrol) yang mengikuti pemain; perilaku diatur oleh **profil kamera berbasis data** (jarak, sudut, FOV, offset, kecepatan peredaman) per konteks: jelajah, farming, interaksi, combat, dungeon, bangunan, cerita/boss.
+- **Pemilih profil** membaca konteks aktivitas dari event bus dan konteks UI (§4r); peralihan dengan interpolasi/peredaman (ease) dan prioritas konteks agar tidak bolak-balik (histeresis/penundaan kecil), sehingga orientasi tidak hilang. Arah hadap dipertahankan saat transisi.
+- **Zoom dan rotasi pemain** sebagai offset terbatas (clamp) di atas profil; nilai disimpan sebagai pengaturan pemain (seperti D-031/D-032), bukan save game; dapat di-reset ke bawaan. Dipetakan ke Input Action (§7).
+- **Tabrakan kamera:** pemeriksaan sederhana (satu raycast/spring-arm ringan) agar tidak menembus dinding; dirancang murah untuk perangkat Android.
+- **Performa (GL Compatibility):** FOV/jarak far dan jarak lihat disetel per profil agar mengurangi objek yang dirender; tidak ada efek pascapemrosesan berat yang bergantung kamera; kamera diperbarui di proses fisika/akhir frame tanpa alokasi per frame; selaras anggaran §3 dan LOD (§4m).
+- **Hook efek:** guncangan dan sinematik cerita/boss disediakan sebagai lapisan terpisah di atas rig, dengan opsi mengurangi guncangan (aksesibilitas).
+- **Hubungan:** audio posisional mengikuti posisi pendengar/kamera (D-032); penargetan combat (D-013) dan lock-on menunggu desain.
+- **Pengujian:** uji headless untuk batas clamp zoom/rotasi dan kelengkapan profil per konteks; uji perangkat nyata untuk kenyamanan dan FPS dilakukan nanti.
+Tidak ada perubahan kode atau pipeline akibat keputusan ini.
+
 ## 5. Penyimpanan Progres
 
 Implementasi awal: `game/core/save_service.gd` (autoload `SaveService`).
@@ -325,7 +337,7 @@ Implementasi awal: `game/core/save_service.gd` (autoload `SaveService`).
 
 - `emulate_mouse_from_touch` aktif agar kontrol UI standar berfungsi dengan sentuhan.
 - Orientasi: `sensor_landscape` (landscape normal dan terbalik mengikuti sensor).
-- Skema kontrol gameplay (joystick virtual, aksi, kamera) **menunggu keputusan desain**; akan dibangun sebagai scene UI terpisah dan dipetakan ke Input Action, sehingga mendukung kontroler/keyboard untuk uji.
+- Skema kontrol gameplay (joystick virtual, aksi, gestur kamera) **menunggu keputusan desain** (kamera adaptif sudah diputuskan, D-033, lihat §4t); akan dibangun sebagai scene UI terpisah dan dipetakan ke Input Action, sehingga mendukung kontroler/keyboard untuk uji.
 
 ## 8. Backend dan Online
 
