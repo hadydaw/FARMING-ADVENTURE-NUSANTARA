@@ -8,7 +8,7 @@ Roadmap berbasis **tahap dan hasil yang dapat diperiksa**, bukan tanggal (belum 
 - [x] Proyek Godot 4.7.2 (Compatibility, landscape, i18n id/en, layar boot 3D)
 - [x] Fondasi inti: `SaveService` (teruji), `BackendClient` (antarmuka), `AppInfo`
 - [x] Konfigurasi ekspor Android + pipeline GitHub Actions + rancangan rilis
-- [ ] **Bukti build:** workflow Actions hijau dan APK dev terunduh dari `dev-latest`
+- [x] **Bukti build:** workflow Actions hijau dan APK dev terunduh dari `dev-latest` (2026-11-17)
 - [ ] **Bukti perangkat:** APK dev terpasang dan layar boot tampil di HP (landscape, 3D, sentuh, ganti bahasa)
 - [ ] Pemilik: kunci rilis (P-002), package ID (P-001), keputusan backend (P-003)
 

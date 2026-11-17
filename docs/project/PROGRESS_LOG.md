@@ -16,8 +16,13 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Skrip `prepare_version.sh` diuji mode dev dan rilis (termasuk penolakan tag tidak cocok); semua skrip lolos `bash -n`; workflow lolos parse YAML.
 - Nama berkas export template Android diverifikasi dari isi arsip rilis Godot 4.7.2.
 
+**Bukti build di GitHub Actions** (run 44061366526, commit d26ed37)
+- Job "Uji fondasi" dan "Build APK": semua langkah sukses pada percobaan pertama.
+- Pre-release `dev-latest` terbit dan dapat diunduh publik: `FarmingAdventureNusantara-dev-1.apk` (±25,3 MiB).
+- Isi APK diperiksa: `lib/arm64-v8a/libgodot_android.so`, `AndroidManifest.xml`, tertanda tangan `FAN-DEV` (kunci dev). Verifikasi paket/arm64/apksigner lulus di CI.
+
 **Belum terbukti**
-- Build APK penuh di GitHub Actions (SDK Android tidak bisa diunduh dari lingkungan kerja ini). Dibuktikan setelah push pertama; hasil dicatat di bawah.
-- Layar boot di HP nyata.
+- Layar boot di HP nyata (butuh pemasangan APK dev oleh pemilik).
+- Build rilis bertanda tangan kunci rilis (butuh GitHub Secrets, P-002).
 
 **Menunggu pemilik:** P-001…P-004 (lihat `DESIGN_DECISIONS.md` bagian C).
