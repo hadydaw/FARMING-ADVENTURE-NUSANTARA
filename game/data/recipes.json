@@ -86,5 +86,37 @@
 			"count": 1
 		},
 		"name_key": "RECIPE_DECOR_STONE"
+	},
+	{
+		"id": "recipe_potion_antidote",
+		"provisional": true,
+		"station": "station_alchemy",
+		"inputs": [
+			{
+				"item": "herb_test",
+				"count": 2
+			}
+		],
+		"output": {
+			"item": "potion_test_antidote",
+			"count": 1
+		},
+		"name_key": "RECIPE_POTION_TEST_ANTIDOTE"
+	},
+	{
+		"id": "recipe_potion_regen",
+		"provisional": true,
+		"station": "station_alchemy",
+		"inputs": [
+			{
+				"item": "herb_test",
+				"count": 3
+			}
+		],
+		"output": {
+			"item": "potion_test_regen",
+			"count": 1
+		},
+		"name_key": "RECIPE_POTION_TEST_REGEN"
 	}
 ]

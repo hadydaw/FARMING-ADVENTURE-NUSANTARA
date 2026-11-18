@@ -20,6 +20,7 @@ APK terbaru: halaman Releases repo, pre-release `dev-latest` (berkas `FarmingAdv
 10. **Peta/Wilayah**: tombol Peta; gerbang ke Hutan dan Kawasan Kuno (Kuno butuh item ikan uji).
 11. **Kumpul**: kerucut hijau (herbal) dan batu di wilayah; tumbuh lagi 2-3 hari.
 12. **Monster** (waktu-nyata): bola berwarna di Hutan/Kuno mengejar bila kamu dekat (<7 m) dan menyerang berkala; tekan Interaksi dekat monster = serang (jeda 0.5 dtk); drop, EXP, level; HP habis = pingsan (uang -10%). Kabur jauh = monster pulang dan pulih.
+12b. **Perlengkapan & status**: pedang/rompi uji (belum dijual; dapat dengan cheat atau hadiah nanti) dipasang dari Tas (ketuk item), dilepas dengan mengetuk slot Senjata/Zirah; babi hutan bisa meracuni (HP berkurang berkala, tidak sampai mati); penawar dan ramuan pemulih dibuat di meja ramuan.
 13. **Papan guild** (desa atas): quest kumpul/kalahkan, peringkat, hadiah.
 14. **Gua uji** (Kawasan Kuno): 3 ruangan + bos, hadiah, tutup 3 hari.
 15. **Tukang upgrade** (desa): tas +6 slot, stamina/HP maks.
@@ -31,7 +32,7 @@ APK terbaru: halaman Releases repo, pre-release `dev-latest` (berkas `FarmingAdv
 
 ## Yang BELUM ada / sengaja tidak dikarang
 Cerita, lore, NPC/romansa resmi, boss/monster/quest resmi, aset visual final, audio, animasi, ikon item,
-tombol serang khusus/animasi/dodge, status efek, equip senjata, event/festival aktif, layar pilih slot,
+tombol serang khusus/animasi/dodge, event/festival aktif, layar pilih slot,
 upgrade rumah/petak, nama karakter, rambut/wajah, mode buta warna, akun/login (ditunda).
 TBD T1-T20 dan D-009/D-021/D-023/D-025/D-030/D-056..D-059 detail tetap terbuka.
 

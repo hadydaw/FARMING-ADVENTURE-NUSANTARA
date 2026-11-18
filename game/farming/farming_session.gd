@@ -34,6 +34,9 @@ var festivals: FestivalCalendar
 var upgrades: UpgradeState
 var companions: CompanionState
 var character: CharacterState
+var equipment: EquipmentState
+var status: StatusState
+var _status_rng := RandomNumberGenerator.new()
 var _base_slots := 0
 var recipes: Array = []
 var stations: Array = []
@@ -60,6 +63,10 @@ func _init(clock: GameClock, items: Array, crops: Array, plot_ids: Array, config
 	upgrades = UpgradeState.new(extras.get("upgrades", []))
 	companions = CompanionState.new(extras.get("companions", []))
 	character = CharacterState.new(extras.get("character_options", []))
+	equipment = EquipmentState.new()
+	status = StatusState.new(extras.get("statuses", []))
+	_status_rng.seed = seed_value + 99
+	combat.set_roll_source(func(): return _status_rng.randf())
 	realtime = RealtimeCombat.new(extras.get("combat_config", {"player_cooldown": 0.0, "monster_interval": 1.0, "aggro_range": 0.0, "attack_range": 0.0, "monster_speed": 0.0, "leash": 0.0}))
 	recipes = extras.get("recipes", [])
 	stations = extras.get("stations", [])
@@ -106,6 +113,8 @@ func reset() -> void:
 	upgrades.reset()
 	companions.reset()
 	character.reset()
+	equipment.reset()
+	status.reset()
 	_apply_upgrades()
 	for id in vitality.ids():
 		vitality.restore_full(id)
@@ -165,11 +174,14 @@ func preview(plot_id: String) -> Dictionary:
 
 
 func to_dict() -> Dictionary:
-	return {"v": SAVE_VERSION, "world_seed": world_seed, "vitality": vitality.to_dict(), "livestock": livestock.to_dict(), "fishing_casts": fishing_casts_today, "economy": economy.to_dict(), "gather": gather.to_dict(), "combat": combat.to_dict(), "quests": quests.to_dict(), "dungeon": dungeon.to_dict(), "achievements": achievements.to_dict(), "festivals": festivals.to_dict(), "upgrades": upgrades.to_dict(), "companions": companions.to_dict(), "character": character.to_dict(), "inventory": inventory.to_dict(), "grid": grid.to_dict()}
+	return {"v": SAVE_VERSION, "world_seed": world_seed, "vitality": vitality.to_dict(), "livestock": livestock.to_dict(), "fishing_casts": fishing_casts_today, "economy": economy.to_dict(), "gather": gather.to_dict(), "combat": combat.to_dict(), "quests": quests.to_dict(), "dungeon": dungeon.to_dict(), "achievements": achievements.to_dict(), "festivals": festivals.to_dict(), "upgrades": upgrades.to_dict(), "companions": companions.to_dict(), "character": character.to_dict(), "equipment": equipment.to_dict(), "status": status.to_dict(), "inventory": inventory.to_dict(), "grid": grid.to_dict()}
 
 
 ## Terapkan efek upgrade (slot tas, meter maksimum) dari himpunan upgrade yang dimiliki.
 func _apply_upgrades() -> void:
+	combat.equip_attack = equipment.attack_bonus(item_defs)
+	combat.equip_defense = equipment.defense_bonus(item_defs)
+	combat.status_attack = status.attack_mod()
 	combat.bonus_attack = companions.attack_bonus()
 	combat.bonus_guard = companions.guard_bonus()
 	inventory.set_slot_count(_base_slots + upgrades.bonus_slots())
@@ -177,35 +189,41 @@ func _apply_upgrades() -> void:
 		vitality.set_max_bonus(str(id), upgrades.meter_bonus(str(id)))
 
 
-## Semua-atau-tidak, termasuk upgrade (ukuran tas/meter bergantung padanya, jadi diterapkan dulu).
+## Semua-atau-tidak, termasuk bagian opsional (upgrade/teman/karakter/perlengkapan/status). Upgrade dan
+## perlengkapan diterapkan DULU (ukuran tas/meter/serangan bergantung padanya). Save lama tanpa kunci
+## bagian opsional = bagian itu direset ke bawaan.
+func _optional_parts() -> Dictionary:
+	return {"character": character, "companions": companions, "upgrades": upgrades, "equipment": equipment, "status": status}
+
+
+func _part_from(name: String, part: Object, d: Dictionary) -> bool:
+	return part.from_dict(d, item_defs) if name == "equipment" else part.from_dict(d)
+
+
 func from_dict(data: Dictionary) -> bool:
-	if typeof(data.get("upgrades", {})) != TYPE_DICTIONARY or typeof(data.get("companions", {})) != TYPE_DICTIONARY or typeof(data.get("character", {})) != TYPE_DICTIONARY:
-		return false
+	var parts := _optional_parts()
+	for name in parts:
+		if data.has(name) and typeof(data[name]) != TYPE_DICTIONARY:
+			return false
 	var backup := to_dict()
-	if data.has("character"):
-		if not character.from_dict(data["character"]):
+	var done: Array = []
+	for name in parts:
+		var ok := true
+		if data.has(name):
+			ok = _part_from(name, parts[name], data[name])
+		else:
+			parts[name].reset()
+		if not ok:
+			for d in done:
+				_part_from(d, parts[d], backup[d])
+			_apply_upgrades()
 			return false
-	else:
-		character.reset()
-	if data.has("companions"):
-		if not companions.from_dict(data["companions"]):
-			character.from_dict(backup["character"])
-			return false
-	else:
-		companions.reset()
-	if data.has("upgrades"):
-		if not upgrades.from_dict(data["upgrades"]):
-			companions.from_dict(backup["companions"])
-			character.from_dict(backup["character"])
-			return false
-	else:
-		upgrades.reset()
+		done.append(name)
 	_apply_upgrades()
 	if _from_dict_core(data):
 		return true
-	upgrades.from_dict(backup["upgrades"])
-	companions.from_dict(backup["companions"])
-	character.from_dict(backup["character"])
+	for name in parts:
+		_part_from(name, parts[name], backup[name])
 	_apply_upgrades()
 	inventory.from_dict(backup["inventory"])
 	vitality.from_dict(backup["vitality"])
@@ -351,13 +369,56 @@ func craft(recipe_id: String) -> Dictionary:
 
 
 func use_item(item_id: String) -> Dictionary:
+	var def: Dictionary = item_defs.get(item_id, {})
+	if def.has("cure") or def.has("grant"):
+		if not inventory.has(item_id):
+			return {"ok": false, "reason": "no_item"}
+		var now := _clock.total_minutes
+		if def.has("cure"):
+			if not status.is_active(str(def["cure"])):
+				return {"ok": false, "reason": "no_effect"}
+			status.clear(str(def["cure"]))
+		else:
+			status.apply(str(def["grant"]), now)
+		inventory.remove(item_id, 1)
+		_apply_upgrades()
+		return {"ok": true, "reason": ""}
 	return ItemUse.use(item_id, item_defs, inventory, vitality)
+
+
+func equip_item(item_id: String) -> Dictionary:
+	var r := equipment.equip(item_id, item_defs, inventory)
+	_apply_upgrades()
+	return r
+
+
+func unequip_slot(slot: String) -> Dictionary:
+	var r := equipment.unequip(slot, inventory)
+	_apply_upgrades()
+	return r
+
+
+## Majukan status efek ke waktu game sekarang; terapkan efek turunan. Mengembalikan ids yang berakhir.
+func tick_status() -> bool:
+	var before := status.active_ids().size()
+	var expired := status.update(_clock.total_minutes, vitality)
+	_apply_upgrades()
+	return expired > 0 or status.active_ids().size() != before
+
+
+## Terapkan efek status yang ditimbulkan serangan monster (id kosong = tidak ada).
+func inflict(effect_id: String) -> bool:
+	if effect_id == "" or not status.apply(effect_id, _clock.total_minutes):
+		return false
+	_apply_upgrades()
+	return true
 
 
 func attack_monster(spawn_id: String) -> Dictionary:
 	var r := combat.attack(spawn_id, _clock.day_index(), world_seed, inventory, item_defs, vitality, economy)
 	if bool(r["defeated"]):
 		quests.on_defeat(str(combat.spawn_monster(spawn_id)["id"]))
+	_after_hit(r)
 	return r
 
 
@@ -413,7 +474,18 @@ func strike_monster(spawn_id: String) -> Dictionary:
 
 
 func monster_retaliate(spawn_id: String) -> Dictionary:
-	return combat.retaliate(spawn_id, vitality, economy)
+	var r := combat.retaliate(spawn_id, vitality, economy, _status_rng.randf())
+	_after_hit(r)
+	return r
+
+
+## Setelah terkena serangan: pingsan menghapus semua status; kalau tidak, terapkan efek yang ditimbulkan.
+func _after_hit(r: Dictionary) -> void:
+	if bool(r.get("fainted", false)):
+		status.clear_all()
+		_apply_upgrades()
+	elif str(r.get("inflict", "")) != "":
+		inflict(str(r["inflict"]))
 
 
 func quest_accept(id: String) -> Dictionary:

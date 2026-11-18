@@ -35,6 +35,7 @@ const TABLES := {
 	"companion_config": "res://game/data/companion_config.json",
 	"character_options": "res://game/data/character_options.json",
 	"character_config": "res://game/data/character_config.json",
+	"statuses": "res://game/data/statuses.json",
 	"regions": "res://game/data/regions.json",
 	"region_links": "res://game/data/region_links.json",
 	"economy_config": "res://game/data/economy_config.json",

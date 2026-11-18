@@ -353,3 +353,22 @@ CHAR_MIRROR,Cermin Uji,Test Mirror
 CHAR_SKIN,Warna kulit,Skin tone
 CHAR_OUTFIT,Warna pakaian,Outfit color
 CHAR_CHOICE,Pilihan,Choice
+ITEM_ARMOR_TEST_VEST,Rompi Uji,Test Vest
+ITEM_POTION_TEST_ANTIDOTE,Penawar Uji,Test Antidote
+ITEM_POTION_TEST_REGEN,Ramuan Pemulih Uji,Test Regen Potion
+STATUS_POISON,Racun,Poison
+STATUS_REGEN,Pemulihan,Regen
+STATUS_WEAKEN,Lemah,Weakened
+STATUS_INFLICTED,Terkena %s!,Afflicted: %s!
+EQUIP_WEAPON,Senjata,Weapon
+EQUIP_ARMOR,Zirah,Armor
+EQUIP_EMPTY,kosong,empty
+EQUIP_DONE,Perlengkapan diubah,Equipment changed
+EQUIP_UNEQUIPPED,Dilepas,Removed
+EQUIP_NO_INVENTORY_FULL,Tas penuh,Inventory full
+EQUIP_NO_NOT_EQUIPPABLE,Tidak bisa dipakai di slot,Cannot equip
+EQUIP_NO_NO_ITEM,Tidak punya item,No such item
+EQUIP_NO_EMPTY,Slot kosong,Slot empty
+USE_NO_NO_EFFECT,Tidak ada efek,No effect
+RECIPE_POTION_TEST_ANTIDOTE,Penawar Uji,Test Antidote
+RECIPE_POTION_TEST_REGEN,Ramuan Pemulih Uji,Test Regen Potion

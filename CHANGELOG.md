@@ -8,6 +8,7 @@ Format mengikuti [Keep a Changelog](https://keepachangelog.com/id-ID/1.1.0/); ve
 - Refactor: titik interaksi dunia (stasiun, kumpul, monster, papan guild, gua, upgrade, kemah) dipindah dari world_start.gd (1567 -> ~1060 baris) ke WorldSites (world_sites.gd); perilaku tidak berubah, 2834 uji tetap lulus.
 
 ### Ditambahkan
+- Perlengkapan dan status efek dasar (D-058/D-059, sementara): slot senjata/zirah dari Tas (pedang/rompi uji), status racun (berkala, tidak mematikan), pemulihan, lemah; monster tertentu menimbulkan status, penawar/ramuan pemulih (resep di meja ramuan), pingsan menghapus status; HUD menampilkan ATK/DEF dan status; simpan/muat; 54 uji tambahan. Serangan tidak lagi dihitung dari item di Tas (harus dipasang).
 - Pertarungan waktu-nyata dasar (sementara): monster mengejar dalam jarak kejar, menyerang berkala, kembali ke asal dan pulih bila pemain kabur; serang pemain lewat tombol Interaksi dengan jeda 0.5 dtk, tanpa balasan instan; berhenti saat menu/dialog/tidur; tukar-pukul lama tetap dipakai gua; 31 uji tambahan.
 - Kustomisasi karakter dasar (D-041, sementara): cermin uji di desa, 5 warna kulit dan 6 warna pakaian dari data, mengubah penanda pemain (kini punya kepala), tersimpan; 30 uji tambahan. Dapur dan papan guild digeser agar tidak menimpa semak/pagar.
 - Aksesibilitas tambahan (D-045): mode kontras tinggi (tombol hitam berbingkai putih, teks putih beroutline), lama pesan layar 1x-3x, petunjuk tutorial bisa dimatikan; ikut skala teks yang sudah ada; 29 uji tambahan.

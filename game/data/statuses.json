@@ -1,0 +1,29 @@
+[
+	{
+		"id": "poison",
+		"provisional": true,
+		"name_key": "STATUS_POISON",
+		"kind": "dot",
+		"amount": -2,
+		"interval": 10,
+		"duration": 60
+	},
+	{
+		"id": "regen",
+		"provisional": true,
+		"name_key": "STATUS_REGEN",
+		"kind": "dot",
+		"amount": 1,
+		"interval": 10,
+		"duration": 60
+	},
+	{
+		"id": "weaken",
+		"provisional": true,
+		"name_key": "STATUS_WEAKEN",
+		"kind": "attack_mod",
+		"amount": -2,
+		"interval": 0,
+		"duration": 120
+	}
+]

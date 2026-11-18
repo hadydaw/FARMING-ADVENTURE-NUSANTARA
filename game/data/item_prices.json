@@ -145,5 +145,26 @@
 		"item": "drop_test_hide",
 		"buy": 0,
 		"sell": 12
+	},
+	{
+		"id": "price_armor_test_vest",
+		"provisional": true,
+		"item": "armor_test_vest",
+		"buy": 90,
+		"sell": 35
+	},
+	{
+		"id": "price_potion_test_antidote",
+		"provisional": true,
+		"item": "potion_test_antidote",
+		"buy": 25,
+		"sell": 8
+	},
+	{
+		"id": "price_potion_test_regen",
+		"provisional": true,
+		"item": "potion_test_regen",
+		"buy": 30,
+		"sell": 10
 	}
 ]

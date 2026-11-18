@@ -165,7 +165,8 @@
 		"category": "weapon",
 		"name_key": "ITEM_WEAPON_TEST_SWORD",
 		"stack_max": 1,
-		"attack": 4
+		"attack": 4,
+		"slot": "weapon"
 	},
 	{
 		"id": "drop_test_goo",
@@ -180,5 +181,30 @@
 		"category": "material",
 		"name_key": "ITEM_DROP_TEST_HIDE",
 		"stack_max": 99
+	},
+	{
+		"id": "armor_test_vest",
+		"provisional": true,
+		"category": "armor",
+		"name_key": "ITEM_ARMOR_TEST_VEST",
+		"stack_max": 1,
+		"slot": "armor",
+		"defense": 1
+	},
+	{
+		"id": "potion_test_antidote",
+		"provisional": true,
+		"category": "potion",
+		"name_key": "ITEM_POTION_TEST_ANTIDOTE",
+		"stack_max": 20,
+		"cure": "poison"
+	},
+	{
+		"id": "potion_test_regen",
+		"provisional": true,
+		"category": "potion",
+		"name_key": "ITEM_POTION_TEST_REGEN",
+		"stack_max": 20,
+		"grant": "regen"
 	}
 ]

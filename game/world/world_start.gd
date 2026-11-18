@@ -56,6 +56,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	sites._follow_companion(delta)
 	sites.update_monsters(delta)
+	_tick_status()
 	_move_npcs(delta)
 	_update_map()
 	_update_fishing(delta)
@@ -358,7 +359,7 @@ func _build_farm() -> void:
 		"economy_config": DataRegistry.get_row("economy_config", "default"), "item_prices": DataRegistry.rows("item_prices"), "shops": DataRegistry.rows("shops"),
 		"gather_nodes": DataRegistry.rows("gather_nodes"), "recipes": DataRegistry.rows("recipes"), "stations": DataRegistry.rows("crafting_stations"),
 		"monsters": DataRegistry.rows("monsters"), "monster_spawns": DataRegistry.rows("monster_spawns"), "combat_config": DataRegistry.get_row("combat_config", "default"),
-		"character_options": DataRegistry.rows("character_options"), "companions": DataRegistry.rows("companions"), "upgrades": DataRegistry.rows("upgrades"), "festivals": DataRegistry.rows("festivals"), "achievements": DataRegistry.rows("achievements"), "dungeons": DataRegistry.rows("dungeons"), "quests": DataRegistry.rows("quests"), "guild_config": DataRegistry.get_row("guild_config", "default")})
+		"statuses": DataRegistry.rows("statuses"), "character_options": DataRegistry.rows("character_options"), "companions": DataRegistry.rows("companions"), "upgrades": DataRegistry.rows("upgrades"), "festivals": DataRegistry.rows("festivals"), "achievements": DataRegistry.rows("achievements"), "dungeons": DataRegistry.rows("dungeons"), "quests": DataRegistry.rows("quests"), "guild_config": DataRegistry.get_row("guild_config", "default")})
 	farming.sleep.finished.connect(_on_woke_up)
 	_build_bed()
 	_build_pond()
@@ -436,12 +437,16 @@ func refresh_farm_visuals() -> void:
 	hud.set_weather_text(tr(str(farming.weather_types.get(farming.weather_today(), {}).get("name_key", "WEATHER_CLEAR"))))
 	_apply_weather_look(farming.is_raining_today())
 	var lines: Array = []
+	for slot in EquipmentState.SLOTS:
+		var eq := farming.equipment.slot_item(slot)
+		var eq_name := tr(str(farming.item_defs[eq]["name_key"])) if eq != "" else tr("EQUIP_EMPTY")
+		lines.append({"item": "__slot:" + slot, "text": "%s\n%s" % [tr("EQUIP_" + slot.to_upper()), eq_name], "usable": eq != ""})
 	for sl in farming.inventory.slots():
 		if (sl as Dictionary).is_empty():
 			lines.append({"item": "", "text": "-", "usable": false})
 		else:
 			var def: Dictionary = farming.item_defs[sl["item"]]
-			lines.append({"item": str(sl["item"]), "text": "%s\nx%d" % [tr(str(def["name_key"])), int(sl["count"])], "usable": not ItemUse.effects(def).is_empty()})
+			lines.append({"item": str(sl["item"]), "text": "%s\nx%d" % [tr(str(def["name_key"])), int(sl["count"])], "usable": not ItemUse.effects(def).is_empty() or def.has("cure") or def.has("grant") or def.has("slot")})
 	hud.set_bag_slots(lines)
 
 
@@ -529,6 +534,9 @@ func vitality_text() -> String:
 	for id in v.ids():
 		parts.append("%s %d/%d" % [tr("VIT_" + str(id).to_upper()), v.value(id), v.max_value(id)])
 	parts.append("%s %d (EXP %d)" % [tr("VIT_LEVEL"), farming.combat.level(), farming.combat.exp_total])
+	parts.append("ATK %d DEF %d" % [farming.combat.player_attack(), farming.combat.player_defense()])
+	for sid in farming.status.active_ids():
+		parts.append("[%s]" % tr(str(farming.status.row(str(sid))["name_key"])))
 	return " | ".join(parts)
 
 
@@ -1058,6 +1066,22 @@ func travel(link_id: String) -> bool:
 	_place_player(str(link["to"]), float(link["to_x"]), float(link["to_z"]))
 	hud.show_message(tr("MAP_ENTERED") % tr(str(dest["name_key"])))
 	return true
+
+
+var _status_seen := -1
+
+
+func _tick_status() -> void:
+	if farming == null:
+		return
+	var now := GameTime.clock.total_minutes
+	if now == _status_seen:
+		return
+	_status_seen = now
+	if farming.status.active_ids().is_empty():
+		return
+	if farming.tick_status():
+		refresh_farm_visuals()
 
 
 func _apply_character_look() -> void:

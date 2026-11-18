@@ -10,6 +10,7 @@ func _session(seed_value: int = 1) -> FarmingSession:
 
 func _strong(s: FarmingSession) -> void:
 	s.inventory.add("weapon_test_sword", 1)
+	s.equip_item("weapon_test_sword")
 	s.combat.exp_total = 300   # level tinggi
 	s.vitality.change("stamina", 100)
 

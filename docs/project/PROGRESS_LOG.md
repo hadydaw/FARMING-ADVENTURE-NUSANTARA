@@ -640,3 +640,12 @@ Format: tanggal · apa yang selesai · **bukti** · kendala · langkah berikut. 
 - Nilai waktu-nyata (jeda 0.5/1.2 dtk, jarak kejar 7, serang 1.9, kecepatan 2.6, batas 16) SEMENTARA di combat_config.json.
 - Belum: tombol serang khusus, animasi/efek kena, dodge/blok, knockback, tabrakan monster dengan dunia, pola serangan berbeda, AI selain mengejar (D-013/D-019/D-058 detail terbuka).
 - Uji: 31 berkas, 2919 pemeriksaan, 0 gagal; smoke test lulus.
+
+## 2026-11-18 (89) — Perlengkapan + status efek dasar (D-058/D-059, teknis)
+
+- EquipmentState (slot weapon/armor; item dipasang keluar dari Tas, dilepas kembali; tukar mengembalikan item lama; tas penuh = batal). StatusState (poison/regen dot per menit game, weaken pengubah serangan; racun tidak mematikan; penyegaran memperpanjang, tidak menumpuk). Efek turunan ke CombatState (equip_attack/equip_defense/status_attack).
+- Monster boar meracuni (35%), bos melemahkan (30%) lewat retaliate waktu-nyata/tukar-pukul; gua belum menimbulkan status. Penawar (menyembuhkan racun) dan ramuan pemulih (memberi regen) dapat dibuat di meja ramuan.
+- from_dict FarmingSession dirombak: bagian opsional (karakter/teman/upgrade/perlengkapan/status) dimuat lewat satu loop dengan pemulihan penuh bila gagal; save lama tanpa kunci = bagian direset.
+- PERUBAHAN PERILAKU: serangan pemain kini dari senjata TERPASANG, bukan item di Tas; tes lama diperbarui.
+- Belum: efek status lain (D-059 daftar resmi), ikon status, durasi tampil, status dari lingkungan/makanan, zirah beragam, tingkat perlengkapan, toko perlengkapan (item punya harga, belum dijual).
+- Uji: 32 berkas, 3078 pemeriksaan, 0 gagal; smoke test lulus.

@@ -29,6 +29,7 @@ func run() -> void:
 	check_eq(s.combat.level(), 1, "level awal 1")
 	check_eq(s.combat.player_attack(s.inventory, s.item_defs), 3, "serangan dasar")
 	s.inventory.add("weapon_test_sword", 1)
+	check(bool(s.equip_item("weapon_test_sword")["ok"]), "pasang pedang")
 	check_eq(s.combat.player_attack(s.inventory, s.item_defs), 7, "pedang menambah serangan")
 	check_eq(str(s.attack_monster("tidak_ada")["reason"]), "unknown", "spawn tak dikenal")
 	var stam := s.vitality.value("stamina")

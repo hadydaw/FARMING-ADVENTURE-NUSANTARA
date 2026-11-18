@@ -109,6 +109,17 @@ func _close_menu() -> void:
 
 
 func _on_bag_use(item: String) -> void:
+	if item.begins_with("__slot:"):
+		var ru := w.farming.unequip_slot(item.substr(7))
+		w.hud.show_message(tr("EQUIP_UNEQUIPPED") if bool(ru["ok"]) else tr("EQUIP_NO_" + str(ru["reason"]).to_upper()))
+		w.refresh_farm_visuals()
+		return
+	var def: Dictionary = w.farming.item_defs.get(item, {})
+	if def.has("slot"):
+		var re := w.farming.equip_item(item)
+		w.hud.show_message(tr("EQUIP_DONE") if bool(re["ok"]) else tr("EQUIP_NO_" + str(re["reason"]).to_upper()))
+		w.refresh_farm_visuals()
+		return
 	var r := w.farming.use_item(item)
 	w.hud.show_message(tr("USE_DONE") if bool(r["ok"]) else tr("USE_NO_" + str(r["reason"]).to_upper()))
 	w.refresh_farm_visuals()
@@ -255,7 +266,10 @@ func update_monsters(delta: float) -> void:
 					w.hud.show_message(tr("COMBAT_FAINTED"))
 					w._place_player("region_village", 0.0, 4.0)
 				else:
-					w.hud.show_message(tr("COMBAT_TAKEN") % int(r["taken"]), 1.0)
+					var extra := ""
+					if str(r["inflict"]) != "":
+						extra = "  " + tr("STATUS_INFLICTED") % tr(str(fc.status.row(str(r["inflict"]))["name_key"]))
+					w.hud.show_message(tr("COMBAT_TAKEN") % int(r["taken"]) + extra, 1.0)
 				_refresh_monsters()
 				w.refresh_farm_visuals()
 		elif decision == "idle" and away_from_home > 0.3:
